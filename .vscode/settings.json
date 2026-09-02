@@ -1,6 +1,16 @@
 {
+  // WordPress stubs pour l'autocomplétion et la doc
   "intelephense.environment.includePaths": [
     "/Users/ykhalfouni/Local Sites/wordpress-starter/app/public/wp-includes",
     "/Users/ykhalfouni/Local Sites/wordpress-starter/app/public/wp-admin"
-  ]
+  ],
+  // Formatage automatique à la sauvegarde
+  "editor.formatOnSave": true,
+
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[scss]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[markdown]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[php]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "html.format.templating": true
 }

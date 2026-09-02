@@ -18,7 +18,9 @@
     "build": "vite build"
   },
   "devDependencies": {
-    "vite": "^8.2.2",
-    "sass": "^1.103.1"
+    "@prettier/plugin-php": "^0.25.0",
+    "prettier": "^3.9.6",
+    "sass": "^1.103.1",
+    "vite": "^8.2.2"
   }
 }

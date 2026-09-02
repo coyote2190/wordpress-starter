@@ -1,11 +1,12 @@
 <?php
+
 /**
  * WordPress Starter — functions.php
  * Point d'entrée du thème : n'inclut que les fichiers de inc/
  */
 
 if (!defined('ABSPATH')) {
-    exit; // Sécurité : empêche l'accès direct au fichier
+    exit(); // Sécurité : empêche l'accès direct au fichier
 }
 
 define('STARTER_THEME_DIR', get_template_directory());

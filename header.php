@@ -11,7 +11,7 @@
 <header class="site-header">
     <div class="site-branding">
         <?php if (has_custom_logo()) : ?>
-            <?php the_custom_logo(); ?>
+                    <?php               the_custom_logo(); ?>
         <?php else : ?>
             <a href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
         <?php endif; ?>
@@ -24,5 +24,5 @@
         'menu_class'     => 'primary-menu',
         'fallback_cb'    => false,
     ]);
-    ?>
+?>
 </header>

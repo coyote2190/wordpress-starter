@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Chargement des assets — dev server Vite (HMR) ou build de production
  */
@@ -13,14 +14,16 @@ define('STARTER_HOT_FILE', STARTER_THEME_DIR . '/assets/dist/.vite-hot');
  * Le dev server Vite tourne-t-il ?
  * Détecté via le fichier flag créé/supprimé par le plugin wpHotFile de vite.config.js
  */
-function starter_vite_is_running() {
+function starter_vite_is_running()
+{
     return file_exists(STARTER_HOT_FILE);
 }
 
 /**
  * URL du dev server Vite (ex: http://localhost:5173), vide si non lancé
  */
-function starter_vite_dev_url() {
+function starter_vite_dev_url()
+{
     return starter_vite_is_running()
         ? trim(file_get_contents(STARTER_HOT_FILE))
         : '';
@@ -29,7 +32,8 @@ function starter_vite_dev_url() {
 /**
  * Point d'entrée : bascule automatique dev / production
  */
-function starter_enqueue_assets() {
+function starter_enqueue_assets()
+{
     if (starter_vite_is_running()) {
         starter_enqueue_dev_assets();
     } else {
@@ -41,7 +45,8 @@ add_action('wp_enqueue_scripts', 'starter_enqueue_assets');
 /**
  * Mode dev : client Vite + entrée source (le SCSS est injecté par le JS)
  */
-function starter_enqueue_dev_assets() {
+function starter_enqueue_dev_assets()
+{
     $dev_url = starter_vite_dev_url();
 
     wp_enqueue_script(
@@ -64,7 +69,8 @@ function starter_enqueue_dev_assets() {
 /**
  * Mode production : fichiers compilés dans assets/dist/
  */
-function starter_enqueue_build_assets() {
+function starter_enqueue_build_assets()
+{
     $dist_path = STARTER_THEME_DIR . '/assets/dist';
     $dist_uri  = STARTER_THEME_URI . '/assets/dist';
 
@@ -94,7 +100,8 @@ function starter_enqueue_build_assets() {
 /**
  * Les scripts Vite doivent être servis en type="module"
  */
-function starter_module_script_tag($tag, $handle, $src) {
+function starter_module_script_tag($tag, $handle, $src)
+{
     if (!starter_vite_is_running()) {
         return $tag;
     }

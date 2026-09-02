@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Configuration de base du thème
  */
@@ -7,7 +8,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-function starter_theme_setup() {
+function starter_theme_setup()
+{
     // Traductions
     load_theme_textdomain('starter', STARTER_THEME_DIR . '/languages');
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Fonctions utilitaires réutilisables entre projets
  */
@@ -13,7 +14,8 @@ if (!defined('ABSPATH')) {
  * @param string $name Nom du composant (ex: 'hero')
  * @param array  $args Données passées au composant
  */
-function starter_component($name, $args = []) {
+function starter_component($name, $args = [])
+{
     get_template_part('template-parts/components/' . $name, null, $args);
 }
 
@@ -25,7 +27,8 @@ function starter_component($name, $args = []) {
  * @param array  $args
  * @return string
  */
-function starter_get_component($name, $args = []) {
+function starter_get_component($name, $args = [])
+{
     ob_start();
     starter_component($name, $args);
     return ob_get_clean();

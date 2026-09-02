@@ -1,0 +1,19 @@
+{
+  "printWidth": 100,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "plugins": ["@prettier/plugin-php"],
+  "overrides": [
+    {
+      "files": "*.scss",
+      "options": { "singleQuote": false }
+    },
+    {
+      "files": "*.php",
+      "options": {
+        "phpVersion": "8.2",
+        "braceStyle": "1tbs"
+      }
+    }
+  ]
+}
