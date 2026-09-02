@@ -20,6 +20,7 @@ Reusable WordPress starter theme — PHP/Vite/SCSS, built for fast customization
 git clone https://github.com/coyote2190/wordpress-starter.git
 cd wordpress-starter
 npm install
+composer install   # WordPress stubs for IDE autocompletion
 ```
 
 Place the folder inside `wp-content/themes/`, then activate the theme from the WordPress admin.

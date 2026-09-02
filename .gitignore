@@ -17,7 +17,7 @@ pnpm-debug.log*
 Thumbs.db
 
 # Éditeurs
-.vscode/
+# .vscode/
 .idea/
 *.swp
 *.swo
@@ -33,3 +33,7 @@ wp-content/cache/
 
 # Fonts sous licence restrictive (ITF FFL — redistribution interdite)
 assets/fonts/
+
+# Php
+vendor/
+composer.lock

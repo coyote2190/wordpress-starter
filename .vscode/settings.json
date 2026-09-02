@@ -1,0 +1,6 @@
+{
+  "intelephense.environment.includePaths": [
+    "/Users/ykhalfouni/Local Sites/wordpress-starter/app/public/wp-includes",
+    "/Users/ykhalfouni/Local Sites/wordpress-starter/app/public/wp-admin"
+  ]
+}
