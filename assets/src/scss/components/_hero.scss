@@ -21,11 +21,4 @@
     color: $color-muted;
     margin-bottom: $spacing-md;
   }
-
-  &__button {
-    display: inline-block;
-    padding: $spacing-xs $spacing-md;
-    border: 1px solid currentColor;
-    text-decoration: none;
-  }
 }

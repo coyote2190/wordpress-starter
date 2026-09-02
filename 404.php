@@ -15,7 +15,7 @@
             <?php get_search_form(); ?>
         </div>
 
-        <a href="<?php echo esc_url(home_url('/')); ?>" class="error-404__link">
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="btn error-404__link">
             <?php esc_html_e('Retour à l\'accueil', 'starter'); ?>
         </a>
     </section>

@@ -18,13 +18,4 @@
   &__search {
     margin-bottom: $spacing-lg;
   }
-
-  &__link {
-    display: inline-block;
-    padding: $spacing-xs $spacing-md;
-    background: $color-black;
-    color: $color-white;
-    text-decoration: none;
-    border-radius: $radius;
-  }
 }

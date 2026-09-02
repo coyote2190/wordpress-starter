@@ -28,7 +28,6 @@
   &__thumbnail img {
     width: 100%;
     height: auto;
-    border-radius: $radius;
     margin-bottom: $spacing-sm;
   }
 
@@ -59,11 +58,9 @@
   .page-numbers {
     padding: $spacing-xs $spacing-sm;
     text-decoration: none;
-    border-radius: $radius;
 
     &.current {
-      background: $color-black;
-      color: $color-white;
+      text-decoration: underline;
     }
   }
 }
