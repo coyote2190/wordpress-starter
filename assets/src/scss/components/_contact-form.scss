@@ -1,0 +1,27 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.contact-form {
+  @include container($content-max);
+  padding-block: $spacing-lg $spacing-xl;
+
+  &__field {
+    margin-bottom: $spacing-md;
+  }
+
+  &__message {
+    padding: $spacing-sm;
+    margin-bottom: $spacing-md;
+    border: 1px solid currentColor;
+  }
+
+  // Honeypot : invisible mais pas display:none
+  // (certains bots ignorent les champs en display:none)
+  &__honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+}

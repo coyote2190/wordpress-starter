@@ -17,6 +17,7 @@ define('STARTER_VERSION', '0.1.0');
 require_once STARTER_THEME_DIR . '/inc/setup.php';
 require_once STARTER_THEME_DIR . '/inc/enqueue.php';
 require_once STARTER_THEME_DIR . '/inc/helpers.php';
+require_once STARTER_THEME_DIR . '/inc/contact-form.php';
 
 // Décommente au fur et à mesure que tu ajoutes ces fichiers :
 // require_once STARTER_THEME_DIR . '/inc/customizer.php';
