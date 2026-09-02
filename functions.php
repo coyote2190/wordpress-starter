@@ -1,5 +1,4 @@
 <?php
-
 /**
  * WordPress Starter — functions.php
  * Point d'entrée du thème : n'inclut que les fichiers de inc/
@@ -19,10 +18,6 @@ require_once STARTER_THEME_DIR . '/inc/enqueue.php';
 require_once STARTER_THEME_DIR . '/inc/helpers.php';
 require_once STARTER_THEME_DIR . '/inc/contact-form.php';
 require_once STARTER_THEME_DIR . '/inc/cleanup.php';
-
-// Décommente au fur et à mesure que tu ajoutes ces fichiers :
-// require_once STARTER_THEME_DIR . '/inc/customizer.php';
-// require_once STARTER_THEME_DIR . '/inc/acf-fields.php';
 require_once STARTER_THEME_DIR . '/inc/custom-post-types.php';
 
 if (class_exists('ACF')) {
