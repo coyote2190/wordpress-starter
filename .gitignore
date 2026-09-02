@@ -30,3 +30,6 @@ wp-content/cache/
 # Divers
 *.log
 .cache/
+
+# Fonts sous licence restrictive (ITF FFL — redistribution interdite)
+assets/fonts/

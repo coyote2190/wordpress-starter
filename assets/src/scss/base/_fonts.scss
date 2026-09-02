@@ -1,0 +1,34 @@
+// ─────────────────────────────────────────────
+// Fonts auto-hébergées — Ranade (Fontshare / ITF FFL)
+//
+// ⚠️ Licence ITF Free Font License : redistribution interdite.
+//    Ne pas commiter assets/fonts/ dans un dépôt public.
+//    Télécharger depuis https://www.fontshare.com/fonts/ranade
+// ─────────────────────────────────────────────
+
+@font-face {
+  font-family: "Ranade";
+  src: url("/wp-content/themes/wordpress-starter/assets/fonts/Ranade-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ranade";
+  src: url("/wp-content/themes/wordpress-starter/assets/fonts/Ranade-Medium.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ranade";
+  src: url("/wp-content/themes/wordpress-starter/assets/fonts/Ranade-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
