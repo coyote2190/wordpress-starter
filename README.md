@@ -86,3 +86,7 @@ Font files are **not versioned** — the license prohibits redistribution.
 2. Place `Ranade-Regular.woff2`, `Ranade-Medium.woff2` and `Ranade-Bold.woff2` in `assets/fonts/`
 
 To switch fonts: replace the files, update `base/_fonts.scss` and `$font-base` in `abstracts/_variables.scss`.
+
+## Documentation
+
+- [Template hierarchy](docs/TEMPLATES.md) — which file handles which page type
