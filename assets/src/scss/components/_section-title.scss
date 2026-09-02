@@ -1,0 +1,35 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.section-title {
+  margin-bottom: $spacing-lg;
+
+  &--center {
+    text-align: center;
+  }
+
+  &__overline {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $color-muted;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__heading {
+    font-size: 1.75rem;
+
+    @include mq($bp-md) {
+      font-size: 2rem;
+    }
+  }
+
+  &__subtitle {
+    color: $color-muted;
+    max-width: $content-max;
+
+    .section-title--center & {
+      margin-inline: auto;
+    }
+  }
+}

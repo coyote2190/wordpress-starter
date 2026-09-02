@@ -1,0 +1,46 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.card {
+  &__img {
+    width: 100%;
+    height: auto;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__meta {
+    font-size: 0.875rem;
+    color: $color-muted;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__text {
+    color: $color-muted;
+  }
+}
+
+.card-grid {
+  display: grid;
+  gap: $spacing-lg;
+
+  @include mq($bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &--3 {
+    @include mq($bp-lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &--4 {
+    @include mq($bp-lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
