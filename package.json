@@ -1,0 +1,24 @@
+{
+  "name": "wordpress-starter",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/coyote2190/wordpress-starter#readme",
+  "bugs": {
+    "url": "https://github.com/coyote2190/wordpress-starter/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coyote2190/wordpress-starter.git"
+  },
+  "license": "ISC",
+  "author": "yk",
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^8.2.2",
+    "sass": "^1.103.1"
+  }
+}

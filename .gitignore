@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environnement / config locale
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# WordPress spécifique (si jamais tu testes en local dans ce repo)
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+
+# Divers
+*.log
+.cache/
