@@ -63,6 +63,19 @@ wordpress-starter/
 
 The theme is organized around a lightweight PHP structure, with Vite handling frontend asset compilation and SCSS modules for styling and component-level organization.
 
+## Components
+
+Components are rendered via the `starter_component()` helper:
+
+```php
+starter_component('hero', [
+    'title'       => 'Welcome',
+    'subtitle'    => 'A short subtitle',
+    'button_text' => 'Discover',
+    'button_url'  => home_url('/contact'),
+]);
+```
+
 ## Fonts
 
 The starter uses **Ranade** (Fontshare, ITF Free Font License).

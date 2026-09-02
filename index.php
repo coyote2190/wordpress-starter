@@ -1,12 +1,18 @@
 <?php get_header(); ?>
 
 <?php
-get_template_part('template-parts/components/hero', null, [
+starter_component('hero', [
     'title'       => 'Bienvenue',
     'subtitle'    => 'Un sous-titre engageant ici',
     'button_text' => 'Découvrir',
     'button_url'  => home_url('/contact'),
 ]);
+// get_template_part('template-parts/components/hero', null, [
+//     'title'       => 'Bienvenue',
+//     'subtitle'    => 'Un sous-titre engageant ici',
+//     'button_text' => 'Découvrir',
+//     'button_url'  => home_url('/contact'),
+// ]);
 ?>
 
 <main class="site-main">
