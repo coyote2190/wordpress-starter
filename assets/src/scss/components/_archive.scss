@@ -67,3 +67,15 @@
     }
   }
 }
+
+.archive-count {
+  color: $color-secondary;
+  font-size: 0.875rem;
+}
+
+.archive-empty {
+  @include container($content-max);
+  padding-block: $spacing-xl;
+  text-align: center;
+  color: $color-secondary;
+}

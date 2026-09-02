@@ -1,0 +1,30 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.error-404 {
+  @include container($content-max);
+  padding-block: $spacing-xl;
+  text-align: center;
+
+  &__title {
+    font-size: 2rem;
+  }
+
+  &__text {
+    color: $color-secondary;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__search {
+    margin-bottom: $spacing-lg;
+  }
+
+  &__link {
+    display: inline-block;
+    padding: $spacing-xs $spacing-md;
+    background: $color-primary;
+    color: $color-white;
+    text-decoration: none;
+    border-radius: $radius;
+  }
+}
