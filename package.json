@@ -14,7 +14,7 @@
   "author": "yk",
   "type": "module",
   "scripts": {
-    "dev": "vite build --watch",
+    "dev": "vite",
     "build": "vite build"
   },
   "devDependencies": {
