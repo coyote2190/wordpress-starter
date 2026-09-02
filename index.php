@@ -1,5 +1,14 @@
 <?php get_header(); ?>
 
+<?php
+get_template_part('template-parts/components/hero', null, [
+    'title'       => 'Bienvenue',
+    'subtitle'    => 'Un sous-titre engageant ici',
+    'button_text' => 'Découvrir',
+    'button_url'  => home_url('/contact'),
+]);
+?>
+
 <main class="site-main">
     <?php if (have_posts()) : ?>
         <?php while (have_posts()) : the_post(); ?>
