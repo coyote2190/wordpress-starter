@@ -61,3 +61,14 @@ wordpress-starter/
 ```
 
 The theme is organized around a lightweight PHP structure, with Vite handling frontend asset compilation and SCSS modules for styling and component-level organization.
+
+## Fonts
+
+The starter uses **Ranade** (Fontshare, ITF Free Font License).
+
+Font files are **not versioned** — the license prohibits redistribution.
+
+1. Download Ranade from [fontshare.com/fonts/ranade](https://www.fontshare.com/fonts/ranade)
+2. Place `Ranade-Regular.woff2`, `Ranade-Medium.woff2` and `Ranade-Bold.woff2` in `assets/fonts/`
+
+To switch fonts: replace the files, update `base/_fonts.scss` and `$font-base` in `abstracts/_variables.scss`.
