@@ -2,14 +2,11 @@
 @use "../abstracts/mixins" as *;
 
 .hero {
-  background-size: cover;
-  background-position: center;
-  padding: $spacing-xl $spacing-lg;
+  padding-block: $spacing-xl;
   text-align: center;
 
   &__content {
-    max-width: $content-max;
-    margin-inline: auto;
+    @include container($content-max);
   }
 
   &__title {
@@ -21,17 +18,14 @@
   }
 
   &__subtitle {
-    font-size: 1.125rem;
-    color: $color-secondary;
+    color: $color-muted;
     margin-bottom: $spacing-md;
   }
 
   &__button {
     display: inline-block;
     padding: $spacing-xs $spacing-md;
-    background: $color-primary;
-    color: $color-white;
+    border: 1px solid currentColor;
     text-decoration: none;
-    border-radius: $radius;
   }
 }

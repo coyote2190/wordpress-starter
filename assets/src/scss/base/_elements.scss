@@ -1,0 +1,95 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+// ─── Liens ───
+a {
+  color: currentColor;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// ─── Boutons ───
+// Classe utilitaire, pas de style sur <button> directement
+.btn {
+  display: inline-block;
+  padding: $spacing-xs $spacing-md;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-text;
+    color: $color-bg;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ─── Champs de formulaire ───
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+textarea,
+select {
+  width: 100%;
+  padding: $spacing-xs $spacing-sm;
+  border: 1px solid $color-border;
+  background: $color-bg;
+  color: $color-text;
+  font: inherit;
+}
+
+textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+label {
+  display: block;
+  margin-bottom: $spacing-xs;
+}
+
+// ─── Focus visible (accessibilité) ───
+:focus-visible {
+  outline: 2px solid $color-text;
+  outline-offset: 2px;
+}
+
+// ─── Éléments divers ───
+hr {
+  border: 0;
+  border-top: 1px solid $color-border;
+  margin-block: $spacing-lg;
+}
+
+blockquote {
+  margin: $spacing-lg 0;
+  padding-left: $spacing-md;
+  border-left: 2px solid $color-border;
+}
+
+code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.9em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: $spacing-xs;
+    border-bottom: 1px solid $color-border;
+    text-align: left;
+  }
+}

@@ -44,7 +44,7 @@
   &__date {
     display: block;
     font-size: 0.875rem;
-    color: $color-secondary;
+    color: $color-muted;
     margin-bottom: $spacing-xs;
   }
 }
@@ -62,14 +62,14 @@
     border-radius: $radius;
 
     &.current {
-      background: $color-primary;
+      background: $color-black;
       color: $color-white;
     }
   }
 }
 
 .archive-count {
-  color: $color-secondary;
+  color: $color-muted;
   font-size: 0.875rem;
 }
 
@@ -77,5 +77,5 @@
   @include container($content-max);
   padding-block: $spacing-xl;
   text-align: center;
-  color: $color-secondary;
+  color: $color-muted;
 }

@@ -1,9 +1,14 @@
 // ─── Couleurs ───
-$color-primary: #111;
-$color-secondary: #666;
-$color-bg: #fff;
-$color-text: #111;
+// ─── Couleurs (neutres — à surcharger par client) ───
+$color-black: #000;
 $color-white: #fff;
+$color-gray: #666;
+$color-gray-light: #e5e5e5;
+
+$color-text: $color-black;
+$color-bg: $color-white;
+$color-muted: $color-gray;
+$color-border: $color-gray-light;
 
 // ─── Typographie ───
 // $font-base:
