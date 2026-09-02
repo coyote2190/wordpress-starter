@@ -1,0 +1,124 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  padding: $spacing-xs $spacing-sm;
+  background: $color-bg;
+  border: 1px solid currentColor;
+  z-index: 100;
+
+  &:focus {
+    left: $spacing-sm;
+    top: $spacing-sm;
+  }
+}
+
+.site-header {
+  position: relative;
+  border-bottom: 1px solid $color-border;
+
+  &__inner {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-md;
+    padding-block: $spacing-sm;
+  }
+
+  &__title {
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  &__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xs;
+    padding: $spacing-xs $spacing-sm;
+    border: 1px solid currentColor;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    @include mq($bp-md) {
+      display: none;
+    }
+  }
+
+  &__toggle-icon {
+    display: block;
+    width: 1rem;
+    height: 2px;
+    background: currentColor;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: currentColor;
+    }
+
+    &::before {
+      top: -5px;
+    }
+    &::after {
+      top: 5px;
+    }
+  }
+}
+
+.site-nav {
+  // Mobile : masqué par défaut, affiché quand le body a .nav-open
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: $color-bg;
+  border-bottom: 1px solid $color-border;
+  padding: $spacing-sm;
+
+  .nav-open & {
+    display: block;
+  }
+
+  @include mq($bp-md) {
+    display: block;
+    position: static;
+    border: 0;
+    padding: 0;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    @include mq($bp-md) {
+      flex-direction: row;
+      gap: $spacing-md;
+    }
+
+    a {
+      text-decoration: none;
+      display: block;
+      padding-block: $spacing-xs;
+
+      &:hover,
+      &:focus-visible {
+        text-decoration: underline;
+      }
+    }
+  }
+}
