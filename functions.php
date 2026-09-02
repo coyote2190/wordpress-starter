@@ -21,4 +21,8 @@ require_once STARTER_THEME_DIR . '/inc/helpers.php';
 // Décommente au fur et à mesure que tu ajoutes ces fichiers :
 // require_once STARTER_THEME_DIR . '/inc/customizer.php';
 // require_once STARTER_THEME_DIR . '/inc/acf-fields.php';
-// require_once STARTER_THEME_DIR . '/inc/custom-post-types.php';
+require_once STARTER_THEME_DIR . '/inc/custom-post-types.php';
+
+if (class_exists('ACF')) {
+    require_once STARTER_THEME_DIR . '/inc/acf.php';
+}

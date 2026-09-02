@@ -2,7 +2,9 @@
   // WordPress stubs pour l'autocomplétion et la doc
   "intelephense.environment.includePaths": [
     "/Users/ykhalfouni/Local Sites/wordpress-starter/app/public/wp-includes",
-    "/Users/ykhalfouni/Local Sites/wordpress-starter/app/public/wp-admin"
+    "/Users/ykhalfouni/Local Sites/wordpress-starter/app/public/wp-admin",
+    "vendor/php-stubs/wordpress-stubs",
+    "vendor/php-stubs/acf-pro-stubs"
   ],
   // Formatage automatique à la sauvegarde
   "editor.formatOnSave": true,

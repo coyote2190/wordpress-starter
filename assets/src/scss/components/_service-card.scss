@@ -1,0 +1,39 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.services-intro {
+  @include container($content-max);
+  padding-block: $spacing-xl $spacing-lg;
+}
+
+.services-list {
+  @include container;
+  display: grid;
+  gap: $spacing-lg;
+  padding-bottom: $spacing-xl;
+
+  @include mq($bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mq($bp-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.service-card {
+  &__img {
+    width: 100%;
+    height: auto;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__description {
+    color: $color-muted;
+  }
+}
