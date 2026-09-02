@@ -1,0 +1,15 @@
+@use "variables" as *;
+
+// Media query mobile-first
+@mixin mq($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+// Conteneur centré
+@mixin container($max: $container-max) {
+  max-width: $max;
+  margin-inline: auto;
+  padding-inline: $spacing-sm;
+}
