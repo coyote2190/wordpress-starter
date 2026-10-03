@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "starter/faq",
+  "version": "0.1.0",
+  "title": "FAQ",
+  "category": "sea-click",
+  "icon": "editor-help",
+  "description": "Questions / réponses repliables, sans JavaScript, avec le balisage FAQ pour Google.",
+  "keywords": [
+    "faq",
+    "questions",
+    "accordéon"
+  ],
+  "textdomain": "starter",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Questions fréquentes"
+    },
+    "items": {
+      "type": "array",
+      "default": [
+        {
+          "question": "Combien de temps faut-il pour créer un site ?",
+          "answer": "Comptez 4 à 8 semaines selon la taille du projet, de la maquette à la mise en ligne."
+        },
+        {
+          "question": "Pourrai-je modifier mon site moi-même ?",
+          "answer": "Oui : les pages se modifient avec l'éditeur de blocs de WordPress, et une formation est incluse."
+        },
+        {
+          "question": "Proposez-vous la maintenance ?",
+          "answer": "Oui, avec un forfait mensuel : mises à jour, sauvegardes et surveillance."
+        }
+      ]
+    },
+    "schema": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "wide"
+    ]
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

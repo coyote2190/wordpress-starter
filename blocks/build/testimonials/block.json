@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "starter/testimonials",
+  "version": "0.1.0",
+  "title": "Témoignages",
+  "category": "sea-click",
+  "icon": "format-quote",
+  "description": "Avis clients en grille : citation, nom et fonction.",
+  "keywords": [
+    "avis",
+    "témoignages",
+    "clients"
+  ],
+  "textdomain": "starter",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Ils nous font confiance"
+    },
+    "columns": {
+      "type": "number",
+      "default": 3
+    },
+    "items": {
+      "type": "array",
+      "default": [
+        {
+          "quote": "Un site clair, rapide et facile à modifier. Exactement ce qu'il nous fallait.",
+          "name": "Marie Dupont",
+          "role": "Gérante, Boulangerie du Port"
+        },
+        {
+          "quote": "Très bon accompagnement du début à la fin, et des conseils précieux.",
+          "name": "Karim Benali",
+          "role": "Architecte"
+        },
+        {
+          "quote": "Nos demandes de devis ont doublé depuis la mise en ligne.",
+          "name": "Sophie Martin",
+          "role": "Fondatrice, Atelier Martin"
+        }
+      ]
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "wide"
+    ]
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}
