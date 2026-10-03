@@ -69,12 +69,9 @@ function starter_enqueue_build_assets() {
 
 /**
  * Les scripts Vite doivent être servis en type="module"
+ * (en dev comme en prod : le build est en ESM et charge des chunks à la demande)
  */
 function starter_module_script_tag($tag, $handle, $src) {
-    if (!starter_vite_is_running()) {
-        return $tag;
-    }
-
     if (in_array($handle, ['starter-vite-client', 'starter-main'], true)) {
         return '<script type="module" src="' . esc_url($src) . '"></script>' . "\n";
     }

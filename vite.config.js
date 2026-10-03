@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
+import react from '@vitejs/plugin-react';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -30,7 +31,10 @@ function wpHotFile() {
 }
 
 export default defineConfig({
-  plugins: [tailwindcss(), wpHotFile()],
+  // Chemins relatifs : les chunks chargés à la demande (îlots React)
+  // sont résolus depuis main.js, quel que soit le dossier du thème
+  base: './',
+  plugins: [tailwindcss(), react(), wpHotFile()],
   server: {
     host: 'localhost',
     port: DEV_PORT,
@@ -45,7 +49,7 @@ export default defineConfig({
       input: { main: 'assets/src/js/main.js' },
       output: {
         entryFileNames: 'main.js',
-        chunkFileNames: 'chunks/[name].js',
+        chunkFileNames: 'chunks/[name]-[hash].js',
         assetFileNames: (assetInfo) => {
           const name = assetInfo.names?.[0] ?? assetInfo.name ?? '';
           if (name.endsWith('.css')) return 'main.css';

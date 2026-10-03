@@ -7,7 +7,7 @@
  *   @type string $description Description courte
  *   @type int    $image_id    ID de l'image (optionnel)
  *   @type string $url         Lien vers la page détail (optionnel)
- *   @type array  $icon        Tableau image ACF (optionnel)
+ *   @type array  $icon        Tableau image SCF/ACF (optionnel)
  *   @type string $price       Prix formaté (optionnel)
  *   @type string $duration    Durée (optionnel)
  *   @type string $cta_url     Lien externe (optionnel)

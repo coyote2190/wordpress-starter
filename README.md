@@ -7,6 +7,7 @@ Reusable WordPress starter theme — PHP/Vite/Tailwind, built for fast customiza
 - **WordPress** (classic PHP theme, no FSE)
 - **Vite 8** (Rolldown) for asset builds
 - **Tailwind CSS 4** (CSS-first config via `@theme`, `@tailwindcss/vite` plugin)
+- **React** — Gutenberg blocks (`@wordpress/scripts`) and front-end islands (Vite)
 - Compatible with **shared hosting** (no Node required in production)
 
 ## Requirements
@@ -29,7 +30,8 @@ Place the folder inside `wp-content/themes/`, then activate the theme from the W
 
 ```bash
 npm run dev            # starts the Vite dev server with HMR (localhost:5173)
-npm run build          # compiles assets into assets/dist/
+npm run dev:blocks     # watches Gutenberg blocks (blocks/src → blocks/build)
+npm run build          # compiles assets into assets/dist/ and blocks into blocks/build/
 npm run sort-classes   # reorders Tailwind classes in the .php templates (rustywind)
 npm run format         # sort-classes + prettier on the whole theme
 ```
@@ -43,7 +45,7 @@ The theme automatically detects whether the dev server is running via the `.vite
 - **Dev server active** → assets load from `localhost:5173` with hot reload
 - **Dev server stopped** → assets load from `assets/dist/`
 
-> ⚠️ `assets/dist/` is versioned in Git. Run `npm run build` before each commit to keep the build up to date.
+> ⚠️ `assets/dist/` and `blocks/build/` are versioned in Git. Run `npm run build` before each commit to keep the build up to date.
 
 ## Structure
 
@@ -52,8 +54,13 @@ wordpress-starter/
 ├─ assets/
 │  ├─ src/
 │  │  ├─ js/
+│  │  │  └─ islands/   # React islands (front)
 │  │  └─ css/        # main.css — @import "tailwindcss" + @theme tokens
 │  └─ dist/
+├─ acf-json/       # SCF/ACF field groups (JSON sync)
+├─ blocks/
+│  ├─ src/        # Gutenberg blocks (block.json, edit.js, render.php)
+│  └─ build/
 ├─ inc/
 ├─ template-parts/
 ├─ footer.php
@@ -64,7 +71,7 @@ wordpress-starter/
 ├─ style.css
 ├─ vite.config.js
 ├─ README.md
-└─ .vite-hot
+└─ docs/
 ```
 
 The theme is organized around a lightweight PHP structure, with Vite handling
@@ -98,6 +105,14 @@ starter_component('hero', [
 ]);
 ```
 
+## Custom fields (SCF)
+
+The starter uses **[Secure Custom Fields](https://wordpress.org/plugins/secure-custom-fields/)** (SCF), the WordPress.org fork of ACF — free, including repeater, flexible content, options pages and blocks. ACF / ACF Pro also works (same API), but never activate both.
+
+- Field groups are saved as JSON in `acf-json/` (versioned). On a new install: *Custom Fields → Field Groups → Sync available*.
+- Read fields with `starter_field('name')`, which returns `null` if no plugin is active instead of crashing.
+- Included: `group_starter_service.json` (price, duration, icon, link for the `service` CPT).
+
 ## Fonts
 
 The starter uses **Ranade** (Fontshare, ITF Free Font License).
@@ -112,4 +127,5 @@ To switch fonts: replace the files, then update the `@font-face` rules and the
 
 ## Documentation
 
+- [React: blocks & islands](docs/REACT.md) — Gutenberg blocks and React islands (quote simulator example)
 - [Template hierarchy](docs/TEMPLATES.md) — which file handles which page type

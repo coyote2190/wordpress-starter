@@ -28,19 +28,19 @@ get_header(); ?>
 
                 $services->the_post();
 
-                $price = get_field('price_from');
+                $price = starter_field('price_from');
                 ?>
                 <?php starter_component('service-card', [
                     'title' => get_the_title(),
                     'description' => get_the_excerpt(),
                     'image_id' => get_post_thumbnail_id(),
                     'url' => get_permalink(),
-                    'icon' => get_field('icon'),
+                    'icon' => starter_field('icon'),
                     'price' => $price
                         ? sprintf(__('À partir de %s €', 'starter'), number_format_i18n($price))
                         : '',
-                    'duration' => get_field('duration'),
-                    'cta_url' => get_field('cta_url'),
+                    'duration' => starter_field('duration'),
+                    'cta_url' => starter_field('cta_url'),
                 ]); ?>
             <?php
             endwhile; ?>
