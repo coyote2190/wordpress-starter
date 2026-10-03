@@ -55,11 +55,14 @@ ob_start();
     ): ?>
         <p class="mb-6">
             <?php printf(
-                esc_html__('%1$s : prix de base pour %2$s %3$s, puis %4$s € HT par unité supplémentaire', 'starter'),
+                esc_html__(
+                    '%1$s : prix de base pour %2$s %3$s, puis %4$s € HT par unité supplémentaire',
+                    'starter',
+                ),
                 esc_html($props['quantityLabel']),
                 esc_html($props['quantityMin']),
                 esc_html($props['quantityUnit']),
-                esc_html(number_format_i18n($props['quantityPrice']))
+                esc_html(number_format_i18n($props['quantityPrice'])),
             ); ?>
         </p>
     <?php endif; ?>

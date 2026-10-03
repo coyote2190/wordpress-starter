@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "starter/contact-form",
+  "version": "0.1.0",
+  "title": "Formulaire de contact",
+  "category": "sea-click",
+  "icon": "email",
+  "description": "Formulaire du thème (nom, email, message) avec anti-spam. Les messages arrivent sur l'email de l'administrateur.",
+  "keywords": ["contact", "formulaire", "email"],
+  "textdomain": "starter",
+  "attributes": {
+    "title": { "type": "string", "default": "Contactez-nous" },
+    "buttonText": { "type": "string", "default": "Envoyer" }
+  },
+  "supports": { "html": false, "multiple": false },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}
