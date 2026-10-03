@@ -33,7 +33,7 @@ function starter_get_component($name, $args = []) {
 }
 
 /**
- * Wrapper ACF sécurisé — retourne null si ACF n'est pas actif
+ * Wrapper SCF/ACF sécurisé — retourne null si aucun des deux plugins n'est actif
  */
 function starter_field($name, $post_id = false) {
     return function_exists('get_field') ? get_field($name, $post_id) : null;

@@ -22,6 +22,7 @@ require_once STARTER_THEME_DIR . '/inc/contact-form.php';
 require_once STARTER_THEME_DIR . '/inc/cleanup.php';
 require_once STARTER_THEME_DIR . '/inc/custom-post-types.php';
 
-if (class_exists('ACF')) {
+// Champs personnalisés : SCF (Secure Custom Fields) ou ACF — même API
+if (function_exists('get_field')) {
     require_once STARTER_THEME_DIR . '/inc/acf.php';
 }

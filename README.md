@@ -51,6 +51,7 @@ wordpress-starter/
 │  │  │  └─ islands/   # React islands (front)
 │  │  └─ scss/
 │  └─ dist/
+├─ acf-json/       # SCF/ACF field groups (JSON sync)
 ├─ blocks/
 │  ├─ src/        # Gutenberg blocks (block.json, edit.js, render.php)
 │  └─ build/
@@ -81,6 +82,14 @@ starter_component('hero', [
     'button_url'  => home_url('/contact'),
 ]);
 ```
+
+## Custom fields (SCF)
+
+The starter uses **[Secure Custom Fields](https://wordpress.org/plugins/secure-custom-fields/)** (SCF), the WordPress.org fork of ACF — free, including repeater, flexible content, options pages and blocks. ACF / ACF Pro also works (same API), but never activate both.
+
+- Field groups are saved as JSON in `acf-json/` (versioned). On a new install: *Custom Fields → Field Groups → Sync available*.
+- Read fields with `starter_field('name')`, which returns `null` if no plugin is active instead of crashing.
+- Included: `group_starter_service.json` (price, duration, icon, link for the `service` CPT).
 
 ## Fonts
 

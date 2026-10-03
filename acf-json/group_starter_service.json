@@ -1,0 +1,63 @@
+{
+  "key": "group_starter_service",
+  "title": "Service — détails",
+  "fields": [
+    {
+      "key": "field_starter_service_price_from",
+      "label": "Prix à partir de (€)",
+      "name": "price_from",
+      "type": "number",
+      "instructions": "Laisser vide pour masquer le prix.",
+      "required": 0,
+      "min": 0,
+      "step": 1,
+      "append": "€"
+    },
+    {
+      "key": "field_starter_service_duration",
+      "label": "Durée",
+      "name": "duration",
+      "type": "text",
+      "instructions": "Ex : 2 semaines, 1 h 30…",
+      "required": 0
+    },
+    {
+      "key": "field_starter_service_icon",
+      "label": "Icône",
+      "name": "icon",
+      "type": "image",
+      "instructions": "Remplace l'image mise en avant dans la carte service.",
+      "required": 0,
+      "return_format": "array",
+      "preview_size": "thumbnail",
+      "library": "all"
+    },
+    {
+      "key": "field_starter_service_cta_url",
+      "label": "Lien du bouton",
+      "name": "cta_url",
+      "type": "url",
+      "instructions": "Lien « En savoir plus » (optionnel).",
+      "required": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "service"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "Champs du CPT Service (starter).",
+  "show_in_rest": 0,
+  "modified": 1759500000
+}

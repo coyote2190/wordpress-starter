@@ -38,7 +38,7 @@ if (!$title && !$button_text) {
         <?php endif; ?>
 
         <?php if ($button_text && $button_url): ?>
-            
+            <a
                 href="<?php echo esc_url($button_url); ?>"
                 class="btn cta__button"
                 <?php if ($external): ?>target="_blank" rel="noopener"<?php endif; ?>
