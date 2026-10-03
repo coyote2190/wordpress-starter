@@ -45,7 +45,7 @@ export default function Simulator({
   const totalTTC = totalHT * (1 + Number(vatRate) / 100);
 
   return (
-    <div className="mx-auto max-w-narrow rounded border border-line p-8">
+    <div className="mx-auto max-w-narrow rounded border border-line p-6 md:p-8">
       {title && <h2 className="mb-4 text-2xl">{title}</h2>}
 
       <p className="mb-6 text-muted">

@@ -63,11 +63,14 @@ wordpress-starter/
 │  └─ build/
 ├─ inc/
 ├─ template-parts/
+├─ patterns/      # Gutenberg block patterns (hero, services, CTA, home…)
 ├─ footer.php
 ├─ functions.php
 ├─ header.php
 ├─ index.php
 ├─ package.json
+├─ front-page.php # home page: renders the page's blocks full width
+├─ theme.json     # editor widths + color palette (keep in sync with main.css)
 ├─ style.css
 ├─ vite.config.js
 ├─ README.md
@@ -127,5 +130,6 @@ To switch fonts: replace the files, then update the `@font-face` rules and the
 
 ## Documentation
 
+- [Gutenberg pages](docs/GUTENBERG.md) — block-built home page, widths, patterns
 - [React: blocks & islands](docs/REACT.md) — Gutenberg blocks and React islands (quote simulator example)
 - [Template hierarchy](docs/TEMPLATES.md) — which file handles which page type

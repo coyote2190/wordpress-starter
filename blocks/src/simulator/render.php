@@ -31,7 +31,7 @@ $props = [
 
 ob_start();
 ?>
-<div class="mx-auto max-w-narrow rounded border border-line p-8">
+<div class="mx-auto max-w-narrow rounded border border-line p-6 md:p-8">
     <?php if ($props['title']): ?>
         <h2 class="mb-4 text-2xl"><?php echo esc_html($props['title']); ?></h2>
     <?php endif; ?>

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "layout": {
+      "contentSize": "40rem",
+      "wideSize": "1200px"
+    },
+    "color": {
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "defaultDuotone": false,
+      "palette": [
+        { "slug": "ink", "name": "Texte", "color": "#000" },
+        { "slug": "canvas", "name": "Fond", "color": "#fff" },
+        { "slug": "muted", "name": "Texte secondaire", "color": "#666" },
+        { "slug": "line", "name": "Bordures", "color": "#e5e5e5" }
+      ]
+    }
+  }
+}

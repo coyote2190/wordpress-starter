@@ -22,6 +22,11 @@ function starter_theme_setup()
     add_theme_support('automatic-feed-links');
     add_theme_support('customize-selective-refresh-widgets');
 
+    // Gutenberg : alignements large / pleine largeur, embeds responsive
+    // (largeurs et couleurs définies dans theme.json)
+    add_theme_support('align-wide');
+    add_theme_support('responsive-embeds');
+
     // Styles du thème dans l'éditeur (aperçu fidèle des blocs)
     // ⚠️ Utilise le build : lancer `npm run build` pour mettre à jour
     add_theme_support('editor-styles');
@@ -34,3 +39,14 @@ function starter_theme_setup()
     ]);
 }
 add_action('after_setup_theme', 'starter_theme_setup');
+
+/**
+ * Catégorie des compositions (patterns/) dans l'inserteur de blocs
+ */
+function starter_register_pattern_category()
+{
+    register_block_pattern_category('starter', [
+        'label' => __('Starter', 'starter'),
+    ]);
+}
+add_action('init', 'starter_register_pattern_category');

@@ -188,3 +188,84 @@
     top: 5px;
   }
 }
+
+/* ─────────────────────────────────────────────
+   Contenu éditorial (Gutenberg / the_content)
+   Preflight remet tout à zéro : on redonne une
+   hiérarchie aux titres et des puces aux listes.
+   Les classes .wp-block-* ciblent aussi l'éditeur
+   (où .entry-content n'existe pas).
+   ───────────────────────────────────────────── */
+@layer components {
+  :is(.entry-content h1, h1.wp-block-heading, h1.wp-block-post-title) {
+    @apply text-[2rem] md:text-[2.5rem];
+  }
+
+  :is(.entry-content h2, h2.wp-block-heading, h2.wp-block-post-title) {
+    @apply text-[1.75rem] md:text-[2rem];
+  }
+
+  :is(.entry-content h3, h3.wp-block-heading, h3.wp-block-post-title) {
+    @apply text-xl;
+  }
+
+  :is(.entry-content ul:not([class]), ul.wp-block-list) {
+    @apply mb-4 list-disc pl-6;
+  }
+
+  :is(.entry-content ol:not([class]), ol.wp-block-list) {
+    @apply mb-4 list-decimal pl-6;
+  }
+
+  .entry-content img {
+    @apply h-auto max-w-full;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Gutenberg — hors @layer volontairement : le CSS
+   des blocs de WordPress n'est pas dans un layer et
+   passerait devant tout ce qui est dans @layer.
+   ───────────────────────────────────────────── */
+
+/* Mise en page pleine largeur (front-page.php, template « Pleine largeur ») :
+   normal = largeur de lecture, alignwide = conteneur, alignfull = bord à bord */
+.blocks {
+  padding-inline: 1rem;
+}
+
+.blocks > * {
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+}
+
+.blocks > .alignwide {
+  max-width: var(--container-wrap);
+}
+
+.blocks > .alignfull {
+  max-width: none;
+  margin-inline: -1rem;
+  margin-block: 0;
+}
+
+/* Bouton Gutenberg aligné sur .btn */
+.wp-block-button__link {
+  border: 1px solid currentColor;
+  border-radius: 0;
+  background-color: transparent;
+  color: inherit;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+}
+
+.wp-block-button__link:hover {
+  background-color: var(--color-ink);
+  color: var(--color-canvas);
+}
+
+/* Sur fond sombre, le survol s'inverse */
+.has-ink-background-color .wp-block-button__link:hover {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+}
