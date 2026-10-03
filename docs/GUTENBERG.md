@@ -30,7 +30,7 @@ Idem pour la palette (`ink`, `canvas`, `muted`, `line`).
 
 ## Compositions (patterns)
 
-Dans l'inserteur : onglet Compositions → catégorie **Starter**.
+Dans l'inserteur : onglet Compositions → catégorie **Sea Click**.
 
 | Fichier                  | Contenu                                              |
 | ------------------------ | ---------------------------------------------------- |

@@ -4,7 +4,7 @@
   "name": "starter/simulator",
   "version": "0.1.0",
   "title": "Simulateur de devis",
-  "category": "widgets",
+  "category": "sea-click",
   "icon": "calculator",
   "description": "Estimation de prix interactive : un prix de base et des options à cocher.",
   "keywords": [
