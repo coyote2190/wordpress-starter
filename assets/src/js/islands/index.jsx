@@ -9,6 +9,7 @@ import { createRoot } from 'react-dom/client';
  */
 const registry = {
   simulator: () => import('./Simulator.jsx'),
+  'ui-demo': () => import('./UiDemo.jsx'),
 };
 
 /**

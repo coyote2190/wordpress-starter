@@ -2,28 +2,75 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "starter/simulator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "title": "Simulateur de devis",
   "category": "sea-click",
   "icon": "calculator",
-  "description": "Estimation de prix interactive : un prix de base et des options à cocher.",
+  "description": "Estimation de prix interactive : prix de base, quantité réglable et options à cocher.",
   "keywords": ["devis", "prix", "estimation", "simulateur"],
   "textdomain": "starter",
   "attributes": {
-    "title": { "type": "string", "default": "Estimez votre projet" },
-    "basePrice": { "type": "number", "default": 1500 },
+    "title": {
+      "type": "string",
+      "default": "Estimez votre projet"
+    },
+    "basePrice": {
+      "type": "number",
+      "default": 1500
+    },
+    "quantityLabel": {
+      "type": "string",
+      "default": "Nombre de pages"
+    },
+    "quantityUnit": {
+      "type": "string",
+      "default": "pages"
+    },
+    "quantityMin": {
+      "type": "number",
+      "default": 5
+    },
+    "quantityMax": {
+      "type": "number",
+      "default": 30
+    },
+    "quantityPrice": {
+      "type": "number",
+      "default": 100
+    },
     "options": {
       "type": "array",
       "default": [
-        { "label": "Blog / actualités", "price": 400 },
-        { "label": "Formulaire de contact avancé", "price": 250 },
-        { "label": "Version multilingue", "price": 600 },
-        { "label": "Référencement local (SEO)", "price": 350 }
+        {
+          "label": "Blog / actualités",
+          "price": 400
+        },
+        {
+          "label": "Formulaire de contact avancé",
+          "price": 250
+        },
+        {
+          "label": "Version multilingue",
+          "price": 600
+        },
+        {
+          "label": "Référencement local (SEO)",
+          "price": 350
+        }
       ]
     },
-    "vatRate": { "type": "number", "default": 20 },
-    "ctaText": { "type": "string", "default": "Demander un devis" },
-    "ctaUrl": { "type": "string", "default": "/contact" }
+    "vatRate": {
+      "type": "number",
+      "default": 20
+    },
+    "ctaText": {
+      "type": "string",
+      "default": "Demander un devis"
+    },
+    "ctaUrl": {
+      "type": "string",
+      "default": "/contact"
+    }
   },
   "supports": {
     "html": false,

@@ -62,7 +62,8 @@ starter_island('simulator', [
    };
    ```
 3. L'afficher : `starter_island('mon-composant', [...])`
-4. Styles : classes Tailwind directement dans le JSX (Tailwind scanne aussi les `.jsx`).
+4. Composants d'interface : utiliser le kit `assets/src/js/ui/` (voir [UI.md](UI.md)).
+5. Styles : classes Tailwind directement dans le JSX (Tailwind scanne aussi les `.jsx`).
    Pas d'import CSS dans le JSX — le build produit un seul `main.css`.
 
 React (~68 ko gzip) n'est téléchargé que sur les pages qui contiennent un îlot.

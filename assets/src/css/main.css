@@ -37,8 +37,9 @@
 
 /* ─────────────────────────────────────────────
    Design tokens — neutres, à surcharger par client
-   (couleurs, conteneurs). Le reste de l'échelle
-   Tailwind (spacing, breakpoints, radius) suffit.
+   (couleurs, conteneurs, rayon, ombre). Utilisés par
+   les composants PHP ET le kit React (assets/src/js/ui/).
+   ⚠️ Couleurs et largeurs aussi dans theme.json (éditeur).
    ───────────────────────────────────────────── */
 @theme {
   --font-sans: 'Ranade', system-ui, -apple-system, sans-serif;
@@ -50,6 +51,9 @@
 
   --container-wrap: 1200px; /* -> max-w-wrap   */
   --container-narrow: 40rem; /* -> max-w-narrow (contenu lisible) */
+
+  --radius-ui: 0; /* -> rounded-ui : boutons, champs, cartes, popups (ex: 0.5rem pour arrondir) */
+  --shadow-ui: 0.25rem 0.25rem 0 rgb(0 0 0 / 0.12); /* -> shadow-ui : popups, modales */
 }
 
 /* ─────────────────────────────────────────────
@@ -89,10 +93,12 @@
   }
 
   /* Champs de formulaire */
-  input:not([type='checkbox']):not([type='radio']):not([type='submit']),
+  /* .field : même rendu pour un bouton qui imite un champ (ex : Select du kit React) */
+  input:not([type='checkbox']):not([type='radio']):not([type='submit']):not([type='range']),
   textarea,
-  select {
-    @apply w-full border border-line bg-canvas px-4 py-2 text-ink;
+  select,
+  .field {
+    @apply w-full rounded-ui border border-line bg-canvas px-4 py-2 text-left text-ink;
   }
 
   textarea {
@@ -143,7 +149,7 @@
 
   /* Bouton — classe utilitaire, pas de style sur <button> */
   .btn {
-    @apply inline-block cursor-pointer border border-current bg-transparent px-6 py-2 text-inherit no-underline;
+    @apply inline-block cursor-pointer rounded-ui border border-current bg-transparent px-6 py-2 text-inherit no-underline;
   }
 
   .btn:hover {
@@ -153,6 +159,11 @@
   .btn:disabled,
   .btn[aria-disabled='true'] {
     @apply cursor-not-allowed opacity-50;
+  }
+
+  /* Carte — encadré réutilisé par les composants PHP et React */
+  .card {
+    @apply rounded-ui border border-line bg-canvas p-6 md:p-8;
   }
 
   /* Lien d'évitement (accessibilité) */
@@ -252,7 +263,7 @@
 /* Bouton Gutenberg aligné sur .btn */
 .wp-block-button__link {
   border: 1px solid currentColor;
-  border-radius: 0;
+  border-radius: var(--radius-ui);
   background-color: transparent;
   color: inherit;
   padding: 0.5rem 1.5rem;
