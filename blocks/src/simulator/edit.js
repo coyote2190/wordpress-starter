@@ -8,7 +8,19 @@ import Simulator from '../../../assets/src/js/islands/Simulator.jsx';
 const fieldProps = { __next40pxDefaultSize: true, __nextHasNoMarginBottom: true };
 
 export default function Edit({ attributes, setAttributes }) {
-  const { title, basePrice, options, vatRate, ctaText, ctaUrl } = attributes;
+  const {
+    title,
+    basePrice,
+    quantityLabel,
+    quantityUnit,
+    quantityMin,
+    quantityMax,
+    quantityPrice,
+    options,
+    vatRate,
+    ctaText,
+    ctaUrl,
+  } = attributes;
 
   const updateOption = (index, changes) =>
     setAttributes({
@@ -43,6 +55,48 @@ export default function Edit({ attributes, setAttributes }) {
             label={__('TVA (%) — 0 pour masquer le TTC', 'starter')}
             value={vatRate}
             onChange={(value) => setAttributes({ vatRate: Number(value) || 0 })}
+          />
+        </PanelBody>
+
+        <PanelBody title={__('Quantité (curseur)', 'starter')} initialOpen={false}>
+          <TextControl
+            {...fieldProps}
+            label={__('Libellé — vide pour masquer le curseur', 'starter')}
+            value={quantityLabel}
+            onChange={(value) => setAttributes({ quantityLabel: value })}
+          />
+          <TextControl
+            {...fieldProps}
+            label={__('Unité (ex : pages, jours…)', 'starter')}
+            value={quantityUnit}
+            onChange={(value) => setAttributes({ quantityUnit: value })}
+          />
+          <Flex>
+            <FlexBlock>
+              <TextControl
+                {...fieldProps}
+                type="number"
+                label={__('Inclus dans la base', 'starter')}
+                value={quantityMin}
+                onChange={(value) => setAttributes({ quantityMin: Number(value) || 0 })}
+              />
+            </FlexBlock>
+            <FlexBlock>
+              <TextControl
+                {...fieldProps}
+                type="number"
+                label={__('Maximum', 'starter')}
+                value={quantityMax}
+                onChange={(value) => setAttributes({ quantityMax: Number(value) || 0 })}
+              />
+            </FlexBlock>
+          </Flex>
+          <TextControl
+            {...fieldProps}
+            type="number"
+            label={__('Prix HT par unité supplémentaire (€)', 'starter')}
+            value={quantityPrice}
+            onChange={(value) => setAttributes({ quantityPrice: Number(value) || 0 })}
           />
         </PanelBody>
 

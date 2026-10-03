@@ -17,3 +17,18 @@ function starter_register_blocks() {
     }
 }
 add_action('init', 'starter_register_blocks');
+
+/**
+ * Catégorie « Sea Click » en tête de l'inserteur de blocs
+ * Les blocs du thème l'utilisent via "category": "sea-click" dans block.json
+ */
+function starter_block_category($categories) {
+    array_unshift($categories, [
+        'slug' => 'sea-click',
+        'title' => __('Sea Click', 'starter'),
+        'icon' => null,
+    ]);
+
+    return $categories;
+}
+add_filter('block_categories_all', 'starter_block_category');

@@ -54,7 +54,8 @@ wordpress-starter/
 ├─ assets/
 │  ├─ src/
 │  │  ├─ js/
-│  │  │  └─ islands/   # React islands (front)
+│  │  │  ├─ islands/   # React islands (front)
+│  │  │  └─ ui/        # React UI kit (Base UI + theme tokens)
 │  │  └─ css/        # main.css — @import "tailwindcss" + @theme tokens
 │  └─ dist/
 ├─ acf-json/       # SCF/ACF field groups (JSON sync)
@@ -130,6 +131,7 @@ To switch fonts: replace the files, then update the `@font-face` rules and the
 
 ## Documentation
 
+- [UI kit & theming](docs/UI.md) — design tokens, shared classes, React components (Base UI), Styleguide page
 - [Gutenberg pages](docs/GUTENBERG.md) — block-built home page, widths, patterns
 - [React: blocks & islands](docs/REACT.md) — Gutenberg blocks and React islands (quote simulator example)
 - [Template hierarchy](docs/TEMPLATES.md) — which file handles which page type

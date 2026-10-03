@@ -46,7 +46,7 @@ add_action('after_setup_theme', 'starter_theme_setup');
 function starter_register_pattern_category()
 {
     register_block_pattern_category('starter', [
-        'label' => __('Starter', 'starter'),
+        'label' => __('Sea Click', 'starter'),
     ]);
 }
 add_action('init', 'starter_register_pattern_category');

@@ -15,6 +15,11 @@ if (!defined('ABSPATH')) {
 $props = [
     'title' => sanitize_text_field($attributes['title'] ?? ''),
     'basePrice' => (float) ($attributes['basePrice'] ?? 0),
+    'quantityLabel' => sanitize_text_field($attributes['quantityLabel'] ?? ''),
+    'quantityUnit' => sanitize_text_field($attributes['quantityUnit'] ?? ''),
+    'quantityMin' => (int) ($attributes['quantityMin'] ?? 1),
+    'quantityMax' => (int) ($attributes['quantityMax'] ?? 1),
+    'quantityPrice' => (float) ($attributes['quantityPrice'] ?? 0),
     'vatRate' => (float) ($attributes['vatRate'] ?? 0),
     'ctaText' => sanitize_text_field($attributes['ctaText'] ?? ''),
     'ctaUrl' => esc_url_raw($attributes['ctaUrl'] ?? ''),
@@ -31,7 +36,7 @@ $props = [
 
 ob_start();
 ?>
-<div class="mx-auto max-w-narrow rounded border border-line p-6 md:p-8">
+<div class="card mx-auto max-w-narrow">
     <?php if ($props['title']): ?>
         <h2 class="mb-4 text-2xl"><?php echo esc_html($props['title']); ?></h2>
     <?php endif; ?>
@@ -42,6 +47,22 @@ ob_start();
             esc_html(number_format_i18n($props['basePrice'])),
         ); ?>
     </p>
+
+    <?php if (
+        $props['quantityLabel'] &&
+        $props['quantityPrice'] > 0 &&
+        $props['quantityMax'] > $props['quantityMin']
+    ): ?>
+        <p class="mb-6">
+            <?php printf(
+                esc_html__('%1$s : prix de base pour %2$s %3$s, puis %4$s € HT par unité supplémentaire', 'starter'),
+                esc_html($props['quantityLabel']),
+                esc_html($props['quantityMin']),
+                esc_html($props['quantityUnit']),
+                esc_html(number_format_i18n($props['quantityPrice']))
+            ); ?>
+        </p>
+    <?php endif; ?>
 
     <?php if ($props['options']): ?>
         <ul class="m-0 mb-6 list-none p-0">
