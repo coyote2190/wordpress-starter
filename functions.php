@@ -16,6 +16,8 @@ define('STARTER_VERSION', '0.1.0');
 require_once STARTER_THEME_DIR . '/inc/setup.php';
 require_once STARTER_THEME_DIR . '/inc/enqueue.php';
 require_once STARTER_THEME_DIR . '/inc/helpers.php';
+require_once STARTER_THEME_DIR . '/inc/islands.php';
+require_once STARTER_THEME_DIR . '/inc/blocks.php';
 require_once STARTER_THEME_DIR . '/inc/contact-form.php';
 require_once STARTER_THEME_DIR . '/inc/cleanup.php';
 require_once STARTER_THEME_DIR . '/inc/custom-post-types.php';

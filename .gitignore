@@ -37,3 +37,5 @@ assets/fonts/
 # Php
 vendor/
 composer.lock
+# Flag du dev server Vite (créé/supprimé par npm run dev)
+assets/dist/.vite-hot

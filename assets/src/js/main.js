@@ -1,3 +1,4 @@
+import '@vitejs/plugin-react/preamble'; // HMR React en dev (vide en build)
 import '../scss/main.scss';
 
 /**
@@ -32,7 +33,18 @@ function initMobileNav() {
   });
 }
 
+/**
+ * Îlots React — chargés uniquement si la page en contient
+ */
+function initIslands() {
+  const islands = document.querySelectorAll('[data-island]');
+  if (!islands.length) return;
+
+  import('./islands/index.jsx').then(({ mountIslands }) => mountIslands(islands));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('WordPress Starter theme loaded');
   initMobileNav();
+  initIslands();
 });
