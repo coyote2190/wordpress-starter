@@ -17,22 +17,22 @@ $button_text = $args['button_text'] ?? __('Envoyer', 'starter');
 $status = isset($_GET['contact']) ? sanitize_key($_GET['contact']) : '';
 ?>
 
-<div class="contact-form">
+<div class="wrap-narrow pt-8 pb-16">
 
     <?php if ($title): ?>
-        <h2 class="contact-form__title"><?php echo esc_html($title); ?></h2>
+        <h2 class="mb-4 text-2xl"><?php echo esc_html($title); ?></h2>
     <?php endif; ?>
 
     <?php if ($status === 'sent'): ?>
-        <p class="contact-form__message contact-form__message--success" role="status">
+        <p class="mb-6 border border-current p-4" role="status">
             <?php esc_html_e('Votre message a bien été envoyé. Merci !', 'starter'); ?>
         </p>
     <?php elseif ($status === 'invalid'): ?>
-        <p class="contact-form__message contact-form__message--error" role="alert">
+        <p class="mb-6 border border-current p-4" role="alert">
             <?php esc_html_e('Merci de remplir tous les champs correctement.', 'starter'); ?>
         </p>
     <?php elseif ($status === 'error'): ?>
-        <p class="contact-form__message contact-form__message--error" role="alert">
+        <p class="mb-6 border border-current p-4" role="alert">
             <?php esc_html_e('Une erreur est survenue. Merci de réessayer.', 'starter'); ?>
         </p>
     <?php endif; ?>
@@ -43,22 +43,22 @@ $status = isset($_GET['contact']) ? sanitize_key($_GET['contact']) : '';
         <?php wp_nonce_field('starter_contact', 'starter_contact_nonce'); ?>
 
         <!-- Honeypot : caché aux humains, rempli par les bots -->
-        <div class="contact-form__honeypot" aria-hidden="true">
+        <div class="absolute left-[-9999px] h-px w-px overflow-hidden" aria-hidden="true">
             <label for="starter_website"><?php esc_html_e('Site web', 'starter'); ?></label>
             <input type="text" id="starter_website" name="starter_website" tabindex="-1" autocomplete="off">
         </div>
 
-        <div class="contact-form__field">
+        <div class="mb-6">
             <label for="starter_name"><?php esc_html_e('Nom', 'starter'); ?></label>
             <input type="text" id="starter_name" name="starter_name" required autocomplete="name">
         </div>
 
-        <div class="contact-form__field">
+        <div class="mb-6">
             <label for="starter_email"><?php esc_html_e('Email', 'starter'); ?></label>
             <input type="email" id="starter_email" name="starter_email" required autocomplete="email">
         </div>
 
-        <div class="contact-form__field">
+        <div class="mb-6">
             <label for="starter_message"><?php esc_html_e('Message', 'starter'); ?></label>
             <textarea id="starter_message" name="starter_message" required></textarea>
         </div>

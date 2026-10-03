@@ -24,25 +24,31 @@ $align = $args['align'] ?? 'left';
 // Sécurité : on n'accepte que des niveaux de titre valides
 $level = in_array($level, ['h1', 'h2', 'h3', 'h4'], true) ? $level : 'h2';
 
+$is_center = $align === 'center';
+
 if (!$title && !$overline && !$subtitle) {
     return;
 }
 ?>
 
-<div class="section-title section-title--<?php echo esc_attr($align); ?>">
+<div class="mb-8<?php echo $is_center ? ' text-center' : ''; ?>">
 
     <?php if ($overline): ?>
-        <p class="section-title__overline"><?php echo esc_html($overline); ?></p>
+        <p class="mb-2 text-sm tracking-wider text-muted uppercase">
+            <?php echo esc_html($overline); ?>
+        </p>
     <?php endif; ?>
 
     <?php if ($title): ?>
-        <<?php echo $level; ?> class="section-title__heading">
+        <<?php echo $level; ?> class="text-[1.75rem] md:text-[2rem]">
             <?php echo esc_html($title); ?>
         </<?php echo $level; ?>>
     <?php endif; ?>
 
     <?php if ($subtitle): ?>
-        <p class="section-title__subtitle"><?php echo esc_html($subtitle); ?></p>
+        <p class="max-w-narrow text-muted<?php echo $is_center
+            ? ' mx-auto'
+            : ''; ?>"><?php echo esc_html($subtitle); ?></p>
     <?php endif; ?>
 
 </div>

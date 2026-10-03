@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -33,7 +34,7 @@ export default defineConfig({
   // Chemins relatifs : les chunks chargés à la demande (îlots React)
   // sont résolus depuis main.js, quel que soit le dossier du thème
   base: './',
-  plugins: [react(), wpHotFile()],
+  plugins: [tailwindcss(), react(), wpHotFile()],
   server: {
     host: 'localhost',
     port: DEV_PORT,

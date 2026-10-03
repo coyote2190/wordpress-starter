@@ -45,41 +45,48 @@ export default function Simulator({
   const totalTTC = totalHT * (1 + Number(vatRate) / 100);
 
   return (
-    <div className="simulator">
-      {title && <h2 className="simulator__title">{title}</h2>}
+    <div className="mx-auto max-w-narrow rounded border border-line p-8">
+      {title && <h2 className="mb-4 text-2xl">{title}</h2>}
 
-      <p className="simulator__base">
+      <p className="mb-6 text-muted">
         Base : <strong>{formatPrice(basePrice)} HT</strong>
       </p>
 
       {options.length > 0 && (
-        <fieldset className="simulator__options">
-          <legend>Options</legend>
+        <fieldset className="m-0 mb-6 border-0 p-0">
+          <legend className="mb-2 font-medium">Options</legend>
           {options.map((option, index) => (
-            <div className="simulator__option" key={index}>
+            <div className="flex items-baseline gap-2 border-b border-line py-2" key={index}>
               <input
                 type="checkbox"
                 id={`${id}-${index}`}
                 checked={selected.includes(index)}
                 onChange={() => toggle(index)}
               />
-              <label htmlFor={`${id}-${index}`}>
+              <label
+                htmlFor={`${id}-${index}`}
+                className="m-0 flex flex-1 cursor-pointer justify-between gap-4"
+              >
                 {option.label}
-                <span className="simulator__price">+ {formatPrice(option.price || 0)}</span>
+                <span className="whitespace-nowrap text-muted">
+                  + {formatPrice(option.price || 0)}
+                </span>
               </label>
             </div>
           ))}
         </fieldset>
       )}
 
-      <output className="simulator__total" aria-live="polite">
+      <output className="mb-6 flex flex-wrap items-baseline gap-x-4 gap-y-2" aria-live="polite">
         <span>Estimation</span>
-        <strong>{formatPrice(totalHT)} HT</strong>
-        {Number(vatRate) > 0 && <small>soit {formatPrice(totalTTC)} TTC</small>}
+        <strong className="text-3xl">{formatPrice(totalHT)} HT</strong>
+        {Number(vatRate) > 0 && (
+          <small className="text-muted">soit {formatPrice(totalTTC)} TTC</small>
+        )}
       </output>
 
       {ctaText && ctaUrl && (
-        <a className="btn simulator__cta" href={ctaUrl}>
+        <a className="btn" href={ctaUrl}>
           {ctaText}
         </a>
       )}

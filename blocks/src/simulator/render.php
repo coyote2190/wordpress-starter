@@ -31,12 +31,12 @@ $props = [
 
 ob_start();
 ?>
-<div class="simulator">
+<div class="mx-auto max-w-narrow rounded border border-line p-8">
     <?php if ($props['title']): ?>
-        <h2 class="simulator__title"><?php echo esc_html($props['title']); ?></h2>
+        <h2 class="mb-4 text-2xl"><?php echo esc_html($props['title']); ?></h2>
     <?php endif; ?>
 
-    <p class="simulator__base">
+    <p class="mb-6 text-muted">
         <?php printf(
             esc_html__('À partir de %s € HT', 'starter'),
             esc_html(number_format_i18n($props['basePrice'])),
@@ -44,11 +44,11 @@ ob_start();
     </p>
 
     <?php if ($props['options']): ?>
-        <ul class="simulator__options">
+        <ul class="m-0 mb-6 list-none p-0">
             <?php foreach ($props['options'] as $option): ?>
-                <li>
+                <li class="flex justify-between border-b border-line py-2">
                     <?php echo esc_html($option['label']); ?>
-                    <span class="simulator__price">
+                    <span class="whitespace-nowrap text-muted">
                         + <?php echo esc_html(number_format_i18n($option['price'])); ?> €
                     </span>
                 </li>
@@ -57,7 +57,7 @@ ob_start();
     <?php endif; ?>
 
     <?php if ($props['ctaText'] && $props['ctaUrl']): ?>
-        <a class="btn simulator__cta" href="<?php echo esc_url($props['ctaUrl']); ?>">
+        <a class="btn" href="<?php echo esc_url($props['ctaUrl']); ?>">
             <?php echo esc_html($props['ctaText']); ?>
         </a>
     <?php endif; ?>

@@ -28,29 +28,29 @@ if (!$title && !$image_id) {
 }
 ?>
 
-<article class="card">
+<article>
 
     <?php if ($image_id): ?>
-        <div class="card__media">
+        <div class="mb-4">
             <?php if ($url): ?><a href="<?php echo esc_url(
     $url,
 ); ?>" tabindex="-1" aria-hidden="true"><?php endif; ?>
                 <?php echo wp_get_attachment_image($image_id, $size, false, [
-                    'class' => 'card__img',
+                    'class' => 'w-full',
                     'loading' => 'lazy',
                 ]); ?>
             <?php if ($url): ?></a><?php endif; ?>
         </div>
     <?php endif; ?>
 
-    <div class="card__body">
+    <div>
 
         <?php if ($meta): ?>
-            <p class="card__meta"><?php echo esc_html($meta); ?></p>
+            <p class="text-muted mb-2 text-sm"><?php echo esc_html($meta); ?></p>
         <?php endif; ?>
 
         <?php if ($title): ?>
-            <h3 class="card__title">
+            <h3 class="mb-2 text-lg [&_a]:no-underline">
                 <?php if ($url): ?>
                     <a href="<?php echo esc_url($url); ?>"><?php echo esc_html($title); ?></a>
                 <?php else: ?>
@@ -60,7 +60,7 @@ if (!$title && !$image_id) {
         <?php endif; ?>
 
         <?php if ($text): ?>
-            <p class="card__text"><?php echo esc_html($text); ?></p>
+            <p class="text-muted"><?php echo esc_html($text); ?></p>
         <?php endif; ?>
 
     </div>

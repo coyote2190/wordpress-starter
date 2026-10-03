@@ -19,9 +19,15 @@ $columns = in_array($columns, [2, 3, 4], true) ? $columns : 3;
 if (empty($cards)) {
     return;
 }
+
+$cols_class = [
+    2 => 'md:grid-cols-2',
+    3 => 'md:grid-cols-2 lg:grid-cols-3',
+    4 => 'md:grid-cols-2 lg:grid-cols-4',
+][$columns];
 ?>
 
-<div class="card-grid card-grid--<?php echo esc_attr($columns); ?>">
+<div class="wrap grid gap-8 <?php echo esc_attr($cols_class); ?>">
     <?php foreach ($cards as $card): ?>
         <?php starter_component('card', $card); ?>
     <?php endforeach; ?>

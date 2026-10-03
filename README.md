@@ -1,12 +1,12 @@
 # WordPress Starter
 
-Reusable WordPress starter theme — PHP/Vite/SCSS, built for fast customizations across client projects and optimized for shared hosting (Apache/MySQL).
+Reusable WordPress starter theme — PHP/Vite/Tailwind, built for fast customizations across client projects and optimized for shared hosting (Apache/MySQL).
 
 ## Stack
 
 - **WordPress** (classic PHP theme, no FSE)
 - **Vite 8** (Rolldown) for asset builds
-- **Sass** (Dart Sass, module system `@use`)
+- **Tailwind CSS 4** (CSS-first config via `@theme`, `@tailwindcss/vite` plugin)
 - **React** — Gutenberg blocks (`@wordpress/scripts`) and front-end islands (Vite)
 - Compatible with **shared hosting** (no Node required in production)
 
@@ -29,10 +29,16 @@ Place the folder inside `wp-content/themes/`, then activate the theme from the W
 ## Development
 
 ```bash
-npm run dev          # starts the Vite dev server with HMR (localhost:5173)
-npm run dev:blocks   # watches Gutenberg blocks (blocks/src → blocks/build)
-npm run build        # compiles assets into assets/dist/ and blocks into blocks/build/
+npm run dev            # starts the Vite dev server with HMR (localhost:5173)
+npm run dev:blocks     # watches Gutenberg blocks (blocks/src → blocks/build)
+npm run build          # compiles assets into assets/dist/ and blocks into blocks/build/
+npm run sort-classes   # reorders Tailwind classes in the .php templates (rustywind)
+npm run format         # sort-classes + prettier on the whole theme
 ```
+
+> Class sorting uses [rustywind](https://github.com/avencera/rustywind) rather
+> than `prettier-plugin-tailwindcss` — the latter can't see class names inside
+> the `@prettier/plugin-php` output, which is where nearly all of ours live.
 
 The theme automatically detects whether the dev server is running via the `.vite-hot` file in the project root:
 
@@ -49,7 +55,7 @@ wordpress-starter/
 │  ├─ src/
 │  │  ├─ js/
 │  │  │  └─ islands/   # React islands (front)
-│  │  └─ scss/
+│  │  └─ css/        # main.css — @import "tailwindcss" + @theme tokens
 │  └─ dist/
 ├─ acf-json/       # SCF/ACF field groups (JSON sync)
 ├─ blocks/
@@ -68,7 +74,23 @@ wordpress-starter/
 └─ docs/
 ```
 
-The theme is organized around a lightweight PHP structure, with Vite handling frontend asset compilation and SCSS modules for styling and component-level organization.
+The theme is organized around a lightweight PHP structure, with Vite handling
+asset compilation and Tailwind utilities written directly in the PHP templates.
+
+## Styling
+
+Tailwind CSS 4 with a **CSS-first config** — no `tailwind.config.js`.
+Everything lives in [`assets/src/css/main.css`](assets/src/css/main.css):
+
+- `@theme` — design tokens to override per client (colors, containers).
+  Colors are neutral by default: `ink`, `canvas`, `muted`, `line`
+  (used as `text-ink`, `bg-canvas`, `border-line`, …).
+- `@layer base` — defaults on raw HTML elements (Tailwind Preflight does the reset).
+- `@layer components` — the few classes that can't be expressed as utilities in
+  markup: `.wrap` / `.wrap-narrow` (centered containers), `.btn`, `.skip-link`,
+  `.burger` (hamburger icon).
+
+Tailwind auto-scans the theme's `.php` files for class names — no content config needed.
 
 ## Components
 
@@ -76,10 +98,10 @@ Components are rendered via the `starter_component()` helper:
 
 ```php
 starter_component('hero', [
-    'title'       => 'Welcome',
-    'subtitle'    => 'A short subtitle',
-    'button_text' => 'Discover',
-    'button_url'  => home_url('/contact'),
+  'title' => 'Welcome',
+  'subtitle' => 'A short subtitle',
+  'button_text' => 'Discover',
+  'button_url' => home_url('/contact'),
 ]);
 ```
 
@@ -100,7 +122,8 @@ Font files are **not versioned** — the license prohibits redistribution.
 1. Download Ranade from [fontshare.com/fonts/ranade](https://www.fontshare.com/fonts/ranade)
 2. Place `Ranade-Regular.woff2`, `Ranade-Medium.woff2` and `Ranade-Bold.woff2` in `assets/fonts/`
 
-To switch fonts: replace the files, update `base/_fonts.scss` and `$font-base` in `abstracts/_variables.scss`.
+To switch fonts: replace the files, then update the `@font-face` rules and the
+`--font-sans` token in `assets/src/css/main.css`.
 
 ## Documentation
 

@@ -1,0 +1,190 @@
+@import 'tailwindcss';
+
+/* Tailwind scanne automatiquement les .php du thème.
+   On l'aide pour les classes générées côté PHP (wp_nav_menu, pagination…). */
+@source "../../../";
+
+/* ─────────────────────────────────────────────
+   Fonts auto-hébergées — Ranade (Fontshare / ITF FFL)
+
+   ⚠️ Licence ITF Free Font License : redistribution interdite.
+      Ne pas commiter assets/fonts/ dans un dépôt public.
+      Télécharger depuis https://www.fontshare.com/fonts/ranade
+   ───────────────────────────────────────────── */
+@font-face {
+  font-family: 'Ranade';
+  src: url('/wp-content/themes/wordpress-starter/assets/fonts/Ranade-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ranade';
+  src: url('/wp-content/themes/wordpress-starter/assets/fonts/Ranade-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ranade';
+  src: url('/wp-content/themes/wordpress-starter/assets/fonts/Ranade-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─────────────────────────────────────────────
+   Design tokens — neutres, à surcharger par client
+   (couleurs, conteneurs). Le reste de l'échelle
+   Tailwind (spacing, breakpoints, radius) suffit.
+   ───────────────────────────────────────────── */
+@theme {
+  --font-sans: 'Ranade', system-ui, -apple-system, sans-serif;
+
+  --color-ink: #000; /* texte */
+  --color-canvas: #fff; /* fond */
+  --color-muted: #666; /* texte secondaire */
+  --color-line: #e5e5e5; /* bordures */
+
+  --container-wrap: 1200px; /* -> max-w-wrap   */
+  --container-narrow: 40rem; /* -> max-w-narrow (contenu lisible) */
+}
+
+/* ─────────────────────────────────────────────
+   Base — défauts sur les éléments HTML bruts
+   (Preflight de Tailwind gère déjà le reset)
+   ───────────────────────────────────────────── */
+@layer base {
+  body {
+    @apply bg-canvas font-sans text-base text-ink;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mt-0 mb-4 font-sans leading-tight;
+  }
+
+  p {
+    @apply mt-0 mb-4;
+  }
+
+  a {
+    @apply text-current underline underline-offset-2;
+  }
+
+  a:hover {
+    @apply no-underline;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+
+  /* Champs de formulaire */
+  input:not([type='checkbox']):not([type='radio']):not([type='submit']),
+  textarea,
+  select {
+    @apply w-full border border-line bg-canvas px-4 py-2 text-ink;
+  }
+
+  textarea {
+    @apply min-h-32 resize-y;
+  }
+
+  label {
+    @apply mb-2 block;
+  }
+
+  hr {
+    @apply my-8 border-0 border-t border-line;
+  }
+
+  blockquote {
+    @apply my-8 border-l-2 border-line pl-6;
+  }
+
+  code {
+    @apply font-mono text-[0.9em];
+  }
+
+  table {
+    @apply w-full border-collapse;
+  }
+
+  th,
+  td {
+    @apply border-b border-line p-2 text-left;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Composants — les quelques classes qu'on ne peut
+   pas exprimer en utilitaires dans le markup
+   (conteneurs répétés, markup généré par WP,
+   icône en pseudo-éléments).
+   ───────────────────────────────────────────── */
+@layer components {
+  /* Conteneurs centrés */
+  .wrap {
+    @apply mx-auto max-w-wrap px-4;
+  }
+
+  .wrap-narrow {
+    @apply mx-auto max-w-narrow px-4;
+  }
+
+  /* Bouton — classe utilitaire, pas de style sur <button> */
+  .btn {
+    @apply inline-block cursor-pointer border border-current bg-transparent px-6 py-2 text-inherit no-underline;
+  }
+
+  .btn:hover {
+    @apply bg-ink text-canvas;
+  }
+
+  .btn:disabled,
+  .btn[aria-disabled='true'] {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  /* Lien d'évitement (accessibilité) */
+  .skip-link {
+    @apply absolute left-[-9999px] z-[100] border border-current bg-canvas px-4 py-2;
+  }
+
+  .skip-link:focus {
+    @apply top-4 left-4;
+  }
+
+  /* Icône hamburger en pseudo-éléments */
+  .burger,
+  .burger::before,
+  .burger::after {
+    @apply block h-0.5 w-4 bg-current;
+  }
+
+  .burger {
+    @apply relative;
+  }
+
+  .burger::before,
+  .burger::after {
+    @apply absolute left-0 w-full content-[''];
+  }
+
+  .burger::before {
+    top: -5px;
+  }
+
+  .burger::after {
+    top: 5px;
+  }
+}
