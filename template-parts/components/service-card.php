@@ -28,23 +28,23 @@ $duration = $args['duration'] ?? '';
 $cta_url = $args['cta_url'] ?? '';
 ?>
 
-<article class="service-card">
+<article>
 
     <?php if ($icon): ?>
-        <div class="service-card__icon">
+        <div class="mb-4">
             <?php echo wp_get_attachment_image($icon['ID'], 'thumbnail'); ?>
         </div>
     <?php elseif ($image_id): ?>
-        <div class="service-card__image">
+        <div class="mb-4">
             <?php echo wp_get_attachment_image($image_id, 'medium', false, [
-                'class' => 'service-card__img',
+                'class' => 'w-full',
                 'loading' => 'lazy',
             ]); ?>
         </div>
     <?php endif; ?>
 
     <?php if ($title): ?>
-        <h2 class="service-card__title">
+        <h2 class="mb-2 text-xl [&_a]:no-underline">
             <?php if ($url): ?>
                 <a href="<?php echo esc_url($url); ?>"><?php echo esc_html($title); ?></a>
             <?php else: ?>
@@ -54,7 +54,7 @@ $cta_url = $args['cta_url'] ?? '';
     <?php endif; ?>
 
     <?php if ($price || $duration): ?>
-        <ul class="service-card__meta">
+        <ul class="text-muted mb-2 flex list-none gap-4 p-0 text-sm">
             <?php if ($price): ?>
                 <li><?php echo esc_html($price); ?></li>
             <?php endif; ?>
@@ -65,11 +65,11 @@ $cta_url = $args['cta_url'] ?? '';
     <?php endif; ?>
 
     <?php if ($description): ?>
-        <p class="service-card__description"><?php echo esc_html($description); ?></p>
+        <p class="text-muted"><?php echo esc_html($description); ?></p>
     <?php endif; ?>
 
     <?php if ($cta_url): ?>
-        <a href="<?php echo esc_url($cta_url); ?>" class="btn service-card__cta">
+        <a href="<?php echo esc_url($cta_url); ?>" class="btn mt-4">
             <?php esc_html_e('En savoir plus', 'starter'); ?>
         </a>
     <?php endif; ?>

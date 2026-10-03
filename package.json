@@ -15,12 +15,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "sort-classes": "rustywind --write .",
+    "format": "rustywind --write . && prettier --write ."
   },
   "devDependencies": {
     "@prettier/plugin-php": "^0.25.0",
+    "@tailwindcss/vite": "^4.3.3",
     "prettier": "^3.9.6",
-    "sass": "^1.103.1",
+    "rustywind": "^0.28.0",
+    "tailwindcss": "^4.3.3",
     "vite": "^8.2.2"
   }
 }

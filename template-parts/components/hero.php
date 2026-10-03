@@ -22,20 +22,20 @@ $button_url = $args['button_url'] ?? '';
 $image = $args['image'] ?? '';
 ?>
 
-<section class="hero"<?php echo $image
+<section class="bg-cover bg-center py-16 text-center"<?php echo $image
     ? ' style="background-image: url(' . esc_url($image) . ');"'
     : ''; ?>>
-    <div class="hero__content">
+    <div class="wrap-narrow">
         <?php if ($title): ?>
-            <h1 class="hero__title"><?php echo esc_html($title); ?></h1>
+            <h1 class="text-[2rem] md:text-[2.5rem]"><?php echo esc_html($title); ?></h1>
         <?php endif; ?>
 
         <?php if ($subtitle): ?>
-            <p class="hero__subtitle"><?php echo esc_html($subtitle); ?></p>
+            <p class="text-muted mb-6"><?php echo esc_html($subtitle); ?></p>
         <?php endif; ?>
 
         <?php if ($button_text && $button_url): ?>
-            <a href="<?php echo esc_url($button_url); ?>" class="btn hero__button">
+            <a href="<?php echo esc_url($button_url); ?>" class="btn">
                 <?php echo esc_html($button_text); ?>
             </a>
         <?php endif; ?>

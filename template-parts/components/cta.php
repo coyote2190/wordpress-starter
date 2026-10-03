@@ -26,21 +26,21 @@ if (!$title && !$button_text) {
 }
 ?>
 
-<section class="cta">
-    <div class="cta__inner">
+<section class="border-line border-y py-16">
+    <div class="wrap-narrow text-center">
 
         <?php if ($title): ?>
-            <h2 class="cta__title"><?php echo esc_html($title); ?></h2>
+            <h2 class="mb-4 text-2xl"><?php echo esc_html($title); ?></h2>
         <?php endif; ?>
 
         <?php if ($text): ?>
-            <p class="cta__text"><?php echo esc_html($text); ?></p>
+            <p class="text-muted mb-6"><?php echo esc_html($text); ?></p>
         <?php endif; ?>
 
         <?php if ($button_text && $button_url): ?>
-            
+            <a
                 href="<?php echo esc_url($button_url); ?>"
-                class="btn cta__button"
+                class="btn"
                 <?php if ($external): ?>target="_blank" rel="noopener"<?php endif; ?>
             >
                 <?php echo esc_html($button_text); ?>

@@ -2,13 +2,13 @@
 /* Template Name: Services */
 get_header(); ?>
 
-<main class="site-main">
+<main id="main">
 
     <?php while (have_posts()):
         the_post(); ?>
-        <header class="services-intro">
+        <header class="wrap-narrow pt-16 pb-8">
             <h1><?php the_title(); ?></h1>
-            <div class="services-intro__text">
+            <div class="entry-content">
                 <?php the_content(); ?>
             </div>
         </header>
@@ -23,7 +23,7 @@ get_header(); ?>
     ]); ?>
 
     <?php if ($services->have_posts()): ?>
-        <div class="services-list">
+        <div class="wrap grid gap-8 pb-16 md:grid-cols-2 lg:grid-cols-3">
             <?php while ($services->have_posts()):
 
                 $services->the_post();

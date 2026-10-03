@@ -2,11 +2,11 @@
 /* Template Name: Contact */
 get_header(); ?>
 
-<main class="site-main">
+<main id="main">
 
     <?php while (have_posts()):
         the_post(); ?>
-        <header class="page-header">
+        <header class="wrap-narrow pt-16 pb-8">
             <h1><?php the_title(); ?></h1>
             <div class="entry-content">
                 <?php the_content(); ?>
