@@ -115,12 +115,12 @@ function starter_demo_mark( int $id ): int {
  *
  * @return int ID de l'image, 0 en cas d'échec.
  */
-function starter_demo_image( string $title, string $from, string $to, bool $with_text = true ): int {
+function starter_demo_image( string $title, string $from, string $to, bool $with_text = true, int $width = 1600, int $height = 900, string $label = '' ): int {
 	if ( ! function_exists( 'imagecreatetruecolor' ) ) {
 		return 0;
 	}
 
-	[ $w, $h ] = array( 1600, 900 );
+	[ $w, $h ] = array( $width, $height );
 	$img       = imagecreatetruecolor( $w, $h );
 	$rgb       = static fn( string $hex ): array => sscanf( ltrim( $hex, '#' ), '%02x%02x%02x' );
 	[ $r1, $g1, $b1 ] = $rgb( $from );
@@ -138,8 +138,9 @@ function starter_demo_image( string $title, string $from, string $to, bool $with
 	$font  = current( array_filter( $fonts, 'is_file' ) );
 	if ( $with_text && $font && function_exists( 'imagettftext' ) ) {
 		$white = imagecolorallocatealpha( $img, 255, 255, 255, 30 );
-		$box   = imagettfbbox( 64, 0, $font, $title );
-		imagettftext( $img, 64, 0, (int) ( ( $w - ( $box[2] - $box[0] ) ) / 2 ), (int) ( $h / 2 + 32 ), $white, $font, $title );
+		$text  = '' !== $label ? $label : $title;
+		$box   = imagettfbbox( 64, 0, $font, $text );
+		imagettftext( $img, 64, 0, (int) ( ( $w - ( $box[2] - $box[0] ) ) / 2 ), (int) ( $h / 2 + 32 ), $white, $font, $text );
 	}
 
 	$tmp = wp_tempnam( sanitize_title( $title ) . '.jpg' );
@@ -407,6 +408,39 @@ function starter_demo_bento( string $title, string $intro, array $tiles ): strin
 	);
 }
 
+/**
+ * Bloc SCF Appel à l'action.
+ *
+ * @param array<string, mixed>                          $args   title, text, action, button, background, accent.
+ * @param array<int, array{image: int, name: string}> $people Personnes autour du titre.
+ */
+function starter_demo_cta( array $args, array $people = array() ): string {
+	$k    = 'field_starter_cta_';
+	$data = array();
+	foreach ( $args as $name => $value ) {
+		$data[ $name ]       = is_array( $value ) ? $value + array( 'target' => '' ) : $value;
+		$data[ '_' . $name ] = $k . $name;
+	}
+	$data['people']  = count( $people );
+	$data['_people'] = $k . 'people';
+	foreach ( $people as $i => $person ) {
+		foreach ( array( 'image', 'name' ) as $sub ) {
+			$data[ "people_{$i}_{$sub}" ]  = $person[ $sub ];
+			$data[ "_people_{$i}_{$sub}" ] = $k . 'person_' . $sub;
+		}
+	}
+
+	return starter_demo_block(
+		'starter/cta',
+		array(
+			'name'  => 'starter/cta',
+			'mode'  => 'preview',
+			'align' => 'wide',
+			'data'  => $data,
+		)
+	);
+}
+
 function starter_demo_notice( string $type, string $content ): string {
 	return starter_demo_block(
 		'starter/notice',
@@ -455,6 +489,10 @@ function starter_demo_create(): void {
 		'slide3'  => starter_demo_image( 'Diapositive 3', $secondary, $dark, false ),
 		'bento1'  => starter_demo_image( 'Bento sites vitrines', $secondary, $primary, false ),
 		'bento2'  => starter_demo_image( 'Bento identité', $primary, $dark, false ),
+		'avatar1' => starter_demo_image( 'Avatar Léa', $secondary, $primary, true, 400, 400, 'LM' ),
+		'avatar2' => starter_demo_image( 'Avatar Hugo', $primary, $dark, true, 400, 400, 'HB' ),
+		'avatar3' => starter_demo_image( 'Avatar Inès', $dark, $secondary, true, 400, 400, 'IK' ),
+		'avatar4' => starter_demo_image( 'Avatar Tom', $secondary, $dark, true, 400, 400, 'TR' ),
 		'about'   => starter_demo_image( 'Notre équipe', $primary, $dark ),
 		'contact' => starter_demo_image( 'Parlons de votre projet', $primary, $secondary ),
 	);
@@ -631,7 +669,23 @@ function starter_demo_create(): void {
 				array( 'icon' => 'users', 'color' => 'secondary', 'title' => 'Un seul contact', 'text' => 'Du devis au suivi, la même personne.' ),
 			)
 		)
-		. starter_demo_button( 'Voir nos réalisations', '/realisations/' ),
+		. starter_demo_cta(
+			array(
+				'title'       => 'Lancez **votre projet** web __dès aujourd\'hui__',
+				'text'        => 'Laissez-nous votre e-mail : on vous rappelle sous 48 h pour en parler, sans engagement.',
+				'action'      => 'email',
+				'button'      => array( 'title' => 'C\'est parti', 'url' => '/contact/' ),
+				'placeholder' => 'votre@email.fr',
+				'background'  => 'light',
+				'accent'      => 'secondary',
+			),
+			array(
+				array( 'image' => $img['avatar1'], 'name' => 'Léa' ),
+				array( 'image' => $img['avatar2'], 'name' => 'Hugo' ),
+				array( 'image' => $img['avatar3'], 'name' => 'Inès' ),
+				array( 'image' => $img['avatar4'], 'name' => 'Tom' ),
+			)
+		),
 		'accueil'
 	);
 
