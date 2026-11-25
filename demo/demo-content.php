@@ -219,19 +219,6 @@ function starter_demo_list( array $items ): string {
 	return "<!-- wp:list -->\n<ul class=\"wp-block-list\">{$li}</ul>\n<!-- /wp:list -->\n\n";
 }
 
-/**
- * Colonnes : chaque colonne = [ titre, texte ].
- *
- * @param array<int, array{0: string, 1: string}> $columns
- */
-function starter_demo_columns( array $columns ): string {
-	$html = '';
-	foreach ( $columns as [ $title, $text ] ) {
-		$html .= "<!-- wp:column -->\n<div class=\"wp-block-column\">" . starter_demo_h( $title, 3 ) . starter_demo_p( $text ) . "</div>\n<!-- /wp:column -->\n\n";
-	}
-	return "<!-- wp:columns {\"align\":\"wide\"} -->\n<div class=\"wp-block-columns alignwide\">{$html}</div>\n<!-- /wp:columns -->\n\n";
-}
-
 function starter_demo_button( string $label, string $url ): string {
 	return "<!-- wp:buttons -->\n<div class=\"wp-block-buttons\"><!-- wp:button -->\n<div class=\"wp-block-button\"><a class=\"wp-block-button__link wp-element-button\" href=\"" . esc_url( $url ) . "\">{$label}</a></div>\n<!-- /wp:button --></div>\n<!-- /wp:buttons -->\n\n";
 }
@@ -275,6 +262,48 @@ function starter_demo_hero( string $title, string $text, ?array $button, int $im
 				'image'   => $image ?: '',
 				'_image'  => 'field_starter_hero_image',
 			),
+		)
+	);
+}
+
+/**
+ * Bloc SCF Cartes. Dans un bloc, un répéteur est stocké « à plat », comme en base :
+ * items = nombre de lignes, items_0_title = valeur, _items_0_title = clé du champ.
+ *
+ * @param array<int, array{icon: string, color: string, title: string, text: string, link?: array{title: string, url: string}}> $items
+ */
+function starter_demo_features( string $title, string $intro, string $columns, string $style, array $items ): string {
+	$k    = 'field_starter_features_';
+	$data = array(
+		'title'    => $title,
+		'_title'   => $k . 'title',
+		'intro'    => $intro,
+		'_intro'   => $k . 'intro',
+		'columns'  => $columns,
+		'_columns' => $k . 'columns',
+		'style'    => $style,
+		'_style'   => $k . 'style',
+		'items'    => count( $items ),
+		'_items'   => $k . 'items',
+	);
+	foreach ( $items as $i => $item ) {
+		$item += array( 'link' => '' );
+		if ( is_array( $item['link'] ) ) {
+			$item['link'] += array( 'target' => '' );
+		}
+		foreach ( array( 'icon', 'color', 'title', 'text', 'link' ) as $sub ) {
+			$data[ "items_{$i}_{$sub}" ]  = $item[ $sub ];
+			$data[ "_items_{$i}_{$sub}" ] = $k . 'item_' . $sub;
+		}
+	}
+
+	return starter_demo_block(
+		'starter/features',
+		array(
+			'name'  => 'starter/features',
+			'mode'  => 'preview',
+			'align' => 'wide',
+			'data'  => $data,
 		)
 	);
 }
@@ -439,18 +468,30 @@ function starter_demo_create(): void {
 			array( 'title' => 'Démarrer un projet', 'url' => '/contact/' ),
 			$img['hero']
 		)
-		. starter_demo_h( 'Ce que nous faisons' )
-		. starter_demo_p( 'De la première maquette à la mise en ligne, nous vous accompagnons à chaque étape, puis nous restons là pour faire évoluer votre site.' )
-		. starter_demo_columns(
+		. starter_demo_features(
+			'Ce que nous faisons',
+			'De la première maquette à la mise en ligne, nous vous accompagnons à chaque étape.',
+			'3',
+			'border',
 			array(
-				array( 'Sites vitrines', 'Un site clair qui présente votre activité et transforme les visiteurs en clients.' ),
-				array( 'E-commerce', 'Une boutique en ligne simple à gérer, avec paiement et livraison intégrés.' ),
-				array( 'Identité visuelle', 'Logo, couleurs, typographies : une image cohérente sur tous vos supports.' ),
+				array( 'icon' => 'monitor', 'color' => 'primary', 'title' => 'Sites vitrines', 'text' => 'Un site clair qui présente votre activité et transforme les visiteurs en clients.', 'link' => array( 'title' => 'Voir les projets', 'url' => '/realisations/categorie/site-vitrine/' ) ),
+				array( 'icon' => 'shopping-cart', 'color' => 'secondary', 'title' => 'E-commerce', 'text' => 'Une boutique en ligne simple à gérer, avec paiement et livraison intégrés.', 'link' => array( 'title' => 'Voir les projets', 'url' => '/realisations/categorie/e-commerce/' ) ),
+				array( 'icon' => 'palette', 'color' => 'dark', 'title' => 'Identité visuelle', 'text' => 'Logo, couleurs, typographies : une image cohérente sur tous vos supports.', 'link' => array( 'title' => 'Voir les projets', 'url' => '/realisations/categorie/identite-visuelle/' ) ),
 			)
 		)
 		. starter_demo_notice( 'info', 'Premier rendez-vous <strong>offert</strong> : on fait le point sur votre projet en 30 minutes.' )
-		. starter_demo_h( 'Pourquoi nous choisir ?' )
-		. starter_demo_list( array( 'Des sites rapides et bien référencés', 'Une interface d\'administration pensée pour vous', 'Un interlocuteur unique, du devis au suivi' ) )
+		. starter_demo_features(
+			'Pourquoi nous choisir ?',
+			'',
+			'4',
+			'accent',
+			array(
+				array( 'icon' => 'rocket', 'color' => 'primary', 'title' => 'Rapides', 'text' => 'Des sites légers, bien notés par Google.' ),
+				array( 'icon' => 'settings', 'color' => 'secondary', 'title' => 'Faciles à gérer', 'text' => 'Une administration pensée pour vous.' ),
+				array( 'icon' => 'shield', 'color' => 'primary', 'title' => 'Sécurisés', 'text' => 'Mises à jour et sauvegardes suivies.' ),
+				array( 'icon' => 'users', 'color' => 'secondary', 'title' => 'Un seul contact', 'text' => 'Du devis au suivi, la même personne.' ),
+			)
+		)
 		. starter_demo_button( 'Voir nos réalisations', '/realisations/' ),
 		'accueil'
 	);
@@ -460,12 +501,15 @@ function starter_demo_create(): void {
 		starter_demo_hero( 'Une équipe à taille humaine', 'Quatre passionnés du web installés à Marseille depuis 2019.', null, $img['about'] )
 		. starter_demo_h( 'Notre histoire' )
 		. starter_demo_p( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.' )
-		. starter_demo_h( 'Nos valeurs' )
-		. starter_demo_columns(
+		. starter_demo_features(
+			'Nos valeurs',
+			'',
+			'3',
+			'light',
 			array(
-				array( 'Clarté', 'Des devis lisibles, des délais tenus, pas de jargon.' ),
-				array( 'Exigence', 'Performance, accessibilité et sécurité dès la conception.' ),
-				array( 'Proximité', 'Nous vous rencontrons, et nous répondons au téléphone.' ),
+				array( 'icon' => 'lightbulb', 'color' => 'secondary', 'title' => 'Clarté', 'text' => 'Des devis lisibles, des délais tenus, pas de jargon.' ),
+				array( 'icon' => 'star', 'color' => 'primary', 'title' => 'Exigence', 'text' => 'Performance, accessibilité et sécurité dès la conception.' ),
+				array( 'icon' => 'heart', 'color' => 'secondary', 'title' => 'Proximité', 'text' => 'Nous vous rencontrons, et nous répondons au téléphone.' ),
 			)
 		)
 		. starter_demo_notice( 'warning', 'Le studio est fermé du 24 décembre au 2 janvier.' ),

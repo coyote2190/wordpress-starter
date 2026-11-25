@@ -22,7 +22,7 @@ Relancer la création supprime d'abord l'ancienne démo : pas de doublons.
 
 | Quoi | Détail |
 |---|---|
-| **Pages** | Accueil (Hero, colonnes, encadré, liste, bouton), À propos, Contact (Hero + formulaire), Actualités (page des articles), Mentions légales, Politique de confidentialité |
+| **Pages** | Accueil (Hero, 2 blocs Cartes, encadré, bouton), À propos (Hero, Cartes style « fond clair », encadré), Contact (Hero + formulaire), Actualités (page des articles), Mentions légales, Politique de confidentialité |
 | **Articles** | 5 articles en 2 catégories, avec image, extrait, titres, liste et encadré |
 | **Réalisations** | 6 réalisations (CPT du mu-plugin) en 3 catégories |
 | **Images** | Générées à la volée (dégradés aux couleurs de `theme.json` + titre), ajoutées à la médiathèque |
@@ -33,8 +33,8 @@ Relancer la création supprime d'abord l'ancienne démo : pas de doublons.
 ## Ce que la démo permet de vérifier
 
 - Hiérarchie des gabarits : accueil, page, article, archive de CPT, catégorie, recherche, 404.
-- Blocs SCF (Hero, Formulaire) et natif (Encadré) côté site **et** dans l'éditeur.
-- Blocs Gutenberg du cœur (colonnes `alignwide`, liste, bouton) avec le style du thème.
+- Blocs SCF (Hero, Cartes, Formulaire) et natif (Encadré) côté site **et** dans l'éditeur.
+- Blocs Gutenberg du cœur (titres, listes, bouton) avec le style du thème.
 - Menu mobile, footer avec coordonnées, pagination.
 - Envoi du formulaire de contact (le mail part à l'e-mail d'admin → visible dans Mailpit en local).
 
@@ -43,7 +43,8 @@ Relancer la création supprime d'abord l'ancienne démo : pas de doublons.
 - Chaque contenu et image créé porte une méta `_starter_demo`.
 - Les termes, menus et **valeurs d'origine des réglages** sont mémorisés dans l'option `starter_demo_state`.
 - `reset` supprime ce qui est marqué, puis restaure les réglages depuis `starter_demo_state`.
-- Le contenu est écrit en **balisage de blocs** (`<!-- wp:paragraph -->…`), exactement comme l'enregistre l'éditeur. Les fonctions `starter_demo_p()`, `starter_demo_h()`, `starter_demo_columns()`, `starter_demo_hero()`… servent d'exemples pour générer du contenu de blocs en PHP.
+- Le contenu est écrit en **balisage de blocs** (`<!-- wp:paragraph -->…`), exactement comme l'enregistre l'éditeur. Les fonctions `starter_demo_p()`, `starter_demo_h()`, `starter_demo_hero()`, `starter_demo_features()`… servent d'exemples pour générer du contenu de blocs en PHP.
+- Dans un bloc SCF, un **répéteur** est stocké « à plat » : `items` = nombre de lignes, `items_0_title` = valeur, `_items_0_title` = clé du champ (voir `starter_demo_features()`).
 - Le fichier refuse de s'exécuter hors WP-CLI : il n'est jamais accessible depuis le navigateur.
 
 ## Adapter pour un client
