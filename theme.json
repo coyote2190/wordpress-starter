@@ -12,11 +12,31 @@
       "duotone": [],
       "gradients": [],
       "palette": [
-        { "slug": "primary", "name": "Principale", "color": "#0f4c81" },
-        { "slug": "secondary", "name": "Secondaire", "color": "#f2a541" },
-        { "slug": "dark", "name": "Foncé", "color": "#111827" },
-        { "slug": "light", "name": "Clair", "color": "#f3f4f6" },
-        { "slug": "white", "name": "Blanc", "color": "#ffffff" }
+        {
+          "slug": "primary",
+          "name": "Principale",
+          "color": "#0f4c81"
+        },
+        {
+          "slug": "secondary",
+          "name": "Secondaire",
+          "color": "#f2a541"
+        },
+        {
+          "slug": "dark",
+          "name": "Foncé",
+          "color": "#111827"
+        },
+        {
+          "slug": "light",
+          "name": "Clair",
+          "color": "#f3f4f6"
+        },
+        {
+          "slug": "white",
+          "name": "Blanc",
+          "color": "#ffffff"
+        }
       ]
     },
     "typography": {
@@ -36,17 +56,37 @@
         }
       ],
       "fontSizes": [
-        { "slug": "small", "name": "Petit", "size": "0.875rem" },
-        { "slug": "base", "name": "Normal", "size": "1rem" },
-        { "slug": "large", "name": "Grand", "size": "1.25rem" },
-        { "slug": "x-large", "name": "Très grand", "size": "1.875rem" }
+        {
+          "slug": "small",
+          "name": "Petit",
+          "size": "0.875rem"
+        },
+        {
+          "slug": "base",
+          "name": "Normal",
+          "size": "1rem"
+        },
+        {
+          "slug": "large",
+          "name": "Grand",
+          "size": "1.25rem"
+        },
+        {
+          "slug": "x-large",
+          "name": "Très grand",
+          "size": "1.875rem"
+        }
       ]
     },
     "spacing": {
       "defaultSpacingSizes": false,
       "customSpacingSize": false,
       "spacingSizes": [],
-      "units": ["px", "rem", "%"]
+      "units": [
+        "px",
+        "rem",
+        "%"
+      ]
     },
     "shadow": {
       "defaultPresets": false
@@ -64,6 +104,25 @@
     "typography": {
       "fontFamily": "var(--wp--preset--font-family--sans)",
       "lineHeight": "1.6"
+    },
+    "elements": {
+      "button": {
+        "color": {
+          "background": "var(--wp--preset--color--primary)",
+          "text": "var(--wp--preset--color--white)"
+        },
+        "border": {
+          "radius": "0.375rem"
+        },
+        "typography": {
+          "fontWeight": "600"
+        },
+        ":hover": {
+          "color": {
+            "background": "var(--wp--preset--color--dark)"
+          }
+        }
+      }
     }
   }
 }

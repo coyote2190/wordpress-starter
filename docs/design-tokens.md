@@ -28,6 +28,7 @@ On change une couleur **dans `theme.json` uniquement**. Le site, Tailwind et la 
 | `layout.contentSize` / `wideSize` | 48rem / 80rem | Largeur du texte et des blocs « large ». Utilisées aussi par la classe `container`. |
 | `appearanceTools: false` | — | Masque bordures, marges, etc. dans l'éditeur : le client ne peut pas casser la mise en page |
 | `styles` | fond blanc, texte foncé | Styles appliqués au `<body>` (front et éditeur) |
+| `styles.elements.button` | fond `primary`, texte blanc | Boutons Gutenberg natifs (bloc Boutons) aux couleurs de la charte, sur le site et dans l'éditeur |
 
 > Les variables des couleurs WordPress par défaut restent dans le CSS : WordPress les garde pour la compatibilité. Elles ne sont plus proposées dans l'éditeur et aucune classe ne les utilise.
 
