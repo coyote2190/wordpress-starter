@@ -53,6 +53,11 @@
           "slug": "heading",
           "name": "Titres",
           "fontFamily": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        },
+        {
+          "slug": "accent",
+          "name": "Accent (italique, citations)",
+          "fontFamily": "ui-serif, Georgia, Cambria, 'Times New Roman', serif"
         }
       ],
       "fontSizes": [

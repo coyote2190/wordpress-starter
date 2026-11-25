@@ -22,6 +22,7 @@
   /* Polices */
   --font-sans: var(--wp--preset--font-family--sans);
   --font-heading: var(--wp--preset--font-family--heading);
+  --font-accent: var(--wp--preset--font-family--accent);
 
   /* Largeurs (theme.json > settings.layout) */
   --container-content: var(--wp--style--global--content-size);

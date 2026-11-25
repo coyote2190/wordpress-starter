@@ -23,7 +23,7 @@ On change une couleur **dans `theme.json` uniquement**. Le site, Tailwind et la 
 | `color.palette` | 5 couleurs du client | Les seules couleurs proposées dans l'éditeur |
 | `color.custom: false` | — | Le client ne peut pas choisir une couleur libre (respect de la charte) |
 | `defaultPalette`, `defaultGradients`, `defaultDuotone: false` | — | Retire les couleurs WordPress par défaut (rose pâle, violet vif…) |
-| `typography.fontFamilies` | `sans`, `heading` | Polices du texte et des titres |
+| `typography.fontFamilies` | `sans`, `heading`, `accent` | Texte, titres, et police à empattements pour les mots mis en valeur (italique du Hero slider) |
 | `typography.fontSizes` | 4 tailles | Tailles proposées dans l'éditeur, pas de taille libre |
 | `layout.contentSize` / `wideSize` | 48rem / 80rem | Largeur du texte et des blocs « large ». Utilisées aussi par la classe `container`. |
 | `appearanceTools: false` | — | Masque bordures, marges, etc. dans l'éditeur : le client ne peut pas casser la mise en page |
@@ -45,7 +45,7 @@ On change une couleur **dans `theme.json` uniquement**. Le site, Tailwind et la 
 | Type | Classes |
 |---|---|
 | Couleurs | `primary`, `secondary`, `dark`, `light`, `white` → `bg-primary`, `text-dark`, `border-light`… Transparence possible : `bg-primary/10` |
-| Polices | `font-sans`, `font-heading` |
+| Polices | `font-sans`, `font-heading`, `font-accent` |
 | Largeurs | `max-w-content`, `max-w-wide` |
 | Conteneur | `container` (centré, marges latérales, largeur `wide`) |
 | Contenu Gutenberg | `prose` (plugin `@tailwindcss/typography`) : met en forme titres, listes, liens… du contenu saisi dans l'éditeur |
