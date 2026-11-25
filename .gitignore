@@ -1,0 +1,10 @@
+# Dépendances (réinstallées avec npm install)
+node_modules/
+
+# Fichier créé par Vite tant que le serveur de dev tourne
+hot
+
+# Système / éditeur
+.DS_Store
+*.log
+.idea/

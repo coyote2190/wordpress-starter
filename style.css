@@ -1,5 +1,15 @@
 /*
-Theme Name: WordPress Starter
-Text Domain: starter
-Version: 0.1.0
+Theme Name:        WordPress Starter
+Theme URI:         https://github.com/coyote2190/wordpress-starter
+Description:       Thème de départ pour les sites clients — PHP, Tailwind CSS, Vite, SCF.
+Version:           0.1.0
+Requires at least: 6.6
+Requires PHP:      8.1
+Text Domain:       starter
 */
+
+/*
+ * Ce fichier ne contient AUCUN style : WordPress le lit uniquement pour
+ * l'en-tête ci-dessus (nom du thème, version…). Les styles sont dans
+ * assets/src/css/ et compilés par Vite.
+ */
