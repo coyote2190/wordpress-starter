@@ -26,7 +26,7 @@ Pour chaque URL, WordPress cherche le gabarit **le plus précis** qui existe, pu
 | `footer.php` | Fermeture du `<main>`, pied de page, menu footer, `wp_footer()` |
 | `index.php` | Liste des articles (blog) et gabarit de secours |
 | `front-page.php` | Accueil : contenu Gutenberg de la page d'accueil, sans titre (les sections sont des blocs) |
-| `page.php` | Page : titre + contenu Gutenberg dans `prose` |
+| `page.php` | Page : titre + contenu Gutenberg dans `prose`. Si la page commence par un hero pleine largeur : pas de titre (le hero porte le `<h1>`) et header transparent (voir `docs/blocks.md`). |
 | `single.php` | Article : date, titre, image mise en avant, contenu, article précédent/suivant |
 | `archive.php` | Titre + description de l'archive, puis la boucle |
 | `search.php` | Titre « Résultats pour… », formulaire, puis la boucle |

@@ -1,0 +1,151 @@
+{
+  "key": "group_starter_block_hero_slider",
+  "title": "Bloc : Hero slider",
+  "fields": [
+    {
+      "key": "field_starter_slider_tab_slides",
+      "label": "Diapositives",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_slider_slides",
+      "label": "Diapositives",
+      "name": "slides",
+      "type": "repeater",
+      "layout": "block",
+      "min": 1,
+      "max": 6,
+      "collapsed": "field_starter_slider_slide_title",
+      "button_label": "Ajouter une diapositive",
+      "sub_fields": [
+        {
+          "key": "field_starter_slider_slide_image",
+          "label": "Image de fond",
+          "name": "image",
+          "type": "image",
+          "instructions": "Au moins 1920 × 1080 px. Le sujet important au centre ou à droite (le texte est à gauche).",
+          "required": 1,
+          "return_format": "id",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "jpg,jpeg,png,webp,avif",
+          "parent_repeater": "field_starter_slider_slides"
+        },
+        {
+          "key": "field_starter_slider_slide_title",
+          "label": "Titre",
+          "name": "title",
+          "type": "text",
+          "required": 1,
+          "wrapper": { "width": "50" },
+          "parent_repeater": "field_starter_slider_slides"
+        },
+        {
+          "key": "field_starter_slider_slide_title_highlight",
+          "label": "Suite du titre (en italique)",
+          "name": "title_highlight",
+          "type": "text",
+          "instructions": "Facultatif. Affichée à la ligne, en italique.",
+          "wrapper": { "width": "50" },
+          "parent_repeater": "field_starter_slider_slides"
+        },
+        {
+          "key": "field_starter_slider_slide_text",
+          "label": "Texte",
+          "name": "text",
+          "type": "textarea",
+          "rows": 2,
+          "new_lines": "",
+          "parent_repeater": "field_starter_slider_slides"
+        },
+        {
+          "key": "field_starter_slider_slide_button_primary",
+          "label": "Bouton principal (plein)",
+          "name": "button_primary",
+          "type": "link",
+          "return_format": "array",
+          "wrapper": { "width": "50" },
+          "parent_repeater": "field_starter_slider_slides"
+        },
+        {
+          "key": "field_starter_slider_slide_button_secondary",
+          "label": "Bouton secondaire (contour)",
+          "name": "button_secondary",
+          "type": "link",
+          "return_format": "array",
+          "wrapper": { "width": "50" },
+          "parent_repeater": "field_starter_slider_slides"
+        }
+      ]
+    },
+    {
+      "key": "field_starter_slider_tab_settings",
+      "label": "Réglages",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_slider_height",
+      "label": "Hauteur",
+      "name": "height",
+      "type": "button_group",
+      "choices": { "screen": "Plein écran", "large": "70 % de l'écran" },
+      "default_value": "screen",
+      "return_format": "value",
+      "layout": "horizontal"
+    },
+    {
+      "key": "field_starter_slider_content_align",
+      "label": "Position du texte",
+      "name": "content_align",
+      "type": "button_group",
+      "choices": { "left": "Gauche", "center": "Centré" },
+      "default_value": "left",
+      "return_format": "value",
+      "layout": "horizontal"
+    },
+    {
+      "key": "field_starter_slider_overlay",
+      "label": "Voile sombre sur l'image",
+      "name": "overlay",
+      "type": "button_group",
+      "instructions": "Plus l'image est claire, plus le voile doit être fort pour que le texte reste lisible.",
+      "choices": { "light": "Léger", "medium": "Moyen", "strong": "Fort" },
+      "default_value": "medium",
+      "return_format": "value",
+      "layout": "horizontal"
+    },
+    {
+      "key": "field_starter_slider_autoplay",
+      "label": "Défilement automatique (secondes)",
+      "name": "autoplay",
+      "type": "number",
+      "instructions": "0 = pas de défilement automatique. Désactivé dans l'éditeur et pour les visiteurs qui ont demandé à réduire les animations.",
+      "default_value": 6,
+      "min": 0,
+      "max": 20,
+      "step": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "starter/hero-slider"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1795622400
+}

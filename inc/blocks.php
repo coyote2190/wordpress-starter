@@ -45,6 +45,50 @@ function starter_block_inner_class( ?string $align ): string {
 	return 'full' === $align ? 'container' : '';
 }
 
+/**
+ * La page affichée commence-t-elle par un Hero ou un Hero slider en pleine largeur ?
+ *
+ * Si oui : header transparent par-dessus l'image (classe body `has-hero-overlay`)
+ * et pas de titre de page au-dessus (le hero contient déjà le <h1>).
+ * Seulement pour les pages (pas les articles, qui ont leur date et leur titre).
+ */
+function starter_starts_with_hero(): bool {
+	static $result = null;
+
+	if ( null === $result ) {
+		$result = false;
+		$post   = get_queried_object();
+
+		if ( is_page() && $post instanceof WP_Post && has_blocks( $post ) ) {
+			// parse_blocks() renvoie aussi les espaces entre blocs (blockName null) : on les ignore.
+			$blocks = array_values( array_filter( parse_blocks( $post->post_content ), static fn( $b ) => null !== $b['blockName'] ) );
+			$first  = $blocks[0] ?? null;
+
+			// Ces deux blocs sont en pleine largeur par défaut : align absent = 'full'.
+			$result = $first
+				&& in_array( $first['blockName'], array( 'starter/hero', 'starter/hero-slider' ), true )
+				&& 'full' === ( $first['attrs']['align'] ?? 'full' );
+		}
+	}
+
+	return $result;
+}
+
+add_filter( 'body_class', 'starter_hero_body_class' );
+
+/**
+ * Ajoute `has-hero-overlay` au <body> quand la page commence par un hero pleine largeur.
+ *
+ * @param string[] $classes Classes du body.
+ * @return string[]
+ */
+function starter_hero_body_class( array $classes ): array {
+	if ( starter_starts_with_hero() ) {
+		$classes[] = 'has-hero-overlay';
+	}
+	return $classes;
+}
+
 add_filter( 'block_categories_all', 'starter_block_category' );
 
 /**

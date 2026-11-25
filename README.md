@@ -51,6 +51,7 @@ wordpress-starter/
 │   └── blocks.php     Enregistre les blocs (SCF + natifs), catégorie « Starter », CSS de l'éditeur.
 ├── blocks/            Blocs Gutenberg SCF (un dossier par bloc : block.json + render.php).
 │   ├── hero/          Bannière d'en-tête.
+│   ├── hero-slider/   Bannière plein écran à diapositives.
 │   ├── features/      Grille de cartes (icône, couleur, titre, texte, lien).
 │   └── contact-form/  Place le formulaire de contact dans une page.
 ├── blocks-native/     Blocs Gutenberg natifs en React.
@@ -71,7 +72,7 @@ wordpress-starter/
 │   │   └── components.css  Styles du HTML généré par WP (menus, pagination).
 │   └── js/
 │       ├── main.js    Entrée JS : charge les modules présents dans la page.
-│       └── modules/   Un fichier par fonctionnalité (menu mobile, formulaire de contact).
+│       └── modules/   Un fichier par fonctionnalité (menu mobile, slider, formulaire de contact).
 ├── dist/              Fichiers compilés par `npm run build` (commités, à déployer).
 ├── demo/              Script de contenu de démo (WP-CLI).
 ├── docs/              Documentation (un fichier par sujet).

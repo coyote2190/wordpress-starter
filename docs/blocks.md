@@ -88,6 +88,7 @@ Dans `render.php`, une seule ligne applique cette règle :
 | Bloc | Dossier | Usage |
 |---|---|---|
 | **Hero** | `blocks/hero/` | Bannière d'en-tête : titre, texte, bouton, image de fond |
+| **Hero slider** | `blocks/hero-slider/` | Bannière plein écran à plusieurs diapositives (une seule par page) |
 | **Cartes** | `blocks/features/` | Grille de cartes : services, avantages, valeurs… |
 | **Formulaire de contact** | `blocks/contact-form/` | Place le formulaire (voir `docs/contact-form.md`) |
 
@@ -106,12 +107,47 @@ Dans `render.php`, une seule ligne applique cette règle :
 
 **Ajouter un style de carte** : ajouter le choix dans le champ `style` (SCF), puis la ligne correspondante dans `$card_classes` de `render.php`.
 
+### Le bloc « Hero slider » en détail
+
+| Réglage | Champ | Choix |
+|---|---|---|
+| Diapositives (1 à 6) | `slides` | Image de fond, titre, suite du titre (italique, police `accent`), texte, bouton plein, bouton contour |
+| Hauteur | `height` | Plein écran (100 % moins la barre d'admin) · 70 % |
+| Position du texte | `content_align` | Gauche · Centré |
+| Voile sombre | `overlay` | Léger · Moyen · Fort (lisibilité du texte sur l'image) |
+| Défilement auto | `autoplay` | En secondes, 0 = désactivé |
+
+Comportement (module `assets/src/js/modules/hero-slider.js`, chargé seulement s'il y a 2 diapositives ou plus) :
+
+- fondu entre diapositives : l'attribut `data-active` + classes `data-active:visible data-active:opacity-100` ;
+- flèches (masquées sur mobile), points, flèches du clavier, glisser au doigt (`touch-pan-y`) ;
+- **accessibilité** : diapositives cachées en `inert` (ni focus ni lecture d'écran), bouton **pause** obligatoire quand ça défile seul (WCAG 2.2.2), pause au survol et au focus clavier, **pas de défilement auto** si le visiteur a activé « réduire les animations » ni dans l'éditeur ;
+- **performance** : 1re image en `fetchpriority="high"` + `loading="eager"`, les suivantes en différé ;
+- **SEO** : le titre de la 1re diapositive est le `<h1>`, les autres des `<h2>` ;
+- sans JS : la 1re diapositive s'affiche normalement.
+
+## Header transparent sur hero
+
+Quand une **page** commence par un **Hero** ou un **Hero slider** en **pleine largeur** :
+
+| Quoi | Comment |
+|---|---|
+| Détection | `starter_starts_with_hero()` (`inc/blocks.php`) lit le 1er bloc de la page |
+| Classe `has-hero-overlay` sur `<body>` | `starter_hero_body_class()` |
+| Header en position absolue, texte blanc, par-dessus l'image | `components.css`, règles **hors `@layer`** pour passer devant les classes Tailwind du header |
+| Pas de titre de page au-dessus du hero | `page.php` (le hero porte déjà le `<h1>`) |
+| Menu mobile ouvert | Panneau blanc → liens repassés en foncé |
+
+Pour désactiver ce comportement sur une page : mettre le hero en « Grande largeur », ou placer un autre bloc avant.
+
 ## Ce que fait `inc/blocks.php`
 
 | Fonction | Rôle |
 |---|---|
 | `starter_register_blocks()` | Enregistre automatiquement **chaque dossier** `blocks/*/block.json`. Créer le dossier suffit. |
 | `starter_block_category()` | Catégorie « Starter » en tête de l'outil d'insertion |
+| `starter_block_inner_class()` | Conteneur intérieur en pleine largeur (voir « Alignements ») |
+| `starter_starts_with_hero()` / `starter_hero_body_class()` | Header transparent quand la page commence par un hero (voir ci-dessus) |
 | `starter_editor_styles()` | Charge `editor.css` (Tailwind sans reset) **dans l'iframe** de l'éditeur : l'aperçu ressemble au site |
 
 ## Créer un bloc (exemple : « Chiffres clés »)

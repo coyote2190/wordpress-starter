@@ -1,6 +1,6 @@
 {
   "assets/src/css/editor.css": {
-    "file": "assets/editor-DfqZZA1A.css",
+    "file": "assets/editor-CTfEoa8Z.css",
     "name": "editor",
     "names": [
       "editor.css"
@@ -9,7 +9,7 @@
     "isEntry": true
   },
   "assets/src/css/main.css": {
-    "file": "assets/main-TBq0UZel.css",
+    "file": "assets/main-Dfi2_uB8.css",
     "name": "main",
     "names": [
       "main.css"
@@ -18,19 +18,26 @@
     "isEntry": true
   },
   "assets/src/js/main.js": {
-    "file": "assets/main-DZsLvW0E.js",
+    "file": "assets/main-BUihu_Lb.js",
     "name": "main",
     "src": "assets/src/js/main.js",
     "isEntry": true,
     "dynamicImports": [
       "assets/src/js/modules/nav.js",
-      "assets/src/js/modules/contact-form.js"
+      "assets/src/js/modules/contact-form.js",
+      "assets/src/js/modules/hero-slider.js"
     ]
   },
   "assets/src/js/modules/contact-form.js": {
     "file": "assets/contact-form-BrixM5vg.js",
     "name": "contact-form",
     "src": "assets/src/js/modules/contact-form.js",
+    "isDynamicEntry": true
+  },
+  "assets/src/js/modules/hero-slider.js": {
+    "file": "assets/hero-slider-DqbvcezS.js",
+    "name": "hero-slider",
+    "src": "assets/src/js/modules/hero-slider.js",
     "isDynamicEntry": true
   },
   "assets/src/js/modules/nav.js": {

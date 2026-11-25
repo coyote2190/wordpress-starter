@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "starter/hero-slider",
+  "title": "Hero slider",
+  "description": "Bannière plein écran à plusieurs diapositives : image, titre, texte et deux boutons.",
+  "category": "starter",
+  "icon": "slides",
+  "keywords": ["slider", "carrousel", "diaporama", "bannière", "hero"],
+  "textdomain": "starter",
+  "supports": {
+    "align": ["wide", "full"],
+    "anchor": true,
+    "html": false,
+    "multiple": false
+  },
+  "attributes": {
+    "align": { "type": "string", "default": "full" }
+  },
+  "example": {},
+  "acf": {
+    "blockVersion": 3,
+    "mode": "preview",
+    "renderTemplate": "render.php"
+  }
+}

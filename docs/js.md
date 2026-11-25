@@ -28,6 +28,7 @@ Au build, Vite crée un fichier séparé par module (`dist/assets/nav-xxxx.js`).
 |---|---|
 | `main.js` | Point d'entrée. Contient la liste `modules` (nom → fichier) et lance ceux présents dans la page. |
 | `modules/nav.js` | Menu mobile : bouton burger, `aria-expanded`, Échap pour fermer, fermeture au clic sur un lien ou au passage en desktop. |
+| `modules/hero-slider.js` | Hero slider : fondu, flèches, points, autoplay avec pause, clavier, glisser au doigt (voir `docs/blocks.md`). |
 | `modules/contact-form.js` | Envoi du formulaire de contact en `fetch` (voir `docs/contact-form.md`). |
 
 ## Écrire un module

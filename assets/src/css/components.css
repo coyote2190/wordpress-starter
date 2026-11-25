@@ -71,3 +71,33 @@
     width: auto;
   }
 }
+
+/*
+ * Header transparent par-dessus un hero pleine largeur (classe body
+ * `has-hero-overlay`, ajoutée par starter_hero_body_class() dans inc/blocks.php).
+ *
+ * Volontairement HORS @layer : les styles sans couche passent devant toutes
+ * les couches, y compris les classes Tailwind (`utilities`) posées sur le header
+ * (border-b, text-primary…).
+ */
+.has-hero-overlay .site-header {
+  position: absolute;
+  inset-inline: 0;
+  /* Sous la barre d'admin WordPress quand on est connecté. */
+  top: var(--wp-admin--admin-bar--height, 0px);
+  z-index: 40;
+  border-color: transparent;
+  color: var(--color-white);
+}
+.has-hero-overlay .site-header .site-branding a,
+.has-hero-overlay .site-header .site-nav a {
+  color: var(--color-white);
+}
+.has-hero-overlay .site-header .site-nav a:hover,
+.has-hero-overlay .site-header .site-nav .current-menu-item > a {
+  color: var(--color-secondary);
+}
+/* Menu mobile ouvert : panneau blanc → liens foncés. */
+.has-hero-overlay .site-header .site-nav[data-open] a {
+  color: var(--color-dark);
+}
