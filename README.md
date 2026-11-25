@@ -18,7 +18,8 @@ wordpress-starter/
 ├── index.php          Gabarit de secours (utilisé si aucun autre ne correspond).
 ├── screenshot.png     Aperçu dans Apparence > Thèmes (1200×900).
 ├── inc/               Logique PHP, un fichier par sujet.
-│   └── setup.php      Fonctionnalités WordPress activées, menus.
+│   ├── setup.php      Fonctionnalités WordPress activées, menus.
+│   └── cleanup.php    Retire ce que WordPress charge inutilement (emojis, metas…).
 ├── docs/              Documentation (un fichier par sujet).
 ├── .editorconfig      Indentation commune à tous les éditeurs.
 └── .gitignore         Fichiers exclus de Git.
@@ -29,3 +30,4 @@ wordpress-starter/
 | Sujet | Fichier |
 |---|---|
 | Architecture générale | [docs/architecture.md](docs/architecture.md) |
+| Nettoyage de WordPress | [docs/cleanup.md](docs/cleanup.md) |

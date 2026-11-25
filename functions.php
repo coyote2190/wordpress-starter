@@ -17,7 +17,8 @@ define( 'STARTER_DIR', get_template_directory() );
 define( 'STARTER_URI', get_template_directory_uri() );
 
 $starter_includes = array(
-	'setup', // Fonctionnalités WordPress du thème, menus.
+	'setup',   // Fonctionnalités WordPress du thème, menus.
+	'cleanup', // Retire ce que WordPress charge inutilement.
 );
 
 foreach ( $starter_includes as $starter_file ) {
