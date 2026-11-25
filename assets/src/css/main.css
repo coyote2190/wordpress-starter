@@ -1,0 +1,12 @@
+/*
+ * Feuille de style principale.
+ *
+ * `source(none)` : on dit nous-mêmes à Tailwind quels fichiers lire pour
+ * trouver les classes utilisées (évite de scanner node_modules, dist…).
+ * Ajouter une ligne @source pour chaque nouveau dossier contenant du HTML.
+ */
+@import 'tailwindcss' source(none);
+
+@source '../../../*.php';
+@source '../../../inc';
+@source '../js';

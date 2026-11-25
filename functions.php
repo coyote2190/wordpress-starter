@@ -19,6 +19,8 @@ define( 'STARTER_URI', get_template_directory_uri() );
 $starter_includes = array(
 	'setup',   // Fonctionnalités WordPress du thème, menus.
 	'cleanup', // Retire ce que WordPress charge inutilement.
+	'vite',    // Pont Vite ↔ WordPress (dev / prod).
+	'assets',  // Chargement des CSS et JS.
 );
 
 foreach ( $starter_includes as $starter_file ) {

@@ -1,0 +1,17 @@
+{
+  "name": "wordpress-starter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "prettier": "^3.10.1",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "tailwindcss": "^4.3.5",
+    "vite": "^8.3.8"
+  }
+}

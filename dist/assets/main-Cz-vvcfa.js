@@ -1,0 +1,1 @@
+console.info(`WordPress Starter : JS chargé`);

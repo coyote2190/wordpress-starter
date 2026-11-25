@@ -1,0 +1,17 @@
+{
+  "assets/src/css/main.css": {
+    "file": "assets/main-B6d3mmbV.css",
+    "name": "main",
+    "names": [
+      "main.css"
+    ],
+    "src": "assets/src/css/main.css",
+    "isEntry": true
+  },
+  "assets/src/js/main.js": {
+    "file": "assets/main-Cz-vvcfa.js",
+    "name": "main",
+    "src": "assets/src/js/main.js",
+    "isEntry": true
+  }
+}

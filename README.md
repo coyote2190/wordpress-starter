@@ -9,6 +9,14 @@ Thème de départ pour les sites clients : PHP classique, Tailwind CSS, Vite, JS
 - WordPress ≥ 6.6, PHP ≥ 8.1
 - Extensions : **Secure Custom Fields** (champs) et **FluentSMTP** (envoi des mails)
 
+## Démarrer
+
+```bash
+npm install
+npm run dev     # pendant le dev, puis ouvrir http://wordpress-starter.local
+npm run build   # avant de commiter / déployer
+```
+
 ## Arborescence
 
 ```
@@ -19,8 +27,17 @@ wordpress-starter/
 ├── screenshot.png     Aperçu dans Apparence > Thèmes (1200×900).
 ├── inc/               Logique PHP, un fichier par sujet.
 │   ├── setup.php      Fonctionnalités WordPress activées, menus.
-│   └── cleanup.php    Retire ce que WordPress charge inutilement (emojis, metas…).
+│   ├── cleanup.php    Retire ce que WordPress charge inutilement (emojis, metas…).
+│   ├── vite.php       Pont Vite ↔ WordPress : charge les fichiers en dev ou depuis dist/.
+│   └── assets.php     Liste des CSS/JS chargés sur le site.
+├── assets/src/        Sources front (éditées à la main).
+│   ├── css/main.css   Entrée CSS : Tailwind + nos styles.
+│   └── js/main.js     Entrée JS (module ES).
+├── dist/              Fichiers compilés par `npm run build` (commités, à déployer).
 ├── docs/              Documentation (un fichier par sujet).
+├── package.json       Outils front et commandes npm.
+├── vite.config.js     Configuration du build.
+├── .prettierrc        Règles de formatage (JS/CSS/MD).
 ├── .editorconfig      Indentation commune à tous les éditeurs.
 └── .gitignore         Fichiers exclus de Git.
 ```
@@ -31,3 +48,4 @@ wordpress-starter/
 |---|---|
 | Architecture générale | [docs/architecture.md](docs/architecture.md) |
 | Nettoyage de WordPress | [docs/cleanup.md](docs/cleanup.md) |
+| Build (Vite, Tailwind) | [docs/build.md](docs/build.md) |
