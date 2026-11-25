@@ -5,35 +5,13 @@
 @source "../../../";
 
 /* ─────────────────────────────────────────────
-   Fonts auto-hébergées — Ranade (Fontshare / ITF FFL)
-
-   ⚠️ Licence ITF Free Font License : redistribution interdite.
-      Ne pas commiter assets/fonts/ dans un dépôt public.
-      Télécharger depuis https://www.fontshare.com/fonts/ranade
+   Fonts auto-hébergées via npm (@fontsource-variable, licence OFL)
+   - Playfair Display : titres
+   - Cabin : texte
+   Vite copie les fichiers dans assets/dist/assets/ au build.
    ───────────────────────────────────────────── */
-@font-face {
-  font-family: 'Ranade';
-  src: url('/wp-content/themes/wordpress-starter/assets/fonts/Ranade-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Ranade';
-  src: url('/wp-content/themes/wordpress-starter/assets/fonts/Ranade-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Ranade';
-  src: url('/wp-content/themes/wordpress-starter/assets/fonts/Ranade-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+@import '@fontsource-variable/playfair-display';
+@import '@fontsource-variable/cabin';
 
 /* ─────────────────────────────────────────────
    Design tokens — neutres, à surcharger par client
@@ -41,12 +19,18 @@
    Tailwind (spacing, breakpoints, radius) suffit.
    ───────────────────────────────────────────── */
 @theme {
-  --font-sans: 'Ranade', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Cabin Variable', system-ui, -apple-system, sans-serif; /* texte */
+  --font-display: 'Playfair Display Variable', Georgia, serif; /* titres */
 
   --color-ink: #000; /* texte */
   --color-canvas: #fff; /* fond */
   --color-muted: #666; /* texte secondaire */
   --color-line: #e5e5e5; /* bordures */
+
+  /* Couleurs du projet resto */
+  --color-brand: #d93a2b; /* rouge principal */
+  --color-brand-dark: #7a1f1a; /* rouge foncé */
+  --color-cream: #f3e9dc; /* beige */
 
   --container-wrap: 1200px; /* -> max-w-wrap   */
   --container-narrow: 40rem; /* -> max-w-narrow (contenu lisible) */
@@ -68,7 +52,7 @@
   h4,
   h5,
   h6 {
-    @apply mt-0 mb-4 font-sans leading-tight;
+    @apply mt-0 mb-4 font-display leading-tight;
   }
 
   p {
@@ -186,6 +170,23 @@
 
   .burger::after {
     top: 5px;
+  }
+}
+
+/* Bandeau défilant (accueil) : le contenu est dupliqué, on glisse de 50 % */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
   }
 }
 

@@ -1,0 +1,57 @@
+{
+    "key": "group_starter_plat",
+    "title": "Infos du plat",
+    "fields": [
+        {
+            "key": "field_starter_plat_prix",
+            "label": "Prix",
+            "name": "prix",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "En euros (ex. 12.50)",
+            "required": 1,
+            "min": 0,
+            "step": "0.1",
+            "append": "€"
+        },
+        {
+            "key": "field_starter_plat_allergenes",
+            "label": "Allergènes",
+            "name": "allergenes",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Ex. gluten, lait, œufs",
+            "required": 0
+        },
+        {
+            "key": "field_starter_plat_du_jour",
+            "label": "Plat du jour",
+            "name": "plat_du_jour",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "message": "Mettre en avant ce plat",
+            "default_value": 0,
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "plat"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1760000000
+}
