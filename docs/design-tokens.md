@@ -49,7 +49,7 @@ On change une couleur **dans `theme.json` uniquement**. Le site, Tailwind et la 
 | Largeurs | `max-w-content`, `max-w-wide` |
 | Conteneur | `container` (centré, marges latérales, largeur `wide`) |
 | Animation | `animate-float` (flottement doux, défini dans `base.css`). Toujours avec `motion-safe:` pour respecter « réduire les animations » |
-| Contenu Gutenberg | `prose` (plugin `@tailwindcss/typography`) : met en forme titres, listes, liens… du contenu saisi dans l'éditeur |
+| Contenu Gutenberg | `prose` (plugin `@tailwindcss/typography`) : met en forme titres, listes, liens… du contenu saisi dans l'éditeur. Ses couleurs sont **alignées sur la charte** dans `components.css` (texte et titres `dark`, liens et puces `primary`, citations `secondary`). |
 
 Les couleurs Tailwind par défaut (`gray-500`, `red-600`…) restent disponibles pour les détails (bordures, états d'erreur…).
 

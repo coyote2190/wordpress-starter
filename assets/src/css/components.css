@@ -101,3 +101,21 @@
 .has-hero-overlay .site-header .site-nav[data-open] a {
   color: var(--color-dark);
 }
+
+/*
+ * Couleurs de la classe `prose` (contenu Gutenberg) alignées sur la charte.
+ * Par défaut, le plugin typography utilise ses propres gris, dont nos blocs
+ * héritaient (titres gris au lieu de foncés). Hors @layer pour passer devant.
+ */
+.prose {
+  --tw-prose-body: var(--color-dark);
+  --tw-prose-headings: var(--color-dark);
+  --tw-prose-lead: var(--color-dark);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-dark);
+  --tw-prose-counters: var(--color-primary);
+  --tw-prose-bullets: var(--color-primary);
+  --tw-prose-quotes: var(--color-dark);
+  --tw-prose-quote-borders: var(--color-secondary);
+  --tw-prose-hr: var(--color-light);
+}
