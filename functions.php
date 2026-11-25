@@ -22,6 +22,7 @@ $starter_includes = array(
 	'vite',    // Pont Vite ↔ WordPress (dev / prod).
 	'assets',  // Chargement des CSS et JS.
 	'icons',   // starter_icon() : icônes SVG.
+	'scf',     // Secure Custom Fields : JSON, page d'options, helpers.
 );
 
 foreach ( $starter_includes as $starter_file ) {

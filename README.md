@@ -33,7 +33,7 @@ wordpress-starter/
 ├── search.php         Résultats de recherche.
 ├── 404.php            Page introuvable.
 ├── searchform.php     Formulaire de recherche.
-├── template-parts/    Morceaux de HTML réutilisés (boucle, carte, liste vide).
+├── template-parts/    Morceaux de HTML réutilisés (boucle, carte, liste vide, coordonnées).
 ├── theme.json         Couleurs, polices, largeurs (source unique pour le site et l'éditeur).
 ├── screenshot.png     Aperçu dans Apparence > Thèmes (1200×900).
 ├── inc/               Logique PHP, un fichier par sujet.
@@ -41,7 +41,9 @@ wordpress-starter/
 │   ├── cleanup.php    Retire ce que WordPress charge inutilement (emojis, metas…).
 │   ├── vite.php       Pont Vite ↔ WordPress : charge les fichiers en dev ou depuis dist/.
 │   ├── assets.php     Liste des CSS/JS chargés sur le site.
-│   └── icons.php      starter_icon() : insère une icône SVG.
+│   ├── icons.php      starter_icon() : insère une icône SVG.
+│   └── scf.php        SCF : JSON, page « Infos du site », starter_field() / starter_option().
+├── scf-json/          Groupes de champs SCF en JSON (écrits par SCF, versionnés).
 ├── assets/icons/      Icônes SVG (un fichier par icône).
 ├── assets/src/        Sources front (éditées à la main).
 │   ├── css/
@@ -72,3 +74,4 @@ wordpress-starter/
 | Gabarits (quel fichier pour quelle page) | [docs/templates.md](docs/templates.md) |
 | Icônes SVG | [docs/icons.md](docs/icons.md) |
 | JavaScript | [docs/js.md](docs/js.md) |
+| Champs SCF, page « Infos du site » | [docs/scf.md](docs/scf.md) |

@@ -22,6 +22,8 @@
 | `$class` | Classes ajoutées sur `<svg>` (par défaut `size-5`). `icon shrink-0` est toujours ajouté. |
 | `$label` | Vide → icône **décorative**, cachée aux lecteurs d'écran (`aria-hidden`). Rempli → annoncée (`role="img"` + `aria-label`). |
 
+Pour tester si une icône existe : `starter_icon_exists( 'instagram' )`.
+
 **Règle d'accessibilité** : si l'icône est à côté d'un texte (« 📞 01 23 45 67 89 »), pas de label. Si elle est **seule** dans un bouton ou un lien (bouton menu, loupe), soit un label, soit un texte caché `<span class="sr-only">`.
 
 ## Icônes fournies

@@ -14,6 +14,15 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * L'icône existe-t-elle dans assets/icons/ ?
+ *
+ * @param string $name Nom du fichier sans .svg.
+ */
+function starter_icon_exists( string $name ): bool {
+	return (bool) preg_match( '/^[a-z0-9-]+$/', $name ) && is_file( STARTER_DIR . '/assets/icons/' . $name . '.svg' );
+}
+
+/**
  * Retourne le SVG d'une icône, prêt à être affiché.
  *
  * @param string $name  Nom du fichier sans .svg (ex. 'arrow-right').

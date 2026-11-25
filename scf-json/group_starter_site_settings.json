@@ -1,0 +1,93 @@
+{
+  "key": "group_starter_site_settings",
+  "title": "Infos du site",
+  "fields": [
+    {
+      "key": "field_starter_tab_contact",
+      "label": "Coordonnées",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_phone",
+      "label": "Téléphone",
+      "name": "phone",
+      "type": "text",
+      "instructions": "Affiché dans le pied de page, cliquable sur mobile.",
+      "placeholder": "01 23 45 67 89"
+    },
+    {
+      "key": "field_starter_email",
+      "label": "E-mail",
+      "name": "email",
+      "type": "email",
+      "instructions": "Adresse affichée sur le site. Elle reçoit aussi les messages du formulaire de contact."
+    },
+    {
+      "key": "field_starter_address",
+      "label": "Adresse",
+      "name": "address",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": "br"
+    },
+    {
+      "key": "field_starter_tab_socials",
+      "label": "Réseaux sociaux",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_socials",
+      "label": "Réseaux sociaux",
+      "name": "socials",
+      "type": "repeater",
+      "layout": "table",
+      "button_label": "Ajouter un réseau",
+      "sub_fields": [
+        {
+          "key": "field_starter_social_network",
+          "label": "Réseau",
+          "name": "network",
+          "type": "select",
+          "choices": {
+            "facebook": "Facebook",
+            "instagram": "Instagram",
+            "linkedin": "LinkedIn",
+            "youtube": "YouTube",
+            "tiktok": "TikTok"
+          },
+          "return_format": "array",
+          "parent_repeater": "field_starter_socials"
+        },
+        {
+          "key": "field_starter_social_url",
+          "label": "Lien",
+          "name": "url",
+          "type": "url",
+          "parent_repeater": "field_starter_socials"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "options_page",
+        "operator": "==",
+        "value": "starter-site-settings"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "seamless",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "description": "Coordonnées et réseaux sociaux, utilisés dans le pied de page et le formulaire de contact.",
+  "show_in_rest": 0,
+  "modified": 1795622400
+}

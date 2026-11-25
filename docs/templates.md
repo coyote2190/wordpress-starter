@@ -42,6 +42,7 @@ Appelés avec `get_template_part( 'template-parts/content', 'card' )` → charge
 | `loop.php` | index, archive, search | Grille de cartes + pagination, ou `content-none` si vide |
 | `content-card.php` | `loop.php` | Une carte : image, date, titre (toute la carte est cliquable), extrait |
 | `content-none.php` | `loop.php` | Message « aucun contenu / aucun résultat » |
+| `site-contact.php` | `footer.php` | Téléphone, e-mail, adresse, réseaux (page « Infos du site ») |
 
 **Règle** : dès qu'un bout de HTML sert à deux endroits, il va dans `template-parts/`.
 
