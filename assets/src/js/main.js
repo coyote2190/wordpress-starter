@@ -18,6 +18,7 @@ const modules = {
   nav: () => import('./modules/nav.js'),
   'contact-form': () => import('./modules/contact-form.js'),
   'hero-slider': () => import('./modules/hero-slider.js'),
+  scroller: () => import('./modules/scroller.js'),
 };
 
 for (const el of document.querySelectorAll('[data-module]')) {

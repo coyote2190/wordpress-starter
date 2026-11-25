@@ -91,6 +91,7 @@ Dans `render.php`, une seule ligne applique cette règle :
 | **Hero slider** | `blocks/hero-slider/` | Bannière plein écran à plusieurs diapositives (une seule par page) |
 | **Cartes** | `blocks/features/` | Grille de cartes : services, avantages, valeurs… |
 | **Appel à l'action** | `blocks/cta/` | Grand titre avec mots mis en valeur, bouton ou champ e-mail, personnes en décor |
+| **Pourquoi nous** | `blocks/why/` | Grand titre + texte à gauche, cartes qui défilent horizontalement à droite |
 | **Bento** | `blocks/bento/` | Mosaïque de tuiles de tailles variées : photos, aplats de couleur, chiffres clés |
 | **Formulaire de contact** | `blocks/contact-form/` | Place le formulaire (voir `docs/contact-form.md`) |
 
@@ -123,6 +124,22 @@ Dans `render.php`, une seule ligne applique cette règle :
 **Le champ e-mail sans service de newsletter** : c'est un formulaire `GET` vers la page du bouton (ex. `/contact/?email=jean@exemple.fr`). Le formulaire de contact reprend l'adresse (`template-parts/contact-form.php`). Pour une vraie newsletter (Brevo, Mailchimp…), remplacer l'`action` du formulaire par l'URL d'inscription du service.
 
 **Sécurité de la syntaxe** : `starter_format_title()` (`inc/blocks.php`) échappe tout le texte **avant** d'ajouter ses balises `<mark>` / `<span>` : un client ne peut pas injecter de HTML.
+
+### Le bloc « Pourquoi nous » en détail
+
+Intro à gauche, **cartes défilantes** à droite. En pleine largeur (par défaut), l'intro est alignée sur la grille du site et les cartes défilent **jusqu'au bord droit de l'écran**.
+
+| Réglage | Champ | Détail |
+|---|---|---|
+| Titre | `title` | **Une ligne par retour à la ligne** (ex. « Rapides. / Simples. / Sereins. »), avec `**surligné**` / `__souligné__` |
+| Texte | `text` | |
+| Action | `action` | Aucune · Bouton · Champ e-mail + bouton (même principe que l'Appel à l'action : `?email=` vers la page cible) |
+| Cartes (1 à 10) | `cards` | Pastille, couleur, titre, texte, **icône** (grande, sur fond pastel de la couleur) ou **photo / illustration**, lien (bouton ↗, carte cliquable) |
+
+Défilement :
+- **natif** (`overflow-x-auto` + `scroll-snap`) : au doigt, au trackpad, au clavier (la piste est focusable) — fonctionne sans JS ;
+- boutons ← → sous l'intro sur grand écran, via le module générique **`scroller`** (`assets/src/js/modules/scroller.js`), réutilisable pour tout futur carrousel ;
+- barre de défilement masquée, aimantation sur chaque carte.
 
 ### Le bloc « Bento » en détail
 

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "starter/why",
+  "title": "Pourquoi nous",
+  "description": "Grand titre et texte à gauche, cartes qui défilent horizontalement à droite : arguments, offres, activités…",
+  "category": "starter",
+  "icon": "slides",
+  "keywords": ["pourquoi", "arguments", "carrousel", "cartes", "défilement", "offres"],
+  "textdomain": "starter",
+  "supports": {
+    "align": ["wide", "full"],
+    "anchor": true,
+    "html": false
+  },
+  "attributes": {
+    "align": { "type": "string", "default": "full" }
+  },
+  "example": {},
+  "acf": {
+    "blockVersion": 3,
+    "mode": "preview",
+    "renderTemplate": "render.php"
+  }
+}

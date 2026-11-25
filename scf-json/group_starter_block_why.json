@@ -1,0 +1,195 @@
+{
+  "key": "group_starter_block_why",
+  "title": "Bloc : Pourquoi nous",
+  "fields": [
+    {
+      "key": "field_starter_why_tab_intro",
+      "label": "Intro",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_why_title",
+      "label": "Titre",
+      "name": "title",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": "",
+      "instructions": "Une ligne par retour à la ligne. Mise en valeur : **mot** = surligné, __mot__ = souligné."
+    },
+    {
+      "key": "field_starter_why_text",
+      "label": "Texte",
+      "name": "text",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_starter_why_action",
+      "label": "Action",
+      "name": "action",
+      "type": "button_group",
+      "choices": {
+        "none": "Aucune",
+        "button": "Bouton",
+        "email": "Champ e-mail + bouton"
+      },
+      "default_value": "none",
+      "return_format": "value",
+      "layout": "horizontal",
+      "instructions": "« Champ e-mail » : l'adresse est envoyée vers la page du bouton (ex. Contact), où le formulaire la reprend."
+    },
+    {
+      "key": "field_starter_why_button",
+      "label": "Bouton (texte et page de destination)",
+      "name": "button",
+      "type": "link",
+      "return_format": "array",
+      "conditional_logic": [
+        [
+          {
+            "field": "field_starter_why_action",
+            "operator": "!=",
+            "value": "none"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_starter_why_placeholder",
+      "label": "Texte d'exemple du champ e-mail",
+      "name": "placeholder",
+      "type": "text",
+      "default_value": "votre@email.fr",
+      "conditional_logic": [
+        [
+          {
+            "field": "field_starter_why_action",
+            "operator": "==",
+            "value": "email"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_starter_why_tab_cards",
+      "label": "Cartes",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_why_cards",
+      "label": "Cartes",
+      "name": "cards",
+      "type": "repeater",
+      "layout": "block",
+      "min": 1,
+      "max": 10,
+      "collapsed": "field_starter_why_card_title",
+      "button_label": "Ajouter une carte",
+      "sub_fields": [
+        {
+          "key": "field_starter_why_card_badge",
+          "label": "Pastille",
+          "name": "badge",
+          "type": "text",
+          "wrapper": {
+            "width": "50"
+          },
+          "instructions": "Ex. « Performance », « 9-14 ans ».",
+          "parent_repeater": "field_starter_why_cards"
+        },
+        {
+          "key": "field_starter_why_card_color",
+          "label": "Couleur",
+          "name": "color",
+          "type": "select",
+          "choices": {},
+          "default_value": "primary",
+          "return_format": "value",
+          "wrapper": {
+            "width": "50"
+          },
+          "parent_repeater": "field_starter_why_cards"
+        },
+        {
+          "key": "field_starter_why_card_title",
+          "label": "Titre",
+          "name": "title",
+          "type": "text",
+          "required": 1,
+          "parent_repeater": "field_starter_why_cards"
+        },
+        {
+          "key": "field_starter_why_card_text",
+          "label": "Texte",
+          "name": "text",
+          "type": "textarea",
+          "rows": 2,
+          "new_lines": "",
+          "parent_repeater": "field_starter_why_cards"
+        },
+        {
+          "key": "field_starter_why_card_icon",
+          "label": "Icône du panneau",
+          "name": "icon",
+          "type": "select",
+          "choices": {},
+          "allow_null": 1,
+          "ui": 1,
+          "return_format": "value",
+          "wrapper": {
+            "width": "50"
+          },
+          "instructions": "Grande icône sur fond pastel (si pas de photo).",
+          "parent_repeater": "field_starter_why_cards"
+        },
+        {
+          "key": "field_starter_why_card_image",
+          "label": "Photo / illustration du panneau",
+          "name": "image",
+          "type": "image",
+          "return_format": "id",
+          "preview_size": "thumbnail",
+          "library": "all",
+          "mime_types": "jpg,jpeg,png,webp,avif,svg",
+          "wrapper": {
+            "width": "50"
+          },
+          "instructions": "Facultatif, remplace l'icône. Carré de préférence.",
+          "parent_repeater": "field_starter_why_cards"
+        },
+        {
+          "key": "field_starter_why_card_link",
+          "label": "Lien",
+          "name": "link",
+          "type": "link",
+          "return_format": "array",
+          "instructions": "Facultatif. Ajoute le bouton ↗ et rend la carte cliquable.",
+          "parent_repeater": "field_starter_why_cards"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "starter/why"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1795622400
+}

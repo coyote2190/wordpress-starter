@@ -54,6 +54,7 @@ wordpress-starter/
 │   ├── hero-slider/   Bannière plein écran à diapositives.
 │   ├── features/      Grille de cartes (icône, couleur, titre, texte, lien).
 │   ├── cta/           Appel à l'action (titre mis en valeur, bouton ou champ e-mail).
+│   ├── why/           « Pourquoi nous » : intro + cartes défilantes.
 │   ├── bento/         Mosaïque de tuiles (photo / couleur, tailles variées, chiffres clés).
 │   └── contact-form/  Place le formulaire de contact dans une page.
 ├── blocks-native/     Blocs Gutenberg natifs en React.
@@ -74,7 +75,7 @@ wordpress-starter/
 │   │   └── components.css  Styles du HTML généré par WP (menus, pagination).
 │   └── js/
 │       ├── main.js    Entrée JS : charge les modules présents dans la page.
-│       └── modules/   Un fichier par fonctionnalité (menu mobile, slider, formulaire de contact).
+│       └── modules/   Un fichier par fonctionnalité (menu mobile, slider, défilement de cartes, formulaire).
 ├── dist/              Fichiers compilés par `npm run build` (commités, à déployer).
 ├── demo/              Script de contenu de démo (WP-CLI).
 ├── docs/              Documentation (un fichier par sujet).

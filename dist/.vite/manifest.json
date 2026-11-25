@@ -1,6 +1,6 @@
 {
   "assets/src/css/editor.css": {
-    "file": "assets/editor-FPedF-fz.css",
+    "file": "assets/editor-DZ2GrZ77.css",
     "name": "editor",
     "names": [
       "editor.css"
@@ -9,7 +9,7 @@
     "isEntry": true
   },
   "assets/src/css/main.css": {
-    "file": "assets/main-BIWUsMX6.css",
+    "file": "assets/main-CfVH5uLT.css",
     "name": "main",
     "names": [
       "main.css"
@@ -18,14 +18,15 @@
     "isEntry": true
   },
   "assets/src/js/main.js": {
-    "file": "assets/main-BUihu_Lb.js",
+    "file": "assets/main-B4dM7Qhx.js",
     "name": "main",
     "src": "assets/src/js/main.js",
     "isEntry": true,
     "dynamicImports": [
       "assets/src/js/modules/nav.js",
       "assets/src/js/modules/contact-form.js",
-      "assets/src/js/modules/hero-slider.js"
+      "assets/src/js/modules/hero-slider.js",
+      "assets/src/js/modules/scroller.js"
     ]
   },
   "assets/src/js/modules/contact-form.js": {
@@ -44,6 +45,12 @@
     "file": "assets/nav-DGTrIjgs.js",
     "name": "nav",
     "src": "assets/src/js/modules/nav.js",
+    "isDynamicEntry": true
+  },
+  "assets/src/js/modules/scroller.js": {
+    "file": "assets/scroller-DpVfHzM6.js",
+    "name": "scroller",
+    "src": "assets/src/js/modules/scroller.js",
     "isDynamicEntry": true
   }
 }
