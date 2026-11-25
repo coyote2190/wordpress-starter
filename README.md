@@ -8,6 +8,7 @@ Thème de départ pour les sites clients : PHP classique, Tailwind CSS, Vite, JS
 
 - WordPress ≥ 6.6, PHP ≥ 8.1
 - Extensions : **Secure Custom Fields** (champs) et **FluentSMTP** (envoi des mails)
+- Le mu-plugin `mu-plugin/` installé dans `wp-content/mu-plugins/` (voir [docs/mu-plugin.md](docs/mu-plugin.md))
 
 ## Démarrer
 
@@ -46,6 +47,9 @@ wordpress-starter/
 │   └── blocks.php     Enregistre les blocs de blocks/, catégorie « Starter », CSS de l'éditeur.
 ├── blocks/            Blocs Gutenberg (un dossier par bloc : block.json + render.php).
 │   └── hero/          Bannière d'en-tête.
+├── mu-plugin/         MU-plugin « Starter Core » (données indépendantes du thème) → à copier dans wp-content/mu-plugins/.
+│   ├── starter-core.php     Chargeur.
+│   └── starter-core/        CPT et taxonomies, désactivation des commentaires.
 ├── scf-json/          Groupes de champs SCF en JSON (écrits par SCF, versionnés).
 ├── assets/icons/      Icônes SVG (un fichier par icône).
 ├── assets/src/        Sources front (éditées à la main).
@@ -81,3 +85,4 @@ wordpress-starter/
 | JavaScript | [docs/js.md](docs/js.md) |
 | Champs SCF, page « Infos du site » | [docs/scf.md](docs/scf.md) |
 | Blocs Gutenberg SCF | [docs/blocks.md](docs/blocks.md) |
+| MU-plugin (CPT, commentaires) | [docs/mu-plugin.md](docs/mu-plugin.md) |
