@@ -14,6 +14,20 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Liste des icônes disponibles (noms de fichiers sans .svg), triée.
+ *
+ * @return string[]
+ */
+function starter_icon_list(): array {
+	$names = array_map(
+		static fn( string $file ): string => basename( $file, '.svg' ),
+		glob( STARTER_DIR . '/assets/icons/*.svg' ) ?: array()
+	);
+	sort( $names );
+	return $names;
+}
+
+/**
  * L'icône existe-t-elle dans assets/icons/ ?
  *
  * @param string $name Nom du fichier sans .svg.

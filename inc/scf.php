@@ -79,6 +79,59 @@ function starter_scf_options_pages(): void {
 	);
 }
 
+/*
+ * Conventions de nommage des champs : leurs choix sont remplis automatiquement.
+ * - un champ Sélection nommé `icon`  → les icônes de assets/icons/ ;
+ * - un champ Sélection nommé `color` → les couleurs de theme.json.
+ * Ajouter une icône ou une couleur la rend disponible partout, sans toucher aux champs.
+ */
+add_filter( 'acf/load_field/name=icon', 'starter_scf_icon_choices' );
+add_filter( 'acf/load_field/name=color', 'starter_scf_color_choices' );
+
+/**
+ * Choix d'un champ `icon` : un par fichier SVG.
+ *
+ * @param array<string, mixed> $field Réglages du champ.
+ * @return array<string, mixed>
+ */
+function starter_scf_icon_choices( array $field ): array {
+	if ( 'select' !== $field['type'] ) {
+		return $field;
+	}
+	$field['choices'] = array();
+	foreach ( starter_icon_list() as $name ) {
+		$field['choices'][ $name ] = ucfirst( str_replace( '-', ' ', $name ) );
+	}
+	return $field;
+}
+
+/**
+ * Choix d'un champ `color` : la palette de theme.json (slug => nom).
+ *
+ * @param array<string, mixed> $field Réglages du champ.
+ * @return array<string, mixed>
+ */
+function starter_scf_color_choices( array $field ): array {
+	if ( 'select' !== $field['type'] ) {
+		return $field;
+	}
+	$field['choices'] = starter_palette();
+	return $field;
+}
+
+/**
+ * Palette de theme.json : [ slug => nom ].
+ *
+ * @return array<string, string>
+ */
+function starter_palette(): array {
+	$palette = array();
+	foreach ( wp_get_global_settings( array( 'color', 'palette', 'theme' ) ) as $color ) {
+		$palette[ $color['slug'] ] = $color['name'];
+	}
+	return $palette;
+}
+
 /**
  * Valeur d'un champ SCF du contenu courant (ou d'un autre).
  *

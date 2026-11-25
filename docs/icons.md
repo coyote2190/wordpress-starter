@@ -28,7 +28,11 @@ Pour tester si une icône existe : `starter_icon_exists( 'instagram' )`.
 
 ## Icônes fournies
 
-`menu` · `close` · `arrow-right` · `chevron-down` · `search` · `mail` · `phone` · `map-pin` · `check` · `alert`
+Interface : `menu` · `close` · `arrow-right` · `chevron-down` · `search` · `mail` · `phone` · `map-pin` · `check` · `alert`
+
+Métier (cartes, services…) : `monitor` · `shopping-cart` · `palette` · `rocket` · `shield` · `chart` · `users` · `star` · `heart` · `clock` · `lightbulb` · `settings`
+
+`starter_icon_list()` renvoie la liste de toutes les icônes disponibles.
 
 ## Ajouter une icône
 
@@ -42,7 +46,7 @@ Pour tester si une icône existe : `starter_icon_exists( 'instagram' )`.
    - les couleurs en dur → `currentColor` (la couleur suivra `text-…`). Pour une icône pleine : `fill="currentColor"`.
 3. L'enregistrer dans `assets/icons/mon-icone.svg` (minuscules et tirets uniquement).
 
-Pas besoin de rebuild : PHP lit le fichier directement.
+Pas besoin de rebuild : PHP lit le fichier directement. L'icône apparaît aussi automatiquement dans tous les champs SCF nommés `icon` (voir `docs/scf.md`).
 
 ## Sécurité
 

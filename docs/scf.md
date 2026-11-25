@@ -79,6 +79,17 @@ Affichage : `template-parts/site-contact.php`.
    ```
 5. Commiter le PHP **et** le JSON.
 
+## Champs « icon » et « color » : choix automatiques
+
+`inc/scf.php` remplit tout seul les choix de deux types de champs, d'après leur **nom** :
+
+| Champ Sélection nommé | Choix proposés | Source |
+|---|---|---|
+| `icon` | Toutes les icônes | Fichiers de `assets/icons/` (`starter_icon_list()`) |
+| `color` | Toutes les couleurs de la charte | Palette de `theme.json` (`starter_palette()`) |
+
+Dans l'admin SCF, il suffit de créer un champ **Sélection** avec ce nom, sans saisir de choix. Une icône ou une couleur ajoutée devient disponible dans tous les blocs.
+
 ## Nommage
 
 | Élément | Convention | Exemple |
