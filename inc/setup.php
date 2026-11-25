@@ -19,6 +19,17 @@ function starter_setup(): void {
 	// WordPress gère la balise <title> (plus besoin de l'écrire dans header.php).
 	add_theme_support( 'title-tag' );
 
+	// Logo personnalisable dans Apparence > Personnaliser > Identité du site.
+	add_theme_support(
+		'custom-logo',
+		array(
+			'height'      => 96,
+			'width'       => 320,
+			'flex-height' => true,
+			'flex-width'  => true,
+		)
+	);
+
 	// Image mise en avant sur les articles et pages.
 	add_theme_support( 'post-thumbnails' );
 

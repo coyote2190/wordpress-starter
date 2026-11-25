@@ -23,7 +23,17 @@ npm run build   # avant de commiter / déployer
 wordpress-starter/
 ├── style.css          En-tête du thème (lu par WordPress). Aucun style dedans.
 ├── functions.php      Point d'entrée : charge les fichiers de inc/.
-├── index.php          Gabarit de secours (utilisé si aucun autre ne correspond).
+├── header.php         <head>, logo, menu principal, ouverture du <main>.
+├── footer.php         Pied de page, wp_footer().
+├── index.php          Liste des articles + gabarit de secours.
+├── front-page.php     Accueil (contenu Gutenberg pleine largeur).
+├── page.php           Page standard.
+├── single.php         Article seul.
+├── archive.php        Catégories, étiquettes, archives de CPT.
+├── search.php         Résultats de recherche.
+├── 404.php            Page introuvable.
+├── searchform.php     Formulaire de recherche.
+├── template-parts/    Morceaux de HTML réutilisés (boucle, carte, liste vide).
 ├── theme.json         Couleurs, polices, largeurs (source unique pour le site et l'éditeur).
 ├── screenshot.png     Aperçu dans Apparence > Thèmes (1200×900).
 ├── inc/               Logique PHP, un fichier par sujet.
@@ -37,7 +47,8 @@ wordpress-starter/
 │   ├── css/
 │   │   ├── main.css   Entrée CSS : Tailwind, @source, imports.
 │   │   ├── tokens.css Relie les couleurs/polices de theme.json à Tailwind.
-│   │   └── base.css   Styles de base + utilitaire `container`.
+│   │   ├── base.css   Styles de base + utilitaire `container`.
+│   │   └── components.css  Styles du HTML généré par WP (menus, pagination).
 │   └── js/main.js     Entrée JS (module ES).
 ├── dist/              Fichiers compilés par `npm run build` (commités, à déployer).
 ├── docs/              Documentation (un fichier par sujet).
@@ -56,4 +67,5 @@ wordpress-starter/
 | Nettoyage de WordPress | [docs/cleanup.md](docs/cleanup.md) |
 | Build (Vite, Tailwind) | [docs/build.md](docs/build.md) |
 | Couleurs, polices, largeurs | [docs/design-tokens.md](docs/design-tokens.md) |
+| Gabarits (quel fichier pour quelle page) | [docs/templates.md](docs/templates.md) |
 | Icônes SVG | [docs/icons.md](docs/icons.md) |

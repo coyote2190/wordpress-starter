@@ -1,0 +1,58 @@
+/*
+ * Styles du HTML généré par WordPress, qu'on ne peut pas habiller de
+ * classes Tailwind directement (menus, pagination, navigation d'article…).
+ */
+@layer components {
+  /* Menus (wp_nav_menu) */
+  .site-nav a {
+    display: block;
+    padding-block: 0.25rem;
+    font-weight: 500;
+    transition: color 150ms;
+  }
+  .site-nav a:hover,
+  .site-nav .current-menu-item > a {
+    color: var(--color-primary);
+  }
+  .site-footer .site-nav a:hover,
+  .site-footer .site-nav .current-menu-item > a {
+    color: var(--color-white);
+  }
+
+  /* Pagination (the_posts_pagination) */
+  .pagination .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .pagination .page-numbers {
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-light);
+    padding: 0.5rem 0.875rem;
+  }
+  .pagination .page-numbers.current {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  /* Navigation article précédent / suivant (the_post_navigation) */
+  .post-navigation .nav-links {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+  .post-navigation .nav-next {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  /* Logo (the_custom_logo) */
+  .custom-logo {
+    max-height: 3rem;
+    width: auto;
+  }
+}

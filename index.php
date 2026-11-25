@@ -1,13 +1,23 @@
-<!doctype html>
-<html <?php language_attributes(); ?>>
-<head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<?php wp_head(); ?>
-</head>
-<body <?php body_class(); ?>>
-	<?php wp_body_open(); ?>
-	<h1>Hello World</h1>
-	<?php wp_footer(); ?>
-</body>
-</html>
+<?php
+/**
+ * Gabarit de secours : utilisé quand aucun gabarit plus précis n'existe.
+ * En pratique : la page des articles (blog) si aucun home.php.
+ *
+ * @package Starter
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+get_header();
+?>
+
+<div class="container py-12">
+	<?php if ( is_home() && ! is_front_page() ) : ?>
+		<h1 class="mb-10 text-4xl font-bold"><?php single_post_title(); ?></h1>
+	<?php endif; ?>
+
+	<?php get_template_part( 'template-parts/loop' ); ?>
+</div>
+
+<?php
+get_footer();
