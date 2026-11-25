@@ -51,6 +51,10 @@ Si le spam passe malgré tout : ajouter Cloudflare Turnstile (gratuit, sans puzz
 
 > ⚠️ **Cache de page** (WP Rocket, cache de l'hébergeur…) : le nonce et le jeton `_started` sont figés dans le HTML mis en cache. Le nonce expire après 24 h maximum. **Exclure la page contact du cache.**
 
+## E-mail pré-rempli
+
+`/contact/?email=jean@exemple.fr` pré-remplit le champ e-mail (utilisé par le bloc **Appel à l'action** en mode « champ e-mail »). La valeur passe par `sanitize_email()`.
+
 ## Validation
 
 | Champ | Règle |

@@ -2,6 +2,21 @@
  * Styles de base et utilitaires maison.
  */
 
+/* Animation de flottement (personnes du bloc CTA) : classe `animate-float`. */
+@theme {
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
 /* Conteneur centré du site : `class="container"`. */
 @utility container {
   margin-inline: auto;

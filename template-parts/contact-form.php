@@ -40,6 +40,11 @@ if ( 'sent' === $starter_status ) {
 }
 // phpcs:enable
 
+// E-mail pré-rempli quand on arrive depuis un bloc « Appel à l'action » (?email=…).
+if ( empty( $starter_state['values']['email'] ) && ! empty( $_GET['email'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+	$starter_state['values']['email'] = sanitize_email( wp_unslash( $_GET['email'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+}
+
 $starter_value = static fn( string $name ): string => (string) ( $starter_state['values'][ $name ] ?? '' );
 $starter_error = static fn( string $name ): string => (string) ( $starter_state['errors'][ $name ] ?? '' );
 

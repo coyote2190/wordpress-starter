@@ -89,6 +89,25 @@ function starter_hero_body_class( array $classes ): array {
 	return $classes;
 }
 
+/**
+ * Titre avec mots mis en valeur, à partir d'une syntaxe simple saisie par le client :
+ *   **mot**  → surligné (pastille de couleur)
+ *   __mot__  → souligné (trait ondulé)
+ *
+ * Le texte est échappé AVANT la transformation : seules nos balises sont ajoutées.
+ *
+ * @param string $text              Texte saisi.
+ * @param string $highlight_classes Classes du surlignage.
+ * @param string $underline_classes Classes du soulignement.
+ * @return string HTML sûr.
+ */
+function starter_format_title( string $text, string $highlight_classes, string $underline_classes ): string {
+	$html = esc_html( $text );
+	$html = preg_replace( '/\*\*(.+?)\*\*/u', '<mark class="' . esc_attr( $highlight_classes ) . '">$1</mark>', $html );
+	$html = preg_replace( '/__(.+?)__/u', '<span class="' . esc_attr( $underline_classes ) . '">$1</span>', $html );
+	return (string) $html;
+}
+
 add_filter( 'block_categories_all', 'starter_block_category' );
 
 /**
