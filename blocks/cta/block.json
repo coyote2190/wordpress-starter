@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "starter/cta",
+  "title": "Appel à l'action",
+  "description": "Grand titre avec mots mis en valeur, accroche, bouton ou champ e-mail, et personnes en décor.",
+  "category": "starter",
+  "icon": "megaphone",
+  "keywords": ["cta", "action", "contact", "inscription", "bannière"],
+  "textdomain": "starter",
+  "supports": {
+    "align": ["wide", "full"],
+    "anchor": true,
+    "html": false
+  },
+  "attributes": {
+    "align": { "type": "string", "default": "wide" }
+  },
+  "example": {},
+  "acf": {
+    "blockVersion": 3,
+    "mode": "preview",
+    "renderTemplate": "render.php"
+  }
+}

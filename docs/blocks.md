@@ -90,6 +90,7 @@ Dans `render.php`, une seule ligne applique cette règle :
 | **Hero** | `blocks/hero/` | Bannière d'en-tête : titre, texte, bouton, image de fond |
 | **Hero slider** | `blocks/hero-slider/` | Bannière plein écran à plusieurs diapositives (une seule par page) |
 | **Cartes** | `blocks/features/` | Grille de cartes : services, avantages, valeurs… |
+| **Appel à l'action** | `blocks/cta/` | Grand titre avec mots mis en valeur, bouton ou champ e-mail, personnes en décor |
 | **Bento** | `blocks/bento/` | Mosaïque de tuiles de tailles variées : photos, aplats de couleur, chiffres clés |
 | **Formulaire de contact** | `blocks/contact-form/` | Place le formulaire (voir `docs/contact-form.md`) |
 
@@ -107,6 +108,21 @@ Dans `render.php`, une seule ligne applique cette règle :
 - Avec un lien, **toute la carte est cliquable** (`after:absolute after:inset-0` sur le lien) et se soulève au survol.
 
 **Ajouter un style de carte** : ajouter le choix dans le champ `style` (SCF), puis la ligne correspondante dans `$card_classes` de `render.php`.
+
+### Le bloc « Appel à l'action » en détail
+
+| Réglage | Champ | Détail |
+|---|---|---|
+| Titre | `title` | Syntaxe de mise en valeur : `**mot**` = **surligné** (pastille couleur d'accent), `__mot__` = souligné ondulé. Ex. `Lancez **votre projet** __aujourd'hui__` |
+| Accroche | `text` | |
+| Action | `action` | **Bouton** (lien) ou **Champ e-mail + bouton** |
+| Bouton | `button` | Texte du bouton et page de destination |
+| Couleurs | `background`, `accent` | Palette `theme.json`. Contraste du texte automatique (`starter_color_is_light()`) |
+| Personnes | `people` (0 à 4) | Photo + prénom, flottent autour du titre sur grand écran, décoratives (`aria-hidden`), sans animation si « réduire les animations » est activé |
+
+**Le champ e-mail sans service de newsletter** : c'est un formulaire `GET` vers la page du bouton (ex. `/contact/?email=jean@exemple.fr`). Le formulaire de contact reprend l'adresse (`template-parts/contact-form.php`). Pour une vraie newsletter (Brevo, Mailchimp…), remplacer l'`action` du formulaire par l'URL d'inscription du service.
+
+**Sécurité de la syntaxe** : `starter_format_title()` (`inc/blocks.php`) échappe tout le texte **avant** d'ajouter ses balises `<mark>` / `<span>` : un client ne peut pas injecter de HTML.
 
 ### Le bloc « Bento » en détail
 
@@ -166,6 +182,7 @@ Pour désactiver ce comportement sur une page : mettre le hero en « Grande larg
 | `starter_block_category()` | Catégorie « Starter » en tête de l'outil d'insertion |
 | `starter_block_inner_class()` | Conteneur intérieur en pleine largeur (voir « Alignements ») |
 | `starter_starts_with_hero()` / `starter_hero_body_class()` | Header transparent quand la page commence par un hero (voir ci-dessus) |
+| `starter_format_title()` | Titre avec `**surligné**` et `__souligné__` (bloc Appel à l'action, réutilisable ailleurs) |
 | `starter_editor_styles()` | Charge `editor.css` (Tailwind sans reset) **dans l'iframe** de l'éditeur : l'aperçu ressemble au site |
 
 ## Créer un bloc (exemple : « Chiffres clés »)

@@ -1,0 +1,153 @@
+{
+  "key": "group_starter_block_cta",
+  "title": "Bloc : Appel à l'action",
+  "fields": [
+    {
+      "key": "field_starter_cta_tab_content",
+      "label": "Contenu",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_cta_title",
+      "label": "Titre",
+      "name": "title",
+      "type": "text",
+      "required": 1,
+      "instructions": "Mettre en valeur : **mot** = surligné en couleur, __mot__ = souligné. Ex. : Lancez **votre projet** __aujourd'hui__"
+    },
+    {
+      "key": "field_starter_cta_text",
+      "label": "Accroche",
+      "name": "text",
+      "type": "textarea",
+      "rows": 2,
+      "new_lines": ""
+    },
+    {
+      "key": "field_starter_cta_action",
+      "label": "Action",
+      "name": "action",
+      "type": "button_group",
+      "choices": {
+        "button": "Bouton",
+        "email": "Champ e-mail + bouton"
+      },
+      "default_value": "button",
+      "return_format": "value",
+      "layout": "horizontal",
+      "instructions": "« Champ e-mail » : l'adresse saisie est envoyée vers la page du bouton (ex. Contact), où le formulaire la reprend."
+    },
+    {
+      "key": "field_starter_cta_button",
+      "label": "Bouton (texte et page de destination)",
+      "name": "button",
+      "type": "link",
+      "return_format": "array"
+    },
+    {
+      "key": "field_starter_cta_placeholder",
+      "label": "Texte d'exemple du champ e-mail",
+      "name": "placeholder",
+      "type": "text",
+      "default_value": "votre@email.fr",
+      "conditional_logic": [
+        [
+          {
+            "field": "field_starter_cta_action",
+            "operator": "==",
+            "value": "email"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_starter_cta_tab_style",
+      "label": "Couleurs",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_cta_background",
+      "label": "Fond",
+      "name": "background",
+      "type": "select",
+      "choices": {},
+      "default_value": "light",
+      "return_format": "value",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_starter_cta_accent",
+      "label": "Accent (surlignage, soulignement)",
+      "name": "accent",
+      "type": "select",
+      "choices": {},
+      "default_value": "secondary",
+      "return_format": "value",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_starter_cta_tab_people",
+      "label": "Personnes",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_cta_people",
+      "label": "Personnes autour du titre",
+      "name": "people",
+      "type": "repeater",
+      "layout": "table",
+      "min": 0,
+      "max": 4,
+      "button_label": "Ajouter une personne",
+      "instructions": "Facultatif, 4 maximum. Décor affiché sur grand écran uniquement (photos carrées de préférence).",
+      "sub_fields": [
+        {
+          "key": "field_starter_cta_person_image",
+          "label": "Photo",
+          "name": "image",
+          "type": "image",
+          "return_format": "id",
+          "preview_size": "thumbnail",
+          "library": "all",
+          "mime_types": "jpg,jpeg,png,webp,avif",
+          "parent_repeater": "field_starter_cta_people"
+        },
+        {
+          "key": "field_starter_cta_person_name",
+          "label": "Prénom",
+          "name": "name",
+          "type": "text",
+          "parent_repeater": "field_starter_cta_people"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "starter/cta"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1795622400
+}
