@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
 	<?php esc_html_e( 'Aller au contenu', 'starter' ); ?>
 </a>
 
-<header class="site-header border-b border-light">
+<header class="site-header relative border-b border-light" data-module="nav">
 	<div class="container flex items-center justify-between gap-6 py-4">
 		<div class="site-branding">
 			<?php if ( has_custom_logo() ) : ?>

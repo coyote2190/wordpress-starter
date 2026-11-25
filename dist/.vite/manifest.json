@@ -1,6 +1,6 @@
 {
   "assets/src/css/main.css": {
-    "file": "assets/main-DgDXl2Ez.css",
+    "file": "assets/main-BFso9aav.css",
     "name": "main",
     "names": [
       "main.css"
@@ -9,9 +9,18 @@
     "isEntry": true
   },
   "assets/src/js/main.js": {
-    "file": "assets/main-Cz-vvcfa.js",
+    "file": "assets/main-BkTrB_0i.js",
     "name": "main",
     "src": "assets/src/js/main.js",
-    "isEntry": true
+    "isEntry": true,
+    "dynamicImports": [
+      "assets/src/js/modules/nav.js"
+    ]
+  },
+  "assets/src/js/modules/nav.js": {
+    "file": "assets/nav-DGTrIjgs.js",
+    "name": "nav",
+    "src": "assets/src/js/modules/nav.js",
+    "isDynamicEntry": true
   }
 }

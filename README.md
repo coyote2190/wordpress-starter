@@ -49,7 +49,9 @@ wordpress-starter/
 │   │   ├── tokens.css Relie les couleurs/polices de theme.json à Tailwind.
 │   │   ├── base.css   Styles de base + utilitaire `container`.
 │   │   └── components.css  Styles du HTML généré par WP (menus, pagination).
-│   └── js/main.js     Entrée JS (module ES).
+│   └── js/
+│       ├── main.js    Entrée JS : charge les modules présents dans la page.
+│       └── modules/   Un fichier par fonctionnalité (nav.js = menu mobile).
 ├── dist/              Fichiers compilés par `npm run build` (commités, à déployer).
 ├── docs/              Documentation (un fichier par sujet).
 ├── package.json       Outils front et commandes npm.
@@ -69,3 +71,4 @@ wordpress-starter/
 | Couleurs, polices, largeurs | [docs/design-tokens.md](docs/design-tokens.md) |
 | Gabarits (quel fichier pour quelle page) | [docs/templates.md](docs/templates.md) |
 | Icônes SVG | [docs/icons.md](docs/icons.md) |
+| JavaScript | [docs/js.md](docs/js.md) |
