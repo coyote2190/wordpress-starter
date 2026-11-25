@@ -6,7 +6,8 @@
 |---|---|---|
 | `npm install` | Une fois après le clone | Installe Vite, Tailwind, Prettier dans `node_modules/` |
 | `npm run dev` | Pendant qu'on code | Lance Vite sur `http://localhost:5173`. Le CSS/JS se met à jour **sans recharger**, la page se recharge quand un `.php` change. |
-| `npm run build` | Avant chaque commit / déploiement | Compile et minifie dans `dist/` |
+| `npm run build` | Avant chaque commit / déploiement | Compile et minifie dans `dist/`, puis compile les blocs natifs (`blocks-native/build/`) |
+| `npm run blocks:dev` / `blocks:build` | Si on travaille sur un bloc React | Voir `docs/native-blocks.md` |
 | `npm run format` | Quand on veut | Formate JS/CSS/JSON/MD avec Prettier (et trie les classes Tailwind) |
 
 > On continue d'ouvrir le site sur **http://wordpress-starter.local** (et pas localhost:5173). Vite ne sert que les fichiers CSS/JS.

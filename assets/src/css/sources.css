@@ -8,4 +8,5 @@
 @source '../../../inc';
 @source '../../../template-parts';
 @source '../../../blocks';
+@source '../../../blocks-native/src';
 @source '../js';

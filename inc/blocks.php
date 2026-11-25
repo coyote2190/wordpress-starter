@@ -16,10 +16,17 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'init', 'starter_register_blocks' );
 
 /**
- * Enregistre tous les blocs de blocks/{nom}/block.json.
+ * Enregistre tous les blocs :
+ * - blocks/{nom}/block.json               : blocs SCF (PHP) ;
+ * - blocks-native/build/{nom}/block.json  : blocs natifs React, compilés par `npm run blocks:build`.
  */
 function starter_register_blocks(): void {
-	foreach ( glob( STARTER_DIR . '/blocks/*/block.json' ) as $block_json ) {
+	$block_jsons = array_merge(
+		glob( STARTER_DIR . '/blocks/*/block.json' ) ?: array(),
+		glob( STARTER_DIR . '/blocks-native/build/*/block.json' ) ?: array()
+	);
+
+	foreach ( $block_jsons as $block_json ) {
 		register_block_type( dirname( $block_json ) );
 	}
 }

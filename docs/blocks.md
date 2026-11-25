@@ -35,7 +35,7 @@ scf-json/group_starter_block_hero.json    Champs du bloc (emplacement : Bloc = H
 }
 ```
 
-C'est le **même format** que pour un bloc natif React (voir plus tard `docs/native-blocks.md`). Seule la clé `acf` est propre à SCF.
+C'est le **même format** que pour un bloc natif React (voir `docs/native-blocks.md`). Seule la clé `acf` est propre à SCF.
 
 ### `render.php`
 

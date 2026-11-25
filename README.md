@@ -14,8 +14,9 @@ Thème de départ pour les sites clients : PHP classique, Tailwind CSS, Vite, JS
 
 ```bash
 npm install
-npm run dev     # pendant le dev, puis ouvrir http://wordpress-starter.local
-npm run build   # avant de commiter / déployer
+npm run dev          # pendant le dev, puis ouvrir http://wordpress-starter.local
+npm run blocks:dev   # (2ᵉ terminal) seulement si on modifie un bloc natif React
+npm run build        # avant de commiter / déployer (Vite + blocs natifs)
 ```
 
 ## Arborescence
@@ -44,10 +45,13 @@ wordpress-starter/
 │   ├── assets.php     Liste des CSS/JS chargés sur le site.
 │   ├── icons.php      starter_icon() : insère une icône SVG.
 │   ├── scf.php        SCF : JSON, page « Infos du site », starter_field() / starter_option().
-│   └── blocks.php     Enregistre les blocs de blocks/, catégorie « Starter », CSS de l'éditeur.
+│   └── blocks.php     Enregistre les blocs (SCF + natifs), catégorie « Starter », CSS de l'éditeur.
 ├── blocks/            Blocs Gutenberg (un dossier par bloc : block.json + render.php).
 │   ├── hero/          Bannière d'en-tête.
 │   └── contact-form/  Place le formulaire de contact dans une page.
+├── blocks-native/      Blocs Gutenberg natifs en React.
+│   ├── src/notice/    Sources du bloc « Encadré » (block.json, edit.js, render.php).
+│   └── build/         Compilé par `npm run blocks:build` (commité, ne pas éditer).
 ├── mu-plugin/         MU-plugin « Starter Core » (données indépendantes du thème) → à copier dans wp-content/mu-plugins/.
 │   ├── starter-core.php     Chargeur.
 │   └── starter-core/        CPT et taxonomies, commentaires désactivés, formulaire, sécurité.
@@ -86,6 +90,7 @@ wordpress-starter/
 | JavaScript | [docs/js.md](docs/js.md) |
 | Champs SCF, page « Infos du site » | [docs/scf.md](docs/scf.md) |
 | Blocs Gutenberg SCF | [docs/blocks.md](docs/blocks.md) |
+| Blocs Gutenberg natifs (React) | [docs/native-blocks.md](docs/native-blocks.md) |
 | MU-plugin (CPT, commentaires) | [docs/mu-plugin.md](docs/mu-plugin.md) |
 | Formulaire de contact + FluentSMTP | [docs/contact-form.md](docs/contact-form.md) |
 | Sécurité (+ wp-config, .htaccess) | [docs/security.md](docs/security.md) |

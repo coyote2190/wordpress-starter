@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "starter/notice",
+  "title": "Encadré",
+  "description": "Message mis en avant : information, succès ou attention.",
+  "category": "starter",
+  "icon": "info",
+  "keywords": [
+    "alerte",
+    "info",
+    "message"
+  ],
+  "textdomain": "starter",
+  "attributes": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "info",
+        "success",
+        "warning"
+      ],
+      "default": "info"
+    },
+    "content": {
+      "type": "rich-text",
+      "source": "rich-text",
+      "selector": "p"
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "html": false
+  },
+  "example": {
+    "attributes": {
+      "type": "info",
+      "content": "Nos bureaux sont fermés du 24 au 26 décembre."
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

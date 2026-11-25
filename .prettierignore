@@ -1,4 +1,5 @@
 dist/
+blocks-native/build/
 node_modules/
 package-lock.json
 *.php
