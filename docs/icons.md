@@ -28,7 +28,7 @@ Pour tester si une icône existe : `starter_icon_exists( 'instagram' )`.
 
 ## Icônes fournies
 
-Interface : `menu` · `close` · `arrow-left` · `arrow-right` · `pause` · `play` · `chevron-down` · `search` · `mail` · `phone` · `map-pin` · `check` · `alert`
+Interface : `menu` · `close` · `arrow-left` · `arrow-right` · `arrow-up-right` · `pause` · `play` · `chevron-down` · `search` · `mail` · `phone` · `map-pin` · `check` · `alert`
 
 Métier (cartes, services…) : `monitor` · `shopping-cart` · `palette` · `rocket` · `shield` · `chart` · `users` · `star` · `heart` · `clock` · `lightbulb` · `settings`
 

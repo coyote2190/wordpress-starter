@@ -88,6 +88,8 @@ Affichage : `template-parts/site-contact.php`.
 | `icon` | Toutes les icônes | Fichiers de `assets/icons/` (`starter_icon_list()`) |
 | `color` | Toutes les couleurs de la charte | Palette de `theme.json` (`starter_palette()`) |
 
+Fonctions liées : `starter_palette()` (slug → nom), `starter_palette_colors()` (slug → `#hex`), `starter_color_is_light( $slug )` (texte foncé ou blanc par-dessus ?).
+
 Dans l'admin SCF, il suffit de créer un champ **Sélection** avec ce nom, sans saisir de choix. Une icône ou une couleur ajoutée devient disponible dans tous les blocs.
 
 ## Nommage

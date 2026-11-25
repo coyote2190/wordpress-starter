@@ -133,6 +133,45 @@ function starter_palette(): array {
 }
 
 /**
+ * Palette de theme.json avec les valeurs : [ slug => '#rrggbb' ].
+ *
+ * @return array<string, string>
+ */
+function starter_palette_colors(): array {
+	$colors = array();
+	foreach ( wp_get_global_settings( array( 'color', 'palette', 'theme' ) ) as $color ) {
+		$colors[ $color['slug'] ] = $color['color'];
+	}
+	return $colors;
+}
+
+/**
+ * Une couleur de la palette est-elle claire ? (→ texte foncé par-dessus, sinon texte blanc)
+ *
+ * Calcul de la luminance relative (formule WCAG) à partir de la valeur hexadécimale
+ * de theme.json : si le client change sa palette, le contraste suit tout seul.
+ *
+ * @param string $slug Slug de la couleur (ex. 'primary').
+ */
+function starter_color_is_light( string $slug ): bool {
+	$hex = ltrim( starter_palette_colors()[ $slug ] ?? '#000000', '#' );
+	if ( 3 === strlen( $hex ) ) {
+		$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+	}
+
+	$channel = static function ( string $pair ): float {
+		$c = hexdec( $pair ) / 255;
+		return $c <= 0.04045 ? $c / 12.92 : ( ( $c + 0.055 ) / 1.055 ) ** 2.4;
+	};
+	$luminance = 0.2126 * $channel( substr( $hex, 0, 2 ) )
+		+ 0.7152 * $channel( substr( $hex, 2, 2 ) )
+		+ 0.0722 * $channel( substr( $hex, 4, 2 ) );
+
+	// Au-delà de ~0.18, un texte foncé contraste mieux qu'un texte blanc.
+	return $luminance > 0.18;
+}
+
+/**
  * Valeur d'un champ SCF du contenu courant (ou d'un autre).
  *
  * @param string    $name    Nom du champ.
