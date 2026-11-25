@@ -51,6 +51,7 @@ wordpress-starter/
 │   └── blocks.php     Enregistre les blocs (SCF + natifs), catégorie « Starter », CSS de l'éditeur.
 ├── blocks/            Blocs Gutenberg SCF (un dossier par bloc : block.json + render.php).
 │   ├── hero/          Bannière d'en-tête.
+│   ├── features/      Grille de cartes (icône, couleur, titre, texte, lien).
 │   └── contact-form/  Place le formulaire de contact dans une page.
 ├── blocks-native/     Blocs Gutenberg natifs en React.
 │   ├── src/notice/    Sources du bloc « Encadré » (block.json, edit.js, render.php).

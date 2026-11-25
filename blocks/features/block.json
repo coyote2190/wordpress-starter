@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "starter/features",
+  "title": "Cartes",
+  "description": "Grille de cartes avec icône, couleur, titre, texte et lien : services, avantages, valeurs…",
+  "category": "starter",
+  "icon": "grid-view",
+  "keywords": ["services", "avantages", "colonnes", "icônes", "cards"],
+  "textdomain": "starter",
+  "supports": {
+    "align": ["wide", "full"],
+    "anchor": true,
+    "html": false
+  },
+  "attributes": {
+    "align": { "type": "string", "default": "wide" }
+  },
+  "example": {},
+  "acf": {
+    "blockVersion": 3,
+    "mode": "preview",
+    "renderTemplate": "render.php"
+  }
+}

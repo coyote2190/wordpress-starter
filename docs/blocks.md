@@ -52,6 +52,29 @@ Les points importants, tous présents dans `blocks/hero/render.php` :
 | `wp_get_attachment_image( $id, … )` | Image responsive (`srcset`) avec `alt`. Le champ Image doit retourner un **ID**. |
 | Échappement (`esc_html`, `esc_url`) | Toujours |
 
+## Blocs fournis
+
+| Bloc | Dossier | Usage |
+|---|---|---|
+| **Hero** | `blocks/hero/` | Bannière d'en-tête : titre, texte, bouton, image de fond |
+| **Cartes** | `blocks/features/` | Grille de cartes : services, avantages, valeurs… |
+| **Formulaire de contact** | `blocks/contact-form/` | Place le formulaire (voir `docs/contact-form.md`) |
+
+### Le bloc « Cartes » en détail
+
+| Réglage | Champ | Choix |
+|---|---|---|
+| Titre, introduction | `title`, `intro` | Facultatifs, centrés au-dessus de la grille |
+| Colonnes | `columns` | 2, 3 ou 4 sur grand écran (toujours 1 sur mobile, 2 sur tablette) |
+| Style | `style` | Bordure · Fond clair · Ombre · Bordure colorée en haut |
+| Cartes (répéteur, 1 à 12) | `items` | Pour chaque carte : **icône**, **couleur**, titre, texte, lien |
+
+- **Icône** et **couleur** sont des champs nommés `icon` et `color` : leurs choix sont remplis automatiquement depuis `assets/icons/` et `theme.json` (voir `docs/scf.md`).
+- La couleur est passée en **variable CSS** sur la carte (`style="--card-color: var(--wp--preset--color--primary)"`), utilisée par les classes Tailwind `bg-(--card-color)/10`, `text-(--card-color)`, `border-t-(--card-color)`. Toute couleur ajoutée dans `theme.json` fonctionne sans toucher au bloc.
+- Avec un lien, **toute la carte est cliquable** (`after:absolute after:inset-0` sur le lien) et se soulève au survol.
+
+**Ajouter un style de carte** : ajouter le choix dans le champ `style` (SCF), puis la ligne correspondante dans `$card_classes` de `render.php`.
+
 ## Ce que fait `inc/blocks.php`
 
 | Fonction | Rôle |

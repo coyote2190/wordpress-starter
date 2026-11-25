@@ -1,0 +1,143 @@
+{
+  "key": "group_starter_block_features",
+  "title": "Bloc : Cartes",
+  "fields": [
+    {
+      "key": "field_starter_features_tab_section",
+      "label": "Section",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_features_title",
+      "label": "Titre de la section",
+      "name": "title",
+      "type": "text",
+      "instructions": "Facultatif."
+    },
+    {
+      "key": "field_starter_features_intro",
+      "label": "Introduction",
+      "name": "intro",
+      "type": "textarea",
+      "rows": 2,
+      "new_lines": "",
+      "instructions": "Facultatif."
+    },
+    {
+      "key": "field_starter_features_columns",
+      "label": "Colonnes (sur grand écran)",
+      "name": "columns",
+      "type": "button_group",
+      "choices": { "2": "2", "3": "3", "4": "4" },
+      "default_value": "3",
+      "return_format": "value",
+      "layout": "horizontal"
+    },
+    {
+      "key": "field_starter_features_style",
+      "label": "Style des cartes",
+      "name": "style",
+      "type": "select",
+      "choices": {
+        "border": "Bordure",
+        "light": "Fond clair",
+        "shadow": "Ombre",
+        "accent": "Bordure colorée en haut"
+      },
+      "default_value": "border",
+      "return_format": "value"
+    },
+    {
+      "key": "field_starter_features_tab_items",
+      "label": "Cartes",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_features_items",
+      "label": "Cartes",
+      "name": "items",
+      "type": "repeater",
+      "layout": "block",
+      "min": 1,
+      "max": 12,
+      "collapsed": "field_starter_features_item_title",
+      "button_label": "Ajouter une carte",
+      "sub_fields": [
+        {
+          "key": "field_starter_features_item_icon",
+          "label": "Icône",
+          "name": "icon",
+          "type": "select",
+          "instructions": "Liste remplie automatiquement depuis assets/icons/.",
+          "choices": {},
+          "default_value": "check",
+          "allow_null": 1,
+          "ui": 1,
+          "return_format": "value",
+          "wrapper": { "width": "50" },
+          "parent_repeater": "field_starter_features_items"
+        },
+        {
+          "key": "field_starter_features_item_color",
+          "label": "Couleur",
+          "name": "color",
+          "type": "select",
+          "instructions": "Couleurs de la charte (theme.json).",
+          "choices": {},
+          "default_value": "primary",
+          "return_format": "value",
+          "wrapper": { "width": "50" },
+          "parent_repeater": "field_starter_features_items"
+        },
+        {
+          "key": "field_starter_features_item_title",
+          "label": "Titre",
+          "name": "title",
+          "type": "text",
+          "required": 1,
+          "parent_repeater": "field_starter_features_items"
+        },
+        {
+          "key": "field_starter_features_item_text",
+          "label": "Texte",
+          "name": "text",
+          "type": "textarea",
+          "rows": 3,
+          "new_lines": "",
+          "parent_repeater": "field_starter_features_items"
+        },
+        {
+          "key": "field_starter_features_item_link",
+          "label": "Lien",
+          "name": "link",
+          "type": "link",
+          "instructions": "Facultatif. Rend toute la carte cliquable.",
+          "return_format": "array",
+          "parent_repeater": "field_starter_features_items"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "starter/features"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1795622400
+}
