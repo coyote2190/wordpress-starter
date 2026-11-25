@@ -17,6 +17,9 @@ npm install
 npm run dev          # pendant le dev, puis ouvrir http://wordpress-starter.local
 npm run blocks:dev   # (2ᵉ terminal) seulement si on modifie un bloc natif React
 npm run build        # avant de commiter / déployer (Vite + blocs natifs)
+
+# Contenu de démo (pages, articles, réalisations, menus) — voir docs/demo.md
+wp eval-file wp-content/themes/wordpress-starter/demo/demo-content.php
 ```
 
 ## Arborescence
@@ -69,6 +72,7 @@ wordpress-starter/
 │       ├── main.js    Entrée JS : charge les modules présents dans la page.
 │       └── modules/   Un fichier par fonctionnalité (menu mobile, formulaire de contact).
 ├── dist/              Fichiers compilés par `npm run build` (commités, à déployer).
+├── demo/              Script de contenu de démo (WP-CLI).
 ├── docs/              Documentation (un fichier par sujet).
 ├── package.json       Outils front et commandes npm.
 ├── vite.config.js     Configuration du build.
@@ -94,4 +98,5 @@ wordpress-starter/
 | MU-plugin (CPT, commentaires) | [docs/mu-plugin.md](docs/mu-plugin.md) |
 | Formulaire de contact + FluentSMTP | [docs/contact-form.md](docs/contact-form.md) |
 | Sécurité (+ wp-config, .htaccess) | [docs/security.md](docs/security.md) |
+| Contenu de démo | [docs/demo.md](docs/demo.md) |
 | **Nouveau projet client + déploiement** | [docs/new-project.md](docs/new-project.md) |

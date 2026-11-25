@@ -42,6 +42,9 @@ ln -s ../themes/nom-du-client/mu-plugin/starter-core starter-core
 
 ## 5. Contenus de base
 
+> Pour voir le thème rempli tout de suite : `wp eval-file …/demo/demo-content.php` (voir `docs/demo.md`), puis `… reset` avant de saisir le vrai contenu.
+
+
 - [ ] **Infos du site** : téléphone, e-mail (reçoit les messages du formulaire), adresse, réseaux
 - [ ] Apparence > Menus : menu **principal** et **pied de page**
 - [ ] Apparence > Personnaliser > Identité : **logo** et **icône du site** (favicon)
@@ -67,6 +70,7 @@ Envoyer dans `wp-content/themes/nom-du-client/` **tout le thème sauf** :
 | `node_modules/` | Outils de dev, très lourd |
 | `.git/` | Historique Git |
 | `hot` | Fichier du serveur de dev (ignoré en prod de toute façon) |
+| `demo/` | Script de démo (inoffensif, mais inutile en prod) |
 
 Et **copier** (pas de lien symbolique) :
 
