@@ -28,7 +28,7 @@ wordpress-starter/
 ├── header.php         <head>, logo, menu principal, ouverture du <main>.
 ├── footer.php         Pied de page, wp_footer().
 ├── index.php          Liste des articles + gabarit de secours.
-├── front-page.php     Accueil (contenu Gutenberg pleine largeur).
+├── front-page.php     Accueil (contenu Gutenberg de la page d'accueil, sans titre).
 ├── page.php           Page standard.
 ├── single.php         Article seul.
 ├── archive.php        Catégories, étiquettes, archives de CPT.
@@ -46,10 +46,10 @@ wordpress-starter/
 │   ├── icons.php      starter_icon() : insère une icône SVG.
 │   ├── scf.php        SCF : JSON, page « Infos du site », starter_field() / starter_option().
 │   └── blocks.php     Enregistre les blocs (SCF + natifs), catégorie « Starter », CSS de l'éditeur.
-├── blocks/            Blocs Gutenberg (un dossier par bloc : block.json + render.php).
+├── blocks/            Blocs Gutenberg SCF (un dossier par bloc : block.json + render.php).
 │   ├── hero/          Bannière d'en-tête.
 │   └── contact-form/  Place le formulaire de contact dans une page.
-├── blocks-native/      Blocs Gutenberg natifs en React.
+├── blocks-native/     Blocs Gutenberg natifs en React.
 │   ├── src/notice/    Sources du bloc « Encadré » (block.json, edit.js, render.php).
 │   └── build/         Compilé par `npm run blocks:build` (commité, ne pas éditer).
 ├── mu-plugin/         MU-plugin « Starter Core » (données indépendantes du thème) → à copier dans wp-content/mu-plugins/.
@@ -94,3 +94,4 @@ wordpress-starter/
 | MU-plugin (CPT, commentaires) | [docs/mu-plugin.md](docs/mu-plugin.md) |
 | Formulaire de contact + FluentSMTP | [docs/contact-form.md](docs/contact-form.md) |
 | Sécurité (+ wp-config, .htaccess) | [docs/security.md](docs/security.md) |
+| **Nouveau projet client + déploiement** | [docs/new-project.md](docs/new-project.md) |
