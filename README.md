@@ -30,7 +30,9 @@ wordpress-starter/
 │   ├── setup.php      Fonctionnalités WordPress activées, menus.
 │   ├── cleanup.php    Retire ce que WordPress charge inutilement (emojis, metas…).
 │   ├── vite.php       Pont Vite ↔ WordPress : charge les fichiers en dev ou depuis dist/.
-│   └── assets.php     Liste des CSS/JS chargés sur le site.
+│   ├── assets.php     Liste des CSS/JS chargés sur le site.
+│   └── icons.php      starter_icon() : insère une icône SVG.
+├── assets/icons/      Icônes SVG (un fichier par icône).
 ├── assets/src/        Sources front (éditées à la main).
 │   ├── css/
 │   │   ├── main.css   Entrée CSS : Tailwind, @source, imports.
@@ -54,3 +56,4 @@ wordpress-starter/
 | Nettoyage de WordPress | [docs/cleanup.md](docs/cleanup.md) |
 | Build (Vite, Tailwind) | [docs/build.md](docs/build.md) |
 | Couleurs, polices, largeurs | [docs/design-tokens.md](docs/design-tokens.md) |
+| Icônes SVG | [docs/icons.md](docs/icons.md) |

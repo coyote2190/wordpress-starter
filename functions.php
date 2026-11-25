@@ -21,6 +21,7 @@ $starter_includes = array(
 	'cleanup', // Retire ce que WordPress charge inutilement.
 	'vite',    // Pont Vite ↔ WordPress (dev / prod).
 	'assets',  // Chargement des CSS et JS.
+	'icons',   // starter_icon() : icônes SVG.
 );
 
 foreach ( $starter_includes as $starter_file ) {
