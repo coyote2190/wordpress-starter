@@ -46,7 +46,10 @@ function starter_register_post_types(): void {
 	);
 }
 
-add_action( 'init', 'starter_register_taxonomies' );
+// Priorité 9 : la taxonomie est enregistrée AVANT le CPT. Ses règles d'URL
+// (/realisations/categorie/…) passent ainsi avant celles du CPT
+// (/realisations/xxx/yyy = pièce jointe), sinon les pages catégorie sont en 404.
+add_action( 'init', 'starter_register_taxonomies', 9 );
 
 /**
  * Enregistre les taxonomies.
