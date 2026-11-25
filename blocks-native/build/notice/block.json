@@ -23,9 +23,8 @@
       "default": "info"
     },
     "content": {
-      "type": "rich-text",
-      "source": "rich-text",
-      "selector": "p"
+      "type": "string",
+      "default": ""
     }
   },
   "supports": {

@@ -51,11 +51,13 @@ WordPress enregistre dans le contenu de la page :   │
 ```jsonc
 "attributes": {
   "type":    { "type": "string", "enum": ["info", "success", "warning"], "default": "info" },
-  "content": { "type": "rich-text", "source": "rich-text", "selector": "p" }
+  "content": { "type": "string", "default": "" }
 }
 ```
 
 Les **attributs** sont les données du bloc. Ils sont lus par `edit.js` (`attributes.type`) et par `render.php` (`$attributes['type']`).
+
+> ⚠️ **Piège classique** : dans un bloc dynamique (`save: () => null`), **ne jamais mettre `"source"`** sur un attribut (`"source": "html"`, `"rich-text"`, `"attribute"`…). `source` dit à Gutenberg de relire la valeur **dans le HTML enregistré**, or un bloc dynamique n'enregistre pas de HTML → la valeur est perdue au rechargement. Sans `source`, l'attribut est stocké dans le commentaire `<!-- wp:starter/notice {...} /-->`.
 
 ### `edit.js` : les composants à connaître
 
