@@ -359,6 +359,54 @@ function starter_demo_hero_slider( array $slides ): string {
 	);
 }
 
+/**
+ * Bloc SCF Bento (répéteur « tiles » stocké à plat).
+ *
+ * @param array<int, array<string, mixed>> $tiles
+ */
+function starter_demo_bento( string $title, string $intro, array $tiles ): string {
+	$k    = 'field_starter_bento_';
+	$data = array(
+		'title'  => $title,
+		'_title' => $k . 'title',
+		'intro'  => $intro,
+		'_intro' => $k . 'intro',
+		'tiles'  => count( $tiles ),
+		'_tiles' => $k . 'tiles',
+	);
+	foreach ( $tiles as $i => $tile ) {
+		$tile += array(
+			'type'   => 'color',
+			'width'  => '1',
+			'height' => 'normal',
+			'image'  => '',
+			'color'  => 'primary',
+			'badge'  => '',
+			'number' => '',
+			'title'  => '',
+			'text'   => '',
+			'link'   => '',
+		);
+		foreach ( $tile as $sub => $value ) {
+			if ( is_array( $value ) ) {
+				$value += array( 'target' => '' );
+			}
+			$data[ "tiles_{$i}_{$sub}" ]  = $value;
+			$data[ "_tiles_{$i}_{$sub}" ] = $k . 'tile_' . $sub;
+		}
+	}
+
+	return starter_demo_block(
+		'starter/bento',
+		array(
+			'name'  => 'starter/bento',
+			'mode'  => 'preview',
+			'align' => 'wide',
+			'data'  => $data,
+		)
+	);
+}
+
 function starter_demo_notice( string $type, string $content ): string {
 	return starter_demo_block(
 		'starter/notice',
@@ -405,6 +453,8 @@ function starter_demo_create(): void {
 		'slide1'  => starter_demo_image( 'Diapositive 1', $dark, $primary, false ),
 		'slide2'  => starter_demo_image( 'Diapositive 2', $primary, $secondary, false ),
 		'slide3'  => starter_demo_image( 'Diapositive 3', $secondary, $dark, false ),
+		'bento1'  => starter_demo_image( 'Bento sites vitrines', $secondary, $primary, false ),
+		'bento2'  => starter_demo_image( 'Bento identité', $primary, $dark, false ),
 		'about'   => starter_demo_image( 'Notre équipe', $primary, $dark ),
 		'contact' => starter_demo_image( 'Parlons de votre projet', $primary, $secondary ),
 	);
@@ -558,15 +608,14 @@ function starter_demo_create(): void {
 				),
 			)
 		)
-		. starter_demo_features(
+		. starter_demo_bento(
 			'Ce que nous faisons',
 			'De la première maquette à la mise en ligne, nous vous accompagnons à chaque étape.',
-			'3',
-			'border',
 			array(
-				array( 'icon' => 'monitor', 'color' => 'primary', 'title' => 'Sites vitrines', 'text' => 'Un site clair qui présente votre activité et transforme les visiteurs en clients.', 'link' => array( 'title' => 'Voir les projets', 'url' => '/realisations/categorie/site-vitrine/' ) ),
-				array( 'icon' => 'shopping-cart', 'color' => 'secondary', 'title' => 'E-commerce', 'text' => 'Une boutique en ligne simple à gérer, avec paiement et livraison intégrés.', 'link' => array( 'title' => 'Voir les projets', 'url' => '/realisations/categorie/e-commerce/' ) ),
-				array( 'icon' => 'palette', 'color' => 'dark', 'title' => 'Identité visuelle', 'text' => 'Logo, couleurs, typographies : une image cohérente sur tous vos supports.', 'link' => array( 'title' => 'Voir les projets', 'url' => '/realisations/categorie/identite-visuelle/' ) ),
+				array( 'type' => 'image', 'image' => $img['bento1'], 'color' => 'primary', 'width' => '2', 'height' => 'tall', 'badge' => 'Service', 'title' => 'Sites vitrines', 'text' => 'Un site clair qui présente votre activité et transforme les visiteurs en clients.', 'link' => array( 'title' => 'Voir les sites vitrines', 'url' => '/realisations/categorie/site-vitrine/' ) ),
+				array( 'color' => 'light', 'number' => '120 +', 'text' => 'sites et boutiques livrés depuis 2019, de Marseille à Lyon.', 'link' => array( 'title' => 'Toutes nos réalisations', 'url' => '/realisations/' ) ),
+				array( 'color' => 'secondary', 'badge' => 'Service', 'title' => 'E-commerce', 'text' => 'Une boutique simple à gérer, paiement et livraison intégrés.', 'link' => array( 'title' => 'Voir les boutiques', 'url' => '/realisations/categorie/e-commerce/' ) ),
+				array( 'type' => 'image', 'image' => $img['bento2'], 'color' => 'dark', 'width' => '2', 'badge' => 'Service', 'title' => 'Identité visuelle', 'text' => 'Logo, couleurs, typographies : une image cohérente sur tous vos supports.', 'link' => array( 'title' => 'Voir les identités visuelles', 'url' => '/realisations/categorie/identite-visuelle/' ) ),
 			)
 		)
 		. starter_demo_notice( 'info', 'Premier rendez-vous <strong>offert</strong> : on fait le point sur votre projet en 30 minutes.' )

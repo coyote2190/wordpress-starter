@@ -22,7 +22,7 @@ Relancer la création remplace l'ancienne démo, sans doublons. Les **pages sont
 
 | Quoi | Détail |
 |---|---|
-| **Pages** | Accueil (Hero slider 3 diapositives, 2 blocs Cartes, encadré, bouton), À propos (Hero, Cartes style « fond clair », encadré), Contact (Hero + formulaire), Actualités (page des articles), Mentions légales, Politique de confidentialité |
+| **Pages** | Accueil (Hero slider 3 diapositives, Bento « Ce que nous faisons », Cartes « Pourquoi nous choisir », encadré, bouton), À propos (Hero, Cartes style « fond clair », encadré), Contact (Hero + formulaire), Actualités (page des articles), Mentions légales, Politique de confidentialité |
 | **Articles** | 5 articles en 2 catégories, avec image, extrait, titres, liste et encadré |
 | **Réalisations** | 6 réalisations (CPT du mu-plugin) en 3 catégories |
 | **Images** | Générées à la volée (dégradés aux couleurs de `theme.json` + titre), ajoutées à la médiathèque |
@@ -33,7 +33,7 @@ Relancer la création remplace l'ancienne démo, sans doublons. Les **pages sont
 ## Ce que la démo permet de vérifier
 
 - Hiérarchie des gabarits : accueil, page, article, archive de CPT, catégorie, recherche, 404.
-- Blocs SCF (Hero, Cartes, Formulaire) et natif (Encadré) côté site **et** dans l'éditeur.
+- Blocs SCF (Hero, Hero slider, Cartes, Bento, Formulaire) et natif (Encadré) côté site **et** dans l'éditeur.
 - Blocs Gutenberg du cœur (titres, listes, bouton) avec le style du thème.
 - Menu mobile, footer avec coordonnées, pagination.
 - Envoi du formulaire de contact (le mail part à l'e-mail d'admin → visible dans Mailpit en local).
