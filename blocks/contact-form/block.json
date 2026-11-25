@@ -6,10 +6,17 @@
   "description": "Formulaire de contact du site. Les messages arrivent à l'e-mail défini dans « Infos du site ».",
   "category": "starter",
   "icon": "email",
-  "keywords": ["contact", "formulaire", "mail"],
+  "keywords": [
+    "contact",
+    "formulaire",
+    "mail"
+  ],
   "textdomain": "starter",
   "supports": {
-    "align": ["wide"],
+    "align": [
+      "wide",
+      "full"
+    ],
     "anchor": true,
     "html": false,
     "multiple": false

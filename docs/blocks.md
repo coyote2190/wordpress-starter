@@ -22,7 +22,7 @@ scf-json/group_starter_block_hero.json    Champs du bloc (emplacement : Bloc = H
   "category": "starter",              // catégorie créée dans inc/blocks.php
   "icon": "cover-image",              // un Dashicon : developer.wordpress.org/resource/dashicons
   "supports": {
-    "align": ["full"],                // alignements proposés (wide, full)
+    "align": ["wide", "full"],        // alignements proposés (voir « Alignements » ci-dessous)
     "anchor": true,                   // champ « Ancre HTML » (id) → liens #ancre
     "html": false                     // pas de « Modifier en HTML »
   },
@@ -47,11 +47,41 @@ Les points importants, tous présents dans `blocks/hero/render.php` :
 |---|---|
 | `starter_field( 'title' )` | Lit le champ **de ce bloc** (dans un bloc, `get_field()` lit les données du bloc, pas de la page) |
 | Message si vide et `$is_preview` | Le rédacteur sait quoi faire au lieu de voir un cadre vide |
+| `starter_block_inner_class( $block['align'] )` | Conteneur intérieur en pleine largeur (règle commune des alignements) |
 | `get_block_wrapper_attributes()` | Ajoute ce que WordPress gère : classe `wp-block-starter-hero`, `alignfull`, ancre `id`, « Classes CSS additionnelles » |
 | Classe `not-prose` | Le bloc ignore la mise en forme du texte (`prose`) des pages |
 | `no-underline` sur les liens stylés (boutons, liens de carte) | L'éditeur souligne tous les liens par défaut : sans ça, l'aperçu diffère du site |
 | `wp_get_attachment_image( $id, … )` | Image responsive (`srcset`) avec `alt`. Le champ Image doit retourner un **ID**. |
 | Échappement (`esc_html`, `esc_url`) | Toujours |
+
+## Alignements : la règle commune
+
+Tous les blocs du thème proposent **Aucun · Grande largeur · Pleine largeur** (`"supports": { "align": ["wide", "full"] }`).
+
+| Alignement | Largeur du bloc | Contenu du bloc |
+|---|---|---|
+| Aucun | Colonne de texte (`theme.json` → `contentSize`, 48rem) | Pleine largeur du bloc |
+| Grande largeur | `wideSize` (80rem) | Pleine largeur du bloc |
+| Pleine largeur | Tout l'écran | Dans un `container` : **le fond couvre l'écran, le contenu reste aligné sur la grille du site** |
+
+Dans `render.php`, une seule ligne applique cette règle :
+
+```php
+<div class="<?php echo esc_attr( starter_block_inner_class( $block['align'] ?? null ) ); ?>">
+    … contenu du bloc …
+</div>
+```
+
+`starter_block_inner_class()` (dans `inc/blocks.php`) renvoie `container` en pleine largeur, rien sinon. Côté React : `attributes.align === 'full'` (voir `blocks-native/src/notice/edit.js`).
+
+| Réglage | Où |
+|---|---|
+| Alignements proposés | `supports.align` dans `block.json` (« Aucun » est toujours proposé) |
+| Alignement à l'insertion | `attributes.align.default` dans `block.json` (Hero : `full`, Cartes : `wide`) |
+| Valeurs 48rem / 80rem | `settings.layout` dans `theme.json` |
+| Sortie de la colonne sur le site | `.entry-content > .alignwide / .alignfull` dans `components.css` |
+
+> Un bloc qui a un alignement par défaut et qu'on passe sur « Aucun » reçoit `align: ""` (WordPress ajoute alors une classe `align` vide, sans effet).
 
 ## Blocs fournis
 

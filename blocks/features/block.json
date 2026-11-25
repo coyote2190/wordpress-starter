@@ -6,15 +6,27 @@
   "description": "Grille de cartes avec icône, couleur, titre, texte et lien : services, avantages, valeurs…",
   "category": "starter",
   "icon": "grid-view",
-  "keywords": ["services", "avantages", "colonnes", "icônes", "cards"],
+  "keywords": [
+    "services",
+    "avantages",
+    "colonnes",
+    "icônes",
+    "cards"
+  ],
   "textdomain": "starter",
   "supports": {
-    "align": ["wide", "full"],
+    "align": [
+      "wide",
+      "full"
+    ],
     "anchor": true,
     "html": false
   },
   "attributes": {
-    "align": { "type": "string", "default": "wide" }
+    "align": {
+      "type": "string",
+      "default": "wide"
+    }
   },
   "example": {},
   "acf": {

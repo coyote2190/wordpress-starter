@@ -6,15 +6,25 @@
   "description": "Grande bannière d'en-tête : titre, texte, bouton et image de fond.",
   "category": "starter",
   "icon": "cover-image",
-  "keywords": ["bannière", "en-tête", "header"],
+  "keywords": [
+    "bannière",
+    "en-tête",
+    "header"
+  ],
   "textdomain": "starter",
   "supports": {
-    "align": ["full"],
+    "align": [
+      "wide",
+      "full"
+    ],
     "anchor": true,
     "html": false
   },
   "attributes": {
-    "align": { "type": "string", "default": "full" }
+    "align": {
+      "type": "string",
+      "default": "full"
+    }
   },
   "example": {},
   "acf": {

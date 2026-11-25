@@ -11,13 +11,16 @@ import { PanelBody, SelectControl } from '@wordpress/components';
 import { VARIANTS } from './styles.js';
 
 export default function Edit({ attributes, setAttributes }) {
-  const { type, content } = attributes;
+  const { type, content, align } = attributes;
+  const isFull = align === 'full';
   const variant = VARIANTS[type] ?? VARIANTS.info;
 
   // useBlockProps() : classes et attributs que WordPress doit poser sur la
   // racine du bloc (sélection, ancre…). Équivalent de get_block_wrapper_attributes() en PHP.
   const blockProps = useBlockProps({
-    className: `not-prose my-6 flex gap-3 rounded-md border-l-4 p-4 ${variant.className}`,
+    // Même règle que render.php : en pleine largeur, le fond couvre l'écran et
+    // le contenu est dans un `container` (voir starter_block_inner_class()).
+    className: `not-prose my-6 border-l-4 py-4 ${variant.className} ${isFull ? '' : 'rounded-md px-4'}`,
   });
 
   return (
@@ -38,15 +41,17 @@ export default function Edit({ attributes, setAttributes }) {
 
       {/* Le bloc lui-même, éditable directement */}
       <div {...blockProps}>
-        <span aria-hidden="true">{variant.icon}</span>
-        <RichText
-          tagName="p"
-          className="m-0"
-          value={content}
-          onChange={(value) => setAttributes({ content: value })}
-          placeholder={__('Votre message…', 'starter')}
-          allowedFormats={['core/bold', 'core/italic', 'core/link']}
-        />
+        <div className={`flex gap-3 ${isFull ? 'container' : ''}`}>
+          <span aria-hidden="true">{variant.icon}</span>
+          <RichText
+            tagName="p"
+            className="m-0"
+            value={content}
+            onChange={(value) => setAttributes({ content: value })}
+            placeholder={__('Votre message…', 'starter')}
+            allowedFormats={['core/bold', 'core/italic', 'core/link']}
+          />
+        </div>
       </div>
     </>
   );

@@ -29,7 +29,11 @@
   },
   "supports": {
     "anchor": true,
-    "html": false
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ]
   },
   "example": {
     "attributes": {

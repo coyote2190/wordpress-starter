@@ -34,9 +34,12 @@ if ( ! $title ) {
 
 // get_block_wrapper_attributes() ajoute les classes et attributs gérés par
 // WordPress : wp-block-starter-hero, alignfull, ancre (id), classes CSS additionnelles.
+$is_full = 'full' === ( $block['align'] ?? '' );
+
 $wrapper = get_block_wrapper_attributes(
 	// not-prose : le bloc ignore la mise en forme « prose » de page.php / single.php.
-	array( 'class' => 'not-prose relative isolate overflow-hidden bg-dark text-white' )
+	// Hors pleine largeur, le hero devient une carte aux coins arrondis.
+	array( 'class' => 'not-prose relative isolate overflow-hidden bg-dark text-white' . ( $is_full ? '' : ' my-10 rounded-xl' ) )
 );
 ?>
 <section <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput -- échappé par WordPress. ?>>
@@ -55,7 +58,8 @@ $wrapper = get_block_wrapper_attributes(
 		?>
 	<?php endif; ?>
 
-	<div class="container flex min-h-[60vh] flex-col justify-center gap-6 py-20">
+	<?php // Pleine largeur : contenu aligné sur la grille du site. Sinon : marges intérieures de la carte. ?>
+	<div class="flex min-h-[60vh] flex-col justify-center gap-6 py-20 <?php echo esc_attr( $is_full ? starter_block_inner_class( 'full' ) : 'px-8 md:px-12' ); ?>">
 		<h1 class="max-w-3xl text-4xl font-bold md:text-6xl"><?php echo esc_html( $title ); ?></h1>
 
 		<?php if ( $text ) : ?>

@@ -45,6 +45,7 @@ $palette = starter_palette();
 $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-16' ) );
 ?>
 <section <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput -- échappé par WordPress. ?>>
+<div class="<?php echo esc_attr( starter_block_inner_class( $block['align'] ?? null ) ); ?>">
 	<?php if ( $title || $intro ) : ?>
 		<header class="mx-auto mb-10 max-w-2xl text-center">
 			<?php if ( $title ) : ?>
@@ -95,4 +96,5 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-16' ) )
 			</article>
 		<?php endforeach; ?>
 	</div>
+</div>
 </section>

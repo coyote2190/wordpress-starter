@@ -31,6 +31,20 @@ function starter_register_blocks(): void {
 	}
 }
 
+/**
+ * Classe du conteneur intérieur d'un bloc selon son alignement.
+ *
+ * Règle commune à tous les blocs du thème :
+ * - « Pleine largeur » : le fond du bloc couvre tout l'écran, mais le contenu
+ *   reste aligné sur la grille du site → conteneur `container` à l'intérieur ;
+ * - « Aucun » / « Grande largeur » : le bloc a déjà la bonne largeur → rien.
+ *
+ * @param string|null $align Valeur de l'attribut align ($block['align'] en SCF, $attributes['align'] en natif).
+ */
+function starter_block_inner_class( ?string $align ): string {
+	return 'full' === $align ? 'container' : '';
+}
+
 add_filter( 'block_categories_all', 'starter_block_category' );
 
 /**

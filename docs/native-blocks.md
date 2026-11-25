@@ -79,6 +79,8 @@ Ces paquets ne sont **pas** inclus dans le fichier compilé : WordPress les four
 | Modifier le HTML plus tard | On modifie `render.php`, toutes les pages suivent | Les blocs existants deviennent « invalides » → il faut écrire des *deprecations* |
 | Utiliser des fonctions PHP | Oui (`starter_icon()`, requêtes…) | Non |
 
+**Alignements** : comme les blocs SCF, l'encadré propose Aucun / Grande / Pleine largeur. `edit.js` et `render.php` appliquent la même règle (conteneur `container` en pleine largeur, voir `docs/blocks.md`).
+
 **Règle du starter : toujours dynamique** (`"render": "file:./render.php"` + `save: () => null`).
 
 ## Commandes

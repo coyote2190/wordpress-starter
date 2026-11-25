@@ -6,12 +6,20 @@
   "description": "Message mis en avant : information, succès ou attention.",
   "category": "starter",
   "icon": "info",
-  "keywords": ["alerte", "info", "message"],
+  "keywords": [
+    "alerte",
+    "info",
+    "message"
+  ],
   "textdomain": "starter",
   "attributes": {
     "type": {
       "type": "string",
-      "enum": ["info", "success", "warning"],
+      "enum": [
+        "info",
+        "success",
+        "warning"
+      ],
       "default": "info"
     },
     "content": {
@@ -21,7 +29,11 @@
   },
   "supports": {
     "anchor": true,
-    "html": false
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ]
   },
   "example": {
     "attributes": {

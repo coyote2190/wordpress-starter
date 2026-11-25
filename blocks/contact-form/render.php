@@ -14,6 +14,7 @@ defined( 'ABSPATH' ) || exit;
 $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-10' ) );
 ?>
 <div <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput -- échappé par WordPress. ?>>
+<div class="<?php echo esc_attr( starter_block_inner_class( $block['align'] ?? null ) ); ?>">
 	<?php if ( $is_preview ) : ?>
 		<?php // Dans l'éditeur : aperçu non cliquable. ?>
 		<div class="pointer-events-none" inert>
@@ -22,4 +23,5 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-10' ) )
 	<?php else : ?>
 		<?php get_template_part( 'template-parts/contact-form' ); ?>
 	<?php endif; ?>
+</div>
 </div>
