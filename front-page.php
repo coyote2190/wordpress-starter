@@ -3,8 +3,8 @@
  * Page d'accueil (prioritaire sur tous les autres gabarits pour l'accueil).
  *
  * Réglages > Lecture :
- * - « Une page statique » → affiche le contenu Gutenberg de cette page, en pleine largeur
- *   (les sections de l'accueil sont des blocs) ;
+ * - « Une page statique » → affiche le contenu Gutenberg de cette page, sans titre
+ *   (les sections de l'accueil sont des blocs, souvent en pleine largeur) ;
  * - « Les derniers articles » → on retombe sur la liste d'articles (index.php).
  *
  * @package Starter
@@ -22,8 +22,11 @@ get_header();
 while ( have_posts() ) :
 	the_post();
 	?>
-	<div class="entry-content">
-		<?php the_content(); ?>
+	<div class="container">
+		<?php // Texte en colonne lisible ; les blocs alignfull / alignwide en sortent (components.css). ?>
+		<div class="entry-content prose mx-auto max-w-content">
+			<?php the_content(); ?>
+		</div>
 	</div>
 	<?php
 endwhile;

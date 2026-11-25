@@ -46,7 +46,9 @@ Les fichiers compilés ont un **hash** dans leur nom (`main-B6d3mmbV.css`). Quan
 | `vite.config.js` | Points d'entrée, dossier de sortie, serveur de dev, plugin `hot` |
 | `inc/vite.php` | `starter_vite_enqueue()` : charge une entrée en dev ou en prod |
 | `inc/assets.php` | Dit **quelles** entrées charger sur le site |
-| `assets/src/css/main.css` | Entrée CSS : Tailwind + nos styles |
+| `assets/src/css/main.css` | Entrée CSS du site : Tailwind + nos styles |
+| `assets/src/css/editor.css` | Entrée CSS de l'éditeur Gutenberg (voir `docs/blocks.md`) |
+| `assets/src/css/sources.css` | Dossiers scannés par Tailwind (`@source`) |
 | `assets/src/js/main.js` | Entrée JS |
 | `dist/` | Fichiers compilés. **Commité** : on peut déployer par simple FTP sans Node sur le serveur. |
 | `.prettierrc` / `.prettierignore` | Règles de formatage |
@@ -68,7 +70,7 @@ Exemple : un JS chargé seulement sur la page contact.
 ## Tailwind v4 en bref
 
 - Pas de `tailwind.config.js` : la configuration se fait **dans le CSS** (`@theme`, `@source`…).
-- `@source` liste les dossiers où Tailwind cherche les classes utilisées. **Un nouveau dossier qui contient du HTML (ex. `blocks/`) doit être ajouté**, sinon ses classes ne seront pas générées.
+- `@source` (dans `sources.css`) liste les dossiers où Tailwind cherche les classes utilisées. **Un nouveau dossier qui contient du HTML (ex. `blocks/`) doit être ajouté**, sinon ses classes ne seront pas générées.
 - Le JS est chargé en `type="module"` (via `wp_enqueue_script_module`) : `import`/`export` natifs, exécuté après le parsing du HTML.
 
 ## Problèmes courants

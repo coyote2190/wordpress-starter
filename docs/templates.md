@@ -25,7 +25,7 @@ Pour chaque URL, WordPress cherche le gabarit **le plus précis** qui existe, pu
 | `header.php` | `<head>` (dont `wp_head()`), ouverture du `<body>`, lien d'évitement, logo, menu principal, ouverture du `<main>` |
 | `footer.php` | Fermeture du `<main>`, pied de page, menu footer, `wp_footer()` |
 | `index.php` | Liste des articles (blog) et gabarit de secours |
-| `front-page.php` | Accueil : contenu Gutenberg de la page d'accueil, **sans conteneur** (les sections sont des blocs pleine largeur) |
+| `front-page.php` | Accueil : contenu Gutenberg de la page d'accueil, sans titre (les sections sont des blocs) |
 | `page.php` | Page : titre + contenu Gutenberg dans `prose` |
 | `single.php` | Article : date, titre, image mise en avant, contenu, article précédent/suivant |
 | `archive.php` | Titre + description de l'archive, puis la boucle |
@@ -69,6 +69,10 @@ Les fonctions `the_title()`, `the_content()`, `the_permalink()`… échappent d�
 ## Styles du HTML généré par WordPress
 
 Les menus, la pagination et la navigation entre articles sont générés par WordPress : on ne peut pas mettre de classes Tailwind sur chaque `<a>`. Ils sont stylés dans `assets/src/css/components.css`.
+
+## Largeur du contenu Gutenberg
+
+Dans `page.php`, `single.php` et `front-page.php`, le contenu est dans `.entry-content.prose.max-w-content` : une colonne de texte lisible. Les blocs réglés sur **Large** (`alignwide`) ou **Pleine largeur** (`alignfull`) en sortent grâce à `components.css`. Les blocs maison ajoutent `not-prose` pour ne pas hériter de la mise en forme du texte (voir `docs/blocks.md`).
 
 ## Menus
 

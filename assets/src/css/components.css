@@ -50,6 +50,21 @@
     text-align: right;
   }
 
+  /*
+   * Alignements Gutenberg « large » et « pleine largeur » : le bloc sort de la
+   * colonne de texte (.entry-content) pour s'étendre sur la largeur voulue.
+   */
+  .entry-content > .alignwide {
+    width: min(100vw - 2.5rem, var(--container-wide));
+    max-width: none;
+    margin-inline: calc(50% - min(50vw - 1.25rem, var(--container-wide) / 2));
+  }
+  .entry-content > .alignfull {
+    width: 100vw;
+    max-width: none;
+    margin-inline: calc(50% - 50vw);
+  }
+
   /* Logo (the_custom_logo) */
   .custom-logo {
     max-height: 3rem;

@@ -1,0 +1,18 @@
+/*
+ * Styles chargés dans l'éditeur Gutenberg (iframe du contenu), pour que les
+ * blocs y ressemblent au site.
+ *
+ * Différence avec main.css : PAS de « preflight » (le reset CSS de Tailwind),
+ * qui casserait l'affichage des blocs natifs de WordPress dans l'éditeur.
+ * On garde uniquement les variables du thème et les classes utilitaires.
+ */
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities) source(none);
+@import './sources.css';
+
+@plugin '@tailwindcss/typography';
+
+@import './tokens.css';
+@import './base.css';

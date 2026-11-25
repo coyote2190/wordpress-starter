@@ -19,7 +19,7 @@ const DEV_PORT = 5173;
  * Points d'entrée : chaque fichier listé ici produit un fichier dans dist/
  * et peut être chargé en PHP avec starter_vite_enqueue().
  */
-const entries = ['assets/src/css/main.css', 'assets/src/js/main.js'];
+const entries = ['assets/src/css/main.css', 'assets/src/css/editor.css', 'assets/src/js/main.js'];
 
 /**
  * Petit plugin maison pour faire le lien avec WordPress :

@@ -1,16 +1,11 @@
 /*
- * Feuille de style principale.
+ * Feuille de style principale du site.
  *
  * `source(none)` : on dit nous-mêmes à Tailwind quels fichiers lire pour
- * trouver les classes utilisées (évite de scanner node_modules, dist…).
- * Ajouter une ligne @source pour chaque nouveau dossier contenant du HTML.
+ * trouver les classes utilisées (voir sources.css).
  */
 @import 'tailwindcss' source(none);
-
-@source '../../../*.php';
-@source '../../../inc';
-@source '../../../template-parts';
-@source '../js';
+@import './sources.css';
 
 /* Mise en forme du contenu Gutenberg (classe `prose`). Voir docs/design-tokens.md. */
 @plugin '@tailwindcss/typography';

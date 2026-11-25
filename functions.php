@@ -23,6 +23,7 @@ $starter_includes = array(
 	'assets',  // Chargement des CSS et JS.
 	'icons',   // starter_icon() : icônes SVG.
 	'scf',     // Secure Custom Fields : JSON, page d'options, helpers.
+	'blocks',  // Blocs Gutenberg : enregistrement, catégorie, styles éditeur.
 );
 
 foreach ( $starter_includes as $starter_file ) {

@@ -42,12 +42,17 @@ wordpress-starter/
 │   ├── vite.php       Pont Vite ↔ WordPress : charge les fichiers en dev ou depuis dist/.
 │   ├── assets.php     Liste des CSS/JS chargés sur le site.
 │   ├── icons.php      starter_icon() : insère une icône SVG.
-│   └── scf.php        SCF : JSON, page « Infos du site », starter_field() / starter_option().
+│   ├── scf.php        SCF : JSON, page « Infos du site », starter_field() / starter_option().
+│   └── blocks.php     Enregistre les blocs de blocks/, catégorie « Starter », CSS de l'éditeur.
+├── blocks/            Blocs Gutenberg (un dossier par bloc : block.json + render.php).
+│   └── hero/          Bannière d'en-tête.
 ├── scf-json/          Groupes de champs SCF en JSON (écrits par SCF, versionnés).
 ├── assets/icons/      Icônes SVG (un fichier par icône).
 ├── assets/src/        Sources front (éditées à la main).
 │   ├── css/
-│   │   ├── main.css   Entrée CSS : Tailwind, @source, imports.
+│   │   ├── main.css   Entrée CSS du site : Tailwind + imports.
+│   │   ├── editor.css Entrée CSS de l'éditeur Gutenberg (Tailwind sans reset).
+│   │   ├── sources.css Dossiers scannés par Tailwind (partagé site/éditeur).
 │   │   ├── tokens.css Relie les couleurs/polices de theme.json à Tailwind.
 │   │   ├── base.css   Styles de base + utilitaire `container`.
 │   │   └── components.css  Styles du HTML généré par WP (menus, pagination).
@@ -75,3 +80,4 @@ wordpress-starter/
 | Icônes SVG | [docs/icons.md](docs/icons.md) |
 | JavaScript | [docs/js.md](docs/js.md) |
 | Champs SCF, page « Infos du site » | [docs/scf.md](docs/scf.md) |
+| Blocs Gutenberg SCF | [docs/blocks.md](docs/blocks.md) |

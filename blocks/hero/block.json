@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "starter/hero",
+  "title": "Hero",
+  "description": "Grande bannière d'en-tête : titre, texte, bouton et image de fond.",
+  "category": "starter",
+  "icon": "cover-image",
+  "keywords": ["bannière", "en-tête", "header"],
+  "textdomain": "starter",
+  "supports": {
+    "align": ["full"],
+    "anchor": true,
+    "html": false
+  },
+  "attributes": {
+    "align": { "type": "string", "default": "full" }
+  },
+  "example": {},
+  "acf": {
+    "blockVersion": 3,
+    "mode": "preview",
+    "renderTemplate": "render.php"
+  }
+}

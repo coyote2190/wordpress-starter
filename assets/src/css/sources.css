@@ -1,0 +1,11 @@
+/*
+ * Fichiers lus par Tailwind pour trouver les classes utilisées.
+ * Partagé par main.css (site) et editor.css (éditeur Gutenberg).
+ *
+ * Ajouter une ligne pour chaque nouveau dossier contenant du HTML / des classes.
+ */
+@source '../../../*.php';
+@source '../../../inc';
+@source '../../../template-parts';
+@source '../../../blocks';
+@source '../js';

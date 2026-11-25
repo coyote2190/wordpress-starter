@@ -10,6 +10,11 @@
 }
 
 @layer base {
+  /* Empêche la barre de défilement horizontale due aux blocs pleine largeur (100vw). */
+  body {
+    overflow-x: clip;
+  }
+
   h1,
   h2,
   h3,

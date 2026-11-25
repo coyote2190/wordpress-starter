@@ -1,6 +1,15 @@
 {
+  "assets/src/css/editor.css": {
+    "file": "assets/editor-mgGrtfrv.css",
+    "name": "editor",
+    "names": [
+      "editor.css"
+    ],
+    "src": "assets/src/css/editor.css",
+    "isEntry": true
+  },
   "assets/src/css/main.css": {
-    "file": "assets/main-CZ8-_cts.css",
+    "file": "assets/main-DyDJe4kb.css",
     "name": "main",
     "names": [
       "main.css"

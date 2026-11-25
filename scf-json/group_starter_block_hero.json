@@ -1,0 +1,56 @@
+{
+  "key": "group_starter_block_hero",
+  "title": "Bloc : Hero",
+  "fields": [
+    {
+      "key": "field_starter_hero_title",
+      "label": "Titre",
+      "name": "title",
+      "type": "text",
+      "required": 1
+    },
+    {
+      "key": "field_starter_hero_text",
+      "label": "Texte",
+      "name": "text",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_starter_hero_button",
+      "label": "Bouton",
+      "name": "button",
+      "type": "link",
+      "return_format": "array"
+    },
+    {
+      "key": "field_starter_hero_image",
+      "label": "Image de fond",
+      "name": "image",
+      "type": "image",
+      "return_format": "id",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "starter/hero"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1795622400
+}
