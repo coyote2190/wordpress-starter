@@ -64,7 +64,7 @@ $wrapper = get_block_wrapper_attributes(
 
 		<?php if ( ! empty( $button['url'] ) ) : ?>
 			<a
-				class="inline-flex w-fit items-center gap-2 rounded-md bg-secondary px-6 py-3 font-semibold text-dark hover:bg-secondary/90"
+				class="inline-flex w-fit items-center gap-2 rounded-md bg-secondary px-6 py-3 font-semibold text-dark no-underline hover:bg-secondary/90"
 				href="<?php echo esc_url( $button['url'] ); ?>"
 				<?php echo '_blank' === ( $button['target'] ?? '' ) ? 'target="_blank" rel="noopener"' : ''; ?>
 			>

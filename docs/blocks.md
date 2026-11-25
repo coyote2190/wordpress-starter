@@ -49,6 +49,7 @@ Les points importants, tous présents dans `blocks/hero/render.php` :
 | Message si vide et `$is_preview` | Le rédacteur sait quoi faire au lieu de voir un cadre vide |
 | `get_block_wrapper_attributes()` | Ajoute ce que WordPress gère : classe `wp-block-starter-hero`, `alignfull`, ancre `id`, « Classes CSS additionnelles » |
 | Classe `not-prose` | Le bloc ignore la mise en forme du texte (`prose`) des pages |
+| `no-underline` sur les liens stylés (boutons, liens de carte) | L'éditeur souligne tous les liens par défaut : sans ça, l'aperçu diffère du site |
 | `wp_get_attachment_image( $id, … )` | Image responsive (`srcset`) avec `alt`. Le champ Image doit retourner un **ID**. |
 | Échappement (`esc_html`, `esc_url`) | Toujours |
 

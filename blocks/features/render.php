@@ -84,7 +84,7 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-16' ) )
 				<?php if ( ! empty( $link['url'] ) ) : ?>
 					<?php // after:absolute after:inset-0 : toute la carte est cliquable. ?>
 					<a
-						class="mt-4 inline-flex items-center gap-1 font-semibold text-dark after:absolute after:inset-0"
+						class="mt-4 inline-flex items-center gap-1 font-semibold text-dark no-underline after:absolute after:inset-0"
 						href="<?php echo esc_url( $link['url'] ); ?>"
 						<?php echo '_blank' === ( $link['target'] ?? '' ) ? 'target="_blank" rel="noopener"' : ''; ?>
 					>
