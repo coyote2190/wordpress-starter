@@ -90,6 +90,7 @@ Dans `render.php`, une seule ligne applique cette règle :
 | **Hero** | `blocks/hero/` | Bannière d'en-tête : titre, texte, bouton, image de fond |
 | **Hero slider** | `blocks/hero-slider/` | Bannière plein écran à plusieurs diapositives (une seule par page) |
 | **Cartes** | `blocks/features/` | Grille de cartes : services, avantages, valeurs… |
+| **Bento** | `blocks/bento/` | Mosaïque de tuiles de tailles variées : photos, aplats de couleur, chiffres clés |
 | **Formulaire de contact** | `blocks/contact-form/` | Place le formulaire (voir `docs/contact-form.md`) |
 
 ### Le bloc « Cartes » en détail
@@ -106,6 +107,23 @@ Dans `render.php`, une seule ligne applique cette règle :
 - Avec un lien, **toute la carte est cliquable** (`after:absolute after:inset-0` sur le lien) et se soulève au survol.
 
 **Ajouter un style de carte** : ajouter le choix dans le champ `style` (SCF), puis la ligne correspondante dans `$card_classes` de `render.php`.
+
+### Le bloc « Bento » en détail
+
+Grille de **4 colonnes** sur grand écran, 2 sur tablette, 1 sur mobile. Les tuiles se placent dans l'ordre et `grid-flow-dense` comble les trous.
+
+| Réglage de chaque tuile | Choix |
+|---|---|
+| Type | **Couleur** (aplat) · **Photo** (avec dégradé de la couleur choisie en bas, pour la lisibilité) |
+| Largeur | ¼ · ½ · ¾ · toute la ligne |
+| Hauteur | Normale · Double (à partir de la tablette) |
+| Couleur | Palette `theme.json` (champ `color`) : fond de la tuile ou teinte du dégradé |
+| Pastille, chiffre clé, titre, texte | Tous facultatifs (une tuile « chiffre » n'a souvent pas de titre) |
+| Lien | Bouton rond ↗ en haut à droite, **toute la tuile cliquable** |
+
+**Contraste automatique** : sur une tuile Couleur, le texte est foncé si la couleur est claire, blanc sinon. `starter_color_is_light()` (`inc/scf.php`) calcule la luminance de la couleur dans `theme.json` : si le client change sa palette, le texte reste lisible sans rien toucher.
+
+Exemple de composition (la démo) : `½ double` photo + `¼` chiffre + `¼` couleur, puis `½` photo sous les deux petites.
 
 ### Le bloc « Hero slider » en détail
 

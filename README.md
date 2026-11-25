@@ -53,6 +53,7 @@ wordpress-starter/
 │   ├── hero/          Bannière d'en-tête.
 │   ├── hero-slider/   Bannière plein écran à diapositives.
 │   ├── features/      Grille de cartes (icône, couleur, titre, texte, lien).
+│   ├── bento/         Mosaïque de tuiles (photo / couleur, tailles variées, chiffres clés).
 │   └── contact-form/  Place le formulaire de contact dans une page.
 ├── blocks-native/     Blocs Gutenberg natifs en React.
 │   ├── src/notice/    Sources du bloc « Encadré » (block.json, edit.js, render.php).

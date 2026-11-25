@@ -1,0 +1,206 @@
+{
+  "key": "group_starter_block_bento",
+  "title": "Bloc : Bento",
+  "fields": [
+    {
+      "key": "field_starter_bento_tab_section",
+      "label": "Section",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_bento_title",
+      "label": "Titre de la section",
+      "name": "title",
+      "type": "text",
+      "instructions": "Facultatif."
+    },
+    {
+      "key": "field_starter_bento_intro",
+      "label": "Introduction",
+      "name": "intro",
+      "type": "textarea",
+      "rows": 2,
+      "new_lines": "",
+      "instructions": "Facultatif."
+    },
+    {
+      "key": "field_starter_bento_tab_tiles",
+      "label": "Tuiles",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_bento_tiles",
+      "label": "Tuiles",
+      "name": "tiles",
+      "type": "repeater",
+      "layout": "block",
+      "min": 1,
+      "max": 10,
+      "collapsed": "field_starter_bento_tile_title",
+      "button_label": "Ajouter une tuile",
+      "instructions": "Grille de 4 colonnes sur grand écran. Les tuiles se placent dans l'ordre et les trous sont comblés automatiquement.",
+      "sub_fields": [
+        {
+          "key": "field_starter_bento_tile_type",
+          "label": "Type",
+          "name": "type",
+          "type": "button_group",
+          "choices": {
+            "color": "Couleur",
+            "image": "Photo"
+          },
+          "default_value": "color",
+          "return_format": "value",
+          "layout": "horizontal",
+          "wrapper": {
+            "width": "34"
+          },
+          "parent_repeater": "field_starter_bento_tiles"
+        },
+        {
+          "key": "field_starter_bento_tile_width",
+          "label": "Largeur",
+          "name": "width",
+          "type": "button_group",
+          "choices": {
+            "1": "¼",
+            "2": "½",
+            "3": "¾",
+            "4": "Toute la ligne"
+          },
+          "default_value": "1",
+          "return_format": "value",
+          "layout": "horizontal",
+          "wrapper": {
+            "width": "33"
+          },
+          "parent_repeater": "field_starter_bento_tiles"
+        },
+        {
+          "key": "field_starter_bento_tile_height",
+          "label": "Hauteur",
+          "name": "height",
+          "type": "button_group",
+          "choices": {
+            "normal": "Normale",
+            "tall": "Double"
+          },
+          "default_value": "normal",
+          "return_format": "value",
+          "layout": "horizontal",
+          "wrapper": {
+            "width": "33"
+          },
+          "parent_repeater": "field_starter_bento_tiles"
+        },
+        {
+          "key": "field_starter_bento_tile_image",
+          "label": "Photo",
+          "name": "image",
+          "type": "image",
+          "required": 1,
+          "return_format": "id",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "jpg,jpeg,png,webp,avif",
+          "conditional_logic": [
+            [
+              {
+                "field": "field_starter_bento_tile_type",
+                "operator": "==",
+                "value": "image"
+              }
+            ]
+          ],
+          "wrapper": {
+            "width": "50"
+          },
+          "parent_repeater": "field_starter_bento_tiles"
+        },
+        {
+          "key": "field_starter_bento_tile_color",
+          "label": "Couleur",
+          "name": "color",
+          "type": "select",
+          "choices": {},
+          "default_value": "primary",
+          "return_format": "value",
+          "instructions": "Fond de la tuile, ou teinte du dégradé sur la photo.",
+          "wrapper": {
+            "width": "50"
+          },
+          "parent_repeater": "field_starter_bento_tiles"
+        },
+        {
+          "key": "field_starter_bento_tile_badge",
+          "label": "Pastille",
+          "name": "badge",
+          "type": "text",
+          "instructions": "Petit libellé arrondi, ex. « Service ».",
+          "wrapper": {
+            "width": "50"
+          },
+          "parent_repeater": "field_starter_bento_tiles"
+        },
+        {
+          "key": "field_starter_bento_tile_number",
+          "label": "Chiffre clé",
+          "name": "number",
+          "type": "text",
+          "instructions": "Affiché en grand en haut, ex. « 120 + ».",
+          "wrapper": {
+            "width": "50"
+          },
+          "parent_repeater": "field_starter_bento_tiles"
+        },
+        {
+          "key": "field_starter_bento_tile_title",
+          "label": "Titre",
+          "name": "title",
+          "type": "text",
+          "parent_repeater": "field_starter_bento_tiles"
+        },
+        {
+          "key": "field_starter_bento_tile_text",
+          "label": "Texte",
+          "name": "text",
+          "type": "textarea",
+          "rows": 2,
+          "new_lines": "",
+          "parent_repeater": "field_starter_bento_tiles"
+        },
+        {
+          "key": "field_starter_bento_tile_link",
+          "label": "Lien",
+          "name": "link",
+          "type": "link",
+          "return_format": "array",
+          "instructions": "Facultatif. Ajoute le bouton ↗ et rend toute la tuile cliquable.",
+          "parent_repeater": "field_starter_bento_tiles"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "starter/bento"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1795622400
+}

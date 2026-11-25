@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "starter/bento",
+  "title": "Bento",
+  "description": "Grille de tuiles de tailles variées : photos, aplats de couleur, chiffres clés, liens.",
+  "category": "starter",
+  "icon": "screenoptions",
+  "keywords": ["bento", "grille", "mosaïque", "services", "tuiles"],
+  "textdomain": "starter",
+  "supports": {
+    "align": ["wide", "full"],
+    "anchor": true,
+    "html": false
+  },
+  "attributes": {
+    "align": { "type": "string", "default": "wide" }
+  },
+  "example": {},
+  "acf": {
+    "blockVersion": 3,
+    "mode": "preview",
+    "renderTemplate": "render.php"
+  }
+}
