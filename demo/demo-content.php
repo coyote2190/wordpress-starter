@@ -165,13 +165,18 @@ function starter_demo_image( string $title, string $from, string $to ): int {
  * @param array<string, mixed> $args Arguments de wp_insert_post().
  */
 function starter_demo_post( array $args, int $thumbnail = 0 ): int {
+	// wp_insert_post() retire les antislashs (il attend des données « slashées »
+	// comme celles d'un formulaire). Sans wp_slash(), le JSON des blocs perd ses
+	// échappements : \u003cstrong\u003e deviendrait « u003cstrongu003e ».
 	$id = wp_insert_post(
-		array_merge(
-			array(
-				'post_status' => 'publish',
-				'post_author' => 1,
-			),
-			$args
+		wp_slash(
+			array_merge(
+				array(
+					'post_status' => 'publish',
+					'post_author' => 1,
+				),
+				$args
+			)
 		),
 		true
 	);

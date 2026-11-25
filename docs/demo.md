@@ -44,6 +44,7 @@ Relancer la création supprime d'abord l'ancienne démo : pas de doublons.
 - Les termes, menus et **valeurs d'origine des réglages** sont mémorisés dans l'option `starter_demo_state`.
 - `reset` supprime ce qui est marqué, puis restaure les réglages depuis `starter_demo_state`.
 - Le contenu est écrit en **balisage de blocs** (`<!-- wp:paragraph -->…`), exactement comme l'enregistre l'éditeur. Les fonctions `starter_demo_p()`, `starter_demo_h()`, `starter_demo_hero()`, `starter_demo_features()`… servent d'exemples pour générer du contenu de blocs en PHP.
+- `wp_insert_post()` attend des données **slashées** (il retire les antislashs) : le script passe tout par `wp_slash()`, sinon le JSON des blocs (`\u003cstrong\u003e`) est cassé. Piège à retenir pour tout import de contenu en PHP.
 - Dans un bloc SCF, un **répéteur** est stocké « à plat » : `items` = nombre de lignes, `items_0_title` = valeur, `_items_0_title` = clé du champ (voir `starter_demo_features()`).
 - Le fichier refuse de s'exécuter hors WP-CLI : il n'est jamais accessible depuis le navigateur.
 
