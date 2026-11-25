@@ -50,7 +50,7 @@ wordpress-starter/
 │   └── contact-form/  Place le formulaire de contact dans une page.
 ├── mu-plugin/         MU-plugin « Starter Core » (données indépendantes du thème) → à copier dans wp-content/mu-plugins/.
 │   ├── starter-core.php     Chargeur.
-│   └── starter-core/        CPT et taxonomies, commentaires désactivés, traitement du formulaire.
+│   └── starter-core/        CPT et taxonomies, commentaires désactivés, formulaire, sécurité.
 ├── scf-json/          Groupes de champs SCF en JSON (écrits par SCF, versionnés).
 ├── assets/icons/      Icônes SVG (un fichier par icône).
 ├── assets/src/        Sources front (éditées à la main).
@@ -88,3 +88,4 @@ wordpress-starter/
 | Blocs Gutenberg SCF | [docs/blocks.md](docs/blocks.md) |
 | MU-plugin (CPT, commentaires) | [docs/mu-plugin.md](docs/mu-plugin.md) |
 | Formulaire de contact + FluentSMTP | [docs/contact-form.md](docs/contact-form.md) |
+| Sécurité (+ wp-config, .htaccess) | [docs/security.md](docs/security.md) |

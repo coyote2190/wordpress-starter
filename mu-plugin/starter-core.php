@@ -20,6 +20,7 @@ $starter_core_files = array(
 	'post-types',   // Types de contenu et taxonomies.
 	'comments',     // Désactive complètement les commentaires.
 	'contact-form', // Traitement du formulaire de contact.
+	'security',     // XML-RPC, en-têtes HTTP, énumération des utilisateurs.
 );
 
 foreach ( $starter_core_files as $starter_core_file ) {

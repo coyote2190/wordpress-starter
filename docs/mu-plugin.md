@@ -23,7 +23,8 @@ mu-plugin/
 └── starter-core/
     ├── post-types.php          CPT « Réalisations » + taxonomie « Catégories de réalisation »
     ├── comments.php            Désactive les commentaires partout (front + admin)
-    └── contact-form.php        Traitement du formulaire de contact (docs/contact-form.md)
+    ├── contact-form.php        Traitement du formulaire de contact (docs/contact-form.md)
+    └── security.php            XML-RPC, en-têtes HTTP, énumération des utilisateurs (docs/security.md)
 ```
 
 WordPress ne charge que les fichiers `.php` **à la racine** de `mu-plugins/`. D'où le chargeur `starter-core.php`, qui inclut les fichiers du sous-dossier.
