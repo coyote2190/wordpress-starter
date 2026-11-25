@@ -441,6 +441,40 @@ function starter_demo_cta( array $args, array $people = array() ): string {
 	);
 }
 
+/**
+ * Bloc SCF Pourquoi nous (intro + cartes défilantes).
+ *
+ * @param array<string, mixed>             $args  title, text, action, button.
+ * @param array<int, array<string, mixed>> $cards badge, color, title, text, icon, link.
+ */
+function starter_demo_why( array $args, array $cards ): string {
+	$k    = 'field_starter_why_';
+	$data = array();
+	foreach ( $args as $name => $value ) {
+		$data[ $name ]       = is_array( $value ) ? $value + array( 'target' => '' ) : $value;
+		$data[ '_' . $name ] = $k . $name;
+	}
+	$data['cards']  = count( $cards );
+	$data['_cards'] = $k . 'cards';
+	foreach ( $cards as $i => $card ) {
+		$card += array( 'badge' => '', 'color' => 'primary', 'title' => '', 'text' => '', 'icon' => '', 'image' => '', 'link' => '' );
+		foreach ( $card as $sub => $value ) {
+			$data[ "cards_{$i}_{$sub}" ]  = is_array( $value ) ? $value + array( 'target' => '' ) : $value;
+			$data[ "_cards_{$i}_{$sub}" ] = $k . 'card_' . $sub;
+		}
+	}
+
+	return starter_demo_block(
+		'starter/why',
+		array(
+			'name'  => 'starter/why',
+			'mode'  => 'preview',
+			'align' => 'full',
+			'data'  => $data,
+		)
+	);
+}
+
 function starter_demo_notice( string $type, string $content ): string {
 	return starter_demo_block(
 		'starter/notice',
@@ -657,16 +691,19 @@ function starter_demo_create(): void {
 			)
 		)
 		. starter_demo_notice( 'info', 'Premier rendez-vous <strong>offert</strong> : on fait le point sur votre projet en 30 minutes.' )
-		. starter_demo_features(
-			'Pourquoi nous choisir ?',
-			'',
-			'4',
-			'accent',
+		. starter_demo_why(
 			array(
-				array( 'icon' => 'rocket', 'color' => 'primary', 'title' => 'Rapides', 'text' => 'Des sites légers, bien notés par Google.' ),
-				array( 'icon' => 'settings', 'color' => 'secondary', 'title' => 'Faciles à gérer', 'text' => 'Une administration pensée pour vous.' ),
-				array( 'icon' => 'shield', 'color' => 'primary', 'title' => 'Sécurisés', 'text' => 'Mises à jour et sauvegardes suivies.' ),
-				array( 'icon' => 'users', 'color' => 'secondary', 'title' => 'Un seul contact', 'text' => 'Du devis au suivi, la même personne.' ),
+				'title'  => "Rapides.\nSimples.\n**Sereins.**",
+				'text'   => 'Pourquoi nous choisir ? Parce qu\'un bon site se mesure à ce qu\'il vous fait gagner : du temps, des clients et de la tranquillité.',
+				'action' => 'button',
+				'button' => array( 'title' => 'Demander un devis', 'url' => '/contact/' ),
+			),
+			array(
+				array( 'badge' => 'Performance', 'color' => 'primary', 'icon' => 'rocket', 'title' => 'Des sites rapides', 'text' => 'Des pages légères, bien notées par Google et agréables sur mobile.' ),
+				array( 'badge' => 'Autonomie', 'color' => 'secondary', 'icon' => 'settings', 'title' => 'Faciles à gérer', 'text' => 'Vous modifiez vos textes et photos vous-même, sans risque de tout casser.' ),
+				array( 'badge' => 'Sérénité', 'color' => 'dark', 'icon' => 'shield', 'title' => 'Sécurisés et suivis', 'text' => 'Mises à jour, sauvegardes et surveillance : on s\'en occupe.' ),
+				array( 'badge' => 'Proximité', 'color' => 'primary', 'icon' => 'users', 'title' => 'Un seul contact', 'text' => 'Du devis au suivi, la même personne, joignable par téléphone.', 'link' => array( 'title' => 'Découvrir l\'équipe', 'url' => '/a-propos/' ) ),
+				array( 'badge' => 'Résultats', 'color' => 'secondary', 'icon' => 'chart', 'title' => 'Des clients en plus', 'text' => 'Un site pensé pour transformer les visiteurs en demandes de contact.', 'link' => array( 'title' => 'Voir nos réalisations', 'url' => '/realisations/' ) ),
 			)
 		)
 		. starter_demo_cta(
