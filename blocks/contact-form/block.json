@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "starter/contact-form",
+  "title": "Formulaire de contact",
+  "description": "Formulaire de contact du site. Les messages arrivent à l'e-mail défini dans « Infos du site ».",
+  "category": "starter",
+  "icon": "email",
+  "keywords": ["contact", "formulaire", "mail"],
+  "textdomain": "starter",
+  "supports": {
+    "align": ["wide"],
+    "anchor": true,
+    "html": false,
+    "multiple": false
+  },
+  "acf": {
+    "blockVersion": 3,
+    "mode": "preview",
+    "renderTemplate": "render.php"
+  }
+}

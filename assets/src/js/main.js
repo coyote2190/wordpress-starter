@@ -16,6 +16,7 @@
 
 const modules = {
   nav: () => import('./modules/nav.js'),
+  'contact-form': () => import('./modules/contact-form.js'),
 };
 
 for (const el of document.querySelectorAll('[data-module]')) {

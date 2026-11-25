@@ -1,6 +1,6 @@
 {
   "assets/src/css/editor.css": {
-    "file": "assets/editor-mgGrtfrv.css",
+    "file": "assets/editor-B3dvkDSp.css",
     "name": "editor",
     "names": [
       "editor.css"
@@ -9,7 +9,7 @@
     "isEntry": true
   },
   "assets/src/css/main.css": {
-    "file": "assets/main-DyDJe4kb.css",
+    "file": "assets/main-BU_beMp9.css",
     "name": "main",
     "names": [
       "main.css"
@@ -18,13 +18,20 @@
     "isEntry": true
   },
   "assets/src/js/main.js": {
-    "file": "assets/main-BkTrB_0i.js",
+    "file": "assets/main-DZsLvW0E.js",
     "name": "main",
     "src": "assets/src/js/main.js",
     "isEntry": true,
     "dynamicImports": [
-      "assets/src/js/modules/nav.js"
+      "assets/src/js/modules/nav.js",
+      "assets/src/js/modules/contact-form.js"
     ]
+  },
+  "assets/src/js/modules/contact-form.js": {
+    "file": "assets/contact-form-BrixM5vg.js",
+    "name": "contact-form",
+    "src": "assets/src/js/modules/contact-form.js",
+    "isDynamicEntry": true
   },
   "assets/src/js/modules/nav.js": {
     "file": "assets/nav-DGTrIjgs.js",

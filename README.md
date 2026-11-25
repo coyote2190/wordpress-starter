@@ -34,7 +34,7 @@ wordpress-starter/
 ├── search.php         Résultats de recherche.
 ├── 404.php            Page introuvable.
 ├── searchform.php     Formulaire de recherche.
-├── template-parts/    Morceaux de HTML réutilisés (boucle, carte, liste vide, coordonnées).
+├── template-parts/    Morceaux de HTML réutilisés (boucle, carte, coordonnées, formulaire de contact).
 ├── theme.json         Couleurs, polices, largeurs (source unique pour le site et l'éditeur).
 ├── screenshot.png     Aperçu dans Apparence > Thèmes (1200×900).
 ├── inc/               Logique PHP, un fichier par sujet.
@@ -46,10 +46,11 @@ wordpress-starter/
 │   ├── scf.php        SCF : JSON, page « Infos du site », starter_field() / starter_option().
 │   └── blocks.php     Enregistre les blocs de blocks/, catégorie « Starter », CSS de l'éditeur.
 ├── blocks/            Blocs Gutenberg (un dossier par bloc : block.json + render.php).
-│   └── hero/          Bannière d'en-tête.
+│   ├── hero/          Bannière d'en-tête.
+│   └── contact-form/  Place le formulaire de contact dans une page.
 ├── mu-plugin/         MU-plugin « Starter Core » (données indépendantes du thème) → à copier dans wp-content/mu-plugins/.
 │   ├── starter-core.php     Chargeur.
-│   └── starter-core/        CPT et taxonomies, désactivation des commentaires.
+│   └── starter-core/        CPT et taxonomies, commentaires désactivés, traitement du formulaire.
 ├── scf-json/          Groupes de champs SCF en JSON (écrits par SCF, versionnés).
 ├── assets/icons/      Icônes SVG (un fichier par icône).
 ├── assets/src/        Sources front (éditées à la main).
@@ -62,7 +63,7 @@ wordpress-starter/
 │   │   └── components.css  Styles du HTML généré par WP (menus, pagination).
 │   └── js/
 │       ├── main.js    Entrée JS : charge les modules présents dans la page.
-│       └── modules/   Un fichier par fonctionnalité (nav.js = menu mobile).
+│       └── modules/   Un fichier par fonctionnalité (menu mobile, formulaire de contact).
 ├── dist/              Fichiers compilés par `npm run build` (commités, à déployer).
 ├── docs/              Documentation (un fichier par sujet).
 ├── package.json       Outils front et commandes npm.
@@ -86,3 +87,4 @@ wordpress-starter/
 | Champs SCF, page « Infos du site » | [docs/scf.md](docs/scf.md) |
 | Blocs Gutenberg SCF | [docs/blocks.md](docs/blocks.md) |
 | MU-plugin (CPT, commentaires) | [docs/mu-plugin.md](docs/mu-plugin.md) |
+| Formulaire de contact + FluentSMTP | [docs/contact-form.md](docs/contact-form.md) |
