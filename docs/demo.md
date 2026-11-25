@@ -16,13 +16,13 @@ wp eval-file wp-content/themes/wordpress-starter/demo/demo-content.php reset
 
 > **Avec Local**, WP-CLI s'utilise depuis **clic droit sur le site > Open site shell** (la base de données y est déjà configurée).
 
-Relancer la création supprime d'abord l'ancienne démo : pas de doublons.
+Relancer la création remplace l'ancienne démo, sans doublons. Les **pages sont mises à jour sur place** (même ID, même URL) : un éditeur ouvert sur une page de démo reste valide. Articles, réalisations, images et menus sont recréés.
 
 ## Ce qui est créé
 
 | Quoi | Détail |
 |---|---|
-| **Pages** | Accueil (Hero, 2 blocs Cartes, encadré, bouton), À propos (Hero, Cartes style « fond clair », encadré), Contact (Hero + formulaire), Actualités (page des articles), Mentions légales, Politique de confidentialité |
+| **Pages** | Accueil (Hero slider 3 diapositives, 2 blocs Cartes, encadré, bouton), À propos (Hero, Cartes style « fond clair », encadré), Contact (Hero + formulaire), Actualités (page des articles), Mentions légales, Politique de confidentialité |
 | **Articles** | 5 articles en 2 catégories, avec image, extrait, titres, liste et encadré |
 | **Réalisations** | 6 réalisations (CPT du mu-plugin) en 3 catégories |
 | **Images** | Générées à la volée (dégradés aux couleurs de `theme.json` + titre), ajoutées à la médiathèque |

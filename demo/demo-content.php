@@ -34,15 +34,20 @@ const STARTER_DEMO_STATE = 'starter_demo_state';
  */
 
 /**
- * Supprime toute la démo et restaure les réglages d'origine.
+ * Supprime la démo et restaure les réglages d'origine.
+ *
+ * @param bool $keep_pages true = garde les pages (elles seront mises à jour par
+ *                         starter_demo_create() : leurs ID et URL ne changent pas,
+ *                         un éditeur ouvert sur une page de démo ne casse pas).
  */
-function starter_demo_reset(): void {
+function starter_demo_reset( bool $keep_pages = false ): void {
 	$state = get_option( STARTER_DEMO_STATE, array() );
 
 	// Contenus et médias marqués.
-	$ids = get_posts(
+	$types = array_diff( get_post_types(), $keep_pages ? array( 'attachment', 'page' ) : array( 'attachment' ) );
+	$ids   = get_posts(
 		array(
-			'post_type'      => array_values( array_diff( get_post_types(), array( 'attachment' ) ) ),
+			'post_type'      => array_values( $types ),
 			'post_status'    => 'any',
 			'posts_per_page' => -1,
 			'fields'         => 'ids',
@@ -110,7 +115,7 @@ function starter_demo_mark( int $id ): int {
  *
  * @return int ID de l'image, 0 en cas d'échec.
  */
-function starter_demo_image( string $title, string $from, string $to ): int {
+function starter_demo_image( string $title, string $from, string $to, bool $with_text = true ): int {
 	if ( ! function_exists( 'imagecreatetruecolor' ) ) {
 		return 0;
 	}
@@ -131,7 +136,7 @@ function starter_demo_image( string $title, string $from, string $to ): int {
 	// Titre centré si une police système est disponible (macOS / Linux).
 	$fonts = array( '/System/Library/Fonts/Supplemental/Arial Bold.ttf', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf' );
 	$font  = current( array_filter( $fonts, 'is_file' ) );
-	if ( $font && function_exists( 'imagettftext' ) ) {
+	if ( $with_text && $font && function_exists( 'imagettftext' ) ) {
 		$white = imagecolorallocatealpha( $img, 255, 255, 255, 30 );
 		$box   = imagettfbbox( 64, 0, $font, $title );
 		imagettftext( $img, 64, 0, (int) ( ( $w - ( $box[2] - $box[0] ) ) / 2 ), (int) ( $h / 2 + 32 ), $white, $font, $title );
@@ -313,6 +318,47 @@ function starter_demo_features( string $title, string $intro, string $columns, s
 	);
 }
 
+/**
+ * Bloc SCF Hero slider (répéteur « slides » stocké à plat, comme pour les Cartes).
+ *
+ * @param array<int, array{image: int, title: string, title_highlight?: string, text?: string, button_primary?: array, button_secondary?: array}> $slides
+ */
+function starter_demo_hero_slider( array $slides ): string {
+	$k    = 'field_starter_slider_';
+	$data = array(
+		'slides'         => count( $slides ),
+		'_slides'        => $k . 'slides',
+		'height'         => 'screen',
+		'_height'        => $k . 'height',
+		'content_align'  => 'left',
+		'_content_align' => $k . 'content_align',
+		'overlay'        => 'medium',
+		'_overlay'       => $k . 'overlay',
+		'autoplay'       => 6,
+		'_autoplay'      => $k . 'autoplay',
+	);
+	foreach ( $slides as $i => $slide ) {
+		foreach ( array( 'image', 'title', 'title_highlight', 'text', 'button_primary', 'button_secondary' ) as $sub ) {
+			$value = $slide[ $sub ] ?? '';
+			if ( is_array( $value ) ) {
+				$value += array( 'target' => '' );
+			}
+			$data[ "slides_{$i}_{$sub}" ]  = $value;
+			$data[ "_slides_{$i}_{$sub}" ] = $k . 'slide_' . $sub;
+		}
+	}
+
+	return starter_demo_block(
+		'starter/hero-slider',
+		array(
+			'name'  => 'starter/hero-slider',
+			'mode'  => 'preview',
+			'align' => 'full',
+			'data'  => $data,
+		)
+	);
+}
+
 function starter_demo_notice( string $type, string $content ): string {
 	return starter_demo_block(
 		'starter/notice',
@@ -356,7 +402,9 @@ function starter_demo_create(): void {
 	// --- Images -----------------------------------------------------------
 	WP_CLI::log( 'Images…' );
 	$img = array(
-		'hero'    => starter_demo_image( 'Studio Horizon', $dark, $primary ),
+		'slide1'  => starter_demo_image( 'Diapositive 1', $dark, $primary, false ),
+		'slide2'  => starter_demo_image( 'Diapositive 2', $primary, $secondary, false ),
+		'slide3'  => starter_demo_image( 'Diapositive 3', $secondary, $dark, false ),
 		'about'   => starter_demo_image( 'Notre équipe', $primary, $dark ),
 		'contact' => starter_demo_image( 'Parlons de votre projet', $primary, $secondary ),
 	);
@@ -456,22 +504,59 @@ function starter_demo_create(): void {
 
 	// --- Pages ------------------------------------------------------------
 	WP_CLI::log( 'Pages…' );
-	$page = static fn( string $title, string $content, string $slug = '' ): int => starter_demo_post(
-		array(
-			'post_type'    => 'page',
-			'post_title'   => $title,
-			'post_name'    => $slug ?: sanitize_title( $title ),
-			'post_content' => $content,
-		)
-	);
+	// Page existante (démo précédente, même slug) → mise à jour : même ID, même URL.
+	$page = static function ( string $title, string $content, string $slug = '' ): int {
+		$slug     = $slug ?: sanitize_title( $title );
+		$existing = get_posts(
+			array(
+				'post_type'      => 'page',
+				'name'           => $slug,
+				'post_status'    => 'any',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+				'meta_key'       => STARTER_DEMO_META, // phpcs:ignore WordPress.DB.SlowDBQuery
+			)
+		);
+
+		return starter_demo_post(
+			array(
+				'ID'           => $existing[0] ?? 0,
+				'post_type'    => 'page',
+				'post_title'   => $title,
+				'post_name'    => $slug,
+				'post_content' => $content,
+			)
+		);
+	};
 
 	$home = $page(
 		'Accueil',
-		starter_demo_hero(
-			'Des sites web qui travaillent pour vous',
-			'Studio Horizon conçoit des sites rapides, accessibles et faciles à mettre à jour pour les entreprises de la région.',
-			array( 'title' => 'Démarrer un projet', 'url' => '/contact/' ),
-			$img['hero']
+		starter_demo_hero_slider(
+			array(
+				array(
+					'image'            => $img['slide1'],
+					'title'            => 'Des sites web',
+					'title_highlight'  => 'qui travaillent pour vous',
+					'text'             => 'Studio Horizon conçoit des sites rapides, accessibles et faciles à mettre à jour pour les entreprises de la région.',
+					'button_primary'   => array( 'title' => 'Démarrer un projet', 'url' => '/contact/' ),
+					'button_secondary' => array( 'title' => 'Nos réalisations', 'url' => '/realisations/' ),
+				),
+				array(
+					'image'            => $img['slide2'],
+					'title'            => 'Vendez en ligne',
+					'title_highlight'  => 'simplement',
+					'text'             => 'Une boutique facile à gérer, avec paiement sécurisé et livraison intégrée.',
+					'button_primary'   => array( 'title' => 'Voir nos boutiques', 'url' => '/realisations/categorie/e-commerce/' ),
+				),
+				array(
+					'image'            => $img['slide3'],
+					'title'            => 'Une identité',
+					'title_highlight'  => 'qui vous ressemble',
+					'text'             => 'Logo, couleurs, typographies : une image cohérente sur tous vos supports.',
+					'button_primary'   => array( 'title' => 'Parlons-en', 'url' => '/contact/' ),
+					'button_secondary' => array( 'title' => 'À propos', 'url' => '/a-propos/' ),
+				),
+			)
 		)
 		. starter_demo_features(
 			'Ce que nous faisons',
@@ -615,14 +700,15 @@ function starter_demo_create(): void {
  * ---------------------------------------------------------------------------
  */
 
-// Toujours repartir de zéro : supprime l'éventuelle démo précédente.
-if ( get_option( STARTER_DEMO_STATE ) ) {
-	starter_demo_reset();
-}
-
 if ( in_array( 'reset', $args ?? array(), true ) ) {
+	starter_demo_reset();
 	WP_CLI::success( 'Démo supprimée, réglages restaurés.' );
 	return;
+}
+
+// Démo déjà présente : on supprime tout SAUF les pages, qui seront mises à jour.
+if ( get_option( STARTER_DEMO_STATE ) ) {
+	starter_demo_reset( true );
 }
 
 starter_demo_create();
