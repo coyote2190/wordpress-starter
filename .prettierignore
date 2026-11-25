@@ -1,5 +1,0 @@
-assets/dist/
-node_modules/
-vendor/blocks/build/
-# Balisage de blocs Gutenberg : le reformater casse la validation des blocs
-patterns/
