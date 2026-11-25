@@ -1,0 +1,69 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": false,
+    "color": {
+      "custom": false,
+      "customGradient": false,
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "defaultDuotone": false,
+      "duotone": [],
+      "gradients": [],
+      "palette": [
+        { "slug": "primary", "name": "Principale", "color": "#0f4c81" },
+        { "slug": "secondary", "name": "Secondaire", "color": "#f2a541" },
+        { "slug": "dark", "name": "Foncé", "color": "#111827" },
+        { "slug": "light", "name": "Clair", "color": "#f3f4f6" },
+        { "slug": "white", "name": "Blanc", "color": "#ffffff" }
+      ]
+    },
+    "typography": {
+      "customFontSize": false,
+      "defaultFontSizes": false,
+      "dropCap": false,
+      "fontFamilies": [
+        {
+          "slug": "sans",
+          "name": "Sans",
+          "fontFamily": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        },
+        {
+          "slug": "heading",
+          "name": "Titres",
+          "fontFamily": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        }
+      ],
+      "fontSizes": [
+        { "slug": "small", "name": "Petit", "size": "0.875rem" },
+        { "slug": "base", "name": "Normal", "size": "1rem" },
+        { "slug": "large", "name": "Grand", "size": "1.25rem" },
+        { "slug": "x-large", "name": "Très grand", "size": "1.875rem" }
+      ]
+    },
+    "spacing": {
+      "defaultSpacingSizes": false,
+      "customSpacingSize": false,
+      "spacingSizes": [],
+      "units": ["px", "rem", "%"]
+    },
+    "shadow": {
+      "defaultPresets": false
+    },
+    "layout": {
+      "contentSize": "48rem",
+      "wideSize": "80rem"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--white)",
+      "text": "var(--wp--preset--color--dark)"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--sans)",
+      "lineHeight": "1.6"
+    }
+  }
+}

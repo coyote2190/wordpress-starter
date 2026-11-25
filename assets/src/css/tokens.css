@@ -1,0 +1,29 @@
+/*
+ * Design tokens : relie Tailwind aux réglages de theme.json.
+ *
+ * theme.json est la SEULE source de vérité. WordPress génère à partir de lui
+ * des variables CSS (--wp--preset--color--primary…) dans le front ET dans
+ * l'éditeur. On les réutilise ici pour créer les classes Tailwind
+ * (bg-primary, text-dark, font-heading…).
+ *
+ * Pour ajouter une couleur : l'ajouter dans theme.json, puis une ligne ici.
+ *
+ * `inline` : les classes utilisent directement var(--wp--preset--…), sans
+ * variable intermédiaire.
+ */
+@theme inline {
+  /* Couleurs */
+  --color-primary: var(--wp--preset--color--primary);
+  --color-secondary: var(--wp--preset--color--secondary);
+  --color-dark: var(--wp--preset--color--dark);
+  --color-light: var(--wp--preset--color--light);
+  --color-white: var(--wp--preset--color--white);
+
+  /* Polices */
+  --font-sans: var(--wp--preset--font-family--sans);
+  --font-heading: var(--wp--preset--font-family--heading);
+
+  /* Largeurs (theme.json > settings.layout) */
+  --container-content: var(--wp--style--global--content-size);
+  --container-wide: var(--wp--style--global--wide-size);
+}

@@ -10,3 +10,9 @@
 @source '../../../*.php';
 @source '../../../inc';
 @source '../js';
+
+/* Mise en forme du contenu Gutenberg (classe `prose`). Voir docs/design-tokens.md. */
+@plugin '@tailwindcss/typography';
+
+@import './tokens.css';
+@import './base.css';

@@ -24,6 +24,7 @@ wordpress-starter/
 ├── style.css          En-tête du thème (lu par WordPress). Aucun style dedans.
 ├── functions.php      Point d'entrée : charge les fichiers de inc/.
 ├── index.php          Gabarit de secours (utilisé si aucun autre ne correspond).
+├── theme.json         Couleurs, polices, largeurs (source unique pour le site et l'éditeur).
 ├── screenshot.png     Aperçu dans Apparence > Thèmes (1200×900).
 ├── inc/               Logique PHP, un fichier par sujet.
 │   ├── setup.php      Fonctionnalités WordPress activées, menus.
@@ -31,7 +32,10 @@ wordpress-starter/
 │   ├── vite.php       Pont Vite ↔ WordPress : charge les fichiers en dev ou depuis dist/.
 │   └── assets.php     Liste des CSS/JS chargés sur le site.
 ├── assets/src/        Sources front (éditées à la main).
-│   ├── css/main.css   Entrée CSS : Tailwind + nos styles.
+│   ├── css/
+│   │   ├── main.css   Entrée CSS : Tailwind, @source, imports.
+│   │   ├── tokens.css Relie les couleurs/polices de theme.json à Tailwind.
+│   │   └── base.css   Styles de base + utilitaire `container`.
 │   └── js/main.js     Entrée JS (module ES).
 ├── dist/              Fichiers compilés par `npm run build` (commités, à déployer).
 ├── docs/              Documentation (un fichier par sujet).
@@ -49,3 +53,4 @@ wordpress-starter/
 | Architecture générale | [docs/architecture.md](docs/architecture.md) |
 | Nettoyage de WordPress | [docs/cleanup.md](docs/cleanup.md) |
 | Build (Vite, Tailwind) | [docs/build.md](docs/build.md) |
+| Couleurs, polices, largeurs | [docs/design-tokens.md](docs/design-tokens.md) |
