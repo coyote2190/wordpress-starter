@@ -84,7 +84,8 @@ wordpress-starter/
 ├── package.json       Outils front et commandes npm.
 ├── vite.config.js     Configuration du build.
 ├── .prettierrc        Règles de formatage (JS/CSS/MD).
-├── bin/sort-classes.mjs  Trie les classes Tailwind de A à Z, PHP et JS (lancé par npm run format).
+├── bin/sort-classes.mjs  Trie les classes Tailwind de A à Z, PHP et JS (npm run format, et à l'enregistrement).
+├── .vscode/           Réglages VS Code partagés : tri à l'enregistrement, Prettier, extensions recommandées.
 ├── .editorconfig      Indentation commune à tous les éditeurs.
 └── .gitignore         Fichiers exclus de Git.
 ```

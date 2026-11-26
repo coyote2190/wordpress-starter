@@ -88,7 +88,13 @@ Exemple : un JS chargé seulement sur la page contact.
 
 Choix du projet : les classes sont rangées **de A à Z** (`bg-white border flex gap-3 items-center px-4 rounded-full`), plus simple à lire et à retrouver que l'ordre « officiel » de Tailwind. L'ordre des classes ne change **jamais** le rendu : c'est Tailwind qui décide de l'ordre des règles dans le CSS.
 
-Outil : `bin/sort-classes.mjs`, lancé par `npm run format` (et `npm run format:check` pour vérifier sans modifier).
+Outil : `bin/sort-classes.mjs`, lancé :
+- **à chaque enregistrement dans VS Code** (fichiers PHP et JS) : extension **Run on Save** (`emeraldwalk.RunOnSave`), configurée dans `.vscode/settings.json`. VS Code la propose à l'ouverture du projet (`.vscode/extensions.json`) ;
+- par `npm run format` pour tout le thème (et `npm run format:check` pour vérifier sans modifier).
+
+> VS Code ouvert sur le dossier WordPress (`app/public`) et non sur le thème : copier la config dans `app/public/.vscode/settings.json` avec les chemins depuis la racine (`${workspaceFolder}/wp-content/themes/nom-du-theme/bin/sort-classes.mjs`).
+
+Les autres réglages de `.vscode/settings.json` : Prettier à l'enregistrement pour JS / CSS / JSON / Markdown, **pas** de reformatage automatique du PHP (style WordPress écrit à la main), autocomplétion Tailwind dans le PHP.
 
 | Fichiers | Ce qui est trié |
 |---|---|

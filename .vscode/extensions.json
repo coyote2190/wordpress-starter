@@ -1,0 +1,9 @@
+{
+  // Proposées à l'ouverture du projet dans VS Code.
+  "recommendations": [
+    "emeraldwalk.RunOnSave",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "bmewburn.vscode-intelephense-client"
+  ]
+}

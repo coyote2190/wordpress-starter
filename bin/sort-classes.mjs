@@ -19,16 +19,23 @@
  * dans des tableaux PHP (`$widths = array( … )`).
  *
  * Usage :
- *   node bin/sort-classes.mjs          → trie et écrit les fichiers modifiés
- *   node bin/sort-classes.mjs --check  → liste les fichiers non triés, code de sortie 1 (CI)
+ *   node bin/sort-classes.mjs                → trie tout le thème
+ *   node bin/sort-classes.mjs fichier.php …  → trie seulement ces fichiers (tri à l'enregistrement dans VS Code)
+ *   node bin/sort-classes.mjs --check        → liste les fichiers non triés, code de sortie 1 (CI)
  *
- * Lancé par `npm run format` (écriture) et `npm run format:check` (vérification).
+ * Lancé par `npm run format` (écriture), `npm run format:check` (vérification)
+ * et à chaque enregistrement dans VS Code (.vscode/settings.json, extension Run on Save).
  */
 import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(import.meta.dirname, '..');
 const check = process.argv.includes('--check');
+// Fichiers passés en argument (tri à l'enregistrement) : seulement s'ils font partie des dossiers ciblés.
+const only = process.argv
+  .slice(2)
+  .filter((arg) => !arg.startsWith('--'))
+  .map((arg) => path.resolve(arg));
 
 // Dossiers à parcourir. `false` = sans les sous-dossiers.
 const targets = [
@@ -118,7 +125,9 @@ const rules = {
 };
 
 const changed = [];
-for (const file of sourceFiles()) {
+const files = only.length ? sourceFiles().filter((file) => only.includes(file)) : sourceFiles();
+
+for (const file of files) {
   const source = fs.readFileSync(file, 'utf8');
   let output = source;
   for (const { regex, sort } of rules[file.endsWith('.php') ? 'php' : 'js']) {
@@ -136,6 +145,9 @@ if (check && changed.length) {
   );
   process.exit(1);
 }
+// Mode « fichiers précis » : silencieux s'il n'y a rien à trier.
+if (only.length && !changed.length) process.exit(0);
+
 console.log(
   changed.length
     ? `Classes triées (A → Z) : ${changed.length} fichier(s)\n  ${changed.join('\n  ')}`

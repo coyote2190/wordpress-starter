@@ -78,6 +78,7 @@ Envoyer dans `wp-content/themes/nom-du-client/` **tout le thème sauf** :
 | `.git/` | Historique Git |
 | `hot` | Fichier du serveur de dev (ignoré en prod de toute façon) |
 | `demo/` | Script de démo (inoffensif, mais inutile en prod) |
+| `bin/`, `.vscode/` | Outils de développement (tri des classes, réglages de l'éditeur) |
 
 Et **copier** (pas de lien symbolique) :
 
