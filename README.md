@@ -92,21 +92,21 @@ wordpress-starter/
 
 ## Documentation
 
-| Sujet | Fichier |
-|---|---|
-| Architecture générale | [docs/architecture.md](docs/architecture.md) |
-| Nettoyage de WordPress | [docs/cleanup.md](docs/cleanup.md) |
-| Build (Vite, Tailwind) | [docs/build.md](docs/build.md) |
-| Couleurs, polices, largeurs | [docs/design-tokens.md](docs/design-tokens.md) |
-| Gabarits (quel fichier pour quelle page) | [docs/templates.md](docs/templates.md) |
-| Icônes SVG | [docs/icons.md](docs/icons.md) |
-| JavaScript | [docs/js.md](docs/js.md) |
-| Champs SCF, page « Infos du site » | [docs/scf.md](docs/scf.md) |
-| Blocs Gutenberg SCF | [docs/blocks.md](docs/blocks.md) |
-| Blocs Gutenberg natifs (React) | [docs/native-blocks.md](docs/native-blocks.md) |
-| MU-plugin (CPT, commentaires) | [docs/mu-plugin.md](docs/mu-plugin.md) |
-| Formulaire de contact + FluentSMTP | [docs/contact-form.md](docs/contact-form.md) |
-| Sécurité (+ wp-config, .htaccess) | [docs/security.md](docs/security.md) |
-| SEO (titres, descriptions, sitemap, robots.txt, llms.txt), performance, Lighthouse | [docs/seo.md](docs/seo.md) |
-| Contenu de démo | [docs/demo.md](docs/demo.md) |
-| **Nouveau projet client + déploiement** | [docs/new-project.md](docs/new-project.md) |
+| Sujet                                                                              | Fichier                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------- |
+| Architecture générale                                                              | [docs/architecture.md](docs/architecture.md)   |
+| Nettoyage de WordPress                                                             | [docs/cleanup.md](docs/cleanup.md)             |
+| Build (Vite, Tailwind)                                                             | [docs/build.md](docs/build.md)                 |
+| Couleurs, polices, largeurs                                                        | [docs/design-tokens.md](docs/design-tokens.md) |
+| Gabarits (quel fichier pour quelle page)                                           | [docs/templates.md](docs/templates.md)         |
+| Icônes SVG                                                                         | [docs/icons.md](docs/icons.md)                 |
+| JavaScript                                                                         | [docs/js.md](docs/js.md)                       |
+| Champs SCF, page « Infos du site »                                                 | [docs/scf.md](docs/scf.md)                     |
+| Blocs Gutenberg SCF                                                                | [docs/blocks.md](docs/blocks.md)               |
+| Blocs Gutenberg natifs (React)                                                     | [docs/native-blocks.md](docs/native-blocks.md) |
+| MU-plugin (CPT, commentaires)                                                      | [docs/mu-plugin.md](docs/mu-plugin.md)         |
+| Formulaire de contact + FluentSMTP                                                 | [docs/contact-form.md](docs/contact-form.md)   |
+| Sécurité (+ wp-config, .htaccess)                                                  | [docs/security.md](docs/security.md)           |
+| SEO (titres, descriptions, sitemap, robots.txt, llms.txt), performance, Lighthouse | [docs/seo.md](docs/seo.md)                     |
+| Contenu de démo                                                                    | [docs/demo.md](docs/demo.md)                   |
+| **Nouveau projet client + déploiement**                                            | [docs/new-project.md](docs/new-project.md)     |

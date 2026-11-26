@@ -4,23 +4,23 @@ Placé dans le mu-plugin (et pas dans le thème) : la protection reste active m�
 
 ## Ce que fait le code
 
-| Mesure | Ce qui est bloqué | Vérifier |
-|---|---|---|
-| XML-RPC désactivé | Force brute via `xmlrpc.php` (des centaines de mots de passe testés par requête), pingbacks | `xmlrpc.php` répond « services XML-RPC désactivés » |
-| Pages auteur bloquées pour les visiteurs | `/?author=1` → `/author/admin/` révèle l'**identifiant de connexion** | `curl -I "http://site/?author=1"` → 301 vers l'accueil |
-| Route REST `/wp/v2/users` masquée aux visiteurs | Liste des identifiants en JSON | `/wp-json/wp/v2/users` → 404 (Gutenberg connecté y a toujours accès) |
-| Sitemap des auteurs retiré | `wp-sitemap-users-1.xml` | → 404 |
-| Message de connexion générique | « L'identifiant X n'existe pas » confirme les identifiants valides | |
-| En-têtes HTTP | Voir ci-dessous | `curl -I http://site/` |
+| Mesure                                          | Ce qui est bloqué                                                                           | Vérifier                                                             |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| XML-RPC désactivé                               | Force brute via `xmlrpc.php` (des centaines de mots de passe testés par requête), pingbacks | `xmlrpc.php` répond « services XML-RPC désactivés »                  |
+| Pages auteur bloquées pour les visiteurs        | `/?author=1` → `/author/admin/` révèle l'**identifiant de connexion**                       | `curl -I "http://site/?author=1"` → 301 vers l'accueil               |
+| Route REST `/wp/v2/users` masquée aux visiteurs | Liste des identifiants en JSON                                                              | `/wp-json/wp/v2/users` → 404 (Gutenberg connecté y a toujours accès) |
+| Sitemap des auteurs retiré                      | `wp-sitemap-users-1.xml`                                                                    | → 404                                                                |
+| Message de connexion générique                  | « L'identifiant X n'existe pas » confirme les identifiants valides                          |                                                                      |
+| En-têtes HTTP                                   | Voir ci-dessous                                                                             | `curl -I http://site/`                                               |
 
 ### En-têtes HTTP ajoutés
 
-| En-tête | Effet |
-|---|---|
-| `X-Content-Type-Options: nosniff` | Le navigateur respecte le type annoncé d'un fichier |
-| `X-Frame-Options: SAMEORIGIN` | Le site ne peut pas être affiché dans une iframe d'un autre site (clickjacking) |
-| `Referrer-Policy: strict-origin-when-cross-origin` | Les sites externes ne reçoivent que le domaine, pas l'URL complète |
-| `Permissions-Policy` | Caméra, micro et géolocalisation désactivés |
+| En-tête                                            | Effet                                                                           |
+| -------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `X-Content-Type-Options: nosniff`                  | Le navigateur respecte le type annoncé d'un fichier                             |
+| `X-Frame-Options: SAMEORIGIN`                      | Le site ne peut pas être affiché dans une iframe d'un autre site (clickjacking) |
+| `Referrer-Policy: strict-origin-when-cross-origin` | Les sites externes ne reçoivent que le domaine, pas l'URL complète              |
+| `Permissions-Policy`                               | Caméra, micro et géolocalisation désactivés                                     |
 
 > Ces en-têtes ne s'appliquent qu'aux pages générées par WordPress. Pour les images et fichiers statiques, les ajouter dans `.htaccess` (voir plus bas).
 
@@ -73,7 +73,7 @@ Options -Indexes
 ## Bonnes pratiques (hors code)
 
 - Pas d'utilisateur nommé `admin`. Le client a un compte **Éditeur**, pas Administrateur, sauf s'il en a vraiment besoin.
-- Mots de passe forts + authentification à deux facteurs (extension *Two Factor*).
+- Mots de passe forts + authentification à deux facteurs (extension _Two Factor_).
 - Mises à jour WordPress et extensions activées (mises à jour automatiques pour les versions mineures).
 - Sauvegardes automatiques (souvent fournies par l'hébergeur) **testées** au moins une fois.
 - Le moins d'extensions possible : chaque extension est une porte d'entrée de plus.

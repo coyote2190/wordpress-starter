@@ -24,13 +24,13 @@ Au build, Vite crée un fichier séparé par module (`dist/assets/nav-xxxx.js`).
 
 ## Les fichiers
 
-| Fichier | Rôle |
-|---|---|
-| `main.js` | Point d'entrée. Contient la liste `modules` (nom → fichier) et lance ceux présents dans la page. |
-| `modules/nav.js` | Menu mobile : bouton burger, `aria-expanded`, Échap pour fermer, fermeture au clic sur un lien ou au passage en desktop. |
-| `modules/hero-slider.js` | Hero slider : fondu, flèches, points, autoplay avec pause, clavier, glisser au doigt (voir `docs/blocks.md`). |
-| `modules/scroller.js` | **Générique** : boutons précédent / suivant pour une piste qui défile nativement (`[data-scroller-track]`). Désactivés aux extrémités. Utilisé par le bloc « Pourquoi nous », réutilisable partout. |
-| `modules/contact-form.js` | Envoi du formulaire de contact en `fetch` (voir `docs/contact-form.md`). |
+| Fichier                   | Rôle                                                                                                                                                                                                |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `main.js`                 | Point d'entrée. Contient la liste `modules` (nom → fichier) et lance ceux présents dans la page.                                                                                                    |
+| `modules/nav.js`          | Menu mobile : bouton burger, `aria-expanded`, Échap pour fermer, fermeture au clic sur un lien ou au passage en desktop.                                                                            |
+| `modules/hero-slider.js`  | Hero slider : fondu, flèches, points, autoplay avec pause, clavier, glisser au doigt (voir `docs/blocks.md`).                                                                                       |
+| `modules/scroller.js`     | **Générique** : boutons précédent / suivant pour une piste qui défile nativement (`[data-scroller-track]`). Désactivés aux extrémités. Utilisé par le bloc « Pourquoi nous », réutilisable partout. |
+| `modules/contact-form.js` | Envoi du formulaire de contact en `fetch` (voir `docs/contact-form.md`).                                                                                                                            |
 
 ## Écrire un module
 
@@ -41,7 +41,9 @@ Au build, Vite crée un fichier séparé par module (`dist/assets/nav-xxxx.js`).
  */
 export default function accordion(root) {
   root.querySelectorAll('[data-accordion-trigger]').forEach((button) => {
-    button.addEventListener('click', () => { /* … */ });
+    button.addEventListener('click', () => {
+      /* … */
+    });
   });
 }
 ```
@@ -52,12 +54,12 @@ export default function accordion(root) {
 
 ### Conventions
 
-| Règle | Pourquoi |
-|---|---|
-| Le module ne cherche des éléments **qu'à l'intérieur de `root`** | Plusieurs instances sur la même page ne se marchent pas dessus |
-| Sélecteurs JS en `data-*` (`data-nav-toggle`), jamais en classes | On peut changer les classes Tailwind sans casser le JS |
+| Règle                                                                     | Pourquoi                                                                   |
+| ------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Le module ne cherche des éléments **qu'à l'intérieur de `root`**          | Plusieurs instances sur la même page ne se marchent pas dessus             |
+| Sélecteurs JS en `data-*` (`data-nav-toggle`), jamais en classes          | On peut changer les classes Tailwind sans casser le JS                     |
 | L'état est porté par un attribut (`data-open`, `aria-expanded`, `hidden`) | Le CSS réagit avec `data-open:block` ; les lecteurs d'écran suivent l'état |
-| Toujours gérer le clavier (Échap, focus) | Accessibilité |
+| Toujours gérer le clavier (Échap, focus)                                  | Accessibilité                                                              |
 
 ## Passer des données de PHP à JS
 
@@ -66,6 +68,7 @@ Via des attributs `data-*` sur l'élément :
 ```php
 <div data-module="map" data-lat="<?php echo esc_attr( $lat ); ?>" data-lng="<?php echo esc_attr( $lng ); ?>"></div>
 ```
+
 ```js
 export default function map(root) {
   const { lat, lng } = root.dataset; // chaînes de caractères
@@ -77,4 +80,5 @@ export default function map(root) {
 ```bash
 npm install swiper
 ```
+
 Puis l'importer **dans le module qui l'utilise** (pas dans `main.js`) : elle ne sera téléchargée que sur les pages concernées.

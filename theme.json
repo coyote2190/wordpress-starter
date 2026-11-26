@@ -59,9 +59,7 @@
               "fontWeight": "300 900",
               "fontStyle": "normal",
               "fontDisplay": "swap",
-              "src": [
-                "file:./assets/fonts/figtree.woff2"
-              ]
+              "src": ["file:./assets/fonts/figtree.woff2"]
             }
           ]
         },
@@ -75,9 +73,7 @@
               "fontWeight": "100 900",
               "fontStyle": "normal",
               "fontDisplay": "swap",
-              "src": [
-                "file:./assets/fonts/onest.woff2"
-              ]
+              "src": ["file:./assets/fonts/onest.woff2"]
             }
           ]
         },
@@ -114,11 +110,7 @@
       "defaultSpacingSizes": false,
       "customSpacingSize": false,
       "spacingSizes": [],
-      "units": [
-        "px",
-        "rem",
-        "%"
-      ]
+      "units": ["px", "rem", "%"]
     },
     "shadow": {
       "defaultPresets": false

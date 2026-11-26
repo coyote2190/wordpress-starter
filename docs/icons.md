@@ -2,11 +2,11 @@
 
 ## Pourquoi des SVG insérés dans le HTML ?
 
-| Approche | Problème |
-|---|---|
-| Police d'icônes (Font Awesome…) | Charge des centaines d'icônes pour en utiliser 10, pas nette, accessibilité moyenne |
-| `<img src="icon.svg">` | Impossible de changer la couleur en CSS |
-| **SVG dans le HTML** ✅ | Seules les icônes utilisées sont envoyées, la couleur suit le texte, taille avec Tailwind |
+| Approche                        | Problème                                                                                  |
+| ------------------------------- | ----------------------------------------------------------------------------------------- |
+| Police d'icônes (Font Awesome…) | Charge des centaines d'icônes pour en utiliser 10, pas nette, accessibilité moyenne       |
+| `<img src="icon.svg">`          | Impossible de changer la couleur en CSS                                                   |
+| **SVG dans le HTML** ✅         | Seules les icônes utilisées sont envoyées, la couleur suit le texte, taille avec Tailwind |
 
 ## Utilisation
 
@@ -16,11 +16,11 @@
 <?php echo starter_icon( 'search', 'size-6', 'Rechercher' ); ?>        // icône seule dans un bouton : donner un label
 ```
 
-| Paramètre | Rôle |
-|---|---|
-| `$name` | Nom du fichier dans `assets/icons/`, sans `.svg` |
-| `$class` | Classes ajoutées sur `<svg>` (par défaut `size-5`). `icon shrink-0` est toujours ajouté. |
-| `$label` | Vide → icône **décorative**, cachée aux lecteurs d'écran (`aria-hidden`). Rempli → annoncée (`role="img"` + `aria-label`). |
+| Paramètre | Rôle                                                                                                                       |
+| --------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `$name`   | Nom du fichier dans `assets/icons/`, sans `.svg`                                                                           |
+| `$class`  | Classes ajoutées sur `<svg>` (par défaut `size-5`). `icon shrink-0` est toujours ajouté.                                   |
+| `$label`  | Vide → icône **décorative**, cachée aux lecteurs d'écran (`aria-hidden`). Rempli → annoncée (`role="img"` + `aria-label`). |
 
 Pour tester si une icône existe : `starter_icon_exists( 'instagram' )`.
 

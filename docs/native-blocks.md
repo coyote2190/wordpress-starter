@@ -4,12 +4,12 @@ Les blocs SCF (`blocks/`) suffisent pour 90 % des besoins. Les blocs natifs serv
 
 ## SCF ou natif ?
 
-| | Bloc SCF | Bloc natif |
-|---|---|---|
-| Langage | PHP | React (JSX) pour l'éditeur + PHP pour le site |
-| Édition | Champs dans le panneau de droite | **Directement dans le bloc** + panneau de droite |
-| Build | Aucun | `@wordpress/scripts` (webpack) |
-| Dépend de | Extension SCF | Rien (cœur de WordPress) |
+|            | Bloc SCF                                                | Bloc natif                                                                |
+| ---------- | ------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Langage    | PHP                                                     | React (JSX) pour l'éditeur + PHP pour le site                             |
+| Édition    | Champs dans le panneau de droite                        | **Directement dans le bloc** + panneau de droite                          |
+| Build      | Aucun                                                   | `@wordpress/scripts` (webpack)                                            |
+| Dépend de  | Extension SCF                                           | Rien (cœur de WordPress)                                                  |
 | Idéal pour | Sections de mise en page (hero, chiffres clés, équipe…) | Éléments de texte enrichi (encadré, citation stylée…), outils interactifs |
 
 ## Exemple fourni : « Encadré » (`starter/notice`)
@@ -61,23 +61,23 @@ Les **attributs** sont les données du bloc. Ils sont lus par `edit.js` (`attrib
 
 ### `edit.js` : les composants à connaître
 
-| Composant / fonction | Paquet | Rôle |
-|---|---|---|
-| `useBlockProps()` | `@wordpress/block-editor` | Attributs de la racine du bloc (obligatoire avec `apiVersion: 3`). Équivalent PHP : `get_block_wrapper_attributes()`. |
-| `RichText` | `@wordpress/block-editor` | Zone de texte éditable avec gras, italique, liens |
-| `InspectorControls` | `@wordpress/block-editor` | Contenu du panneau de droite |
-| `PanelBody`, `SelectControl`, `ToggleControl`, `TextControl`… | `@wordpress/components` | Champs du panneau. Catalogue : https://wordpress.github.io/gutenberg/ |
-| `__()` | `@wordpress/i18n` | Texte traduisible |
+| Composant / fonction                                          | Paquet                    | Rôle                                                                                                                  |
+| ------------------------------------------------------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `useBlockProps()`                                             | `@wordpress/block-editor` | Attributs de la racine du bloc (obligatoire avec `apiVersion: 3`). Équivalent PHP : `get_block_wrapper_attributes()`. |
+| `RichText`                                                    | `@wordpress/block-editor` | Zone de texte éditable avec gras, italique, liens                                                                     |
+| `InspectorControls`                                           | `@wordpress/block-editor` | Contenu du panneau de droite                                                                                          |
+| `PanelBody`, `SelectControl`, `ToggleControl`, `TextControl`… | `@wordpress/components`   | Champs du panneau. Catalogue : https://wordpress.github.io/gutenberg/                                                 |
+| `__()`                                                        | `@wordpress/i18n`         | Texte traduisible                                                                                                     |
 
 Ces paquets ne sont **pas** inclus dans le fichier compilé : WordPress les fournit déjà (`wp.blocks`, `wp.blockEditor`…). `index.asset.php` liste ces dépendances pour que WordPress les charge avant notre script.
 
 ### Bloc dynamique (`render.php`) ou statique (`save.js`) ?
 
-| | Dynamique (choisi ici) | Statique |
-|---|---|---|
-| HTML du site | Généré par PHP **à chaque affichage** | Généré par React **à l'enregistrement**, stocké dans la base |
-| Modifier le HTML plus tard | On modifie `render.php`, toutes les pages suivent | Les blocs existants deviennent « invalides » → il faut écrire des *deprecations* |
-| Utiliser des fonctions PHP | Oui (`starter_icon()`, requêtes…) | Non |
+|                            | Dynamique (choisi ici)                            | Statique                                                                         |
+| -------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------- |
+| HTML du site               | Généré par PHP **à chaque affichage**             | Généré par React **à l'enregistrement**, stocké dans la base                     |
+| Modifier le HTML plus tard | On modifie `render.php`, toutes les pages suivent | Les blocs existants deviennent « invalides » → il faut écrire des _deprecations_ |
+| Utiliser des fonctions PHP | Oui (`starter_icon()`, requêtes…)                 | Non                                                                              |
 
 **Alignements** : comme les blocs SCF, l'encadré propose Aucun / Grande / Pleine largeur. `edit.js` et `render.php` appliquent la même règle (conteneur `container` en pleine largeur, voir `docs/blocks.md`).
 
@@ -85,11 +85,11 @@ Ces paquets ne sont **pas** inclus dans le fichier compilé : WordPress les four
 
 ## Commandes
 
-| Commande | Rôle |
-|---|---|
-| `npm run blocks:dev` | Recompile à chaque modification (à lancer **en plus** de `npm run dev`, dans un 2ᵉ terminal) |
-| `npm run blocks:build` | Compilation de production |
-| `npm run build` | Vite **puis** blocs natifs : tout le projet |
+| Commande               | Rôle                                                                                         |
+| ---------------------- | -------------------------------------------------------------------------------------------- |
+| `npm run blocks:dev`   | Recompile à chaque modification (à lancer **en plus** de `npm run dev`, dans un 2ᵉ terminal) |
+| `npm run blocks:build` | Compilation de production                                                                    |
+| `npm run build`        | Vite **puis** blocs natifs : tout le projet                                                  |
 
 Après une modification d'`edit.js`, **recharger l'éditeur** (pas de rechargement à chaud).
 

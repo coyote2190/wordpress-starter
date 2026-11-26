@@ -4,13 +4,13 @@ SCF est la version libre et maintenue par WordPress.org d'**ACF** (Advanced Cust
 
 ## Ce que fait `inc/scf.php`
 
-| Élément | Rôle |
-|---|---|
-| `starter_scf_missing_notice()` | Message rouge dans l'admin si SCF n'est pas actif |
-| Filtres `acf/settings/save_json` / `load_json` | Les groupes de champs sont enregistrés en JSON dans `scf-json/` |
-| `starter_scf_options_pages()` | Crée le menu **Infos du site** dans l'admin |
-| `starter_field()` | `get_field()` qui ne plante pas si SCF est désactivé, avec valeur par défaut |
-| `starter_option()` | Pareil, pour un champ de la page « Infos du site » |
+| Élément                                        | Rôle                                                                         |
+| ---------------------------------------------- | ---------------------------------------------------------------------------- |
+| `starter_scf_missing_notice()`                 | Message rouge dans l'admin si SCF n'est pas actif                            |
+| Filtres `acf/settings/save_json` / `load_json` | Les groupes de champs sont enregistrés en JSON dans `scf-json/`              |
+| `starter_scf_options_pages()`                  | Crée le menu **Infos du site** dans l'admin                                  |
+| `starter_field()`                              | `get_field()` qui ne plante pas si SCF est désactivé, avec valeur par défaut |
+| `starter_option()`                             | Pareil, pour un champ de la page « Infos du site »                           |
 
 ## Local JSON : les champs versionnés avec Git
 
@@ -46,22 +46,22 @@ Puis **toujours échapper à l'affichage** : `esc_html( $sous_titre )`, `esc_url
 
 ### Formats de retour utiles
 
-| Type de champ | Régler « Format de retour » sur | On obtient |
-|---|---|---|
-| Image | **ID** | Un entier → `wp_get_attachment_image( $id, 'large' )` génère `srcset`, `alt`, lazy-loading |
-| Lien | **Tableau** | `[ 'url', 'title', 'target' ]` |
-| Sélection | **Valeur et libellé** | `[ 'value', 'label' ]` |
-| Relation / Objet | **ID** | Des ID → `get_the_title( $id )`… |
+| Type de champ    | Régler « Format de retour » sur | On obtient                                                                                 |
+| ---------------- | ------------------------------- | ------------------------------------------------------------------------------------------ |
+| Image            | **ID**                          | Un entier → `wp_get_attachment_image( $id, 'large' )` génère `srcset`, `alt`, lazy-loading |
+| Lien             | **Tableau**                     | `[ 'url', 'title', 'target' ]`                                                             |
+| Sélection        | **Valeur et libellé**           | `[ 'value', 'label' ]`                                                                     |
+| Relation / Objet | **ID**                          | Des ID → `get_the_title( $id )`…                                                           |
 
 ## La page « Infos du site »
 
 Menu **Infos du site** dans l'admin (accessible aux éditeurs). Champs définis dans `scf-json/group_starter_site_settings.json` :
 
-| Champ | Nom | Utilisé dans |
-|---|---|---|
-| Téléphone | `phone` | Footer (lien `tel:`) |
-| E-mail | `email` | Footer (encodé contre les robots) + destinataire du formulaire de contact |
-| Adresse | `address` | Footer |
+| Champ           | Nom                                     | Utilisé dans                                                                    |
+| --------------- | --------------------------------------- | ------------------------------------------------------------------------------- |
+| Téléphone       | `phone`                                 | Footer (lien `tel:`)                                                            |
+| E-mail          | `email`                                 | Footer (encodé contre les robots) + destinataire du formulaire de contact       |
+| Adresse         | `address`                               | Footer                                                                          |
 | Réseaux sociaux | `socials` (répéteur : `network`, `url`) | Footer. Affiche `assets/icons/{réseau}.svg` s'il existe, sinon le nom en texte. |
 
 Affichage : `template-parts/site-contact.php`.
@@ -83,10 +83,10 @@ Affichage : `template-parts/site-contact.php`.
 
 `inc/scf.php` remplit tout seul les choix de deux types de champs, d'après leur **nom** :
 
-| Champ Sélection nommé | Choix proposés | Source |
-|---|---|---|
-| `icon` | Toutes les icônes | Fichiers de `assets/icons/` (`starter_icon_list()`) |
-| `color` | Toutes les couleurs de la charte | Palette de `theme.json` (`starter_palette()`) |
+| Champ Sélection nommé | Choix proposés                   | Source                                              |
+| --------------------- | -------------------------------- | --------------------------------------------------- |
+| `icon`                | Toutes les icônes                | Fichiers de `assets/icons/` (`starter_icon_list()`) |
+| `color`               | Toutes les couleurs de la charte | Palette de `theme.json` (`starter_palette()`)       |
 
 Fonctions liées : `starter_palette()` (slug → nom), `starter_palette_colors()` (slug → `#hex`), `starter_color_is_light( $slug )` (texte foncé ou blanc par-dessus ?).
 
@@ -94,8 +94,8 @@ Dans l'admin SCF, il suffit de créer un champ **Sélection** avec ce nom, sans 
 
 ## Nommage
 
-| Élément | Convention | Exemple |
-|---|---|---|
-| Nom de champ | anglais, snake_case | `subtitle`, `cta_link` |
-| Clé de groupe | `group_starter_{sujet}` | `group_starter_site_settings` |
-| Clé de champ | `field_starter_{nom}` (ou celle générée par SCF) | `field_starter_phone` |
+| Élément       | Convention                                       | Exemple                       |
+| ------------- | ------------------------------------------------ | ----------------------------- |
+| Nom de champ  | anglais, snake_case                              | `subtitle`, `cta_link`        |
+| Clé de groupe | `group_starter_{sujet}`                          | `group_starter_site_settings` |
+| Clé de champ  | `field_starter_{nom}` (ou celle générée par SCF) | `field_starter_phone`         |

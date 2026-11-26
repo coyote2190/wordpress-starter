@@ -6,17 +6,10 @@
   "description": "En-tête de page : grand titre, texte et bouton, puis une grande image aux coins arrondis.",
   "category": "starter",
   "icon": "cover-image",
-  "keywords": [
-    "bannière",
-    "en-tête",
-    "header"
-  ],
+  "keywords": ["bannière", "en-tête", "header"],
   "textdomain": "starter",
   "supports": {
-    "align": [
-      "wide",
-      "full"
-    ],
+    "align": ["wide", "full"],
     "anchor": true,
     "html": false
   },

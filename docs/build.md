@@ -2,14 +2,14 @@
 
 ## Les commandes
 
-| Commande | Quand | Ce qu'elle fait |
-|---|---|---|
-| `npm install` | Une fois après le clone | Installe Vite, Tailwind, Prettier dans `node_modules/` |
-| `npm run dev` | Pendant qu'on code | Lance Vite sur `http://localhost:5173`. Le CSS/JS se met à jour **sans recharger**, la page se recharge quand un `.php` change. |
-| `npm run build` | Avant chaque commit / déploiement | Compile et minifie dans `dist/`, puis compile les blocs natifs (`blocks-native/build/`) |
-| `npm run blocks:dev` / `blocks:build` | Si on travaille sur un bloc React | Voir `docs/native-blocks.md` |
-| `npm run format` | Quand on veut | Formate JS/CSS/JSON/MD avec Prettier **et trie les classes Tailwind de A à Z**, PHP compris (voir ci-dessous) |
-| `npm run format:check` | En CI | Même vérification, sans rien modifier (code de sortie 1 si un fichier n'est pas formaté) |
+| Commande                              | Quand                             | Ce qu'elle fait                                                                                                                 |
+| ------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `npm install`                         | Une fois après le clone           | Installe Vite, Tailwind, Prettier dans `node_modules/`                                                                          |
+| `npm run dev`                         | Pendant qu'on code                | Lance Vite sur `http://localhost:5173`. Le CSS/JS se met à jour **sans recharger**, la page se recharge quand un `.php` change. |
+| `npm run build`                       | Avant chaque commit / déploiement | Compile et minifie dans `dist/`, puis compile les blocs natifs (`blocks-native/build/`)                                         |
+| `npm run blocks:dev` / `blocks:build` | Si on travaille sur un bloc React | Voir `docs/native-blocks.md`                                                                                                    |
+| `npm run format`                      | Quand on veut                     | Formate JS/CSS/JSON/MD avec Prettier **et trie les classes Tailwind de A à Z**, PHP compris (voir ci-dessous)                   |
+| `npm run format:check`                | En CI                             | Même vérification, sans rien modifier (code de sortie 1 si un fichier n'est pas formaté)                                        |
 
 > On continue d'ouvrir le site sur **http://wordpress-starter.local** (et pas localhost:5173). Vite ne sert que les fichiers CSS/JS.
 
@@ -41,19 +41,19 @@ Les fichiers compilés ont un **hash** dans leur nom (`main-B6d3mmbV.css`). Quan
 
 ## Les fichiers
 
-| Fichier | Rôle |
-|---|---|
-| `package.json` | Liste des outils (devDependencies) et des commandes `npm run …` |
-| `package-lock.json` | Versions exactes installées (à commiter, garantit la même install partout) |
-| `vite.config.js` | Points d'entrée, dossier de sortie, serveur de dev, plugin `hot` |
-| `inc/vite.php` | `starter_vite_enqueue()` : charge une entrée en dev ou en prod |
-| `inc/assets.php` | Dit **quelles** entrées charger sur le site |
-| `assets/src/css/main.css` | Entrée CSS du site : Tailwind + nos styles |
-| `assets/src/css/editor.css` | Entrée CSS de l'éditeur Gutenberg (voir `docs/blocks.md`) |
-| `assets/src/css/sources.css` | Dossiers scannés par Tailwind (`@source`) |
-| `assets/src/js/main.js` | Entrée JS |
-| `dist/` | Fichiers compilés. **Commité** : on peut déployer par simple FTP sans Node sur le serveur. |
-| `.prettierrc` / `.prettierignore` | Règles de formatage |
+| Fichier                           | Rôle                                                                                       |
+| --------------------------------- | ------------------------------------------------------------------------------------------ |
+| `package.json`                    | Liste des outils (devDependencies) et des commandes `npm run …`                            |
+| `package-lock.json`               | Versions exactes installées (à commiter, garantit la même install partout)                 |
+| `vite.config.js`                  | Points d'entrée, dossier de sortie, serveur de dev, plugin `hot`                           |
+| `inc/vite.php`                    | `starter_vite_enqueue()` : charge une entrée en dev ou en prod                             |
+| `inc/assets.php`                  | Dit **quelles** entrées charger sur le site                                                |
+| `assets/src/css/main.css`         | Entrée CSS du site : Tailwind + nos styles                                                 |
+| `assets/src/css/editor.css`       | Entrée CSS de l'éditeur Gutenberg (voir `docs/blocks.md`)                                  |
+| `assets/src/css/sources.css`      | Dossiers scannés par Tailwind (`@source`)                                                  |
+| `assets/src/js/main.js`           | Entrée JS                                                                                  |
+| `dist/`                           | Fichiers compilés. **Commité** : on peut déployer par simple FTP sans Node sur le serveur. |
+| `.prettierrc` / `.prettierignore` | Règles de formatage                                                                        |
 
 ## Ajouter un point d'entrée
 
@@ -77,18 +77,19 @@ Exemple : un JS chargé seulement sur la page contact.
 
 ## Problèmes courants
 
-| Symptôme | Cause / solution |
-|---|---|
-| Aucun style sur le site | `npm run build` jamais lancé → pas de manifest. Un admin connecté voit un warning PHP. |
-| Une classe Tailwind ne marche pas | Le fichier n'est pas couvert par un `@source`, ou la classe est construite dynamiquement (`'text-' . $color`). Écrire les classes en entier. |
-| En dev, les styles ne changent pas | Vite ne tourne plus mais `hot` est resté (crash) : supprimer le fichier `hot`. |
-| Port 5173 déjà pris | Un autre Vite tourne : l'arrêter (`strictPort` empêche de basculer sur un autre port). |
+| Symptôme                           | Cause / solution                                                                                                                             |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Aucun style sur le site            | `npm run build` jamais lancé → pas de manifest. Un admin connecté voit un warning PHP.                                                       |
+| Une classe Tailwind ne marche pas  | Le fichier n'est pas couvert par un `@source`, ou la classe est construite dynamiquement (`'text-' . $color`). Écrire les classes en entier. |
+| En dev, les styles ne changent pas | Vite ne tourne plus mais `hot` est resté (crash) : supprimer le fichier `hot`.                                                               |
+| Port 5173 déjà pris                | Un autre Vite tourne : l'arrêter (`strictPort` empêche de basculer sur un autre port).                                                       |
 
 ## Tri des classes Tailwind : ordre alphabétique
 
 Choix du projet : les classes sont rangées **de A à Z** (`bg-white border flex gap-3 items-center px-4 rounded-full`), plus simple à lire et à retrouver que l'ordre « officiel » de Tailwind. L'ordre des classes ne change **jamais** le rendu : c'est Tailwind qui décide de l'ordre des règles dans le CSS.
 
 Outil : `bin/sort-classes.mjs`, lancé :
+
 - **à chaque enregistrement dans VS Code** (fichiers PHP et JS) : extension **Run on Save** (`emeraldwalk.RunOnSave`), configurée dans `.vscode/settings.json`. VS Code la propose à l'ouverture du projet (`.vscode/extensions.json`) ;
 - par `npm run format` pour tout le thème (et `npm run format:check` pour vérifier sans modifier).
 
@@ -96,10 +97,10 @@ Outil : `bin/sort-classes.mjs`, lancé :
 
 Les autres réglages de `.vscode/settings.json` : Prettier à l'enregistrement pour JS / CSS / JSON / Markdown, **pas** de reformatage automatique du PHP (style WordPress écrit à la main), autocomplétion Tailwind dans le PHP.
 
-| Fichiers | Ce qui est trié |
-|---|---|
-| PHP | attributs `class="…"` (les morceaux `<?php … ?>` restent en place), tableaux `'class' => '…'`, 2e argument de `starter_icon()` |
-| JS | `className="…"`, `className: '…'`, parties fixes de ``className={`…`}``, constantes de classes en MAJUSCULES (`export const INNER = '…'`) |
+| Fichiers | Ce qui est trié                                                                                                                           |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| PHP      | attributs `class="…"` (les morceaux `<?php … ?>` restent en place), tableaux `'class' => '…'`, 2e argument de `starter_icon()`            |
+| JS       | `className="…"`, `className: '…'`, parties fixes de ``className={`…`}``, constantes de classes en MAJUSCULES (`export const INNER = '…'`) |
 
 - Un `-` ou `!` au début est ignoré pour le tri : `-translate-x-1` se range avec `translate-…`.
 - Pas triées : les classes construites par concaténation ou rangées dans des tableaux PHP (`$widths = array( … )`).

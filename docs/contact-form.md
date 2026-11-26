@@ -21,31 +21,31 @@ assets/src/js/modules/contact-form.js            1. nonce          4. limite par
 
 ## Les fichiers
 
-| Fichier | Rôle |
-|---|---|
-| `blocks/contact-form/` | Bloc « Formulaire de contact » (sans champs) : le client le place où il veut. Une seule fois par page (`"multiple": false`). |
-| `template-parts/contact-form.php` | HTML du formulaire + réaffichage des erreurs (sans JS) |
-| `assets/src/js/modules/contact-form.js` | Envoi en `fetch`, message immédiat, erreurs sous les champs |
-| `mu-plugin/starter-core/contact-form.php` | Anti-spam, validation, envoi, réponse JSON ou redirection |
+| Fichier                                   | Rôle                                                                                                                         |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `blocks/contact-form/`                    | Bloc « Formulaire de contact » (sans champs) : le client le place où il veut. Une seule fois par page (`"multiple": false`). |
+| `template-parts/contact-form.php`         | HTML du formulaire + réaffichage des erreurs (sans JS)                                                                       |
+| `assets/src/js/modules/contact-form.js`   | Envoi en `fetch`, message immédiat, erreurs sous les champs                                                                  |
+| `mu-plugin/starter-core/contact-form.php` | Anti-spam, validation, envoi, réponse JSON ou redirection                                                                    |
 
 ## Deux modes, un seul traitement
 
-| | Avec JS | Sans JS |
-|---|---|---|
-| Envoi | `fetch` avec `Accept: application/json` | POST classique |
+|         | Avec JS                                               | Sans JS                                                                      |
+| ------- | ----------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Envoi   | `fetch` avec `Accept: application/json`               | POST classique                                                               |
 | Réponse | JSON `{ success, message, errors }` (code 200 ou 422) | Redirection vers la page + `?contact=sent` ou `?contact=error&contact_key=…` |
-| Erreurs | Affichées par le JS sous chaque champ | Gardées 10 min dans un *transient*, réaffichées une fois puis supprimées |
+| Erreurs | Affichées par le JS sous chaque champ                 | Gardées 10 min dans un _transient_, réaffichées une fois puis supprimées     |
 
 Le formulaire **marche toujours**, même si le JS plante : c'est l'amélioration progressive.
 
 ## Anti-spam (sans captcha)
 
-| Protection | Principe | Si déclenchée |
-|---|---|---|
-| Nonce | Jeton WordPress qui prouve que le formulaire vient du site | « Session expirée » |
-| Pot de miel | Champ `website` invisible : un humain le laisse vide, un robot le remplit | **Faux succès** (le robot ne sait pas qu'il est bloqué) |
-| Délai | Heure d'affichage signée (`_started`). Envoi en moins de 3 s = robot | Faux succès |
-| Limite par IP | 5 envois par heure | Message d'erreur |
+| Protection    | Principe                                                                  | Si déclenchée                                           |
+| ------------- | ------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Nonce         | Jeton WordPress qui prouve que le formulaire vient du site                | « Session expirée »                                     |
+| Pot de miel   | Champ `website` invisible : un humain le laisse vide, un robot le remplit | **Faux succès** (le robot ne sait pas qu'il est bloqué) |
+| Délai         | Heure d'affichage signée (`_started`). Envoi en moins de 3 s = robot      | Faux succès                                             |
+| Limite par IP | 5 envois par heure                                                        | Message d'erreur                                        |
 
 Si le spam passe malgré tout : ajouter Cloudflare Turnstile (gratuit, sans puzzle) dans `starter_contact_process()`.
 
@@ -57,13 +57,13 @@ Un champ `email` envoyé en **POST** vers la page de contact pré-remplit le cha
 
 ## Validation
 
-| Champ | Règle |
-|---|---|
-| `name` | obligatoire, 100 caractères max |
-| `email` | adresse valide (`is_email`) |
-| `phone` | facultatif ; chiffres, espaces, `+ ( ) . -`, 6 à 20 caractères |
-| `message` | 10 à 5 000 caractères |
-| `consent` | case cochée (RGPD) |
+| Champ     | Règle                                                          |
+| --------- | -------------------------------------------------------------- |
+| `name`    | obligatoire, 100 caractères max                                |
+| `email`   | adresse valide (`is_email`)                                    |
+| `phone`   | facultatif ; chiffres, espaces, `+ ( ) . -`, 6 à 20 caractères |
+| `message` | 10 à 5 000 caractères                                          |
+| `consent` | case cochée (RGPD)                                             |
 
 Le HTML a aussi `required`, `maxlength`… : le navigateur bloque les erreurs évidentes avant l'envoi. **Le serveur revérifie toujours** (le HTML se contourne facilement).
 
@@ -87,6 +87,7 @@ add_action( 'starter_contact_sent', function ( array $values ) {
 ```
 
 **Ajouter un champ** (ex. « Sujet ») :
+
 1. `template-parts/contact-form.php` : copier un bloc `<div>` de champ, changer le nom.
 2. `contact-form.php` (mu-plugin) : l'ajouter à `$values`, à la validation et au `$body` du mail.
 
@@ -123,13 +124,13 @@ FluentSMTP > **Email Logs** : chaque mail envoyé ou en échec, avec possibilit�
 
 `mu-plugin/starter-core/contact-messages.php` enregistre chaque message **avant** l'envoi de l'e-mail : si le SMTP tombe en panne, rien n'est perdu.
 
-| Quoi | Détail |
-|---|---|
-| Liste | Nom, e-mail, téléphone, **« Transmis par e-mail »** (✅ / ⚠️ à traiter depuis l'admin), date |
-| Lecture | Message en lecture seule + bouton « Répondre par e-mail » |
-| Droits | Éditeurs et administrateurs. Pas de bouton « Ajouter » |
+| Quoi         | Détail                                                                                                                                                                                                              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Liste        | Nom, e-mail, téléphone, **« Transmis par e-mail »** (✅ / ⚠️ à traiter depuis l'admin), date                                                                                                                        |
+| Lecture      | Message en lecture seule + bouton « Répondre par e-mail »                                                                                                                                                           |
+| Droits       | Éditeurs et administrateurs. Pas de bouton « Ajouter »                                                                                                                                                              |
 | Conservation | Supprimés automatiquement après **3 ans** (tâche WP-Cron quotidienne). Modifiable : `STARTER_CONTACT_RETENTION_DAYS` ou filtre `starter_contact_retention_days`. **À aligner avec la politique de confidentialité** |
-| RGPD | Outils > Exporter / Effacer les données personnelles : les messages d'une adresse e-mail sont inclus |
+| RGPD         | Outils > Exporter / Effacer les données personnelles : les messages d'une adresse e-mail sont inclus                                                                                                                |
 
 Le visiteur voit « message envoyé » dès que le message est enregistré, même si l'e-mail a échoué. Seul le cas « e-mail en échec **et** enregistrement impossible » affiche une erreur.
 

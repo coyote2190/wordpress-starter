@@ -37,13 +37,13 @@ cd ../../mu-plugins   # wp-content/mu-plugins/
 ln -s ../themes/nom-du-client/mu-plugin/starter-core.php starter-core.php
 ln -s ../themes/nom-du-client/mu-plugin/starter-core starter-core
 ```
+
 - [ ] Extensions > Indispensables : « Starter Core » apparaît
 - [ ] Adapter / supprimer le CPT « Réalisations » (`mu-plugin/starter-core/post-types.php`), puis réenregistrer les permaliens
 
 ## 5. Contenus de base
 
 > Pour voir le thème rempli tout de suite : `wp eval-file …/demo/demo-content.php` (voir `docs/demo.md`), puis `… reset` avant de saisir le vrai contenu.
-
 
 - [ ] **Infos du site** : téléphone, e-mail (reçoit les messages du formulaire), adresse, réseaux
 - [ ] Apparence > Menus : menu **principal** et **pied de page**
@@ -72,12 +72,12 @@ ln -s ../themes/nom-du-client/mu-plugin/starter-core starter-core
 
 Envoyer dans `wp-content/themes/nom-du-client/` **tout le thème sauf** :
 
-| Ne pas envoyer | Pourquoi |
-|---|---|
-| `node_modules/` | Outils de dev, très lourd |
-| `.git/` | Historique Git |
-| `hot` | Fichier du serveur de dev (ignoré en prod de toute façon) |
-| `demo/` | Script de démo (inoffensif, mais inutile en prod) |
+| Ne pas envoyer     | Pourquoi                                                         |
+| ------------------ | ---------------------------------------------------------------- |
+| `node_modules/`    | Outils de dev, très lourd                                        |
+| `.git/`            | Historique Git                                                   |
+| `hot`              | Fichier du serveur de dev (ignoré en prod de toute façon)        |
+| `demo/`            | Script de démo (inoffensif, mais inutile en prod)                |
 | `bin/`, `.vscode/` | Outils de développement (tri des classes, réglages de l'éditeur) |
 
 Et **copier** (pas de lien symbolique) :

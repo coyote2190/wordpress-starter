@@ -20,15 +20,15 @@ Relancer la création remplace l'ancienne démo, sans doublons. Les **pages sont
 
 ## Ce qui est créé
 
-| Quoi | Détail |
-|---|---|
-| **Pages** | Accueil (Hero slider 3 images, encadré « 30 min », Bento « Ce que nous faisons », « Pourquoi nous » en liste, Appel à l'action pleine largeur avec avatars et champ e-mail), À propos (Hero, Cartes style « fond clair », encadré), Contact (Hero + formulaire), Actualités (page des articles), Mentions légales, Politique de confidentialité |
-| **Articles** | 5 articles en 2 catégories, avec image, extrait, titres, liste et encadré |
-| **Réalisations** | 6 réalisations (CPT du mu-plugin) en 3 catégories |
-| **Images** | Générées à la volée (dégradés aux couleurs de `theme.json` + titre), ajoutées à la médiathèque |
-| **Infos du site** | Téléphone, e-mail (= e-mail d'admin, pour recevoir les tests du formulaire), adresse, Instagram, LinkedIn |
-| **Menus** | « Démo – Principal » et « Démo – Pied de page », placés dans les emplacements du thème |
-| **Réglages** | Accueil = page statique, page des articles, 6 articles par page, page de confidentialité, slogan |
+| Quoi              | Détail                                                                                                                                                                                                                                                                                                                                          |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Pages**         | Accueil (Hero slider 3 images, encadré « 30 min », Bento « Ce que nous faisons », « Pourquoi nous » en liste, Appel à l'action pleine largeur avec avatars et champ e-mail), À propos (Hero, Cartes style « fond clair », encadré), Contact (Hero + formulaire), Actualités (page des articles), Mentions légales, Politique de confidentialité |
+| **Articles**      | 5 articles en 2 catégories, avec image, extrait, titres, liste et encadré                                                                                                                                                                                                                                                                       |
+| **Réalisations**  | 6 réalisations (CPT du mu-plugin) en 3 catégories                                                                                                                                                                                                                                                                                               |
+| **Images**        | Générées à la volée (dégradés aux couleurs de `theme.json` + titre), ajoutées à la médiathèque                                                                                                                                                                                                                                                  |
+| **Infos du site** | Téléphone, e-mail (= e-mail d'admin, pour recevoir les tests du formulaire), adresse, Instagram, LinkedIn                                                                                                                                                                                                                                       |
+| **Menus**         | « Démo – Principal » et « Démo – Pied de page », placés dans les emplacements du thème                                                                                                                                                                                                                                                          |
+| **Réglages**      | Accueil = page statique, page des articles, 6 articles par page, page de confidentialité, slogan                                                                                                                                                                                                                                                |
 
 ## Ce que la démo permet de vérifier
 

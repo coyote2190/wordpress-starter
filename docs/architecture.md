@@ -47,39 +47,39 @@ Requête d'une page
 
 ## Les hooks en deux phrases
 
-- `add_action( 'nom', 'ma_fonction' )` : « quand WordPress arrive à l'étape *nom*, exécute ma fonction ».
-- `add_filter( 'nom', 'ma_fonction' )` : « quand WordPress calcule la valeur *nom*, laisse ma fonction la modifier et la renvoyer ».
+- `add_action( 'nom', 'ma_fonction' )` : « quand WordPress arrive à l'étape _nom_, exécute ma fonction ».
+- `add_filter( 'nom', 'ma_fonction' )` : « quand WordPress calcule la valeur _nom_, laisse ma fonction la modifier et la renvoyer ».
 
 Exemple dans `inc/setup.php` : `after_setup_theme` est l'étape où le thème déclare ce qu'il supporte.
 
 ## Les fichiers de `inc/`
 
-| Fichier | Sujet | Doc |
-|---|---|---|
-| `setup.php` | Fonctionnalités du thème (logo, images, menus…) | — |
-| `cleanup.php` | Retire emojis, metas inutiles… | `cleanup.md` |
-| `vite.php` | `starter_vite_enqueue()` : fichiers Vite en dev / prod | `build.md` |
-| `assets.php` | CSS/JS chargés sur le site | `build.md` |
-| `icons.php` | `starter_icon()` | `icons.md` |
-| `scf.php` | JSON SCF, page « Infos du site », `starter_field()` / `starter_option()` | `scf.md` |
-| `blocks.php` | Enregistrement des blocs, catégorie, CSS de l'éditeur | `blocks.md` |
+| Fichier       | Sujet                                                                    | Doc          |
+| ------------- | ------------------------------------------------------------------------ | ------------ |
+| `setup.php`   | Fonctionnalités du thème (logo, images, menus…)                          | —            |
+| `cleanup.php` | Retire emojis, metas inutiles…                                           | `cleanup.md` |
+| `vite.php`    | `starter_vite_enqueue()` : fichiers Vite en dev / prod                   | `build.md`   |
+| `assets.php`  | CSS/JS chargés sur le site                                               | `build.md`   |
+| `icons.php`   | `starter_icon()`                                                         | `icons.md`   |
+| `scf.php`     | JSON SCF, page « Infos du site », `starter_field()` / `starter_option()` | `scf.md`     |
+| `blocks.php`  | Enregistrement des blocs, catégorie, CSS de l'éditeur                    | `blocks.md`  |
 
 ## Conventions
 
-| Quoi | Convention | Exemple |
-|---|---|---|
-| Fonctions PHP | préfixe `starter_` | `starter_setup()` |
-| Constantes | préfixe `STARTER_` | `STARTER_DIR` |
-| Text domain (traductions) | `starter` | `__( 'Menu', 'starter' )` |
-| Noms de blocs | `starter/{nom}` | `starter/hero` |
-| Sélecteurs JS | attributs `data-*` | `data-module="nav"` |
-| Indentation | tabulations en PHP, 2 espaces en JS/CSS/JSON | voir `.editorconfig` |
-| Commits | gitmoji + message en anglais | `✨ Add …` |
+| Quoi                      | Convention                                   | Exemple                   |
+| ------------------------- | -------------------------------------------- | ------------------------- |
+| Fonctions PHP             | préfixe `starter_`                           | `starter_setup()`         |
+| Constantes                | préfixe `STARTER_`                           | `STARTER_DIR`             |
+| Text domain (traductions) | `starter`                                    | `__( 'Menu', 'starter' )` |
+| Noms de blocs             | `starter/{nom}`                              | `starter/hero`            |
+| Sélecteurs JS             | attributs `data-*`                           | `data-module="nav"`       |
+| Indentation               | tabulations en PHP, 2 espaces en JS/CSS/JSON | voir `.editorconfig`      |
+| Commits                   | gitmoji + message en anglais                 | `✨ Add …`                |
 
 ## Constantes disponibles
 
-| Constante | Valeur |
-|---|---|
-| `STARTER_VERSION` | Version lue dans `style.css` |
-| `STARTER_DIR` | Chemin disque du thème (pour `require`, lire un fichier) |
-| `STARTER_URI` | URL du thème (pour pointer vers une image, un script) |
+| Constante         | Valeur                                                   |
+| ----------------- | -------------------------------------------------------- |
+| `STARTER_VERSION` | Version lue dans `style.css`                             |
+| `STARTER_DIR`     | Chemin disque du thème (pour `require`, lire un fichier) |
+| `STARTER_URI`     | URL du thème (pour pointer vers une image, un script)    |

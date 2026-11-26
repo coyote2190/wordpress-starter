@@ -8,12 +8,12 @@ Si les types de contenu (« Réalisations »…) étaient déclarés dans le th�
 
 Pourquoi un **mu**-plugin (« must-use ») plutôt qu'un plugin classique :
 
-| | Plugin classique | MU-plugin |
-|---|---|---|
-| Activation | Manuelle, peut être désactivé par erreur | **Toujours actif**, pas de bouton « Désactiver » |
-| Chargement | Après les mu-plugins | Avant tout le reste |
-| Emplacement | `wp-content/plugins/nom/` | `wp-content/mu-plugins/` (uniquement les `.php` à la racine) |
-| Visible | Extensions | Extensions > « Indispensables » |
+|             | Plugin classique                         | MU-plugin                                                    |
+| ----------- | ---------------------------------------- | ------------------------------------------------------------ |
+| Activation  | Manuelle, peut être désactivé par erreur | **Toujours actif**, pas de bouton « Désactiver »             |
+| Chargement  | Après les mu-plugins                     | Avant tout le reste                                          |
+| Emplacement | `wp-content/plugins/nom/`                | `wp-content/mu-plugins/` (uniquement les `.php` à la racine) |
+| Visible     | Extensions                               | Extensions > « Indispensables »                              |
 
 ## Les fichiers
 
@@ -57,13 +57,13 @@ wp-content/mu-plugins/
 
 ## Le CPT « Réalisations » (exemple)
 
-| Élément | Valeur |
-|---|---|
-| Identifiant | `reference` |
-| Liste | `/realisations/` → `archive.php` (ou `archive-reference.php` si créé) |
-| Fiche | `/realisations/mon-projet/` → `single.php` (ou `single-reference.php`) |
-| Taxonomie | `reference_category` → `/realisations/categorie/web/` |
-| Éditeur | Gutenberg (`show_in_rest: true`) |
+| Élément     | Valeur                                                                 |
+| ----------- | ---------------------------------------------------------------------- |
+| Identifiant | `reference`                                                            |
+| Liste       | `/realisations/` → `archive.php` (ou `archive-reference.php` si créé)  |
+| Fiche       | `/realisations/mon-projet/` → `single.php` (ou `single-reference.php`) |
+| Taxonomie   | `reference_category` → `/realisations/categorie/web/`                  |
+| Éditeur     | Gutenberg (`show_in_rest: true`)                                       |
 
 ### Ajouter un type de contenu
 
