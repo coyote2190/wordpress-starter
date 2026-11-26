@@ -10,7 +10,8 @@
     "format": "prettier --write . && node bin/sort-classes.mjs",
     "format:check": "prettier --check . && node bin/sort-classes.mjs --check",
     "lint:php": "composer lint",
-    "lint:php:fix": "composer lint:fix"
+    "lint:php:fix": "composer lint:fix",
+    "pot": "wp i18n make-pot . languages/starter.pot --slug=starter --domain=starter --exclude=vendor,node_modules,dist,blocks-native/build,demo"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.20",

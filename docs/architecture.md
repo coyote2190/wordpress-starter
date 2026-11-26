@@ -54,15 +54,16 @@ Exemple dans `inc/setup.php` : `after_setup_theme` est l'étape où le thème d�
 
 ## Les fichiers de `inc/`
 
-| Fichier       | Sujet                                                                    | Doc          |
-| ------------- | ------------------------------------------------------------------------ | ------------ |
-| `setup.php`   | Fonctionnalités du thème (logo, images, menus…)                          | —            |
-| `cleanup.php` | Retire emojis, metas inutiles…                                           | `cleanup.md` |
-| `vite.php`    | `starter_vite_enqueue()` : fichiers Vite en dev / prod                   | `build.md`   |
-| `assets.php`  | CSS/JS chargés sur le site                                               | `build.md`   |
-| `icons.php`   | `starter_icon()`                                                         | `icons.md`   |
-| `scf.php`     | JSON SCF, page « Infos du site », `starter_field()` / `starter_option()` | `scf.md`     |
-| `blocks.php`  | Enregistrement des blocs, catégorie, CSS de l'éditeur                    | `blocks.md`  |
+| Fichier        | Sujet                                                                    | Doc           |
+| -------------- | ------------------------------------------------------------------------ | ------------- |
+| `setup.php`    | Fonctionnalités du thème (logo, images, menus…)                          | —             |
+| `cleanup.php`  | Retire emojis, metas inutiles…                                           | `cleanup.md`  |
+| `vite.php`     | `starter_vite_enqueue()` : fichiers Vite en dev / prod                   | `build.md`    |
+| `assets.php`   | CSS/JS chargés sur le site                                               | `build.md`    |
+| `icons.php`    | `starter_icon()`                                                         | `icons.md`    |
+| `scf.php`      | JSON SCF, page « Infos du site », `starter_field()` / `starter_option()` | `scf.md`      |
+| `blocks.php`   | Enregistrement des blocs, catégorie, CSS de l'éditeur                    | `blocks.md`   |
+| `patterns.php` | Catégories des compositions, `starter_pattern_block()`                   | `patterns.md` |
 
 ## Conventions
 

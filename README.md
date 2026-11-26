@@ -51,7 +51,10 @@ wordpress-starter/
 │   ├── scf.php        SCF : JSON, page « Infos du site », starter_field() / starter_option().
 │   ├── blocks.php     Enregistre les blocs (SCF + natifs), catégorie « Starter », CSS de l'éditeur, boutons.
 │   ├── template-tags.php  Petites fonctions des gabarits (catégorie, liste parente, temps de lecture).
-│   └── performance.php  Préchargement de la police des titres, images en WebP.
+│   ├── performance.php  Préchargement de la police des titres, images en WebP.
+│   └── patterns.php   Catégories des compositions, starter_pattern_block().
+├── patterns/          Compositions : pages et sections toutes faites (Accueil, À propos, Services, Contact, FAQ).
+├── languages/         starter.pot : textes à traduire (npm run pot).
 ├── blocks/            Blocs Gutenberg SCF (un dossier par bloc : block.json + render.php).
 │   ├── hero/          En-tête de page : grand titre + image arrondie.
 │   ├── hero-slider/   En-tête : grand titre + diaporama d'images arrondi.
@@ -83,6 +86,9 @@ wordpress-starter/
 ├── demo/              Script de contenu de démo (WP-CLI).
 ├── docs/              Documentation (un fichier par sujet).
 ├── package.json       Outils front et commandes npm.
+├── composer.json      Outils PHP : PHPCS + règles WordPress, stubs (composer install).
+├── phpcs.xml.dist     Règles PHP du projet (npm run lint:php).
+├── .github/workflows/ Vérifications automatiques sur GitHub à chaque push (CI).
 ├── vite.config.js     Configuration du build.
 ├── .prettierrc        Règles de formatage (JS/CSS/MD).
 ├── bin/sort-classes.mjs  Trie les classes Tailwind de A à Z, PHP et JS (npm run format, et à l'enregistrement).
@@ -104,6 +110,7 @@ wordpress-starter/
 | JavaScript                                                                         | [docs/js.md](docs/js.md)                       |
 | Champs SCF, page « Infos du site »                                                 | [docs/scf.md](docs/scf.md)                     |
 | Blocs Gutenberg SCF                                                                | [docs/blocks.md](docs/blocks.md)               |
+| Compositions (pages toutes faites), traductions                                    | [docs/patterns.md](docs/patterns.md)           |
 | Blocs Gutenberg natifs (React)                                                     | [docs/native-blocks.md](docs/native-blocks.md) |
 | MU-plugin (CPT, commentaires)                                                      | [docs/mu-plugin.md](docs/mu-plugin.md)         |
 | Formulaire de contact + FluentSMTP                                                 | [docs/contact-form.md](docs/contact-form.md)   |

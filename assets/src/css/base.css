@@ -77,3 +77,59 @@
     clip-path: inset(50%);
   }
 }
+
+/*
+ * Bloc « Détails » (questions fréquentes) : lignes séparées, chevron qui pivote.
+ * Ici (base.css) pour avoir le même rendu dans l'éditeur.
+ */
+.wp-block-details {
+  border-bottom: 1px solid var(--color-line);
+  padding-block: 1.25rem;
+
+  &:first-of-type {
+    border-top: 1px solid var(--color-line);
+  }
+
+  & > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-heading);
+    font-size: 1.1875rem;
+    font-weight: 500;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    /* Chevron dessiné en CSS (pas d'icône à charger). */
+    &::after {
+      content: '';
+      flex: none;
+      width: 0.6rem;
+      height: 0.6rem;
+      margin-right: 0.25rem;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: translateY(-25%) rotate(45deg);
+      transition: transform 0.2s;
+    }
+  }
+
+  &[open] > summary::after {
+    transform: translateY(25%) rotate(-135deg);
+  }
+
+  & > :not(summary) {
+    margin-block: 0.75rem 0;
+    color: var(--color-muted);
+  }
+}
+
+/* Section FAQ (composition « Questions fréquentes ») : respiration avant / après. */
+.faq {
+  margin-block: 5rem;
+}

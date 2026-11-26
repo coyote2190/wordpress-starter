@@ -1,0 +1,1232 @@
+# Copyright (C) 2026 
+# This file is distributed under the same license as the WordPress Starter theme.
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress Starter 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/starter\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-26T23:04:56+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: starter\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "WordPress Starter"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://github.com/coyote2190/wordpress-starter"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "Thème de départ pour les sites clients — PHP, Tailwind CSS, Vite, SCF."
+msgstr ""
+
+#: 404.php:19
+msgid "Erreur 404"
+msgstr ""
+
+#: 404.php:20
+msgid "Cette page s'est **égarée**"
+msgstr ""
+
+#: 404.php:21
+msgid "Elle n'existe pas ou a été déplacée. Essayez une recherche, ou repartez de l'accueil."
+msgstr ""
+
+#: 404.php:33
+msgid "Retour à l'accueil"
+msgstr ""
+
+#: blocks/bento/render.php:26
+msgid "Bento : ajoutez des tuiles dans le panneau de droite."
+msgstr ""
+
+#: blocks/contact-form/render.php:26
+#: mu-plugin/starter-core/contact-form.php:184
+#: mu-plugin/starter-core/contact-messages.php:98
+#: mu-plugin/starter-core/contact-messages.php:145
+#: mu-plugin/starter-core/contact-messages.php:228
+#: mu-plugin/starter-core/seo/crawlers.php:205
+#: template-parts/contact-form.php:104
+msgid "Téléphone"
+msgstr ""
+
+#: blocks/contact-form/render.php:32
+#: mu-plugin/starter-core/contact-form.php:183
+#: mu-plugin/starter-core/contact-messages.php:97
+#: mu-plugin/starter-core/contact-messages.php:144
+#: mu-plugin/starter-core/seo/crawlers.php:206
+#: template-parts/contact-form.php:98
+msgid "E-mail"
+msgstr ""
+
+#: blocks/contact-form/render.php:39
+#: mu-plugin/starter-core/seo/crawlers.php:207
+msgid "Adresse"
+msgstr ""
+
+#: blocks/cta/render.php:24
+#: blocks/why/render.php:27
+msgid "votre@email.fr"
+msgstr ""
+
+#: blocks/cta/render.php:35
+msgid "Appel à l'action : remplissez le titre dans le panneau de droite."
+msgstr ""
+
+#: blocks/cta/render.php:95
+msgid "Commencer"
+msgstr ""
+
+#: blocks/cta/render.php:104
+#: blocks/why/render.php:101
+msgid "Votre adresse e-mail"
+msgstr ""
+
+#: blocks/features/render.php:24
+msgid "Cartes : ajoutez des cartes dans le panneau de droite."
+msgstr ""
+
+#: blocks/features/render.php:93
+#: inc/blocks.php:119
+#: patterns/page-services.php:44
+#: patterns/page-services.php:54
+#: patterns/page-services.php:64
+msgid "En savoir plus"
+msgstr ""
+
+#: blocks/hero-slider/render.php:30
+msgid "Hero slider : remplissez le titre et ajoutez des images dans le panneau de droite."
+msgstr ""
+
+#: blocks/hero-slider/render.php:41
+msgid "carrousel"
+msgstr ""
+
+#: blocks/hero-slider/render.php:42
+msgid "Diaporama"
+msgstr ""
+
+#: blocks/hero-slider/render.php:88
+msgid "diapositive"
+msgstr ""
+
+#. translators: %d : numéro de l'image.
+#: blocks/hero-slider/render.php:120
+#, php-format
+msgid "Aller à l'image %d"
+msgstr ""
+
+#: blocks/hero-slider/render.php:130
+msgid "Mettre en pause le défilement"
+msgstr ""
+
+#: blocks/hero-slider/render.php:131
+msgid "Reprendre le défilement"
+msgstr ""
+
+#: blocks/hero-slider/render.php:136
+msgid "Image précédente"
+msgstr ""
+
+#: blocks/hero-slider/render.php:139
+msgid "Image suivante"
+msgstr ""
+
+#: blocks/hero/render.php:30
+msgid "Hero : remplissez le titre dans le panneau de droite."
+msgstr ""
+
+#: blocks/why/render.php:34
+msgid "Pourquoi nous : remplissez le titre et ajoutez des arguments dans le panneau de droite."
+msgstr ""
+
+#: blocks/why/render.php:104
+msgid "Envoyer"
+msgstr ""
+
+#: blocks/why/render.php:116
+msgid "Cartes précédentes"
+msgstr ""
+
+#: blocks/why/render.php:119
+msgid "Cartes suivantes"
+msgstr ""
+
+#: blocks/why/render.php:163
+msgid "Cartes"
+msgstr ""
+
+#: footer.php:22
+#: inc/setup.php:52
+msgid "Menu du pied de page"
+msgstr ""
+
+#: header.php:22
+msgid "Aller au contenu"
+msgstr ""
+
+#: header.php:41
+msgid "Menu"
+msgstr ""
+
+#: header.php:47
+#: inc/setup.php:51
+msgid "Menu principal"
+msgstr ""
+
+#: inc/blocks.php:157
+msgid "Starter"
+msgstr ""
+
+#: inc/patterns.php:22
+msgid "Pages du site"
+msgstr ""
+
+#: inc/patterns.php:23
+msgid "Sections du site"
+msgstr ""
+
+#: inc/scf.php:36
+msgid "Le thème a besoin de l'extension « Secure Custom Fields ». Installez-la et activez-la dans Extensions > Ajouter."
+msgstr ""
+
+#: inc/scf.php:69
+#: inc/scf.php:70
+msgid "Infos du site"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-form.php:107
+#: template-parts/contact-form.php:32
+msgid "Merci, votre message a bien été envoyé. Nous vous répondrons rapidement."
+msgstr ""
+
+#: mu-plugin/starter-core/contact-form.php:123
+#: mu-plugin/starter-core/contact-form.php:135
+msgid "La session a expiré. Rechargez la page et réessayez."
+msgstr ""
+
+#: mu-plugin/starter-core/contact-form.php:145
+msgid "Trop de messages envoyés. Réessayez dans une heure."
+msgstr ""
+
+#: mu-plugin/starter-core/contact-form.php:152
+msgid "Indiquez votre nom."
+msgstr ""
+
+#: mu-plugin/starter-core/contact-form.php:154
+msgid "Nom trop long (100 caractères maximum)."
+msgstr ""
+
+#: mu-plugin/starter-core/contact-form.php:157
+msgid "Indiquez une adresse e-mail valide."
+msgstr ""
+
+#: mu-plugin/starter-core/contact-form.php:160
+msgid "Numéro de téléphone invalide."
+msgstr ""
+
+#: mu-plugin/starter-core/contact-form.php:163
+msgid "Votre message doit faire au moins 10 caractères."
+msgstr ""
+
+#: mu-plugin/starter-core/contact-form.php:165
+msgid "Message trop long (5 000 caractères maximum)."
+msgstr ""
+
+#: mu-plugin/starter-core/contact-form.php:168
+msgid "Merci d'accepter le traitement de vos données."
+msgstr ""
+
+#: mu-plugin/starter-core/contact-form.php:172
+msgid "Le formulaire contient des erreurs."
+msgstr ""
+
+#. translators: %s : nom de l'expéditeur.
+#: mu-plugin/starter-core/contact-form.php:178
+#, php-format
+msgid "Nouveau message de %s"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-form.php:182
+#: mu-plugin/starter-core/contact-messages.php:96
+#: mu-plugin/starter-core/contact-messages.php:227
+#: template-parts/contact-form.php:92
+msgid "Nom"
+msgstr ""
+
+#. translators: %s : adresse du site.
+#: mu-plugin/starter-core/contact-form.php:190
+#, php-format
+msgid "Envoyé depuis %s"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-form.php:206
+msgid "L'envoi a échoué. Réessayez plus tard ou contactez-nous par téléphone."
+msgstr ""
+
+#: mu-plugin/starter-core/contact-messages.php:34
+msgid "Messages"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-messages.php:35
+#: mu-plugin/starter-core/contact-messages.php:37
+#: mu-plugin/starter-core/contact-messages.php:131
+#: mu-plugin/starter-core/contact-messages.php:229
+#: template-parts/contact-form.php:110
+msgid "Message"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-messages.php:36
+msgid "Tous les messages"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-messages.php:38
+#: mu-plugin/starter-core/post-types.php:31
+#: searchform.php:14
+#: searchform.php:25
+msgid "Rechercher"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-messages.php:39
+msgid "Aucun message"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-messages.php:99
+msgid "Transmis par e-mail"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-messages.php:120
+msgid "Oui"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-messages.php:121
+msgid "Non — à traiter depuis ici"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-messages.php:146
+msgid "Reçu le"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-messages.php:149
+msgid "Répondre par e-mail"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-messages.php:217
+#: mu-plugin/starter-core/contact-messages.php:223
+#: mu-plugin/starter-core/contact-messages.php:244
+msgid "Messages du formulaire de contact"
+msgstr ""
+
+#: mu-plugin/starter-core/contact-messages.php:226
+msgid "Date"
+msgstr ""
+
+#: mu-plugin/starter-core/post-types.php:26
+msgid "Réalisations"
+msgstr ""
+
+#: mu-plugin/starter-core/post-types.php:27
+msgid "Réalisation"
+msgstr ""
+
+#: mu-plugin/starter-core/post-types.php:28
+msgid "Ajouter une réalisation"
+msgstr ""
+
+#: mu-plugin/starter-core/post-types.php:29
+msgid "Modifier la réalisation"
+msgstr ""
+
+#: mu-plugin/starter-core/post-types.php:30
+msgid "Toutes les réalisations"
+msgstr ""
+
+#: mu-plugin/starter-core/post-types.php:32
+msgid "Aucune réalisation"
+msgstr ""
+
+#: mu-plugin/starter-core/post-types.php:33
+msgid "Aucune réalisation dans la corbeille"
+msgstr ""
+
+#: mu-plugin/starter-core/post-types.php:36
+msgid "Sites vitrines, boutiques en ligne, identités visuelles : une sélection de projets menés avec nos clients."
+msgstr ""
+
+#: mu-plugin/starter-core/post-types.php:65
+msgid "Catégories de réalisation"
+msgstr ""
+
+#: mu-plugin/starter-core/post-types.php:66
+msgid "Catégorie"
+msgstr ""
+
+#: mu-plugin/starter-core/post-types.php:67
+msgid "Ajouter une catégorie"
+msgstr ""
+
+#: mu-plugin/starter-core/security.php:96
+msgid "Identifiant ou mot de passe incorrect."
+msgstr ""
+
+#: mu-plugin/starter-core/seo/crawlers.php:208
+msgid "Site"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/fields.php:49
+#: mu-plugin/starter-core/seo/fields.php:184
+#: mu-plugin/starter-core/seo/settings.php:63
+#: mu-plugin/starter-core/seo/settings.php:106
+msgid "SEO"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/fields.php:86
+msgid "Titre dans Google"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/fields.php:92
+msgid "Description dans Google"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/fields.php:95
+msgid "Vide = extrait de la page, sinon texte du Hero, sinon début du contenu."
+msgstr ""
+
+#: mu-plugin/starter-core/seo/fields.php:99
+#: mu-plugin/starter-core/seo/settings.php:189
+msgid "Image de partage"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/fields.php:103
+#: mu-plugin/starter-core/seo/settings.php:138
+msgid "Choisir une image"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/fields.php:104
+#: mu-plugin/starter-core/seo/settings.php:139
+msgid "Retirer"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/fields.php:105
+msgid "Vide = image mise en avant, sinon image du Hero, sinon image par défaut (Réglages > SEO). Idéal : 1200 × 630 px."
+msgstr ""
+
+#: mu-plugin/starter-core/seo/fields.php:111
+msgid "Ne pas indexer cette page"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/fields.php:112
+msgid "absente de Google, du sitemap et de llms.txt (ex. page de remerciement, page en construction)."
+msgstr ""
+
+#: mu-plugin/starter-core/seo/fields.php:195
+msgid "Non indexée"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/fields.php:197
+msgid "Description"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/fields.php:199
+msgid "Auto"
+msgstr ""
+
+#. translators: %s : type d'environnement.
+#: mu-plugin/starter-core/seo/settings.php:114
+#, php-format
+msgid "Environnement « %s » : le site est volontairement fermé aux moteurs de recherche (robots.txt « Disallow: / » + noindex). Il s'ouvrira tout seul en production."
+msgstr ""
+
+#: mu-plugin/starter-core/seo/settings.php:115
+msgid "Réglages > Lecture : « Demander aux moteurs de recherche de ne pas indexer ce site » est coché. Le site n'apparaîtra pas dans Google."
+msgstr ""
+
+#: mu-plugin/starter-core/seo/settings.php:122
+msgid "Titre, description et image de chaque page : encadré « SEO » sous l'éditeur de la page."
+msgstr ""
+
+#: mu-plugin/starter-core/seo/settings.php:123
+msgid "Fichiers générés :"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/settings.php:133
+msgid "Image de partage par défaut"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/settings.php:141
+msgid "Utilisée quand une page n'a ni image SEO, ni image mise en avant, ni Hero. Idéal : 1200 × 630 px."
+msgstr ""
+
+#: mu-plugin/starter-core/seo/settings.php:145
+msgid "Présentation pour les IA (llms.txt)"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/settings.php:148
+msgid "Quelques phrases : qui vous êtes, ce que vous proposez, pour qui, où. Reprises par ChatGPT, Claude, Perplexity… quand ils parlent du site."
+msgstr ""
+
+#: mu-plugin/starter-core/seo/settings.php:152
+msgid "Robots des IA"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/settings.php:156
+msgid "Interdire l'utilisation du contenu pour entraîner des IA"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/settings.php:158
+msgid "Bloque GPTBot, Google-Extended, CCBot, ClaudeBot, Applebot-Extended… dans le robots.txt. Les moteurs de recherche et les assistants qui citent le site ne sont pas concernés."
+msgstr ""
+
+#: mu-plugin/starter-core/seo/settings.php:162
+msgid "Lignes robots.txt en plus"
+msgstr ""
+
+#: mu-plugin/starter-core/seo/settings.php:165
+msgid "Une directive par ligne (User-agent, Disallow, Allow). Pour retirer UNE page de Google, préférez la case « Ne pas indexer » de la page."
+msgstr ""
+
+#: patterns/page-a-propos.php
+msgctxt "Pattern title"
+msgid "Page « À propos »"
+msgstr ""
+
+#: patterns/page-a-propos.php
+msgctxt "Pattern description"
+msgid "Hero, histoire, valeurs en cartes et appel à l'action avec e-mail."
+msgstr ""
+
+#: patterns/page-a-propos.php:20
+msgid "Une équipe à **taille humaine**"
+msgstr ""
+
+#: patterns/page-a-propos.php:21
+msgid "Présentez en deux phrases qui vous êtes, ce que vous faites et pour qui. Ajoutez une photo de l'équipe ou de vos locaux."
+msgstr ""
+
+#: patterns/page-a-propos.php:23
+msgid "Nous rencontrer"
+msgstr ""
+
+#: patterns/page-a-propos.php:31
+msgid "Notre histoire"
+msgstr ""
+
+#: patterns/page-a-propos.php:35
+msgid "Racontez comment tout a commencé, ce qui vous rend différent et ce qui vous motive chaque jour. Trois ou quatre phrases suffisent : les visiteurs veulent savoir à qui ils parlent."
+msgstr ""
+
+#: patterns/page-a-propos.php:42
+msgid "Nos valeurs"
+msgstr ""
+
+#: patterns/page-a-propos.php:43
+msgid "Trois engagements qui guident chacun de nos projets."
+msgstr ""
+
+#: patterns/page-a-propos.php:50
+msgid "Clarté"
+msgstr ""
+
+#: patterns/page-a-propos.php:51
+msgid "Des devis lisibles, des délais tenus, pas de jargon."
+msgstr ""
+
+#: patterns/page-a-propos.php:56
+msgid "Exigence"
+msgstr ""
+
+#: patterns/page-a-propos.php:57
+msgid "Un travail soigné, vérifié, livré quand prévu."
+msgstr ""
+
+#: patterns/page-a-propos.php:62
+msgid "Proximité"
+msgstr ""
+
+#: patterns/page-a-propos.php:63
+msgid "Un seul interlocuteur, joignable par téléphone."
+msgstr ""
+
+#: patterns/page-a-propos.php:73
+msgid "Parlons de votre projet"
+msgstr ""
+
+#: patterns/page-a-propos.php:74
+msgid "Laissez-nous votre e-mail : on vous rappelle sous 48 h, sans engagement."
+msgstr ""
+
+#: patterns/page-a-propos.php:77
+#: patterns/page-accueil.php:102
+msgid "C'est parti"
+msgstr ""
+
+#: patterns/page-accueil.php
+msgctxt "Pattern title"
+msgid "Page d'accueil"
+msgstr ""
+
+#: patterns/page-accueil.php
+msgctxt "Pattern description"
+msgid "Hero, chiffres clés en bento, arguments qui défilent et appel à l'action."
+msgstr ""
+
+#: patterns/page-accueil.php:20
+msgid "Votre promesse en **une phrase**"
+msgstr ""
+
+#: patterns/page-accueil.php:21
+msgid "Pour qui, quoi, où : ce que le visiteur doit comprendre en trois secondes."
+msgstr ""
+
+#: patterns/page-accueil.php:23
+#: patterns/page-services.php:23
+msgid "Demander un devis"
+msgstr ""
+
+#: patterns/page-accueil.php:33
+msgid "En quelques chiffres"
+msgstr ""
+
+#: patterns/page-accueil.php:34
+msgid "Des preuves concrètes : années d'expérience, clients, avis."
+msgstr ""
+
+#: patterns/page-accueil.php:40
+msgid "d'expérience au service des entreprises de la région."
+msgstr ""
+
+#: patterns/page-accueil.php:45
+msgid "clients accompagnés."
+msgstr ""
+
+#: patterns/page-accueil.php:50
+msgid "note moyenne de nos avis."
+msgstr ""
+
+#: patterns/page-accueil.php:60
+msgid "Ce qui fait la différence"
+msgstr ""
+
+#: patterns/page-accueil.php:64
+msgid "Rapidité"
+msgstr ""
+
+#: patterns/page-accueil.php:67
+msgid "Premier argument"
+msgstr ""
+
+#: patterns/page-accueil.php:68
+#: patterns/page-accueil.php:75
+#: patterns/page-accueil.php:82
+#: patterns/page-accueil.php:89
+msgid "Le bénéfice concret pour le client."
+msgstr ""
+
+#: patterns/page-accueil.php:71
+msgid "Simplicité"
+msgstr ""
+
+#: patterns/page-accueil.php:74
+msgid "Deuxième argument"
+msgstr ""
+
+#: patterns/page-accueil.php:78
+msgid "Suivi"
+msgstr ""
+
+#: patterns/page-accueil.php:81
+msgid "Troisième argument"
+msgstr ""
+
+#: patterns/page-accueil.php:85
+msgid "Sérénité"
+msgstr ""
+
+#: patterns/page-accueil.php:88
+msgid "Quatrième argument"
+msgstr ""
+
+#: patterns/page-accueil.php:98
+msgid "Prêt à vous lancer ?"
+msgstr ""
+
+#: patterns/page-accueil.php:99
+msgid "Laissez votre e-mail, on vous rappelle sous 48 h."
+msgstr ""
+
+#: patterns/page-contact.php
+msgctxt "Pattern title"
+msgid "Page « Contact »"
+msgstr ""
+
+#: patterns/page-contact.php
+msgctxt "Pattern description"
+msgid "Titre et formulaire de contact (coordonnées tirées de « Infos du site »)."
+msgstr ""
+
+#: patterns/page-contact.php:20
+msgid "**Parlons** de votre projet"
+msgstr ""
+
+#: patterns/page-contact.php:21
+msgid "Une question, un devis ? Écrivez-nous : réponse sous 24 h ouvrées."
+msgstr ""
+
+#: patterns/page-services.php
+msgctxt "Pattern title"
+msgid "Page « Services »"
+msgstr ""
+
+#: patterns/page-services.php
+msgctxt "Pattern description"
+msgid "Hero, cartes de services avec liens, arguments, questions fréquentes et appel à l'action."
+msgstr ""
+
+#: patterns/page-services.php:20
+msgid "Nos **services**"
+msgstr ""
+
+#: patterns/page-services.php:21
+msgid "Une phrase qui résume ce que vous proposez et le résultat obtenu par vos clients."
+msgstr ""
+
+#: patterns/page-services.php:33
+msgid "Ce que nous faisons"
+msgstr ""
+
+#: patterns/page-services.php:34
+msgid "Un service par carte : un titre court, une phrase, un lien vers le détail."
+msgstr ""
+
+#: patterns/page-services.php:41
+msgid "Premier service"
+msgstr ""
+
+#: patterns/page-services.php:42
+#: patterns/page-services.php:52
+#: patterns/page-services.php:62
+msgid "Ce que le client obtient, en une ou deux phrases."
+msgstr ""
+
+#: patterns/page-services.php:51
+msgid "Deuxième service"
+msgstr ""
+
+#: patterns/page-services.php:61
+msgid "Troisième service"
+msgstr ""
+
+#: patterns/page-services.php:76
+msgid "Pourquoi nous choisir ?"
+msgstr ""
+
+#: patterns/page-services.php:77
+msgid "Les trois raisons que vos clients citent le plus souvent."
+msgstr ""
+
+#: patterns/page-services.php:81
+msgid "Délais"
+msgstr ""
+
+#: patterns/page-services.php:84
+msgid "Livré à la date prévue"
+msgstr ""
+
+#: patterns/page-services.php:85
+msgid "Un planning clair dès le départ, et tenu."
+msgstr ""
+
+#: patterns/page-services.php:88
+msgid "Qualité"
+msgstr ""
+
+#: patterns/page-services.php:91
+msgid "Un travail garanti"
+msgstr ""
+
+#: patterns/page-services.php:92
+msgid "Vérifié avant livraison, suivi après."
+msgstr ""
+
+#: patterns/page-services.php:95
+msgid "Contact"
+msgstr ""
+
+#: patterns/page-services.php:98
+msgid "Un seul interlocuteur"
+msgstr ""
+
+#: patterns/page-services.php:99
+msgid "Quelqu'un qui connaît votre dossier, du début à la fin."
+msgstr ""
+
+#: patterns/page-services.php:111
+msgid "Un projet ? Parlons-en"
+msgstr ""
+
+#: patterns/page-services.php:112
+msgid "Devis gratuit sous 48 h."
+msgstr ""
+
+#: patterns/page-services.php:115
+msgid "Nous contacter"
+msgstr ""
+
+#: patterns/section-faq.php
+msgctxt "Pattern title"
+msgid "Questions fréquentes"
+msgstr ""
+
+#: patterns/section-faq.php
+msgctxt "Pattern description"
+msgid "Titre et questions dépliables (blocs « Détails »), lisibles par Google."
+msgstr ""
+
+#: patterns/section-faq.php:16
+msgid "Combien de temps faut-il compter ?"
+msgstr ""
+
+#: patterns/section-faq.php:16
+msgid "Donnez un ordre de grandeur et ce dont il dépend. Les visiteurs préfèrent une fourchette honnête à « ça dépend »."
+msgstr ""
+
+#: patterns/section-faq.php:17
+msgid "Combien ça coûte ?"
+msgstr ""
+
+#: patterns/section-faq.php:17
+msgid "Un prix de départ ou une fourchette, et ce qui est compris. Proposez un devis gratuit pour le reste."
+msgstr ""
+
+#: patterns/section-faq.php:18
+msgid "Comment se passe le premier rendez-vous ?"
+msgstr ""
+
+#: patterns/section-faq.php:18
+msgid "Expliquez le déroulé : durée, sur place ou en visio, ce qu'il faut préparer."
+msgstr ""
+
+#: patterns/section-faq.php:19
+msgid "Que se passe-t-il après la livraison ?"
+msgstr ""
+
+#: patterns/section-faq.php:19
+msgid "Suivi, garantie, maintenance : rassurez sur l'après."
+msgstr ""
+
+#: patterns/section-faq.php:25
+msgid "Questions fréquentes"
+msgstr ""
+
+#: search.php:21
+msgid "Recherche"
+msgstr ""
+
+#. translators: %s : termes recherchés.
+#: search.php:23
+#, php-format
+msgid "Résultats pour **%s**"
+msgstr ""
+
+#. translators: %d : nombre de résultats.
+#: search.php:25
+#, php-format
+msgid "%d contenu trouvé."
+msgid_plural "%d contenus trouvés."
+msgstr[0] ""
+msgstr[1] ""
+
+#: searchform.php:22
+msgid "Rechercher…"
+msgstr ""
+
+#. translators: %d : minutes.
+#: single.php:41
+#, php-format
+msgid "%d min de lecture"
+msgid_plural "%d min de lecture"
+msgstr[0] ""
+msgstr[1] ""
+
+#: single.php:62
+#: template-parts/loop.php:33
+msgid "Précédent"
+msgstr ""
+
+#: single.php:63
+#: template-parts/loop.php:34
+msgid "Suivant"
+msgstr ""
+
+#: single.php:87
+msgid "À lire aussi"
+msgstr ""
+
+#: single.php:87
+msgid "Autres projets"
+msgstr ""
+
+#: single.php:90
+msgid "Tout voir"
+msgstr ""
+
+#: template-parts/contact-form.php:18
+msgid "Formulaire indisponible : le mu-plugin « Starter Core » n'est pas installé."
+msgstr ""
+
+#: template-parts/contact-form.php:119
+msgid "J'accepte que mes données soient utilisées pour me recontacter."
+msgstr ""
+
+#: template-parts/contact-form.php:121
+msgid "Politique de confidentialité"
+msgstr ""
+
+#: template-parts/contact-form.php:135
+msgid "Envoyer le message"
+msgstr ""
+
+#: template-parts/content-none.php:17
+msgid "Aucun résultat. Essayez avec d'autres mots."
+msgstr ""
+
+#: template-parts/content-none.php:18
+msgid "Aucun contenu pour le moment."
+msgstr ""
+
+#: template-parts/term-filter.php:35
+msgid "Filtrer par catégorie"
+msgstr ""
+
+#: template-parts/term-filter.php:40
+msgid "Tout"
+msgstr ""
+
+#: blocks-native/src/notice/edit.js:27
+msgid "Réglages"
+msgstr ""
+
+#: blocks-native/src/notice/edit.js:29
+msgid "Type"
+msgstr ""
+
+#: blocks-native/src/notice/edit.js:37
+msgid "Étiquette"
+msgstr ""
+
+#: blocks-native/src/notice/edit.js:38
+msgid "Un ou deux mots (ex. « 30 min », « Nouveau »). Vide = icône du type."
+msgstr ""
+
+#: blocks-native/src/notice/edit.js:65
+msgid "Votre message…"
+msgstr ""
+
+#: blocks-native/src/notice/block.json
+msgctxt "block title"
+msgid "Encadré"
+msgstr ""
+
+#: blocks-native/src/notice/block.json
+msgctxt "block description"
+msgid "Message court mis en avant, dans une pilule centrée avec une étiquette : information, succès ou attention."
+msgstr ""
+
+#: blocks-native/src/notice/block.json
+msgctxt "block keyword"
+msgid "alerte"
+msgstr ""
+
+#: blocks-native/src/notice/block.json
+msgctxt "block keyword"
+msgid "info"
+msgstr ""
+
+#: blocks-native/src/notice/block.json
+msgctxt "block keyword"
+msgid "message"
+msgstr ""
+
+#: blocks/bento/block.json
+msgctxt "block title"
+msgid "Bento"
+msgstr ""
+
+#: blocks/bento/block.json
+msgctxt "block description"
+msgid "Grille de tuiles de tailles variées : photos, aplats de couleur, chiffres clés, liens."
+msgstr ""
+
+#: blocks/bento/block.json
+msgctxt "block keyword"
+msgid "bento"
+msgstr ""
+
+#: blocks/bento/block.json
+msgctxt "block keyword"
+msgid "grille"
+msgstr ""
+
+#: blocks/bento/block.json
+msgctxt "block keyword"
+msgid "mosaïque"
+msgstr ""
+
+#: blocks/bento/block.json
+#: blocks/features/block.json
+msgctxt "block keyword"
+msgid "services"
+msgstr ""
+
+#: blocks/bento/block.json
+msgctxt "block keyword"
+msgid "tuiles"
+msgstr ""
+
+#: blocks/contact-form/block.json
+msgctxt "block title"
+msgid "Formulaire de contact"
+msgstr ""
+
+#: blocks/contact-form/block.json
+msgctxt "block description"
+msgid "Formulaire de contact du site. Les messages arrivent à l'e-mail défini dans « Infos du site »."
+msgstr ""
+
+#: blocks/contact-form/block.json
+#: blocks/cta/block.json
+msgctxt "block keyword"
+msgid "contact"
+msgstr ""
+
+#: blocks/contact-form/block.json
+msgctxt "block keyword"
+msgid "formulaire"
+msgstr ""
+
+#: blocks/contact-form/block.json
+msgctxt "block keyword"
+msgid "mail"
+msgstr ""
+
+#: blocks/cta/block.json
+msgctxt "block title"
+msgid "Appel à l'action"
+msgstr ""
+
+#: blocks/cta/block.json
+msgctxt "block description"
+msgid "Grand titre avec mots mis en valeur, accroche, bouton ou champ e-mail, et personnes en décor."
+msgstr ""
+
+#: blocks/cta/block.json
+msgctxt "block keyword"
+msgid "cta"
+msgstr ""
+
+#: blocks/cta/block.json
+msgctxt "block keyword"
+msgid "action"
+msgstr ""
+
+#: blocks/cta/block.json
+msgctxt "block keyword"
+msgid "inscription"
+msgstr ""
+
+#: blocks/cta/block.json
+#: blocks/hero-slider/block.json
+#: blocks/hero/block.json
+msgctxt "block keyword"
+msgid "bannière"
+msgstr ""
+
+#: blocks/features/block.json
+msgctxt "block title"
+msgid "Cartes"
+msgstr ""
+
+#: blocks/features/block.json
+msgctxt "block description"
+msgid "Grille de cartes avec icône, couleur, titre, texte et lien : services, avantages, valeurs…"
+msgstr ""
+
+#: blocks/features/block.json
+msgctxt "block keyword"
+msgid "avantages"
+msgstr ""
+
+#: blocks/features/block.json
+msgctxt "block keyword"
+msgid "colonnes"
+msgstr ""
+
+#: blocks/features/block.json
+msgctxt "block keyword"
+msgid "icônes"
+msgstr ""
+
+#: blocks/features/block.json
+msgctxt "block keyword"
+msgid "cards"
+msgstr ""
+
+#: blocks/hero-slider/block.json
+msgctxt "block title"
+msgid "Hero slider"
+msgstr ""
+
+#: blocks/hero-slider/block.json
+msgctxt "block description"
+msgid "En-tête de page : grand titre, texte et boutons, puis diaporama d'images aux coins arrondis."
+msgstr ""
+
+#: blocks/hero-slider/block.json
+msgctxt "block keyword"
+msgid "slider"
+msgstr ""
+
+#: blocks/hero-slider/block.json
+#: blocks/why/block.json
+msgctxt "block keyword"
+msgid "carrousel"
+msgstr ""
+
+#: blocks/hero-slider/block.json
+msgctxt "block keyword"
+msgid "diaporama"
+msgstr ""
+
+#: blocks/hero-slider/block.json
+msgctxt "block keyword"
+msgid "hero"
+msgstr ""
+
+#: blocks/hero/block.json
+msgctxt "block title"
+msgid "Hero"
+msgstr ""
+
+#: blocks/hero/block.json
+msgctxt "block description"
+msgid "En-tête de page : grand titre, texte et bouton, puis une grande image aux coins arrondis."
+msgstr ""
+
+#: blocks/hero/block.json
+msgctxt "block keyword"
+msgid "en-tête"
+msgstr ""
+
+#: blocks/hero/block.json
+msgctxt "block keyword"
+msgid "header"
+msgstr ""
+
+#: blocks/why/block.json
+msgctxt "block title"
+msgid "Pourquoi nous"
+msgstr ""
+
+#: blocks/why/block.json
+msgctxt "block description"
+msgid "Grand titre et texte à gauche, cartes qui défilent horizontalement à droite : arguments, offres, activités…"
+msgstr ""
+
+#: blocks/why/block.json
+msgctxt "block keyword"
+msgid "pourquoi"
+msgstr ""
+
+#: blocks/why/block.json
+msgctxt "block keyword"
+msgid "arguments"
+msgstr ""
+
+#: blocks/why/block.json
+msgctxt "block keyword"
+msgid "cartes"
+msgstr ""
+
+#: blocks/why/block.json
+msgctxt "block keyword"
+msgid "défilement"
+msgstr ""
+
+#: blocks/why/block.json
+msgctxt "block keyword"
+msgid "offres"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Principale"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Secondaire (lavande)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Foncé"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Clair"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Fond"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Blanc"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Texte (Figtree)"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Titres (Onest)"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Accent (italique, citations)"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Petit"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Normal"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Grand"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Très grand"
+msgstr ""

@@ -11,6 +11,7 @@
 | `npm run format`                      | Quand on veut                     | Formate JS/CSS/JSON/MD avec Prettier **et trie les classes Tailwind de A à Z**, PHP compris (voir ci-dessous)                   |
 | `npm run format:check`                | En CI                             | Même vérification, sans rien modifier (code de sortie 1 si un fichier n'est pas formaté)                                        |
 | `composer install`                    | Une fois après le clone           | Installe PHPCS + règles WordPress et les stubs WordPress / ACF (autocomplétion) dans `vendor/`                                  |
+| `npm run pot`                         | Après avoir ajouté des textes     | Regénère `languages/starter.pot` (textes à traduire, voir `docs/patterns.md`)                                                   |
 | `npm run lint:php` / `lint:php:fix`   | Avant un commit                   | Vérifie le PHP avec les règles WordPress / corrige ce qui peut l'être automatiquement (voir ci-dessous)                         |
 
 > On continue d'ouvrir le site sur **http://wordpress-starter.local** (et pas localhost:5173). Vite ne sert que les fichiers CSS/JS.
