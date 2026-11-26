@@ -43,7 +43,7 @@ $cards = array_filter(
 	)
 );
 
-$wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-10 @container' ) );
+$wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose @container my-10' ) );
 ?>
 <div <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput -- échappé par WordPress. ?>>
 <div class="<?php echo esc_attr( starter_block_inner_class( $block['align'] ?? null ) ); ?>">

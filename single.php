@@ -49,7 +49,7 @@ while ( have_posts() ) :
 			</figure>
 		<?php endif; ?>
 
-		<div class="entry-content prose prose-lg mx-auto max-w-content">
+		<div class="entry-content mx-auto prose prose-lg max-w-content">
 			<?php the_content(); ?>
 		</div>
 

@@ -156,7 +156,7 @@ if ( 'scroller' === $layout ) {
 		<?php elseif ( $cards ) : ?>
 			<?php // ------- Cartes défilantes ------- ?>
 			<div
-				class="flex snap-x snap-mandatory gap-4 overflow-x-auto pr-5 pb-2 [scrollbar-width:none] focus-visible:outline-2 focus-visible:outline-primary [&::-webkit-scrollbar]:hidden"
+				class="flex snap-x snap-mandatory [scrollbar-width:none] gap-4 overflow-x-auto pr-5 pb-2 focus-visible:outline-2 focus-visible:outline-primary [&::-webkit-scrollbar]:hidden"
 				data-scroller-track
 				tabindex="0"
 				role="region"
@@ -174,7 +174,7 @@ if ( 'scroller' === $layout ) {
 								<?php endif; ?>
 
 								<?php if ( ! empty( $link['url'] ) ) : ?>
-									<a class="inline-flex size-9 items-center justify-center rounded-full bg-light text-dark no-underline transition after:absolute after:inset-0 group-hover:rotate-45" href="<?php echo esc_url( $link['url'] ); ?>" <?php echo starter_link_target( $link ); // phpcs:ignore WordPress.Security.EscapeOutput ?>>
+									<a class="inline-flex size-9 items-center justify-center rounded-full bg-light text-dark no-underline transition group-hover:rotate-45 after:absolute after:inset-0" href="<?php echo esc_url( $link['url'] ); ?>" <?php echo starter_link_target( $link ); // phpcs:ignore WordPress.Security.EscapeOutput ?>>
 										<?php echo starter_icon( 'arrow-up-right', 'size-4' ); ?>
 										<span class="sr-only"><?php echo esc_html( ( $link['title'] ?? '' ) ?: $card['title'] ); ?></span>
 									</a>

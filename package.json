@@ -7,7 +7,8 @@
     "build": "vite build && npm run blocks:build",
     "blocks:dev": "wp-scripts start --webpack-src-dir=blocks-native/src --output-path=blocks-native/build --webpack-copy-php",
     "blocks:build": "wp-scripts build --webpack-src-dir=blocks-native/src --output-path=blocks-native/build --webpack-copy-php",
-    "format": "prettier --write ."
+    "format": "prettier --write . && node bin/sort-classes.mjs",
+    "format:check": "prettier --check . && node bin/sort-classes.mjs --check"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.20",

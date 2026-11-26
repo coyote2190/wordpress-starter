@@ -24,7 +24,7 @@ while ( have_posts() ) :
 	?>
 	<div class="container pb-24">
 		<?php // Texte en colonne lisible ; les blocs alignfull / alignwide en sortent (components.css). ?>
-		<div class="entry-content prose mx-auto max-w-content">
+		<div class="entry-content mx-auto prose max-w-content">
 			<?php the_content(); ?>
 		</div>
 	</div>

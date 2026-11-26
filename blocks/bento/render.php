@@ -106,7 +106,7 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-24 md:m
 					<?php if ( $has_link ) : ?>
 						<?php // after:absolute after:inset-0 : toute la tuile est cliquable. ?>
 						<a
-							class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-dark no-underline transition after:absolute after:inset-0 group-hover:rotate-45"
+							class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-dark no-underline transition group-hover:rotate-45 after:absolute after:inset-0"
 							href="<?php echo esc_url( $link['url'] ); ?>"
 							<?php echo '_blank' === ( $link['target'] ?? '' ) ? 'target="_blank" rel="noopener"' : ''; ?>
 						>

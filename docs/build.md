@@ -8,7 +8,8 @@
 | `npm run dev` | Pendant qu'on code | Lance Vite sur `http://localhost:5173`. Le CSS/JS se met à jour **sans recharger**, la page se recharge quand un `.php` change. |
 | `npm run build` | Avant chaque commit / déploiement | Compile et minifie dans `dist/`, puis compile les blocs natifs (`blocks-native/build/`) |
 | `npm run blocks:dev` / `blocks:build` | Si on travaille sur un bloc React | Voir `docs/native-blocks.md` |
-| `npm run format` | Quand on veut | Formate JS/CSS/JSON/MD avec Prettier (et trie les classes Tailwind) |
+| `npm run format` | Quand on veut | Formate JS/CSS/JSON/MD avec Prettier **et trie les classes Tailwind**, PHP compris (voir ci-dessous) |
+| `npm run format:check` | En CI | Même vérification, sans rien modifier (code de sortie 1 si un fichier n'est pas formaté) |
 
 > On continue d'ouvrir le site sur **http://wordpress-starter.local** (et pas localhost:5173). Vite ne sert que les fichiers CSS/JS.
 
@@ -82,3 +83,16 @@ Exemple : un JS chargé seulement sur la page contact.
 | Une classe Tailwind ne marche pas | Le fichier n'est pas couvert par un `@source`, ou la classe est construite dynamiquement (`'text-' . $color`). Écrire les classes en entier. |
 | En dev, les styles ne changent pas | Vite ne tourne plus mais `hot` est resté (crash) : supprimer le fichier `hot`. |
 | Port 5173 déjà pris | Un autre Vite tourne : l'arrêter (`strictPort` empêche de basculer sur un autre port). |
+
+## Tri des classes Tailwind
+
+Ordre officiel de Tailwind (mise en page → espacements → typographie → couleurs → états), le même partout :
+
+| Fichiers | Outil |
+|---|---|
+| JS, CSS, Markdown | Prettier + `prettier-plugin-tailwindcss` |
+| **PHP** | `bin/sort-classes.mjs`, qui réutilise **le même algorithme** (`prettier-plugin-tailwindcss/sorter`) sans toucher au reste du code PHP |
+
+Le script PHP trie les attributs `class="…"` (les morceaux `<?php … ?>` restent en place), les tableaux `'class' => '…'` et le 2e argument de `starter_icon()`. Il ne trie pas les classes construites par concaténation ni celles rangées dans des tableaux PHP : sans conséquence, l'ordre des classes ne change jamais le rendu.
+
+Pourquoi pas Prettier directement sur le PHP : `@prettier/plugin-php` reformaterait **tout** le PHP, à l'opposé du style WordPress du thème.
