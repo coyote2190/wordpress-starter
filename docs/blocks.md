@@ -87,13 +87,13 @@ Dans `render.php`, une seule ligne applique cette règle :
 
 | Bloc | Dossier | Usage |
 |---|---|---|
-| **Hero** | `blocks/hero/` | Bannière d'en-tête : titre, texte, bouton, image de fond |
-| **Hero slider** | `blocks/hero-slider/` | Bannière plein écran à plusieurs diapositives (une seule par page) |
+| **Hero** | `blocks/hero/` | En-tête de page : grand titre (`**mot**` surligné), texte, bouton, puis grande image arrondie (facultative) |
+| **Hero slider** | `blocks/hero-slider/` | En-tête de page : grand titre, texte, boutons, puis diaporama d'images arrondi (un seul par page) |
 | **Cartes** | `blocks/features/` | Grille de cartes : services, avantages, valeurs… |
-| **Appel à l'action** | `blocks/cta/` | Grand titre avec mots mis en valeur, bouton ou champ e-mail, personnes en décor |
-| **Pourquoi nous** | `blocks/why/` | Grand titre + texte à gauche, cartes qui défilent horizontalement à droite |
+| **Appel à l'action** | `blocks/cta/` | Grand titre, bouton ou champ e-mail, avatars en pile ou flottants |
+| **Pourquoi nous** | `blocks/why/` | Grand titre + texte à gauche, arguments à droite : liste à filets ou cartes défilantes |
 | **Bento** | `blocks/bento/` | Mosaïque de tuiles de tailles variées : photos, aplats de couleur, chiffres clés |
-| **Formulaire de contact** | `blocks/contact-form/` | Place le formulaire (voir `docs/contact-form.md`) |
+| **Formulaire de contact** | `blocks/contact-form/` | Coordonnées de « Infos du site » en cartes + formulaire dans une carte blanche (voir `docs/contact-form.md`) |
 
 ### Le bloc « Cartes » en détail
 
@@ -119,7 +119,8 @@ Dans `render.php`, une seule ligne applique cette règle :
 | Action | `action` | **Bouton** (lien) ou **Champ e-mail + bouton** |
 | Bouton | `button` | Texte du bouton et page de destination |
 | Couleurs | `background`, `accent` | Palette `theme.json`. Contraste du texte automatique (`starter_color_is_light()`) |
-| Personnes | `people` (0 à 4) | Photo + prénom, flottent autour du titre sur grand écran, décoratives (`aria-hidden`), sans animation si « réduire les animations » est activé |
+| Personnes | `people` (0 à 4) | Photo + prénom, décoratives (`aria-hidden`) |
+| Présentation des personnes | `people_layout` | **En pile** au-dessus du titre (avatars qui se chevauchent) · **Flottantes** autour du titre sur grand écran (sans animation si « réduire les animations » est activé) |
 
 **Le champ e-mail sans service de newsletter** : c'est un formulaire `GET` vers la page du bouton (ex. `/contact/?email=jean@exemple.fr`). Le formulaire de contact reprend l'adresse (`template-parts/contact-form.php`). Pour une vraie newsletter (Brevo, Mailchimp…), remplacer l'`action` du formulaire par l'URL d'inscription du service.
 
@@ -127,7 +128,10 @@ Dans `render.php`, une seule ligne applique cette règle :
 
 ### Le bloc « Pourquoi nous » en détail
 
-Intro à gauche, **cartes défilantes** à droite. En pleine largeur (par défaut), l'intro est alignée sur la grille du site et les cartes défilent **jusqu'au bord droit de l'écran**.
+Intro à gauche, arguments à droite, en deux présentations (champ `layout`) :
+
+- **Liste** (par défaut) : arguments les uns sous les autres, séparés par un filet — icône, surtitre (`badge`), titre, texte. Les icônes bicolores (`bolt`, `layers`, `circles`) prennent la couleur de l'argument ;
+- **Cartes défilantes** : en pleine largeur, l'intro est alignée sur la grille du site et les cartes défilent **jusqu'au bord droit de l'écran**.
 
 | Réglage | Champ | Détail |
 |---|---|---|
@@ -136,7 +140,7 @@ Intro à gauche, **cartes défilantes** à droite. En pleine largeur (par défau
 | Action | `action` | Aucune · Bouton · Champ e-mail + bouton (même principe que l'Appel à l'action : `?email=` vers la page cible) |
 | Cartes (1 à 10) | `cards` | Pastille, couleur, titre, texte, **icône** (grande, sur fond pastel de la couleur) ou **photo / illustration**, lien (bouton ↗, carte cliquable) |
 
-Défilement :
+Défilement (cartes défilantes) :
 - **natif** (`overflow-x-auto` + `scroll-snap`) : au doigt, au trackpad, au clavier (la piste est focusable) — fonctionne sans JS ;
 - boutons ← → sous l'intro sur grand écran, via le module générique **`scroller`** (`assets/src/js/modules/scroller.js`), réutilisable pour tout futur carrousel ;
 - barre de défilement masquée, aimantation sur chaque carte.
@@ -160,36 +164,44 @@ Exemple de composition (la démo) : `½ double` photo + `¼` chiffre + `¼` coul
 
 ### Le bloc « Hero slider » en détail
 
-| Réglage | Champ | Choix |
+Grand titre (le `<h1>` de la page) à gauche, texte et boutons à droite, puis un diaporama d'images aux coins arrondis avec une pilule de commandes (points, pause, flèches) en bas à droite.
+
+| Réglage | Champ | Détail |
 |---|---|---|
-| Diapositives (1 à 6) | `slides` | Image de fond, titre, suite du titre (italique, police `accent`), texte, bouton plein, bouton contour |
-| Hauteur | `height` | Plein écran (100 % moins la barre d'admin) · 70 % |
-| Position du texte | `content_align` | Gauche · Centré |
-| Voile sombre | `overlay` | Léger · Moyen · Fort (lisibilité du texte sur l'image) |
+| Titre | `title` | `**mot**` = mot surligné (pastille lavande, classe `title-mark`) |
+| Texte | `text` | |
+| Bouton principal | `button_primary` | Pilule foncée avec « + » (`starter_button( $link, 'icon', 'plus' )`) |
+| Lien secondaire | `button_secondary` | Lien souligné |
+| Images (1 à 8) | `slides` | Texte alternatif réglé dans la médiathèque |
 | Défilement auto | `autoplay` | En secondes, 0 = désactivé |
 
-Comportement (module `assets/src/js/modules/hero-slider.js`, chargé seulement s'il y a 2 diapositives ou plus) :
+Comportement (module `assets/src/js/modules/hero-slider.js`, chargé seulement s'il y a 2 images ou plus) :
 
-- fondu entre diapositives : l'attribut `data-active` + classes `data-active:visible data-active:opacity-100` ;
-- flèches (masquées sur mobile), points, flèches du clavier, glisser au doigt (`touch-pan-y`) ;
-- **accessibilité** : diapositives cachées en `inert` (ni focus ni lecture d'écran), bouton **pause** obligatoire quand ça défile seul (WCAG 2.2.2), pause au survol et au focus clavier, **pas de défilement auto** si le visiteur a activé « réduire les animations » ni dans l'éditeur ;
+- fondu entre images : l'attribut `data-active` + classes `data-active:visible data-active:opacity-100` ;
+- points, flèches, flèches du clavier, glisser au doigt (`touch-pan-y`) ;
+- **accessibilité** : images cachées en `inert`, bouton **pause** obligatoire quand ça défile seul (WCAG 2.2.2), pause au survol et au focus clavier, **pas de défilement auto** si « réduire les animations » est activé ni dans l'éditeur ;
 - **performance** : 1re image en `fetchpriority="high"` + `loading="eager"`, les suivantes en différé ;
-- **SEO** : le titre de la 1re diapositive est le `<h1>`, les autres des `<h2>` ;
-- sans JS : la 1re diapositive s'affiche normalement.
+- sans JS : la 1re image s'affiche normalement.
 
-## Header transparent sur hero
+## Boutons : `starter_button()`
 
-Quand une **page** commence par un **Hero** ou un **Hero slider** en **pleine largeur** :
+`starter_button( $link, $variant, $icon, $default )` (`inc/blocks.php`) affiche un champ Lien SCF en bouton du thème :
 
-| Quoi | Comment |
+| Variante | Rendu |
 |---|---|
-| Détection | `starter_starts_with_hero()` (`inc/blocks.php`) lit le 1er bloc de la page |
-| Classe `has-hero-overlay` sur `<body>` | `starter_hero_body_class()` |
-| Header en position absolue, texte blanc, par-dessus l'image | `components.css`, règles **hors `@layer`** pour passer devant les classes Tailwind du header |
-| Pas de titre de page au-dessus du hero | `page.php` (le hero porte déjà le `<h1>`) |
-| Menu mobile ouvert | Panneau blanc → liens repassés en foncé |
+| `icon` | Pilule foncée, icône dans un rond à gauche (« + Démarrer un projet ») |
+| `simple` | Pilule foncée, texte + petite icône à droite (« C'est parti → ») |
+| `link` | Lien souligné sans fond |
 
-Pour désactiver ce comportement sur une page : mettre le hero en « Grande largeur », ou placer un autre bloc avant.
+`starter_link_target( $link )` renvoie `target="_blank" rel="noopener"` si le lien s'ouvre dans un nouvel onglet.
+
+## Page qui commence par un hero
+
+Quand une **page** commence par un **Hero** ou un **Hero slider**, `page.php` n'affiche pas son propre en-tête : le bloc porte déjà le `<h1>`. Détection : `starter_starts_with_hero()` (`inc/blocks.php`), qui lit le 1er bloc de la page.
+
+## Menu : bouton d'appel
+
+Ajouter la classe `menu-cta` à un élément de menu (Apparence > Menus > Options de l'écran > Classes CSS) l'affiche en pilule foncée (« Contact » dans la démo). La page courante est signalée par un petit point devant le lien.
 
 ## Ce que fait `inc/blocks.php`
 
@@ -198,8 +210,9 @@ Pour désactiver ce comportement sur une page : mettre le hero en « Grande larg
 | `starter_register_blocks()` | Enregistre automatiquement **chaque dossier** `blocks/*/block.json`. Créer le dossier suffit. |
 | `starter_block_category()` | Catégorie « Starter » en tête de l'outil d'insertion |
 | `starter_block_inner_class()` | Conteneur intérieur en pleine largeur (voir « Alignements ») |
-| `starter_starts_with_hero()` / `starter_hero_body_class()` | Header transparent quand la page commence par un hero (voir ci-dessus) |
-| `starter_format_title()` | Titre avec `**surligné**` et `__souligné__` (bloc Appel à l'action, réutilisable ailleurs) |
+| `starter_starts_with_hero()` | La page commence-t-elle par un Hero / Hero slider ? (voir ci-dessus) |
+| `starter_format_title()` | Titre avec `**surligné**` et `__souligné__` (Hero slider, Pourquoi nous, Appel à l'action) |
+| `starter_button()` / `starter_link_target()` | Boutons du thème à partir d'un champ Lien (voir « Boutons ») |
 | `starter_editor_styles()` | Charge `editor.css` (Tailwind sans reset) **dans l'iframe** de l'éditeur : l'aperçu ressemble au site |
 
 ## Créer un bloc (exemple : « Chiffres clés »)

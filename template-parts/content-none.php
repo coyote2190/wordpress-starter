@@ -7,15 +7,15 @@
 
 defined( 'ABSPATH' ) || exit;
 ?>
-<div class="rounded-lg bg-light p-8 text-center">
-	<p class="mb-6">
+<div class="flex flex-col items-center gap-4 rounded-[2rem] border border-light bg-white px-6 py-16 text-center">
+	<span class="inline-flex size-14 items-center justify-center rounded-full bg-secondary">
+		<?php echo starter_icon( is_search() ? 'search' : 'lightbulb', 'size-6' ); ?>
+	</span>
+	<p class="max-w-md text-lg text-muted">
 		<?php
 		is_search()
 			? esc_html_e( 'Aucun résultat. Essayez avec d\'autres mots.', 'starter' )
 			: esc_html_e( 'Aucun contenu pour le moment.', 'starter' );
 		?>
 	</p>
-	<?php if ( is_search() ) : ?>
-		<div class="mx-auto max-w-md"><?php get_search_form(); ?></div>
-	<?php endif; ?>
 </div>

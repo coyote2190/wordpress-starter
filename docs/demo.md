@@ -22,7 +22,7 @@ Relancer la création remplace l'ancienne démo, sans doublons. Les **pages sont
 
 | Quoi | Détail |
 |---|---|
-| **Pages** | Accueil (Hero slider 3 diapositives, Bento « Ce que nous faisons », « Pourquoi nous » avec 5 cartes défilantes, encadré, Appel à l'action avec champ e-mail), À propos (Hero, Cartes style « fond clair », encadré), Contact (Hero + formulaire), Actualités (page des articles), Mentions légales, Politique de confidentialité |
+| **Pages** | Accueil (Hero slider 3 images, encadré « 30 min », Bento « Ce que nous faisons », « Pourquoi nous » en liste, Appel à l'action pleine largeur avec avatars et champ e-mail), À propos (Hero, Cartes style « fond clair », encadré), Contact (Hero + formulaire), Actualités (page des articles), Mentions légales, Politique de confidentialité |
 | **Articles** | 5 articles en 2 catégories, avec image, extrait, titres, liste et encadré |
 | **Réalisations** | 6 réalisations (CPT du mu-plugin) en 3 catégories |
 | **Images** | Générées à la volée (dégradés aux couleurs de `theme.json` + titre), ajoutées à la médiathèque |
@@ -51,3 +51,9 @@ Relancer la création remplace l'ancienne démo, sans doublons. Les **pages sont
 ## Adapter pour un client
 
 Pour une présentation client, modifier les textes de `starter_demo_create()` (nom du studio → nom du client, services…). On peut aussi garder la démo comme base de travail : supprimer la méta `_starter_demo` d'une page pour que `reset` ne la touche plus.
+
+## Images de démo
+
+Générées par `demo/demo-images.php` (GD, dessin au double de la taille puis réduit pour lisser les bords) : petites illustrations aux couleurs de la charte, sans texte. Scènes : `site` (fenêtre de navigateur, page d'accueil), `shop` (grille de produits), `brand` (logo, nuancier, « Aa »), `abstract` (soleil, arche, carrés), `avatar` (portrait), `studio` (bureau : ordinateur, plante, mug, moodboard — image de « À propos »). Exemple : `starter_demo_image( 'Titre', 'shop', 1600, 1000, $variante )`.
+
+Coordonnées de démo : Quai des Chevillards, 59800 Lille — 03 20 00 00 00.

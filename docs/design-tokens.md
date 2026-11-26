@@ -20,15 +20,15 @@ On change une couleur **dans `theme.json` uniquement**. Le site, Tailwind et la 
 
 | Réglage | Valeur | Effet |
 |---|---|---|
-| `color.palette` | 5 couleurs du client | Les seules couleurs proposées dans l'éditeur |
+| `color.palette` | 6 couleurs : `primary` aubergine #3E3852, `secondary` lavande #D6CCF5, `dark` encre #1C1C1C, `light` #ECEAE6, `paper` fond #FAF9F7, `white` | Les seules couleurs proposées dans l'éditeur |
 | `color.custom: false` | — | Le client ne peut pas choisir une couleur libre (respect de la charte) |
 | `defaultPalette`, `defaultGradients`, `defaultDuotone: false` | — | Retire les couleurs WordPress par défaut (rose pâle, violet vif…) |
-| `typography.fontFamilies` | `sans`, `heading`, `accent` | Texte, titres, et police à empattements pour les mots mis en valeur (italique du Hero slider) |
+| `typography.fontFamilies` | `sans` (Figtree), `heading` (Onest), `accent` | Polices hébergées dans `assets/fonts/` (variables, sous-ensemble latin, licence OFL), déclarées en `fontFace` |
 | `typography.fontSizes` | 4 tailles | Tailles proposées dans l'éditeur, pas de taille libre |
 | `layout.contentSize` / `wideSize` | 48rem / 80rem | Largeur du texte et des blocs « large ». Utilisées aussi par la classe `container`. |
 | `appearanceTools: false` | — | Masque bordures, marges, etc. dans l'éditeur : le client ne peut pas casser la mise en page |
-| `styles` | fond blanc, texte foncé | Styles appliqués au `<body>` (front et éditeur) |
-| `styles.elements.button` | fond `primary`, texte blanc | Boutons Gutenberg natifs (bloc Boutons) aux couleurs de la charte, sur le site et dans l'éditeur |
+| `styles` | fond `paper`, texte `dark` | Styles appliqués au `<body>` (front et éditeur) |
+| `styles.elements.button` | pilule `dark`, texte blanc, survol `primary` | Boutons Gutenberg natifs (bloc Boutons) aux couleurs de la charte, sur le site et dans l'éditeur |
 
 > Les variables des couleurs WordPress par défaut restent dans le CSS : WordPress les garde pour la compatibilité. Elles ne sont plus proposées dans l'éditeur et aucune classe ne les utilise.
 
@@ -44,10 +44,12 @@ On change une couleur **dans `theme.json` uniquement**. Le site, Tailwind et la 
 
 | Type | Classes |
 |---|---|
-| Couleurs | `primary`, `secondary`, `dark`, `light`, `white` → `bg-primary`, `text-dark`, `border-light`… Transparence possible : `bg-primary/10` |
+| Couleurs | `primary`, `secondary`, `dark`, `light`, `paper`, `white` → `bg-primary`, `text-dark`, `border-light`… Transparence possible : `bg-primary/10` |
+| Teintes d'interface | `text-muted` (texte secondaire), `text-soft` (surtitres), `border-line` (filets) — définies dans `tokens.css`, pas dans `theme.json` (pas proposées au client) |
+| Mot surligné | `title-mark` (pastille lavande serrée, `components.css`) ; couleur modifiable via `--mark-color` |
 | Polices | `font-sans`, `font-heading`, `font-accent` |
 | Largeurs | `max-w-content`, `max-w-wide` |
-| Conteneur | `container` (centré, marges latérales, largeur `wide`) |
+| Conteneur | `container` (centré, marges latérales `--gutter` : 1.25rem, 2rem dès 768px, largeur `wide`). Les blocs « Grande largeur » ont la même largeur que le contenu d'un `container`. |
 | Animation | `animate-float` (flottement doux, défini dans `base.css`). Toujours avec `motion-safe:` pour respecter « réduire les animations » |
 | Contenu Gutenberg | `prose` (plugin `@tailwindcss/typography`) : met en forme titres, listes, liens… du contenu saisi dans l'éditeur. Ses couleurs sont **alignées sur la charte** dans `components.css` (texte et titres `dark`, liens et puces `primary`, citations `secondary`). |
 

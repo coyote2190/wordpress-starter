@@ -3,79 +3,76 @@
   "title": "Bloc : Hero slider",
   "fields": [
     {
+      "key": "field_starter_slider_tab_content",
+      "label": "Contenu",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_starter_slider_title",
+      "label": "Titre",
+      "name": "title",
+      "type": "text",
+      "required": 1,
+      "instructions": "**mot** = mot surligné. Ex. : Des sites web qui travaillent **pour vous**"
+    },
+    {
+      "key": "field_starter_slider_text",
+      "label": "Texte",
+      "name": "text",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_starter_slider_button_primary",
+      "label": "Bouton principal",
+      "name": "button_primary",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_starter_slider_button_secondary",
+      "label": "Lien secondaire (souligné)",
+      "name": "button_secondary",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
       "key": "field_starter_slider_tab_slides",
-      "label": "Diapositives",
+      "label": "Images",
       "name": "",
       "type": "tab",
       "placement": "top"
     },
     {
       "key": "field_starter_slider_slides",
-      "label": "Diapositives",
+      "label": "Images du diaporama",
       "name": "slides",
       "type": "repeater",
-      "layout": "block",
+      "layout": "table",
       "min": 1,
-      "max": 6,
-      "collapsed": "field_starter_slider_slide_title",
-      "button_label": "Ajouter une diapositive",
+      "max": 8,
+      "instructions": "Au moins 1920 × 1080 px. Le texte alternatif de chaque image se règle dans la médiathèque.",
+      "button_label": "Ajouter une image",
       "sub_fields": [
         {
           "key": "field_starter_slider_slide_image",
-          "label": "Image de fond",
+          "label": "Image",
           "name": "image",
           "type": "image",
-          "instructions": "Au moins 1920 × 1080 px. Le sujet important au centre ou à droite (le texte est à gauche).",
           "required": 1,
           "return_format": "id",
           "preview_size": "medium",
           "library": "all",
           "mime_types": "jpg,jpeg,png,webp,avif",
-          "parent_repeater": "field_starter_slider_slides"
-        },
-        {
-          "key": "field_starter_slider_slide_title",
-          "label": "Titre",
-          "name": "title",
-          "type": "text",
-          "required": 1,
-          "wrapper": { "width": "50" },
-          "parent_repeater": "field_starter_slider_slides"
-        },
-        {
-          "key": "field_starter_slider_slide_title_highlight",
-          "label": "Suite du titre (en italique)",
-          "name": "title_highlight",
-          "type": "text",
-          "instructions": "Facultatif. Affichée à la ligne, en italique.",
-          "wrapper": { "width": "50" },
-          "parent_repeater": "field_starter_slider_slides"
-        },
-        {
-          "key": "field_starter_slider_slide_text",
-          "label": "Texte",
-          "name": "text",
-          "type": "textarea",
-          "rows": 2,
-          "new_lines": "",
-          "parent_repeater": "field_starter_slider_slides"
-        },
-        {
-          "key": "field_starter_slider_slide_button_primary",
-          "label": "Bouton principal (plein)",
-          "name": "button_primary",
-          "type": "link",
-          "return_format": "array",
-          "wrapper": { "width": "50" },
-          "parent_repeater": "field_starter_slider_slides"
-        },
-        {
-          "key": "field_starter_slider_slide_button_secondary",
-          "label": "Bouton secondaire (contour)",
-          "name": "button_secondary",
-          "type": "link",
-          "return_format": "array",
-          "wrapper": { "width": "50" },
           "parent_repeater": "field_starter_slider_slides"
         }
       ]
@@ -86,37 +83,6 @@
       "name": "",
       "type": "tab",
       "placement": "top"
-    },
-    {
-      "key": "field_starter_slider_height",
-      "label": "Hauteur",
-      "name": "height",
-      "type": "button_group",
-      "choices": { "screen": "Plein écran", "large": "70 % de l'écran" },
-      "default_value": "screen",
-      "return_format": "value",
-      "layout": "horizontal"
-    },
-    {
-      "key": "field_starter_slider_content_align",
-      "label": "Position du texte",
-      "name": "content_align",
-      "type": "button_group",
-      "choices": { "left": "Gauche", "center": "Centré" },
-      "default_value": "left",
-      "return_format": "value",
-      "layout": "horizontal"
-    },
-    {
-      "key": "field_starter_slider_overlay",
-      "label": "Voile sombre sur l'image",
-      "name": "overlay",
-      "type": "button_group",
-      "instructions": "Plus l'image est claire, plus le voile doit être fort pour que le texte reste lisible.",
-      "choices": { "light": "Léger", "medium": "Moyen", "strong": "Fort" },
-      "default_value": "medium",
-      "return_format": "value",
-      "layout": "horizontal"
     },
     {
       "key": "field_starter_slider_autoplay",
@@ -147,5 +113,5 @@
   "active": true,
   "description": "",
   "show_in_rest": 0,
-  "modified": 1795622400
+  "modified": 1795708800
 }

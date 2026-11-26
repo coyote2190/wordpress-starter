@@ -101,6 +101,19 @@
       "placement": "top"
     },
     {
+      "key": "field_starter_cta_people_layout",
+      "label": "Présentation",
+      "name": "people_layout",
+      "type": "button_group",
+      "choices": {
+        "stack": "En pile au-dessus du titre",
+        "float": "Flottantes autour du titre"
+      },
+      "default_value": "stack",
+      "return_format": "value",
+      "layout": "horizontal"
+    },
+    {
       "key": "field_starter_cta_people",
       "label": "Personnes autour du titre",
       "name": "people",
@@ -109,7 +122,7 @@
       "min": 0,
       "max": 4,
       "button_label": "Ajouter une personne",
-      "instructions": "Facultatif, 4 maximum. Décor affiché sur grand écran uniquement (photos carrées de préférence).",
+      "instructions": "Photos rondes : en pile au-dessus du titre, ou flottantes autour (grand écran), selon « Présentation ».",
       "sub_fields": [
         {
           "key": "field_starter_cta_person_image",
@@ -149,5 +162,5 @@
   "active": true,
   "description": "",
   "show_in_rest": 0,
-  "modified": 1795622400
+  "modified": 1795708800
 }

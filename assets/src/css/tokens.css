@@ -17,6 +17,7 @@
   --color-secondary: var(--wp--preset--color--secondary);
   --color-dark: var(--wp--preset--color--dark);
   --color-light: var(--wp--preset--color--light);
+  --color-paper: var(--wp--preset--color--paper);
   --color-white: var(--wp--preset--color--white);
 
   /* Polices */
@@ -27,4 +28,15 @@
   /* Largeurs (theme.json > settings.layout) */
   --container-content: var(--wp--style--global--content-size);
   --container-wide: var(--wp--style--global--wide-size);
+}
+
+/*
+ * Teintes d'interface (textes secondaires, filets) : PAS dans theme.json, car ce
+ * ne sont pas des couleurs que le client choisit pour un bloc. À ajuster ici
+ * si la charte change.
+ */
+@theme {
+  --color-muted: #55525c; /* texte secondaire : `text-muted` */
+  --color-soft: #8e8e8e; /* surtitres, mentions : `text-soft` */
+  --color-line: #e4e1dc; /* filets et bordures : `border-line` */
 }

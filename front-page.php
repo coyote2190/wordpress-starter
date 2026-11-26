@@ -22,7 +22,7 @@ get_header();
 while ( have_posts() ) :
 	the_post();
 	?>
-	<div class="container">
+	<div class="container pb-24">
 		<?php // Texte en colonne lisible ; les blocs alignfull / alignwide en sortent (components.css). ?>
 		<div class="entry-content prose mx-auto max-w-content">
 			<?php the_content(); ?>

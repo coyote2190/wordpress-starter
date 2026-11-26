@@ -22,16 +22,10 @@ defined( 'ABSPATH' ) || exit;
 	<?php esc_html_e( 'Aller au contenu', 'starter' ); ?>
 </a>
 
-<header class="site-header relative border-b border-light" data-module="nav">
-	<div class="container flex items-center justify-between gap-6 py-4">
+<header class="site-header relative" data-module="nav">
+	<div class="container flex items-center justify-between gap-6 py-6">
 		<div class="site-branding">
-			<?php if ( has_custom_logo() ) : ?>
-				<?php the_custom_logo(); ?>
-			<?php else : ?>
-				<a class="font-heading text-xl font-bold text-primary" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-					<?php bloginfo( 'name' ); ?>
-				</a>
-			<?php endif; ?>
+			<?php get_template_part( 'template-parts/site-brand' ); ?>
 		</div>
 
 		<?php if ( has_nav_menu( 'primary' ) ) : ?>
@@ -49,7 +43,7 @@ defined( 'ABSPATH' ) || exit;
 
 			<nav
 				id="primary-menu"
-				class="site-nav max-md:absolute max-md:inset-x-0 max-md:top-full max-md:z-40 max-md:hidden max-md:border-b max-md:border-light max-md:bg-white max-md:data-open:block"
+				class="site-nav max-md:absolute max-md:inset-x-0 max-md:top-full max-md:z-40 max-md:hidden max-md:border-b max-md:border-line max-md:bg-paper max-md:data-open:block"
 				aria-label="<?php esc_attr_e( 'Menu principal', 'starter' ); ?>"
 				data-nav-menu
 			>
@@ -58,7 +52,7 @@ defined( 'ABSPATH' ) || exit;
 					array(
 						'theme_location' => 'primary',
 						'container'      => false,
-						'menu_class'     => 'flex flex-col gap-1 max-md:container max-md:py-4 md:flex-row md:gap-6',
+						'menu_class'     => 'flex flex-col gap-2 text-[15px] max-md:container max-md:py-4 md:flex-row md:items-center md:gap-7',
 						'depth'          => 1,
 					)
 				);

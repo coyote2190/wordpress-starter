@@ -26,7 +26,7 @@ Pour chaque URL, WordPress cherche le gabarit **le plus précis** qui existe, pu
 | `footer.php` | Fermeture du `<main>`, pied de page, menu footer, `wp_footer()` |
 | `index.php` | Liste des articles (blog) et gabarit de secours |
 | `front-page.php` | Accueil : contenu Gutenberg de la page d'accueil, sans titre (les sections sont des blocs) |
-| `page.php` | Page : titre + contenu Gutenberg dans `prose`. Si la page commence par un hero pleine largeur : pas de titre (le hero porte le `<h1>`) et header transparent (voir `docs/blocks.md`). |
+| `page.php` | Page : en-tête (`page-header`) + contenu Gutenberg dans `prose`. Si la page commence par un Hero ou un Hero slider : pas d'en-tête (le bloc porte le `<h1>`). |
 | `single.php` | Article : date, titre, image mise en avant, contenu, article précédent/suivant |
 | `archive.php` | Titre + description de l'archive, puis la boucle |
 | `search.php` | Titre « Résultats pour… », formulaire, puis la boucle |
@@ -79,3 +79,20 @@ Dans `page.php`, `single.php` et `front-page.php`, le contenu est dans `.entry-c
 Deux emplacements déclarés dans `inc/setup.php` : `primary` (header) et `footer`. Ils se remplissent dans **Apparence > Menus**. S'ils sont vides, rien ne s'affiche (pas de liste de pages automatique).
 
 Le menu mobile (bouton burger) est géré en JS : voir `docs/js.md`.
+
+## Éléments communs des gabarits
+
+| Élément | Fichier | Rôle |
+|---|---|---|
+| En-tête de page | `template-parts/page-header.php` | Grand titre (`**mot**` surligné) + texte à droite, pastille facultative, variante centrée (404). Arguments : `title`, `text`, `eyebrow`, `center` |
+| Filtres par catégorie | `template-parts/term-filter.php` | Pastilles « Tout » + une par catégorie, au-dessus des listes (masqué s'il y a moins de 2 catégories) |
+| Carte | `template-parts/content-card.php` | Image arrondie + flèche, catégorie, date, titre, extrait. `featured` = carte large (1er contenu d'une liste). Sans image : carte blanche bordée |
+| Logo | `template-parts/site-brand.php` | Logo personnalisé, sinon pastille lavande + nom du site |
+| Coordonnées / réseaux | `template-parts/site-contact.php`, `site-socials.php` | Footer |
+| Fonctions | `inc/template-tags.php` | `starter_primary_term()`, `starter_post_type_list()`, `starter_reading_time()`, titres d'archive sans « Catégorie : » |
+
+Introductions des listes : **Actualités** = contenu de la page des articles (Pages > Actualités) ; **Réalisations** = `description` du type de contenu (mu-plugin) ; **catégories** = leur description.
+
+Article seul (`single.php`, aussi pour les réalisations) : retour vers la liste, titre centré, catégorie, date et temps de lecture, grande image, navigation précédent / suivant en cartes, puis « À lire aussi » (3 contenus récents du même type).
+
+> `the_post_navigation()` n'accepte qu'**une** classe dans `class` (WordPress la passe dans `sanitize_html_class()`, qui retire les espaces) : la mise en page se fait sur un conteneur autour.

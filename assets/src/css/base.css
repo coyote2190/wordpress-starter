@@ -17,14 +17,26 @@
   }
 }
 
-/* Conteneur centré du site : `class="container"`. */
+/*
+ * Conteneur centré du site : `class="container"`.
+ * `--gutter` = marge latérale, réutilisée par les alignements large / pleine
+ * largeur (components.css) et le bloc « Pourquoi nous » : tout reste aligné.
+ */
 @utility container {
   margin-inline: auto;
-  padding-inline: 1.25rem;
+  padding-inline: var(--gutter);
   max-width: var(--container-wide);
 }
 
 @layer base {
+  :root {
+    --gutter: 1.25rem;
+
+    @media (width >= 48rem) {
+      --gutter: 2rem;
+    }
+  }
+
   /* Empêche la barre de défilement horizontale due aux blocs pleine largeur (100vw). */
   body {
     overflow-x: clip;
@@ -35,6 +47,7 @@
   h3,
   h4 {
     font-family: var(--font-heading);
+    font-weight: 500;
   }
 
   /* Lien d'évitement (accessibilité) : invisible sauf au clavier. */

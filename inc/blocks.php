@@ -46,10 +46,9 @@ function starter_block_inner_class( ?string $align ): string {
 }
 
 /**
- * La page affichée commence-t-elle par un Hero ou un Hero slider en pleine largeur ?
+ * La page affichée commence-t-elle par un Hero ou un Hero slider ?
  *
- * Si oui : header transparent par-dessus l'image (classe body `has-hero-overlay`)
- * et pas de titre de page au-dessus (le hero contient déjà le <h1>).
+ * Si oui, page.php n'affiche pas le titre de la page : le bloc contient déjà le <h1>.
  * Seulement pour les pages (pas les articles, qui ont leur date et leur titre).
  */
 function starter_starts_with_hero(): bool {
@@ -62,31 +61,11 @@ function starter_starts_with_hero(): bool {
 		if ( is_page() && $post instanceof WP_Post && has_blocks( $post ) ) {
 			// parse_blocks() renvoie aussi les espaces entre blocs (blockName null) : on les ignore.
 			$blocks = array_values( array_filter( parse_blocks( $post->post_content ), static fn( $b ) => null !== $b['blockName'] ) );
-			$first  = $blocks[0] ?? null;
-
-			// Ces deux blocs sont en pleine largeur par défaut : align absent = 'full'.
-			$result = $first
-				&& in_array( $first['blockName'], array( 'starter/hero', 'starter/hero-slider' ), true )
-				&& 'full' === ( $first['attrs']['align'] ?? 'full' );
+			$result = in_array( $blocks[0]['blockName'] ?? '', array( 'starter/hero', 'starter/hero-slider' ), true );
 		}
 	}
 
 	return $result;
-}
-
-add_filter( 'body_class', 'starter_hero_body_class' );
-
-/**
- * Ajoute `has-hero-overlay` au <body> quand la page commence par un hero pleine largeur.
- *
- * @param string[] $classes Classes du body.
- * @return string[]
- */
-function starter_hero_body_class( array $classes ): array {
-	if ( starter_starts_with_hero() ) {
-		$classes[] = 'has-hero-overlay';
-	}
-	return $classes;
 }
 
 /**
@@ -106,6 +85,60 @@ function starter_format_title( string $text, string $highlight_classes, string $
 	$html = preg_replace( '/\*\*(.+?)\*\*/u', '<mark class="' . esc_attr( $highlight_classes ) . '">$1</mark>', $html );
 	$html = preg_replace( '/__(.+?)__/u', '<span class="' . esc_attr( $underline_classes ) . '">$1</span>', $html );
 	return (string) $html;
+}
+
+/**
+ * Attributs target / rel d'un champ Lien SCF ouvert dans un nouvel onglet.
+ *
+ * @param array<string, string> $link Champ Lien : [ 'url', 'title', 'target' ].
+ * @return string Attributs HTML sûrs (ou chaîne vide).
+ */
+function starter_link_target( array $link ): string {
+	return '_blank' === ( $link['target'] ?? '' ) ? 'target="_blank" rel="noopener"' : '';
+}
+
+/**
+ * Bouton du thème (pilule), à partir d'un champ Lien SCF.
+ *
+ * Variantes :
+ * - 'icon'   : pilule foncée avec icône dans un rond à gauche (« + Démarrer un projet ») ;
+ * - 'simple' : pilule foncée, texte + petite icône à droite (« C'est parti → ») ;
+ * - 'link'   : lien souligné, sans fond (« Nos réalisations »).
+ *
+ * @param array<string, string> $link    Champ Lien : [ 'url', 'title', 'target' ].
+ * @param string                $variant 'icon', 'simple' ou 'link'.
+ * @param string                $icon    Icône de assets/icons/ (variantes 'icon' et 'simple').
+ * @param string                $default Texte si le lien n'a pas de titre.
+ * @return string HTML du bouton, ou chaîne vide si le lien n'a pas d'URL.
+ */
+function starter_button( array $link, string $variant = 'icon', string $icon = 'arrow-right', string $default = '' ): string {
+	if ( empty( $link['url'] ) ) {
+		return '';
+	}
+
+	$label = ( $link['title'] ?? '' ) ?: ( $default ?: __( 'En savoir plus', 'starter' ) );
+	$base  = 'inline-flex w-fit items-center gap-2.5 rounded-full font-medium no-underline transition';
+
+	$classes = array(
+		'icon'   => $base . ' bg-dark py-2 pr-5.5 pl-2 text-white hover:bg-primary',
+		'simple' => $base . ' bg-dark px-5.5 py-3 text-white hover:bg-primary',
+		'link'   => $base . ' px-2 py-3.5 underline underline-offset-4 hover:opacity-70',
+	);
+
+	$inner = esc_html( $label );
+	if ( 'icon' === $variant ) {
+		$inner = '<span class="inline-flex size-9 items-center justify-center rounded-full border-[1.5px] border-white/50">' . starter_icon( $icon, 'size-4' ) . '</span>' . $inner;
+	} elseif ( 'simple' === $variant ) {
+		$inner .= starter_icon( $icon, 'size-4' );
+	}
+
+	return sprintf(
+		'<a class="%s" href="%s" %s>%s</a>',
+		esc_attr( $classes[ $variant ] ?? $classes['icon'] ),
+		esc_url( $link['url'] ),
+		starter_link_target( $link ),
+		$inner
+	);
 }
 
 add_filter( 'block_categories_all', 'starter_block_category' );

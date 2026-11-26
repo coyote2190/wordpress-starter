@@ -28,9 +28,11 @@ Pour tester si une icône existe : `starter_icon_exists( 'instagram' )`.
 
 ## Icônes fournies
 
-Interface : `menu` · `close` · `arrow-left` · `arrow-right` · `arrow-up-right` · `pause` · `play` · `chevron-down` · `search` · `mail` · `phone` · `map-pin` · `check` · `alert`
+Interface : `plus` · `menu` · `close` · `arrow-left` · `arrow-right` · `arrow-up-right` · `pause` · `play` · `chevron-down` · `search` · `mail` · `phone` · `map-pin` · `check` · `alert`
 
 Métier (cartes, services…) : `monitor` · `shopping-cart` · `palette` · `rocket` · `shield` · `chart` · `users` · `star` · `heart` · `clock` · `lightbulb` · `settings`
+
+Bicolores (traits `currentColor` + remplissage `--icon-accent`, vide par défaut) : `bolt` · `layers` · `circles`. Utilisées par la liste du bloc « Pourquoi nous », qui définit `--icon-accent` avec la couleur de l'argument. Pour en créer une : `style="fill: var(--icon-accent, none)"` sur les formes à colorer.
 
 `starter_icon_list()` renvoie la liste de toutes les icônes disponibles.
 

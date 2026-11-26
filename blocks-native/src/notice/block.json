@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "starter/notice",
   "title": "Encadré",
-  "description": "Message mis en avant : information, succès ou attention.",
+  "description": "Message court mis en avant, dans une pilule centrée avec une étiquette : information, succès ou attention.",
   "category": "starter",
   "icon": "info",
   "keywords": [
@@ -22,6 +22,10 @@
       ],
       "default": "info"
     },
+    "badge": {
+      "type": "string",
+      "default": ""
+    },
     "content": {
       "type": "string",
       "default": ""
@@ -38,7 +42,8 @@
   "example": {
     "attributes": {
       "type": "info",
-      "content": "Nos bureaux sont fermés du 24 au 26 décembre."
+      "badge": "30 min",
+      "content": "Premier rendez-vous <strong>offert</strong> : on fait le point sur votre projet en 30 minutes."
     }
   },
   "editorScript": "file:./index.js",

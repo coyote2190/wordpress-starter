@@ -10,30 +10,34 @@ defined( 'ABSPATH' ) || exit;
 ?>
 </main>
 
-<footer class="site-footer mt-16 bg-dark text-light">
-	<div class="container flex flex-col gap-6 py-10 md:flex-row md:items-start md:justify-between">
-		<div class="flex flex-col gap-4">
-			<p class="font-heading text-lg font-bold text-white"><?php bloginfo( 'name' ); ?></p>
-			<?php get_template_part( 'template-parts/site-contact' ); ?>
-			<p class="text-xs text-light/70">
-				&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>
-			</p>
+<footer class="site-footer bg-dark text-white">
+	<div class="container flex flex-col gap-12 pt-18 pb-8">
+		<div class="flex flex-wrap justify-between gap-8 leading-relaxed">
+			<div class="flex flex-col gap-1 text-[#b5b5b5]">
+				<?php get_template_part( 'template-parts/site-brand', null, array( 'class' => 'mb-3 text-xl text-white' ) ); ?>
+				<?php get_template_part( 'template-parts/site-contact' ); ?>
+			</div>
+
+			<?php if ( has_nav_menu( 'footer' ) ) : ?>
+				<nav class="site-nav" aria-label="<?php esc_attr_e( 'Menu du pied de page', 'starter' ); ?>">
+					<?php
+					wp_nav_menu(
+						array(
+							'theme_location' => 'footer',
+							'container'      => false,
+							'menu_class'     => 'flex flex-wrap gap-x-7 gap-y-2',
+							'depth'          => 1,
+						)
+					);
+					?>
+				</nav>
+			<?php endif; ?>
 		</div>
 
-		<?php if ( has_nav_menu( 'footer' ) ) : ?>
-			<nav class="site-nav" aria-label="<?php esc_attr_e( 'Menu du pied de page', 'starter' ); ?>">
-				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'footer',
-						'container'      => false,
-						'menu_class'     => 'flex flex-wrap gap-x-6 gap-y-2 text-sm',
-						'depth'          => 1,
-					)
-				);
-				?>
-			</nav>
-		<?php endif; ?>
+		<div class="flex flex-wrap justify-between gap-4 border-t border-white/15 pt-6 text-sm text-soft">
+			<p>&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?></p>
+			<?php get_template_part( 'template-parts/site-socials' ); ?>
+		</div>
 	</div>
 </footer>
 

@@ -10,17 +10,33 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 ?>
 
-<div class="container py-24 text-center">
-	<p class="text-6xl font-bold text-primary">404</p>
-	<h1 class="mt-4 text-2xl font-bold"><?php esc_html_e( 'Page introuvable', 'starter' ); ?></h1>
-	<p class="mt-2 text-gray-600"><?php esc_html_e( 'Cette page n\'existe pas ou a été déplacée.', 'starter' ); ?></p>
+<div class="container pb-32">
+	<?php
+	get_template_part(
+		'template-parts/page-header',
+		null,
+		array(
+			'eyebrow' => __( 'Erreur 404', 'starter' ),
+			'title'   => __( 'Cette page s\'est **égarée**', 'starter' ),
+			'text'    => __( 'Elle n\'existe pas ou a été déplacée. Essayez une recherche, ou repartez de l\'accueil.', 'starter' ),
+			'center'  => true,
+		)
+	);
+	?>
 
-	<div class="mx-auto mt-8 max-w-md"><?php get_search_form(); ?></div>
-
-	<a class="mt-8 inline-flex items-center gap-2 font-semibold text-primary hover:underline" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-		<?php esc_html_e( 'Retour à l\'accueil', 'starter' ); ?>
-		<?php echo starter_icon( 'arrow-right', 'size-4' ); ?>
-	</a>
+	<div class="mx-auto flex max-w-xl flex-col items-center gap-6">
+		<div class="w-full"><?php get_search_form(); ?></div>
+		<?php
+		echo starter_button( // phpcs:ignore WordPress.Security.EscapeOutput -- échappé dans starter_button().
+			array(
+				'url'   => home_url( '/' ),
+				'title' => __( 'Retour à l\'accueil', 'starter' ),
+			),
+			'icon',
+			'arrow-left'
+		);
+		?>
+	</div>
 </div>
 
 <?php

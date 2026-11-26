@@ -81,6 +81,20 @@
       "placement": "top"
     },
     {
+      "key": "field_starter_why_layout",
+      "label": "Présentation",
+      "name": "layout",
+      "type": "button_group",
+      "instructions": "Liste : les arguments les uns sous les autres, séparés par un filet (3 à 5 idéalement). Cartes défilantes : carrousel horizontal, pour plus d'éléments.",
+      "choices": {
+        "list": "Liste",
+        "scroller": "Cartes défilantes"
+      },
+      "default_value": "list",
+      "return_format": "value",
+      "layout": "horizontal"
+    },
+    {
       "key": "field_starter_why_cards",
       "label": "Cartes",
       "name": "cards",
@@ -113,7 +127,8 @@
           "wrapper": {
             "width": "50"
           },
-          "parent_repeater": "field_starter_why_cards"
+          "parent_repeater": "field_starter_why_cards",
+          "instructions": "Liste : couleur de l'icône. Cartes : fond pastel du bas de la carte."
         },
         {
           "key": "field_starter_why_card_title",
@@ -159,7 +174,7 @@
           "wrapper": {
             "width": "50"
           },
-          "instructions": "Facultatif, remplace l'icône. Carré de préférence.",
+          "instructions": "Facultatif, remplace l'icône. Carré de préférence. Utilisée seulement en « Cartes défilantes ».",
           "parent_repeater": "field_starter_why_cards"
         },
         {
@@ -191,5 +206,5 @@
   "active": true,
   "description": "",
   "show_in_rest": 0,
-  "modified": 1795622400
+  "modified": 1795708800
 }

@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "starter/hero",
   "title": "Hero",
-  "description": "Grande bannière d'en-tête : titre, texte, bouton et image de fond.",
+  "description": "En-tête de page : grand titre, texte et bouton, puis une grande image aux coins arrondis.",
   "category": "starter",
   "icon": "cover-image",
   "keywords": [
@@ -23,7 +23,7 @@
   "attributes": {
     "align": {
       "type": "string",
-      "default": "full"
+      "default": "wide"
     }
   },
   "example": {},

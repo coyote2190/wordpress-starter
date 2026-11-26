@@ -43,22 +43,22 @@ $heights = array(
 
 $palette = starter_palette();
 
-$wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-16' ) );
+$wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-24 md:my-32' ) );
 ?>
 <section <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput -- échappé par WordPress. ?>>
 <div class="<?php echo esc_attr( starter_block_inner_class( $block['align'] ?? null ) ); ?>">
 	<?php if ( $title || $intro ) : ?>
-		<header class="mb-8 max-w-2xl">
+		<header class="mb-12 flex flex-wrap items-end justify-between gap-x-16 gap-y-6">
 			<?php if ( $title ) : ?>
-				<h2 class="text-3xl leading-tight font-bold md:text-4xl"><?php echo esc_html( $title ); ?></h2>
+				<h2 class="text-[clamp(2.25rem,4.4vw,3.75rem)] leading-none tracking-[-.04em]"><?php echo esc_html( $title ); ?></h2>
 			<?php endif; ?>
 			<?php if ( $intro ) : ?>
-				<p class="mt-3 text-lg text-gray-600"><?php echo esc_html( $intro ); ?></p>
+				<p class="max-w-[420px] text-lg leading-normal text-muted"><?php echo esc_html( $intro ); ?></p>
 			<?php endif; ?>
 		</header>
 	<?php endif; ?>
 
-	<div class="grid grid-flow-dense auto-rows-[minmax(15rem,auto)] gap-4 md:grid-cols-2 lg:grid-cols-4">
+	<div class="grid grid-flow-dense auto-rows-[minmax(17rem,auto)] gap-4 md:grid-cols-2 lg:grid-cols-4">
 		<?php foreach ( $tiles as $tile ) : ?>
 			<?php
 			$type     = 'image' === ( $tile['type'] ?? '' ) && ! empty( $tile['image'] ) ? 'image' : 'color';
@@ -72,7 +72,7 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-16' ) )
 				' ',
 				array_filter(
 					array(
-						'group relative isolate flex flex-col justify-between gap-6 overflow-hidden rounded-3xl p-6 md:p-8',
+						'group relative isolate flex flex-col justify-between gap-4 overflow-hidden rounded-3xl p-6',
 						$widths[ (string) ( $tile['width'] ?? '1' ) ] ?? $widths['1'],
 						$heights[ $tile['height'] ?? 'normal' ] ?? '',
 						'color' === $type ? 'bg-(--tile-color)' : 'bg-dark',
@@ -92,13 +92,13 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-16' ) )
 					);
 					?>
 					<?php // Dégradé de la couleur choisie, du bas vers le haut : le texte reste lisible sur la photo. ?>
-					<div class="absolute inset-0 -z-10 bg-linear-to-t from-(--tile-color) via-(--tile-color)/40 to-transparent"></div>
+					<div class="absolute inset-0 -z-10 bg-linear-to-t from-(--tile-color)/75 to-transparent to-60%"></div>
 				<?php endif; ?>
 
 				<?php // Haut : chiffre clé + bouton flèche. ?>
 				<div class="flex items-start justify-between gap-4">
 					<?php if ( ! empty( $tile['number'] ) ) : ?>
-						<p class="text-5xl font-light tracking-tight md:text-6xl"><?php echo esc_html( $tile['number'] ); ?></p>
+						<p class="font-heading text-[clamp(3.5rem,5.5vw,5rem)] leading-none font-medium tracking-[-.05em]"><?php echo esc_html( $tile['number'] ); ?></p>
 					<?php else : ?>
 						<span></span>
 					<?php endif; ?>
@@ -106,7 +106,7 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-16' ) )
 					<?php if ( $has_link ) : ?>
 						<?php // after:absolute after:inset-0 : toute la tuile est cliquable. ?>
 						<a
-							class="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-white text-dark no-underline transition after:absolute after:inset-0 group-hover:rotate-45"
+							class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-dark no-underline transition after:absolute after:inset-0 group-hover:rotate-45"
 							href="<?php echo esc_url( $link['url'] ); ?>"
 							<?php echo '_blank' === ( $link['target'] ?? '' ) ? 'target="_blank" rel="noopener"' : ''; ?>
 						>
@@ -117,15 +117,15 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-16' ) )
 				</div>
 
 				<?php // Bas : pastille, titre, texte. ?>
-				<div class="flex flex-col items-start gap-3">
+				<div class="flex flex-col items-start gap-2">
 					<?php if ( ! empty( $tile['badge'] ) ) : ?>
-						<span class="rounded-full bg-white px-4 py-1.5 text-sm text-dark"><?php echo esc_html( $tile['badge'] ); ?></span>
+						<span class="rounded-full bg-white px-3 py-1 text-[13px] font-medium text-dark"><?php echo esc_html( $tile['badge'] ); ?></span>
 					<?php endif; ?>
 					<?php if ( ! empty( $tile['title'] ) ) : ?>
-						<h3 class="text-2xl leading-tight md:text-3xl"><?php echo esc_html( $tile['title'] ); ?></h3>
+						<h3 class="text-[1.75rem] leading-tight tracking-[-.02em]"><?php echo esc_html( $tile['title'] ); ?></h3>
 					<?php endif; ?>
 					<?php if ( ! empty( $tile['text'] ) ) : ?>
-						<p class="max-w-md opacity-80"><?php echo esc_html( $tile['text'] ); ?></p>
+						<p class="max-w-[420px] leading-normal <?php echo $dark_text ? 'text-primary' : 'opacity-90'; ?>"><?php echo esc_html( $tile['text'] ); ?></p>
 					<?php endif; ?>
 				</div>
 			</article>

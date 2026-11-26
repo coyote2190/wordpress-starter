@@ -8,18 +8,26 @@
 defined( 'ABSPATH' ) || exit;
 
 get_header();
+
+global $wp_query;
 ?>
 
-<div class="container py-12">
-	<header class="mb-10">
-		<h1 class="mb-6 text-4xl font-bold">
-			<?php
+<div class="container pb-24">
+	<?php
+	get_template_part(
+		'template-parts/page-header',
+		null,
+		array(
+			'eyebrow' => __( 'Recherche', 'starter' ),
 			/* translators: %s : termes recherchés. */
-			printf( esc_html__( 'Résultats pour « %s »', 'starter' ), esc_html( get_search_query() ) );
-			?>
-		</h1>
-		<?php get_search_form(); ?>
-	</header>
+			'title'   => sprintf( __( 'Résultats pour **%s**', 'starter' ), get_search_query( false ) ),
+			/* translators: %d : nombre de résultats. */
+			'text'    => sprintf( _n( '%d contenu trouvé.', '%d contenus trouvés.', (int) $wp_query->found_posts, 'starter' ), (int) $wp_query->found_posts ),
+		)
+	);
+	?>
+
+	<div class="mb-12 max-w-xl"><?php get_search_form(); ?></div>
 
 	<?php get_template_part( 'template-parts/loop' ); ?>
 </div>

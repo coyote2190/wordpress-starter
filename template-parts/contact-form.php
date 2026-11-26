@@ -56,8 +56,8 @@ $starter_field_attrs = static function ( string $name ) use ( $starter_error ): 
 	return $starter_error( $name ) ? $attrs . ' aria-invalid="true"' : $attrs;
 };
 
-$starter_input = 'w-full rounded-md border border-gray-300 px-4 py-2 focus:border-primary focus:outline-none aria-invalid:border-red-600';
-$starter_label = 'mb-1 block font-medium';
+$starter_input = 'w-full rounded-2xl border border-light bg-paper px-4.5 py-3.5 placeholder:text-soft transition focus:border-dark focus:bg-white focus:outline-none aria-invalid:border-red-600';
+$starter_label = 'mb-2 block text-[15px] font-medium';
 $starter_hint  = 'mt-1 text-sm text-red-600';
 
 $starter_redirect = remove_query_arg( array( 'contact', 'contact_key' ) );
@@ -82,7 +82,7 @@ $starter_redirect = remove_query_arg( array( 'contact', 'contact_key' ) );
 
 	<?php // Message global (succès / erreur). role="status" : annoncé par les lecteurs d'écran. ?>
 	<div
-		class="rounded-md p-4 empty:hidden sm:col-span-2 <?php echo 'sent' === $starter_status ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-700'; ?>"
+		class="rounded-2xl p-4 empty:hidden sm:col-span-2 <?php echo 'sent' === $starter_status ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-700'; ?>"
 		role="status"
 		data-contact-status
 	><?php echo esc_html( $starter_state['message'] ); ?></div>
@@ -112,12 +112,12 @@ $starter_redirect = remove_query_arg( array( 'contact', 'contact_key' ) );
 	</div>
 
 	<div class="sm:col-span-2">
-		<label class="flex items-start gap-3 text-sm" for="contact-consent">
-			<input class="mt-1" <?php echo $starter_field_attrs( 'consent' ); // phpcs:ignore ?> type="checkbox" value="1" required <?php checked( $starter_value( 'consent' ), '1' ); ?>>
+		<label class="flex items-start gap-3 text-sm text-muted" for="contact-consent">
+			<input class="mt-0.5 size-4.5 shrink-0 accent-dark" <?php echo $starter_field_attrs( 'consent' ); // phpcs:ignore ?> type="checkbox" value="1" required <?php checked( $starter_value( 'consent' ), '1' ); ?>>
 			<span>
 				<?php esc_html_e( 'J\'accepte que mes données soient utilisées pour me recontacter.', 'starter' ); ?>
 				<?php if ( get_privacy_policy_url() ) : ?>
-					<a class="underline" href="<?php echo esc_url( get_privacy_policy_url() ); ?>"><?php esc_html_e( 'Politique de confidentialité', 'starter' ); ?></a>
+					<a class="text-dark underline underline-offset-2" href="<?php echo esc_url( get_privacy_policy_url() ); ?>"><?php esc_html_e( 'Politique de confidentialité', 'starter' ); ?></a>
 				<?php endif; ?>
 			</span>
 		</label>
@@ -126,12 +126,12 @@ $starter_redirect = remove_query_arg( array( 'contact', 'contact_key' ) );
 
 	<div class="sm:col-span-2">
 		<button
-			class="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 font-semibold text-white hover:bg-primary/90 disabled:opacity-60"
+			class="inline-flex items-center gap-2.5 rounded-full bg-dark py-2 pr-5.5 pl-2 font-medium text-white transition hover:bg-primary disabled:opacity-60"
 			type="submit"
 			data-contact-submit
 		>
-			<?php esc_html_e( 'Envoyer', 'starter' ); ?>
-			<?php echo starter_icon( 'arrow-right', 'size-4' ); ?>
+			<span class="inline-flex size-9 items-center justify-center rounded-full border-[1.5px] border-white/50"><?php echo starter_icon( 'arrow-right', 'size-4' ); ?></span>
+			<?php esc_html_e( 'Envoyer le message', 'starter' ); ?>
 		</button>
 	</div>
 </form>

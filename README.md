@@ -38,7 +38,7 @@ wordpress-starter/
 ├── search.php         Résultats de recherche.
 ├── 404.php            Page introuvable.
 ├── searchform.php     Formulaire de recherche.
-├── template-parts/    Morceaux de HTML réutilisés (boucle, carte, coordonnées, formulaire de contact).
+├── template-parts/    Morceaux de HTML réutilisés (en-tête de page, filtres, boucle, carte, logo, coordonnées, formulaire).
 ├── theme.json         Couleurs, polices, largeurs (source unique pour le site et l'éditeur).
 ├── screenshot.png     Aperçu dans Apparence > Thèmes (1200×900).
 ├── inc/               Logique PHP, un fichier par sujet.
@@ -48,10 +48,11 @@ wordpress-starter/
 │   ├── assets.php     Liste des CSS/JS chargés sur le site.
 │   ├── icons.php      starter_icon() : insère une icône SVG.
 │   ├── scf.php        SCF : JSON, page « Infos du site », starter_field() / starter_option().
-│   └── blocks.php     Enregistre les blocs (SCF + natifs), catégorie « Starter », CSS de l'éditeur.
+│   ├── blocks.php     Enregistre les blocs (SCF + natifs), catégorie « Starter », CSS de l'éditeur, boutons.
+│   └── template-tags.php  Petites fonctions des gabarits (catégorie, liste parente, temps de lecture).
 ├── blocks/            Blocs Gutenberg SCF (un dossier par bloc : block.json + render.php).
-│   ├── hero/          Bannière d'en-tête.
-│   ├── hero-slider/   Bannière plein écran à diapositives.
+│   ├── hero/          En-tête de page : grand titre + image arrondie.
+│   ├── hero-slider/   En-tête : grand titre + diaporama d'images arrondi.
 │   ├── features/      Grille de cartes (icône, couleur, titre, texte, lien).
 │   ├── cta/           Appel à l'action (titre mis en valeur, bouton ou champ e-mail).
 │   ├── why/           « Pourquoi nous » : intro + cartes défilantes.

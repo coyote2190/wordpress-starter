@@ -12,14 +12,25 @@ get_header();
 while ( have_posts() ) :
 	the_post();
 	?>
-	<?php // Page qui commence par un hero pleine largeur : le hero porte le <h1>, pas de titre ici. ?>
-	<?php $starter_hero_first = starter_starts_with_hero(); ?>
-	<article <?php post_class( $starter_hero_first ? 'container pb-12' : 'container py-12' ); ?>>
-		<?php if ( ! $starter_hero_first ) : ?>
-			<h1 class="mx-auto mb-8 max-w-content text-4xl font-bold"><?php the_title(); ?></h1>
-		<?php endif; ?>
+	<article <?php post_class( 'container pb-24' ); ?>>
+		<?php
+		// Page qui commence par un Hero / Hero slider : le bloc porte le <h1>, pas d'en-tête ici.
+		if ( ! starter_starts_with_hero() ) {
+			// Page de texte : en-tête aligné sur la colonne de lecture.
+			echo '<div class="mx-auto max-w-content">';
+			get_template_part(
+				'template-parts/page-header',
+				null,
+				array(
+					'title' => get_the_title(),
+					'text'  => has_excerpt() ? get_the_excerpt() : '',
+				)
+			);
+			echo '</div>';
+		}
+		?>
 
-		<div class="entry-content prose mx-auto max-w-content">
+		<div class="entry-content prose prose-lg mx-auto max-w-content">
 			<?php the_content(); ?>
 		</div>
 	</article>

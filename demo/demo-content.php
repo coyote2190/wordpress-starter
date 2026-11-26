@@ -23,6 +23,7 @@ if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
 require_once ABSPATH . 'wp-admin/includes/image.php';
 require_once ABSPATH . 'wp-admin/includes/file.php';
 require_once ABSPATH . 'wp-admin/includes/media.php';
+require_once __DIR__ . '/demo-images.php'; // starter_demo_image() : illustrations générées.
 
 const STARTER_DEMO_META  = '_starter_demo';
 const STARTER_DEMO_STATE = 'starter_demo_state';
@@ -108,61 +109,6 @@ function starter_demo_reset( bool $keep_pages = false ): void {
 function starter_demo_mark( int $id ): int {
 	update_post_meta( $id, STARTER_DEMO_META, 1 );
 	return $id;
-}
-
-/**
- * Génère une image (dégradé aux couleurs du thème + titre) et l'ajoute à la médiathèque.
- *
- * @return int ID de l'image, 0 en cas d'échec.
- */
-function starter_demo_image( string $title, string $from, string $to, bool $with_text = true, int $width = 1600, int $height = 900, string $label = '' ): int {
-	if ( ! function_exists( 'imagecreatetruecolor' ) ) {
-		return 0;
-	}
-
-	[ $w, $h ] = array( $width, $height );
-	$img       = imagecreatetruecolor( $w, $h );
-	$rgb       = static fn( string $hex ): array => sscanf( ltrim( $hex, '#' ), '%02x%02x%02x' );
-	[ $r1, $g1, $b1 ] = $rgb( $from );
-	[ $r2, $g2, $b2 ] = $rgb( $to );
-
-	// Dégradé diagonal ligne par ligne.
-	for ( $y = 0; $y < $h; $y++ ) {
-		$t     = $y / $h;
-		$color = imagecolorallocate( $img, (int) ( $r1 + ( $r2 - $r1 ) * $t ), (int) ( $g1 + ( $g2 - $g1 ) * $t ), (int) ( $b1 + ( $b2 - $b1 ) * $t ) );
-		imageline( $img, 0, $y, $w, $y, $color );
-	}
-
-	// Titre centré si une police système est disponible (macOS / Linux).
-	$fonts = array( '/System/Library/Fonts/Supplemental/Arial Bold.ttf', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf' );
-	$font  = current( array_filter( $fonts, 'is_file' ) );
-	if ( $with_text && $font && function_exists( 'imagettftext' ) ) {
-		$white = imagecolorallocatealpha( $img, 255, 255, 255, 30 );
-		$text  = '' !== $label ? $label : $title;
-		$box   = imagettfbbox( 64, 0, $font, $text );
-		imagettftext( $img, 64, 0, (int) ( ( $w - ( $box[2] - $box[0] ) ) / 2 ), (int) ( $h / 2 + 32 ), $white, $font, $text );
-	}
-
-	$tmp = wp_tempnam( sanitize_title( $title ) . '.jpg' );
-	imagejpeg( $img, $tmp, 82 );
-	imagedestroy( $img );
-
-	$id = media_handle_sideload(
-		array(
-			'name'     => 'demo-' . sanitize_title( $title ) . '.jpg',
-			'tmp_name' => $tmp,
-		),
-		0,
-		$title
-	);
-
-	if ( is_wp_error( $id ) ) {
-		WP_CLI::warning( 'Image « ' . $title . ' » : ' . $id->get_error_message() );
-		return 0;
-	}
-
-	update_post_meta( $id, '_wp_attachment_image_alt', $title );
-	return starter_demo_mark( $id );
 }
 
 /**
@@ -262,7 +208,7 @@ function starter_demo_hero( string $title, string $text, ?array $button, int $im
 		array(
 			'name'  => 'starter/hero',
 			'mode'  => 'preview',
-			'align' => 'full',
+			'align' => 'wide',
 			'data'  => array(
 				'title'   => $title,
 				'_title'  => 'field_starter_hero_title',
@@ -320,33 +266,25 @@ function starter_demo_features( string $title, string $intro, string $columns, s
 }
 
 /**
- * Bloc SCF Hero slider (répéteur « slides » stocké à plat, comme pour les Cartes).
+ * Bloc SCF Hero slider : titre, texte, boutons + répéteur « slides » (images) stocké à plat.
  *
- * @param array<int, array{image: int, title: string, title_highlight?: string, text?: string, button_primary?: array, button_secondary?: array}> $slides
+ * @param array<string, mixed> $args   title, text, button_primary, button_secondary.
+ * @param int[]                $images IDs des images du diaporama.
  */
-function starter_demo_hero_slider( array $slides ): string {
+function starter_demo_hero_slider( array $args, array $images ): string {
 	$k    = 'field_starter_slider_';
-	$data = array(
-		'slides'         => count( $slides ),
-		'_slides'        => $k . 'slides',
-		'height'         => 'screen',
-		'_height'        => $k . 'height',
-		'content_align'  => 'left',
-		'_content_align' => $k . 'content_align',
-		'overlay'        => 'medium',
-		'_overlay'       => $k . 'overlay',
-		'autoplay'       => 6,
-		'_autoplay'      => $k . 'autoplay',
-	);
-	foreach ( $slides as $i => $slide ) {
-		foreach ( array( 'image', 'title', 'title_highlight', 'text', 'button_primary', 'button_secondary' ) as $sub ) {
-			$value = $slide[ $sub ] ?? '';
-			if ( is_array( $value ) ) {
-				$value += array( 'target' => '' );
-			}
-			$data[ "slides_{$i}_{$sub}" ]  = $value;
-			$data[ "_slides_{$i}_{$sub}" ] = $k . 'slide_' . $sub;
-		}
+	$data = array();
+	foreach ( $args as $name => $value ) {
+		$data[ $name ]       = is_array( $value ) ? $value + array( 'target' => '' ) : $value;
+		$data[ '_' . $name ] = $k . $name;
+	}
+	$data['autoplay']  = 6;
+	$data['_autoplay'] = $k . 'autoplay';
+	$data['slides']    = count( $images );
+	$data['_slides']   = $k . 'slides';
+	foreach ( array_values( $images ) as $i => $image ) {
+		$data[ "slides_{$i}_image" ]  = $image;
+		$data[ "_slides_{$i}_image" ] = $k . 'slide_image';
 	}
 
 	return starter_demo_block(
@@ -354,7 +292,7 @@ function starter_demo_hero_slider( array $slides ): string {
 		array(
 			'name'  => 'starter/hero-slider',
 			'mode'  => 'preview',
-			'align' => 'full',
+			'align' => 'wide',
 			'data'  => $data,
 		)
 	);
@@ -414,7 +352,7 @@ function starter_demo_bento( string $title, string $intro, array $tiles ): strin
  * @param array<string, mixed>                          $args   title, text, action, button, background, accent.
  * @param array<int, array{image: int, name: string}> $people Personnes autour du titre.
  */
-function starter_demo_cta( array $args, array $people = array() ): string {
+function starter_demo_cta( array $args, array $people = array(), string $align = 'wide' ): string {
 	$k    = 'field_starter_cta_';
 	$data = array();
 	foreach ( $args as $name => $value ) {
@@ -435,7 +373,7 @@ function starter_demo_cta( array $args, array $people = array() ): string {
 		array(
 			'name'  => 'starter/cta',
 			'mode'  => 'preview',
-			'align' => 'wide',
+			'align' => $align,
 			'data'  => $data,
 		)
 	);
@@ -475,12 +413,15 @@ function starter_demo_why( array $args, array $cards ): string {
 	);
 }
 
-function starter_demo_notice( string $type, string $content ): string {
+function starter_demo_notice( string $type, string $content, string $badge = '' ): string {
 	return starter_demo_block(
 		'starter/notice',
-		array(
-			'type'    => $type,
-			'content' => $content,
+		array_filter(
+			array(
+				'type'    => $type,
+				'badge'   => $badge,
+				'content' => $content,
+			)
 		)
 	);
 }
@@ -506,37 +447,27 @@ function starter_demo_create(): void {
 	}
 	$state['menu_locations'] = get_theme_mod( 'nav_menu_locations', array() );
 
-	// Couleurs du thème (theme.json) pour les images.
-	$palette = array();
-	foreach ( wp_get_global_settings( array( 'color', 'palette', 'theme' ) ) as $color ) {
-		$palette[ $color['slug'] ] = $color['color'];
-	}
-	$primary   = $palette['primary'] ?? '#0f4c81';
-	$secondary = $palette['secondary'] ?? '#f2a541';
-	$dark      = $palette['dark'] ?? '#111827';
-
-	// --- Images -----------------------------------------------------------
+	// --- Images (illustrations générées, voir demo/demo-images.php) --------
 	WP_CLI::log( 'Images…' );
 	$img = array(
-		'slide1'  => starter_demo_image( 'Diapositive 1', $dark, $primary, false ),
-		'slide2'  => starter_demo_image( 'Diapositive 2', $primary, $secondary, false ),
-		'slide3'  => starter_demo_image( 'Diapositive 3', $secondary, $dark, false ),
-		'bento1'  => starter_demo_image( 'Bento sites vitrines', $secondary, $primary, false ),
-		'bento2'  => starter_demo_image( 'Bento identité', $primary, $dark, false ),
-		'avatar1' => starter_demo_image( 'Avatar Léa', $secondary, $primary, true, 400, 400, 'LM' ),
-		'avatar2' => starter_demo_image( 'Avatar Hugo', $primary, $dark, true, 400, 400, 'HB' ),
-		'avatar3' => starter_demo_image( 'Avatar Inès', $dark, $secondary, true, 400, 400, 'IK' ),
-		'avatar4' => starter_demo_image( 'Avatar Tom', $secondary, $dark, true, 400, 400, 'TR' ),
-		'about'   => starter_demo_image( 'Notre équipe', $primary, $dark ),
-		'contact' => starter_demo_image( 'Parlons de votre projet', $primary, $secondary ),
+		'slide1'  => starter_demo_image( 'Maquette de site vitrine', 'site', 1920, 1080, 0 ),
+		'slide2'  => starter_demo_image( 'Maquette de boutique en ligne', 'shop', 1920, 1080, 1 ),
+		'slide3'  => starter_demo_image( 'Identité visuelle et nuancier', 'brand', 1920, 1080, 0 ),
+		'bento1'  => starter_demo_image( 'Site vitrine sur grand écran', 'site', 1200, 1100, 1 ),
+		'bento2'  => starter_demo_image( 'Logo et couleurs d\'une marque', 'brand', 1600, 760, 1 ),
+		'bento3'  => starter_demo_image( 'Fiches produits d\'une boutique', 'shop', 1000, 1000, 2 ),
+		'avatar1' => starter_demo_image( 'Léa', 'avatar', 400, 400, 0 ),
+		'avatar2' => starter_demo_image( 'Hugo', 'avatar', 400, 400, 1 ),
+		'avatar3' => starter_demo_image( 'Inès', 'avatar', 400, 400, 2 ),
+		'avatar4' => starter_demo_image( 'Tom', 'avatar', 400, 400, 3 ),
+		'about'   => starter_demo_image( 'Le bureau du studio', 'studio', 1920, 1080, 0 ),
 	);
-	$colors = array( array( $primary, $dark ), array( $secondary, $primary ), array( $dark, $secondary ) );
 
 	// --- Infos du site (SCF) ---------------------------------------------
 	if ( function_exists( 'update_field' ) ) {
-		update_field( 'phone', '04 91 00 00 00', 'option' );
+		update_field( 'phone', '03 20 00 00 00', 'option' );
 		update_field( 'email', get_option( 'admin_email' ), 'option' );
-		update_field( 'address', "12 quai du Port\n13002 Marseille", 'option' );
+		update_field( 'address', "Quai des Chevillards\n59800 Lille", 'option' );
 		update_field(
 			'socials',
 			array(
@@ -558,12 +489,11 @@ function starter_demo_create(): void {
 	$articles = array(
 		array( '5 erreurs à éviter sur la page d\'accueil', $cat_tips, 'Une page d\'accueil doit dire en trois secondes qui vous êtes, ce que vous proposez et quoi faire ensuite.' ),
 		array( 'Pourquoi votre site doit être rapide', $cat_tips, 'Chaque seconde de chargement en plus fait fuir des visiteurs. Voici les leviers simples pour accélérer un site.' ),
-		array( 'Nous emménageons sur le Vieux-Port', $cat_news, 'Après trois ans en coworking, le studio s\'installe dans ses propres locaux, face à la mer.' ),
+		array( 'Nous emménageons quai des Chevillards', $cat_news, 'Après trois ans en coworking, le studio s\'installe dans ses propres locaux, au bord de la Deûle.' ),
 		array( 'RGPD : le formulaire de contact en 4 points', $cat_tips, 'Consentement, durée de conservation, information : ce qu\'un formulaire de contact doit respecter.' ),
 		array( 'Bienvenue à Léa, notre nouvelle développeuse', $cat_news, 'Léa rejoint l\'équipe pour renforcer le pôle développement WordPress.' ),
 	);
 	foreach ( $articles as $i => [ $title, $cat, $excerpt ] ) {
-		[ $from, $to ] = $colors[ $i % 3 ];
 		$content       = starter_demo_p( $excerpt )
 			. starter_demo_h( 'Le constat' )
 			. starter_demo_p( 'Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.' )
@@ -581,7 +511,7 @@ function starter_demo_create(): void {
 				'post_category' => array( $cat ),
 				'post_date'     => wp_date( 'Y-m-d H:i:s', strtotime( '-' . ( $i * 9 + 2 ) . ' days' ) ),
 			),
-			starter_demo_image( $title, $from, $to )
+			starter_demo_image( $title, 'abstract', 1600, 1000, $i )
 		);
 	}
 
@@ -594,15 +524,15 @@ function starter_demo_create(): void {
 			'brand'   => starter_demo_term( 'Identité visuelle', 'reference_category', $state ),
 		);
 		$references = array(
-			array( 'Boulangerie Lou Pan', 'vitrine', 'Site vitrine avec carte des produits et horaires mis à jour par l\'équipe.' ),
-			array( 'Calanques Kayak', 'shop', 'Réservation de sorties en ligne et paiement sécurisé.' ),
+			array( 'Boulangerie du Beffroi', 'vitrine', 'Site vitrine avec carte des produits et horaires mis à jour par l\'équipe.' ),
+			array( 'Kayak de la Deûle', 'shop', 'Réservation de sorties en ligne et paiement sécurisé.' ),
 			array( 'Cabinet Martin Avocats', 'vitrine', 'Refonte complète, prise de rendez-vous et articles juridiques.' ),
-			array( 'Savonnerie du Midi', 'shop', 'Boutique en ligne de 80 produits, livraison et retrait en atelier.' ),
-			array( 'Festival Mar & Sons', 'brand', 'Logo, charte graphique et site de l\'événement.' ),
+			array( 'Savonnerie des Flandres', 'shop', 'Boutique en ligne de 80 produits, livraison et retrait en atelier.' ),
+			array( 'Festival Brique & Sons', 'brand', 'Logo, charte graphique et site de l\'événement.' ),
 			array( 'Atelier Céramique Brun', 'brand', 'Identité visuelle et portfolio des créations.' ),
 		);
 		foreach ( $references as $i => [ $title, $cat, $excerpt ] ) {
-			[ $from, $to ] = $colors[ ( $i + 1 ) % 3 ];
+			$scenes        = array( 'vitrine' => 'site', 'shop' => 'shop', 'brand' => 'brand' );
 			$id            = starter_demo_post(
 				array(
 					'post_type'    => 'reference',
@@ -616,7 +546,7 @@ function starter_demo_create(): void {
 						. starter_demo_notice( 'success', '<strong>Résultat :</strong> +40 % de demandes de contact en 6 mois.' ),
 					'post_date'    => wp_date( 'Y-m-d H:i:s', strtotime( '-' . ( $i * 20 + 5 ) . ' days' ) ),
 				),
-				starter_demo_image( $title, $from, $to )
+				starter_demo_image( $title, $scenes[ $cat ], 1600, 1000, $i )
 			);
 			wp_set_object_terms( $id, array( $ref_cats[ $cat ] ), 'reference_category' );
 		}
@@ -651,114 +581,101 @@ function starter_demo_create(): void {
 		);
 	};
 
-	$home = $page(
-		'Accueil',
-		starter_demo_hero_slider(
+	// Appel à l'action réutilisé en bas de l'accueil et de « À propos ».
+	$cta = starter_demo_cta(
 			array(
-				array(
-					'image'            => $img['slide1'],
-					'title'            => 'Des sites web',
-					'title_highlight'  => 'qui travaillent pour vous',
-					'text'             => 'Studio Horizon conçoit des sites rapides, accessibles et faciles à mettre à jour pour les entreprises de la région.',
-					'button_primary'   => array( 'title' => 'Démarrer un projet', 'url' => '/contact/' ),
-					'button_secondary' => array( 'title' => 'Nos réalisations', 'url' => '/realisations/' ),
-				),
-				array(
-					'image'            => $img['slide2'],
-					'title'            => 'Vendez en ligne',
-					'title_highlight'  => 'simplement',
-					'text'             => 'Une boutique facile à gérer, avec paiement sécurisé et livraison intégrée.',
-					'button_primary'   => array( 'title' => 'Voir nos boutiques', 'url' => '/realisations/categorie/e-commerce/' ),
-				),
-				array(
-					'image'            => $img['slide3'],
-					'title'            => 'Une identité',
-					'title_highlight'  => 'qui vous ressemble',
-					'text'             => 'Logo, couleurs, typographies : une image cohérente sur tous vos supports.',
-					'button_primary'   => array( 'title' => 'Parlons-en', 'url' => '/contact/' ),
-					'button_secondary' => array( 'title' => 'À propos', 'url' => '/a-propos/' ),
-				),
-			)
-		)
-		. starter_demo_bento(
-			'Ce que nous faisons',
-			'De la première maquette à la mise en ligne, nous vous accompagnons à chaque étape.',
-			array(
-				array( 'type' => 'image', 'image' => $img['bento1'], 'color' => 'primary', 'width' => '2', 'height' => 'tall', 'badge' => 'Service', 'title' => 'Sites vitrines', 'text' => 'Un site clair qui présente votre activité et transforme les visiteurs en clients.', 'link' => array( 'title' => 'Voir les sites vitrines', 'url' => '/realisations/categorie/site-vitrine/' ) ),
-				array( 'color' => 'light', 'number' => '120 +', 'text' => 'sites et boutiques livrés depuis 2019, de Marseille à Lyon.', 'link' => array( 'title' => 'Toutes nos réalisations', 'url' => '/realisations/' ) ),
-				array( 'color' => 'secondary', 'badge' => 'Service', 'title' => 'E-commerce', 'text' => 'Une boutique simple à gérer, paiement et livraison intégrés.', 'link' => array( 'title' => 'Voir les boutiques', 'url' => '/realisations/categorie/e-commerce/' ) ),
-				array( 'type' => 'image', 'image' => $img['bento2'], 'color' => 'dark', 'width' => '2', 'badge' => 'Service', 'title' => 'Identité visuelle', 'text' => 'Logo, couleurs, typographies : une image cohérente sur tous vos supports.', 'link' => array( 'title' => 'Voir les identités visuelles', 'url' => '/realisations/categorie/identite-visuelle/' ) ),
-			)
-		)
-		. starter_demo_notice( 'info', 'Premier rendez-vous <strong>offert</strong> : on fait le point sur votre projet en 30 minutes.' )
-		. starter_demo_why(
-			array(
-				'title'  => "Rapides.\nSimples.\n**Sereins.**",
-				'text'   => 'Pourquoi nous choisir ? Parce qu\'un bon site se mesure à ce qu\'il vous fait gagner : du temps, des clients et de la tranquillité.',
-				'action' => 'button',
-				'button' => array( 'title' => 'Demander un devis', 'url' => '/contact/' ),
-			),
-			array(
-				array( 'badge' => 'Performance', 'color' => 'primary', 'icon' => 'rocket', 'title' => 'Des sites rapides', 'text' => 'Des pages légères, bien notées par Google et agréables sur mobile.' ),
-				array( 'badge' => 'Autonomie', 'color' => 'secondary', 'icon' => 'settings', 'title' => 'Faciles à gérer', 'text' => 'Vous modifiez vos textes et photos vous-même, sans risque de tout casser.' ),
-				array( 'badge' => 'Sérénité', 'color' => 'dark', 'icon' => 'shield', 'title' => 'Sécurisés et suivis', 'text' => 'Mises à jour, sauvegardes et surveillance : on s\'en occupe.' ),
-				array( 'badge' => 'Proximité', 'color' => 'primary', 'icon' => 'users', 'title' => 'Un seul contact', 'text' => 'Du devis au suivi, la même personne, joignable par téléphone.', 'link' => array( 'title' => 'Découvrir l\'équipe', 'url' => '/a-propos/' ) ),
-				array( 'badge' => 'Résultats', 'color' => 'secondary', 'icon' => 'chart', 'title' => 'Des clients en plus', 'text' => 'Un site pensé pour transformer les visiteurs en demandes de contact.', 'link' => array( 'title' => 'Voir nos réalisations', 'url' => '/realisations/' ) ),
-			)
-		)
-		. starter_demo_cta(
-			array(
-				'title'       => 'Lancez **votre projet** web __dès aujourd\'hui__',
-				'text'        => 'Laissez-nous votre e-mail : on vous rappelle sous 48 h pour en parler, sans engagement.',
-				'action'      => 'email',
-				'button'      => array( 'title' => 'C\'est parti', 'url' => '/contact/' ),
-				'placeholder' => 'votre@email.fr',
-				'background'  => 'light',
-				'accent'      => 'secondary',
+				'title'         => 'Lancez votre projet web dès aujourd\'hui',
+				'text'          => 'Laissez-nous votre e-mail : on vous rappelle sous 48 h pour en parler, sans engagement.',
+				'action'        => 'email',
+				'button'        => array( 'title' => 'C\'est parti', 'url' => '/contact/' ),
+				'placeholder'   => 'votre@email.fr',
+				'background'    => 'secondary',
+				'accent'        => 'white',
+				'people_layout' => 'stack',
 			),
 			array(
 				array( 'image' => $img['avatar1'], 'name' => 'Léa' ),
 				array( 'image' => $img['avatar2'], 'name' => 'Hugo' ),
 				array( 'image' => $img['avatar3'], 'name' => 'Inès' ),
 				array( 'image' => $img['avatar4'], 'name' => 'Tom' ),
+			),
+			'full'
+		);
+
+	$home = $page(
+		'Accueil',
+		starter_demo_hero_slider(
+			array(
+				'title'            => 'Des sites web qui travaillent **pour vous**',
+				'text'             => 'Studio Horizon conçoit des sites rapides, accessibles et faciles à mettre à jour pour les entreprises de la région.',
+				'button_primary'   => array( 'title' => 'Démarrer un projet', 'url' => '/contact/' ),
+				'button_secondary' => array( 'title' => 'Nos réalisations', 'url' => '/realisations/' ),
+			),
+			array( $img['slide1'], $img['slide2'], $img['slide3'] )
+		)
+		. starter_demo_notice( 'info', 'Premier rendez-vous <strong>offert</strong> : on fait le point sur votre projet en 30 minutes.', '30 min' )
+		. starter_demo_bento(
+			'Ce que nous faisons',
+			'De la première maquette à la mise en ligne, nous vous accompagnons à chaque étape.',
+			array(
+				array( 'type' => 'image', 'image' => $img['bento1'], 'color' => 'dark', 'width' => '2', 'height' => 'tall', 'badge' => 'Service', 'title' => 'Sites vitrines', 'text' => 'Un site clair qui présente votre activité et transforme les visiteurs en clients.', 'link' => array( 'title' => 'Voir les sites vitrines', 'url' => '/realisations/categorie/site-vitrine/' ) ),
+				array( 'color' => 'secondary', 'number' => '120+', 'text' => 'sites et boutiques livrés depuis 2019, de Lille à Paris.' ),
+				array( 'type' => 'image', 'image' => $img['bento3'], 'color' => 'dark', 'badge' => 'Service', 'title' => 'E-commerce', 'text' => 'Une boutique simple à gérer, paiement et livraison intégrés.', 'link' => array( 'title' => 'Voir les boutiques', 'url' => '/realisations/categorie/e-commerce/' ) ),
+				array( 'type' => 'image', 'image' => $img['bento2'], 'color' => 'dark', 'width' => '2', 'badge' => 'Service', 'title' => 'Identité visuelle', 'text' => 'Logo, couleurs, typographies : une image cohérente sur tous vos supports.', 'link' => array( 'title' => 'Voir les identités visuelles', 'url' => '/realisations/categorie/identite-visuelle/' ) ),
 			)
-		),
+		)
+		. starter_demo_why(
+			array(
+				'title'  => "Rapides.\nSimples.\n**Sereins.**",
+				'text'   => 'Pourquoi nous choisir ? Parce qu\'un bon site se mesure à ce qu\'il vous fait gagner : du temps, des clients et de la tranquillité.',
+				'action' => 'button',
+				'button' => array( 'title' => 'Demander un devis', 'url' => '/contact/' ),
+				'layout' => 'list',
+			),
+			array(
+				array( 'badge' => 'Performance', 'color' => 'secondary', 'icon' => 'bolt', 'title' => 'Des sites rapides', 'text' => 'Des pages légères, bien notées par Google et agréables sur mobile.' ),
+				array( 'badge' => 'Autonomie', 'color' => 'secondary', 'icon' => 'layers', 'title' => 'Faciles à gérer', 'text' => 'Vous modifiez vos textes et photos vous-même, sans risque de tout casser.' ),
+				array( 'badge' => 'Sérénité', 'color' => 'secondary', 'icon' => 'circles', 'title' => 'Sécurisés et suivis', 'text' => 'Mises à jour, sauvegardes et surveillance : on s\'en occupe.' ),
+			)
+		)
+		. $cta,
 		'accueil'
 	);
 
 	$about = $page(
 		'À propos',
-		starter_demo_hero( 'Une équipe à taille humaine', 'Quatre passionnés du web installés à Marseille depuis 2019.', null, $img['about'] )
+		starter_demo_hero( 'Une équipe à **taille humaine**', 'Quatre passionnés du web installés à Lille depuis 2019. Un seul interlocuteur, du premier café à la mise en ligne.', array( 'title' => 'Nous rencontrer', 'url' => '/contact/' ), $img['about'] )
 		. starter_demo_h( 'Notre histoire' )
 		. starter_demo_p( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.' )
 		. starter_demo_features(
 			'Nos valeurs',
-			'',
+			'Trois engagements qui guident chacun de nos projets, du devis au suivi.',
 			'3',
 			'light',
 			array(
 				array( 'icon' => 'lightbulb', 'color' => 'secondary', 'title' => 'Clarté', 'text' => 'Des devis lisibles, des délais tenus, pas de jargon.' ),
-				array( 'icon' => 'star', 'color' => 'primary', 'title' => 'Exigence', 'text' => 'Performance, accessibilité et sécurité dès la conception.' ),
+				array( 'icon' => 'star', 'color' => 'secondary', 'title' => 'Exigence', 'text' => 'Performance, accessibilité et sécurité dès la conception.' ),
 				array( 'icon' => 'heart', 'color' => 'secondary', 'title' => 'Proximité', 'text' => 'Nous vous rencontrons, et nous répondons au téléphone.' ),
 			)
 		)
-		. starter_demo_notice( 'warning', 'Le studio est fermé du 24 décembre au 2 janvier.' ),
+		. starter_demo_notice( 'warning', 'Le studio est fermé du 24 décembre au 2 janvier.', 'Fermeture' )
+		. $cta,
 		'a-propos'
 	);
 
 	$contact = $page(
 		'Contact',
-		starter_demo_hero( 'Parlons de votre projet', 'Réponse sous 48 h ouvrées.', null, $img['contact'] )
-		. starter_demo_p( 'Un projet, une question, un devis ? Remplissez le formulaire ou appelez-nous au <a href="tel:0491000000">04 91 00 00 00</a>.' )
-		. starter_demo_block( 'starter/contact-form', array( 'name' => 'starter/contact-form', 'mode' => 'preview' ) ),
+		starter_demo_hero( 'Parlons de **votre projet**', 'Un projet, une question, un devis ? Écrivez-nous ou appelez-nous : réponse sous 48 h ouvrées.', null, 0 )
+		. starter_demo_block( 'starter/contact-form', array( 'name' => 'starter/contact-form', 'mode' => 'preview', 'align' => 'wide' ) ),
 		'contact'
 	);
 
-	$blog    = $page( 'Actualités', '', 'actualites' );
+	// Contenu de la page des articles = introduction affichée par index.php.
+	$blog    = $page( 'Actualités', starter_demo_p( 'Conseils pratiques et nouvelles du studio : tout ce qu\'il faut savoir pour un site qui travaille pour vous.' ), 'actualites' );
 	$legal   = $page(
 		'Mentions légales',
 		starter_demo_h( 'Éditeur du site' )
-		. starter_demo_p( 'Studio Horizon — SARL au capital de 10 000 € — RCS Marseille 000 000 000<br>12 quai du Port, 13002 Marseille' )
+		. starter_demo_p( 'Studio Horizon — SARL au capital de 10 000 € — RCS Lille Métropole 000 000 000<br>Quai des Chevillards, 59800 Lille' )
 		. starter_demo_h( 'Hébergement' )
 		. starter_demo_p( 'Nom de l\'hébergeur, adresse, téléphone.' ),
 		'mentions-legales'
@@ -780,7 +697,7 @@ function starter_demo_create(): void {
 	update_option( 'page_for_posts', $blog );
 	update_option( 'posts_per_page', 6 );
 	update_option( 'wp_page_for_privacy_policy', $privacy );
-	update_option( 'blogdescription', 'Studio web à Marseille' );
+	update_option( 'blogdescription', 'Studio web à Lille' );
 
 	// --- Menus ------------------------------------------------------------
 	WP_CLI::log( 'Menus…' );
@@ -811,7 +728,18 @@ function starter_demo_create(): void {
 		);
 	}
 	$add_page( $primary_menu, $blog );
-	$add_page( $primary_menu, $contact );
+	// Dernier lien en bouton : classe `menu-cta` (voir components.css).
+	wp_update_nav_menu_item(
+		$primary_menu,
+		0,
+		array(
+			'menu-item-object-id' => $contact,
+			'menu-item-object'    => 'page',
+			'menu-item-type'      => 'post_type',
+			'menu-item-status'    => 'publish',
+			'menu-item-classes'   => 'menu-cta',
+		)
+	);
 
 	$footer_menu = wp_create_nav_menu( 'Démo – Pied de page' );
 	$add_page( $footer_menu, $legal );

@@ -32,6 +32,8 @@ function starter_register_post_types(): void {
 				'not_found'          => __( 'Aucune réalisation', 'starter' ),
 				'not_found_in_trash' => __( 'Aucune réalisation dans la corbeille', 'starter' ),
 			),
+			// Introduction affichée en haut de /realisations/ (archive.php).
+			'description'   => __( 'Sites vitrines, boutiques en ligne, identités visuelles : une sélection de projets menés avec nos clients.', 'starter' ),
 			'public'        => true,
 			'show_in_rest'  => true,               // Obligatoire pour l'éditeur Gutenberg.
 			'menu_icon'     => 'dashicons-portfolio',
