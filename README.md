@@ -49,7 +49,9 @@ wordpress-starter/
 │   ├── icons.php      starter_icon() : insère une icône SVG.
 │   ├── scf.php        SCF : JSON, page « Infos du site », starter_field() / starter_option().
 │   ├── blocks.php     Enregistre les blocs (SCF + natifs), catégorie « Starter », CSS de l'éditeur, boutons.
-│   └── template-tags.php  Petites fonctions des gabarits (catégorie, liste parente, temps de lecture).
+│   ├── template-tags.php  Petites fonctions des gabarits (catégorie, liste parente, temps de lecture).
+│   ├── seo.php        Meta description, Open Graph, JSON-LD LocalBusiness (sauf extension SEO active).
+│   └── performance.php  Préchargement de la police des titres, images en WebP.
 ├── blocks/            Blocs Gutenberg SCF (un dossier par bloc : block.json + render.php).
 │   ├── hero/          En-tête de page : grand titre + image arrondie.
 │   ├── hero-slider/   En-tête : grand titre + diaporama d'images arrondi.
@@ -104,5 +106,6 @@ wordpress-starter/
 | MU-plugin (CPT, commentaires) | [docs/mu-plugin.md](docs/mu-plugin.md) |
 | Formulaire de contact + FluentSMTP | [docs/contact-form.md](docs/contact-form.md) |
 | Sécurité (+ wp-config, .htaccess) | [docs/security.md](docs/security.md) |
+| SEO, performance, Lighthouse | [docs/seo.md](docs/seo.md) |
 | Contenu de démo | [docs/demo.md](docs/demo.md) |
 | **Nouveau projet client + déploiement** | [docs/new-project.md](docs/new-project.md) |

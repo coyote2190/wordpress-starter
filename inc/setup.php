@@ -33,6 +33,9 @@ function starter_setup(): void {
 	// Image mise en avant sur les articles et pages.
 	add_theme_support( 'post-thumbnails' );
 
+	// Extrait sur les pages : sert d'introduction (page-header.php) et de meta description (inc/seo.php).
+	add_post_type_support( 'page', 'excerpt' );
+
 	// Balisage HTML5 propre pour les éléments générés par WordPress.
 	add_theme_support(
 		'html5',
