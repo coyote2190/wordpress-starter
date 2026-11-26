@@ -28,6 +28,24 @@
   max-width: var(--container-wide);
 }
 
+/*
+ * Mot surligné dans un grand titre (syntaxe **mot**, starter_format_title()) :
+ * pastille lavande serrée autour du mot, proportionnelle à la taille du titre.
+ * Ici (base.css) et non dans components.css : base.css est aussi chargé dans
+ * l'éditeur, l'aperçu des blocs montre donc le surlignage.
+ * Couleur modifiable : `[--mark-color:…]`.
+ */
+@utility title-mark {
+  display: inline-block;
+  margin-top: 0.04em;
+  padding: 0 0.12em 0.04em;
+  border-radius: 0.2em;
+  background: var(--mark-color, var(--color-secondary));
+  color: inherit;
+  line-height: 1;
+  vertical-align: top;
+}
+
 @layer base {
   :root {
     --gutter: 1.25rem;

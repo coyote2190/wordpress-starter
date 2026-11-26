@@ -112,21 +112,6 @@
     margin-inline: calc(50% - 50vw);
   }
 
-  /*
-   * Mot surligné dans un grand titre (syntaxe **mot**, starter_format_title()).
-   * Pastille lavande serrée autour du mot, proportionnelle à la taille du titre.
-   */
-  .title-mark {
-    display: inline-block;
-    margin-top: 0.04em;
-    padding: 0 0.12em 0.04em;
-    border-radius: 0.2em;
-    background: var(--mark-color, var(--color-secondary));
-    color: inherit;
-    line-height: 1;
-    vertical-align: top;
-  }
-
   /* Logo (the_custom_logo) */
   .custom-logo {
     max-height: 3rem;
