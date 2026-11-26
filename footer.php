@@ -34,7 +34,7 @@ defined( 'ABSPATH' ) || exit;
 			<?php endif; ?>
 		</div>
 
-		<div class="flex flex-wrap justify-between gap-4 border-t border-white/15 pt-6 text-sm text-soft">
+		<div class="flex flex-wrap justify-between gap-4 border-t border-white/15 pt-6 text-sm text-white/55">
 			<p>&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?></p>
 			<?php get_template_part( 'template-parts/site-socials' ); ?>
 		</div>

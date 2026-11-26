@@ -37,6 +37,6 @@
  */
 @theme {
   --color-muted: #55525c; /* texte secondaire : `text-muted` */
-  --color-soft: #8e8e8e; /* surtitres, mentions : `text-soft` */
+  --color-soft: #6b6872; /* surtitres, mentions : `text-soft` (contraste ≥ 4.5:1 sur fond clair) */
   --color-line: #e4e1dc; /* filets et bordures : `border-line` */
 }

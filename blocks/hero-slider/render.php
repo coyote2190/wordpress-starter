@@ -110,16 +110,17 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose mt-6 mb-8'
 
 			<?php if ( $multiple ) : ?>
 				<?php // Pilule de commandes en bas à droite : points, pause, flèches. ?>
-				<div class="absolute right-5 bottom-5 z-10 flex items-center gap-3 rounded-full bg-white py-1.5 pr-1.5 pl-4.5">
-					<div class="flex items-center gap-1.5">
+				<div class="absolute right-5 bottom-5 z-10 flex items-center gap-2 rounded-full bg-white py-1.5 pr-1.5 pl-3">
+					<?php // Zone cliquable de 24 px (WCAG 2.5.8), point visuel de 8 px à l'intérieur. ?>
+					<div class="flex items-center">
 						<?php foreach ( $slides as $i => $slide ) : ?>
 							<button
-								class="h-2 w-2 rounded-full bg-dark opacity-30 transition-all duration-400 aria-[current=true]:w-7 aria-[current=true]:opacity-100"
+								class="group inline-flex h-6 min-w-6 items-center justify-center"
 								type="button"
 								aria-label="<?php echo esc_attr( sprintf( __( 'Aller à l\'image %d', 'starter' ), $i + 1 ) ); ?>"
 								aria-current="<?php echo 0 === $i ? 'true' : 'false'; ?>"
 								data-slider-dot
-							></button>
+							><span class="h-2 w-2 rounded-full bg-dark opacity-30 transition-all duration-400 group-aria-[current=true]:w-7 group-aria-[current=true]:opacity-100"></span></button>
 						<?php endforeach; ?>
 					</div>
 

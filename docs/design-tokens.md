@@ -45,7 +45,7 @@ On change une couleur **dans `theme.json` uniquement**. Le site, Tailwind et la 
 | Type | Classes |
 |---|---|
 | Couleurs | `primary`, `secondary`, `dark`, `light`, `paper`, `white` → `bg-primary`, `text-dark`, `border-light`… Transparence possible : `bg-primary/10` |
-| Teintes d'interface | `text-muted` (texte secondaire), `text-soft` (surtitres), `border-line` (filets) — définies dans `tokens.css`, pas dans `theme.json` (pas proposées au client) |
+| Teintes d'interface | `text-muted` (texte secondaire), `text-soft` (surtitres, #6B6872 : contraste ≥ 4,5:1 sur fond clair — ne pas l'éclaircir), `border-line` (filets) — définies dans `tokens.css`, pas dans `theme.json` (pas proposées au client) |
 | Mot surligné | `title-mark` (pastille lavande serrée, `components.css`) ; couleur modifiable via `--mark-color` |
 | Polices | `font-sans`, `font-heading`, `font-accent` |
 | Largeurs | `max-w-content`, `max-w-wide` |
