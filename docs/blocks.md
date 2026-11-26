@@ -122,7 +122,7 @@ Dans `render.php`, une seule ligne applique cette règle :
 | Personnes | `people` (0 à 4) | Photo + prénom, décoratives (`aria-hidden`) |
 | Présentation des personnes | `people_layout` | **En pile** au-dessus du titre (avatars qui se chevauchent) · **Flottantes** autour du titre sur grand écran (sans animation si « réduire les animations » est activé) |
 
-**Le champ e-mail sans service de newsletter** : c'est un formulaire `GET` vers la page du bouton (ex. `/contact/?email=jean@exemple.fr`). Le formulaire de contact reprend l'adresse (`template-parts/contact-form.php`). Pour une vraie newsletter (Brevo, Mailchimp…), remplacer l'`action` du formulaire par l'URL d'inscription du service.
+**Le champ e-mail sans service de newsletter** : c'est un formulaire `POST` vers la page du bouton (ex. `/contact/`). POST et non GET : l'adresse n'apparaît pas dans l'URL, donc ni dans les logs serveur, ni dans les statistiques, ni dans l'en-tête `Referer` (RGPD). Le formulaire de contact reprend l'adresse (`template-parts/contact-form.php`). Pour une vraie newsletter (Brevo, Mailchimp…), remplacer l'`action` du formulaire par l'URL d'inscription du service.
 
 **Sécurité de la syntaxe** : `starter_format_title()` (`inc/blocks.php`) échappe tout le texte **avant** d'ajouter ses balises `<mark>` / `<span>` : un client ne peut pas injecter de HTML.
 
@@ -137,7 +137,7 @@ Intro à gauche, arguments à droite, en deux présentations (champ `layout`) :
 |---|---|---|
 | Titre | `title` | **Une ligne par retour à la ligne** (ex. « Rapides. / Simples. / Sereins. »), avec `**surligné**` / `__souligné__` |
 | Texte | `text` | |
-| Action | `action` | Aucune · Bouton · Champ e-mail + bouton (même principe que l'Appel à l'action : `?email=` vers la page cible) |
+| Action | `action` | Aucune · Bouton · Champ e-mail + bouton (même principe que l'Appel à l'action : POST vers la page cible) |
 | Cartes (1 à 10) | `cards` | Pastille, couleur, titre, texte, **icône** (grande, sur fond pastel de la couleur) ou **photo / illustration**, lien (bouton ↗, carte cliquable) |
 
 Défilement (cartes défilantes) :

@@ -96,8 +96,8 @@ if ( 'scroller' === $layout ) {
 			<?php endif; ?>
 
 			<?php if ( 'email' === $action && ! empty( $button['url'] ) ) : ?>
-				<?php // Comme le bloc Appel à l'action : GET vers la page cible avec ?email=… ?>
-				<form class="flex w-full max-w-sm items-center gap-2 rounded-full bg-white p-1.5" method="get" action="<?php echo esc_url( $button['url'] ); ?>" <?php echo $is_preview ? 'inert' : ''; ?>>
+				<?php // Comme le bloc Appel à l'action : POST vers la page cible (l'e-mail n'apparaît pas dans l'URL). ?>
+				<form class="flex w-full max-w-sm items-center gap-2 rounded-full bg-white p-1.5" method="post" action="<?php echo esc_url( $button['url'] ); ?>" <?php echo $is_preview ? 'inert' : ''; ?>>
 					<label class="sr-only" for="<?php echo esc_attr( $uid ); ?>-email"><?php esc_html_e( 'Votre adresse e-mail', 'starter' ); ?></label>
 					<input id="<?php echo esc_attr( $uid ); ?>-email" class="min-w-0 flex-1 bg-transparent px-4 text-dark placeholder:text-soft focus:outline-none" type="email" name="email" autocomplete="email" required placeholder="<?php echo esc_attr( $hint ); ?>">
 					<button class="inline-flex shrink-0 items-center gap-2 rounded-full bg-dark px-5 py-3 font-medium text-white transition hover:bg-primary" type="submit">

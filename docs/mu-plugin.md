@@ -24,6 +24,7 @@ mu-plugin/
     ├── post-types.php          CPT « Réalisations » + taxonomie « Catégories de réalisation »
     ├── comments.php            Désactive les commentaires partout (front + admin)
     ├── contact-form.php        Traitement du formulaire de contact (docs/contact-form.md)
+    ├── contact-messages.php    Messages enregistrés dans l'admin, purge et RGPD (docs/contact-form.md)
     └── security.php            XML-RPC, en-têtes HTTP, énumération des utilisateurs (docs/security.md)
 ```
 

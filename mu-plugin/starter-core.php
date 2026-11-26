@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Starter Core
- * Description: Fonctionnalités du site indépendantes du thème : types de contenu, taxonomies, formulaire de contact, désactivation des commentaires.
+ * Description: Fonctionnalités du site indépendantes du thème : types de contenu, taxonomies, formulaire de contact (et messages enregistrés), désactivation des commentaires.
  * Version:     0.1.0
  * Text Domain: starter
  *
@@ -20,6 +20,7 @@ $starter_core_files = array(
 	'post-types',   // Types de contenu et taxonomies.
 	'comments',     // Désactive complètement les commentaires.
 	'contact-form', // Traitement du formulaire de contact.
+	'contact-messages', // Messages enregistrés dans l'admin, purge RGPD.
 	'security',     // XML-RPC, en-têtes HTTP, énumération des utilisateurs.
 );
 

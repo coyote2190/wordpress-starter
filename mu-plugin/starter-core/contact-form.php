@@ -192,7 +192,15 @@ function starter_contact_process( array $data ): array {
 	// Uniquement l'adresse (validée par is_email) : pas d'injection d'en-tête possible.
 	$headers = array( 'Reply-To: ' . $values['email'] );
 
-	if ( ! wp_mail( starter_contact_recipient(), $subject, $body, $headers ) ) {
+	// Enregistré AVANT l'e-mail (menu « Messages », contact-messages.php) : rien n'est perdu si l'envoi échoue.
+	$message_id = function_exists( 'starter_contact_save' ) ? starter_contact_save( $values ) : 0;
+	$mail_sent  = wp_mail( starter_contact_recipient(), $subject, $body, $headers );
+
+	if ( $message_id ) {
+		update_post_meta( $message_id, '_starter_mail_sent', $mail_sent ? 1 : 0 );
+	}
+	// E-mail en échec ET message non enregistré : là seulement, le message serait perdu.
+	if ( ! $mail_sent && ! $message_id ) {
 		return $fail( __( 'L\'envoi a échoué. Réessayez plus tard ou contactez-nous par téléphone.', 'starter' ), array(), $values );
 	}
 
@@ -201,9 +209,11 @@ function starter_contact_process( array $data ): array {
 	/**
 	 * Après un envoi réussi (ex. : enregistrer le message, l'envoyer à un CRM…).
 	 *
-	 * @param array<string, string> $values Champs nettoyés.
+	 * @param array<string, string> $values     Champs nettoyés.
+	 * @param int                   $message_id Message enregistré (0 si non enregistré).
+	 * @param bool                  $mail_sent  L'e-mail est-il parti ?
 	 */
-	do_action( 'starter_contact_sent', $values );
+	do_action( 'starter_contact_sent', $values, $message_id, $mail_sent );
 
 	return $success;
 }

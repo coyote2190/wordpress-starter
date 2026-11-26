@@ -53,7 +53,7 @@ Si le spam passe malgré tout : ajouter Cloudflare Turnstile (gratuit, sans puzz
 
 ## E-mail pré-rempli
 
-`/contact/?email=jean@exemple.fr` pré-remplit le champ e-mail (utilisé par le bloc **Appel à l'action** en mode « champ e-mail »). La valeur passe par `sanitize_email()`.
+Un champ `email` envoyé en **POST** vers la page de contact pré-remplit le champ e-mail (blocs **Appel à l'action** et **Pourquoi nous** en mode « champ e-mail »). La valeur passe par `sanitize_email()`. Pas de GET : une adresse dans l'URL finirait dans les logs et les statistiques.
 
 ## Validation
 
@@ -118,3 +118,19 @@ Par défaut, WordPress envoie avec la fonction `mail()` de PHP. Sur un mutualis�
 ## Journal
 
 FluentSMTP > **Email Logs** : chaque mail envoyé ou en échec, avec possibilité de le renvoyer. Premier endroit à regarder quand un client dit « je ne reçois pas les messages ».
+
+## Messages enregistrés dans l'admin (menu « Messages »)
+
+`mu-plugin/starter-core/contact-messages.php` enregistre chaque message **avant** l'envoi de l'e-mail : si le SMTP tombe en panne, rien n'est perdu.
+
+| Quoi | Détail |
+|---|---|
+| Liste | Nom, e-mail, téléphone, **« Transmis par e-mail »** (✅ / ⚠️ à traiter depuis l'admin), date |
+| Lecture | Message en lecture seule + bouton « Répondre par e-mail » |
+| Droits | Éditeurs et administrateurs. Pas de bouton « Ajouter » |
+| Conservation | Supprimés automatiquement après **3 ans** (tâche WP-Cron quotidienne). Modifiable : `STARTER_CONTACT_RETENTION_DAYS` ou filtre `starter_contact_retention_days`. **À aligner avec la politique de confidentialité** |
+| RGPD | Outils > Exporter / Effacer les données personnelles : les messages d'une adresse e-mail sont inclus |
+
+Le visiteur voit « message envoyé » dès que le message est enregistré, même si l'e-mail a échoué. Seul le cas « e-mail en échec **et** enregistrement impossible » affiche une erreur.
+
+Hook après envoi : `do_action( 'starter_contact_sent', $values, $message_id, $mail_sent )`.

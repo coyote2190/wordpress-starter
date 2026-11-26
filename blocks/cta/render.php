@@ -3,7 +3,7 @@
  * Rendu du bloc « Appel à l'action ».
  *
  * Titre : **mot** = surligné, __mot__ = souligné (starter_format_title()).
- * Action « e-mail » : formulaire GET vers la page cible (ex. /contact/?email=…),
+ * Action « e-mail » : formulaire POST vers la page cible (ex. /contact/),
  * où le formulaire de contact reprend l'adresse.
  *
  * @var array $block      Réglages du bloc.
@@ -96,10 +96,11 @@ $wrapper = get_block_wrapper_attributes(
 
 			<?php if ( 'email' === $action ) : ?>
 				<?php
-				// Formulaire GET : envoie vers la page cible avec ?email=… (pré-rempli dans le formulaire de contact).
+				// Formulaire POST vers la page cible : l'adresse pré-remplit le formulaire de contact.
+			// POST et non GET : l'e-mail ne doit pas apparaître dans l'URL (logs, statistiques, Referer).
 				// Dans l'éditeur : aperçu non cliquable.
 				?>
-				<form class="flex w-full max-w-[32.5rem] items-center gap-2 rounded-full bg-white p-1.5" method="get" action="<?php echo esc_url( $button['url'] ); ?>" <?php echo $is_preview ? 'inert' : ''; ?>>
+				<form class="flex w-full max-w-[32.5rem] items-center gap-2 rounded-full bg-white p-1.5" method="post" action="<?php echo esc_url( $button['url'] ); ?>" <?php echo $is_preview ? 'inert' : ''; ?>>
 					<label class="sr-only" for="<?php echo esc_attr( $block['id'] ?? 'cta' ); ?>-email"><?php esc_html_e( 'Votre adresse e-mail', 'starter' ); ?></label>
 					<input
 						id="<?php echo esc_attr( $block['id'] ?? 'cta' ); ?>-email"

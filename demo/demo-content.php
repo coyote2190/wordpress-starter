@@ -685,7 +685,7 @@ function starter_demo_create(): void {
 		starter_demo_h( 'Données collectées' )
 		. starter_demo_p( 'Le formulaire de contact collecte votre nom, votre e-mail, votre téléphone (facultatif) et votre message, uniquement pour vous répondre.' )
 		. starter_demo_h( 'Durée de conservation' )
-		. starter_demo_p( 'Les messages sont conservés 3 ans maximum dans notre messagerie.' )
+		. starter_demo_p( 'Les messages sont conservés 3 ans maximum, dans notre messagerie et dans l\'administration du site, puis supprimés automatiquement.' )
 		. starter_demo_h( 'Vos droits' )
 		. starter_demo_p( 'Vous pouvez demander l\'accès, la rectification ou la suppression de vos données en nous écrivant.' ),
 		'politique-de-confidentialite'
