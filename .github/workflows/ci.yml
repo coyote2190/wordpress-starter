@@ -1,0 +1,44 @@
+# Vérifications à chaque push et pull request : rien n'arrive sur main si ça casse.
+# Les mêmes commandes se lancent en local (voir docs/build.md).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  front:
+    name: Format + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Prettier (JS, CSS, JSON, Markdown) + classes Tailwind triées A → Z.
+      - run: npm run format:check
+      # Vite + blocs natifs : le build doit passer.
+      - run: npm run build
+
+  php:
+    name: PHP (syntaxe + règles WordPress)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1' # Version minimale du thème (style.css : Requires PHP).
+          tools: composer
+          coverage: none
+      - run: composer install --no-interaction --no-progress
+      - name: Syntaxe PHP
+        run: find . -name '*.php' -not -path './vendor/*' -not -path './node_modules/*' -print0 | xargs -0 -n1 -P4 php -l -q
+      - name: PHPCS
+        run: composer lint
