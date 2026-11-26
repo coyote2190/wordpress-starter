@@ -74,7 +74,7 @@ add_filter( 'robots_txt', 'starter_seo_robots_txt', 20, 2 );
  * Contenu du robots.txt.
  *
  * @param string $output Contenu généré par WordPress.
- * @param bool   $public Réglages > Lecture : site visible des moteurs ?
+ * @param bool   $public Réglages > Lecture : site visible des moteurs (oui / non).
  */
 function starter_seo_robots_txt( string $output, bool $public ): string {
 	if ( starter_seo_plugin_active() ) {
@@ -83,7 +83,7 @@ function starter_seo_robots_txt( string $output, bool $public ): string {
 
 	// Préprod ou « ne pas indexer » coché : fermé à tous.
 	if ( ! $public || ! starter_seo_site_indexable() ) {
-		return "# Site non public (environnement : " . wp_get_environment_type() . ")\nUser-agent: *\nDisallow: /\n";
+		return '# Site non public (environnement : ' . wp_get_environment_type() . ")\nUser-agent: *\nDisallow: /\n";
 	}
 
 	$path  = (string) wp_parse_url( home_url( '/' ), PHP_URL_PATH );
@@ -183,8 +183,8 @@ function starter_seo_llms_content(): string {
 	$md    = array();
 
 	// En-tête : nom, résumé, présentation.
-	$md[] = '# ' . $clean( get_bloginfo( 'name' ) );
-	$md[] = '';
+	$md[]    = '# ' . $clean( get_bloginfo( 'name' ) );
+	$md[]    = '';
 	$front   = (int) get_option( 'page_on_front' );
 	$summary = $front
 		? ( starter_seo_meta( $front, 'description' ) ?: starter_seo_default_description( get_post( $front ) ) )

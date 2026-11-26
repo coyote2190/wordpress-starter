@@ -25,8 +25,17 @@
     "editor.formatOnSave": true
   },
 
-  // PHP : pas de reformatage automatique (style WordPress écrit à la main), seulement le tri des classes ci-dessus.
-  "[php]": { "editor.formatOnSave": false },
+  // PHP : règles WordPress (phpcs.xml.dist). Erreurs soulignées pendant la frappe,
+  // corrections automatiques (PHPCBF) à l'enregistrement. Le HTML des gabarits n'est
+  // pas réindenté (aucun outil ne le fait proprement). Nécessite `composer install`.
+  "phpCodeSniffer.standard": "Automatic",
+  "phpCodeSniffer.autoExecutable": true,
+  "[php]": {
+    "editor.defaultFormatter": "obliviousharmony.vscode-php-codesniffer",
+    "editor.formatOnSave": true
+  },
+  // Le formateur d'Intelephense (style PSR-12) casserait le style WordPress.
+  "intelephense.format.enable": false,
 
   // Autocomplétion Tailwind dans le PHP aussi.
   "tailwindCSS.includeLanguages": { "php": "html" },

@@ -62,7 +62,7 @@ function starter_demo_rgb( $img, string $hex, int $alpha = 0 ): int {
  * @param \GdImage $img Image.
  */
 function starter_demo_rrect( $img, float $x1, float $y1, float $x2, float $y2, float $r, int $color ): void {
-	$r = max( 0, min( $r, ( $x2 - $x1 ) / 2, ( $y2 - $y1 ) / 2 ) );
+	$r                         = max( 0, min( $r, ( $x2 - $x1 ) / 2, ( $y2 - $y1 ) / 2 ) );
 	[ $x1, $y1, $x2, $y2, $r ] = array_map( 'intval', array( $x1, $y1, $x2, $y2, $r ) );
 
 	if ( $r < 1 ) {
@@ -143,6 +143,9 @@ function starter_demo_window( $img, float $x1, float $y1, float $x2, float $y2, 
  * Lignes de texte factices (barres arrondies).
  *
  * @param \GdImage $img    Image.
+ * @param float    $x      Abscisse de départ.
+ * @param float    $y      Ordonnée de départ.
+ * @param float    $w      Largeur maximale.
  * @param float[]  $widths Largeur de chaque ligne (0 à 1 de $w).
  * @return float Ordonnée sous la dernière ligne.
  */
@@ -171,11 +174,11 @@ function starter_demo_scene_site( $img, int $w, int $h, float $u, int $seed ): v
 	starter_demo_gradient( $img, $w, $h, $c['lavender'], $c['lilac'] );
 	starter_demo_circle( $img, $w * 0.86, $h * 0.14, 26 * $u, starter_demo_rgb( $img, $c['pink'], 30 ) );
 
-	$ww                       = min( $w * 0.78, 150 * $u );
-	[ $x1, $y1, $x2, $y2 ]    = starter_demo_window( $img, ( $w - $ww ) / 2, $h * 0.14, ( $w + $ww ) / 2, $h * 1.02, $u );
-	$ink                      = starter_demo_rgb( $img, $c['ink'] );
-	$grey                     = starter_demo_rgb( $img, $c['grey'] );
-	$col                      = ( $x2 - $x1 ) * 0.52;
+	$ww                    = min( $w * 0.78, 150 * $u );
+	[ $x1, $y1, $x2, $y2 ] = starter_demo_window( $img, ( $w - $ww ) / 2, $h * 0.14, ( $w + $ww ) / 2, $h * 1.02, $u );
+	$ink                   = starter_demo_rgb( $img, $c['ink'] );
+	$grey                  = starter_demo_rgb( $img, $c['grey'] );
+	$col                   = ( $x2 - $x1 ) * 0.52;
 
 	// Menu.
 	starter_demo_circle( $img, $x1 + 1.8 * $u, $y1 + 1.4 * $u, 1.8 * $u, starter_demo_rgb( $img, $c['lavender'] ) );
@@ -305,7 +308,7 @@ function starter_demo_scene_abstract( $img, int $w, int $h, float $u, int $seed 
 	$dark = 2 === $seed % 3;
 	$line = starter_demo_rgb( $img, $dark ? $c['lavender'] : $c['ink'] );
 
-	$backgrounds = array( array( $c['lavender'], $c['mist'] ), array( $c['pink'], $c['lavender'] ), array( $c['plum'], $c['ink'] ) );
+	$backgrounds   = array( array( $c['lavender'], $c['mist'] ), array( $c['pink'], $c['lavender'] ), array( $c['plum'], $c['ink'] ) );
 	[ $from, $to ] = $backgrounds[ $seed % 3 ];
 	starter_demo_gradient( $img, $w, $h, $from, $to );
 
@@ -373,8 +376,8 @@ function starter_demo_person( $img, float $cx, float $cy, float $s, int $variant
  * @param \GdImage $img Image.
  */
 function starter_demo_scene_avatar( $img, int $w, int $h, float $u, int $seed ): void {
-	$c   = starter_demo_colors();
-	$bgs = array( array( $c['mist'], $c['lavender'] ), array( $c['pink'], $c['lavender'] ), array( $c['lavender'], $c['lilac'] ), array( $c['paper'], $c['pink'] ) );
+	$c             = starter_demo_colors();
+	$bgs           = array( array( $c['mist'], $c['lavender'] ), array( $c['pink'], $c['lavender'] ), array( $c['lavender'], $c['lilac'] ), array( $c['paper'], $c['pink'] ) );
 	[ $from, $to ] = $bgs[ $seed % 4 ];
 	starter_demo_gradient( $img, $w, $h, $from, $to );
 	starter_demo_person( $img, $w / 2, $h * 0.52, $u * 1.15, $seed );
@@ -481,11 +484,9 @@ function starter_demo_image( string $title, string $scene = 'abstract', int $wid
 	// Réduction à la taille finale : lisse les bords.
 	$out = imagecreatetruecolor( $width, $height );
 	imagecopyresampled( $out, $img, 0, 0, 0, 0, $width, $height, $w, $h );
-	imagedestroy( $img );
 
 	$tmp = wp_tempnam( sanitize_title( $title ) . '.jpg' );
 	imagejpeg( $out, $tmp, 86 );
-	imagedestroy( $out );
 
 	$id = media_handle_sideload(
 		array(

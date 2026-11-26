@@ -49,10 +49,8 @@ add_filter(
 
 add_filter(
 	'acf/settings/load_json',
-	static function ( array $paths ): array {
-		// On remplace le dossier par défaut (acf-json/) par le nôtre.
-		return array( STARTER_DIR . '/scf-json' );
-	}
+	// On remplace le dossier par défaut (acf-json/) par le nôtre.
+	static fn(): array => array( STARTER_DIR . '/scf-json' )
 );
 
 add_action( 'acf/init', 'starter_scf_options_pages' );
@@ -159,7 +157,7 @@ function starter_color_is_light( string $slug ): bool {
 		$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
 	}
 
-	$channel = static function ( string $pair ): float {
+	$channel   = static function ( string $pair ): float {
 		$c = hexdec( $pair ) / 255;
 		return $c <= 0.04045 ? $c / 12.92 : ( ( $c + 0.055 ) / 1.055 ) ** 2.4;
 	};

@@ -4,6 +4,7 @@
     "emeraldwalk.RunOnSave",
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
-    "bmewburn.vscode-intelephense-client"
+    "bmewburn.vscode-intelephense-client",
+    "obliviousharmony.vscode-php-codesniffer"
   ]
 }

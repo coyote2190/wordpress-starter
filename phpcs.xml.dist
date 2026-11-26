@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!--
+	Règles PHP du starter (PHPCS / PHPCBF) : style et sécurité WordPress.
+	composer lint      → liste les problèmes
+	composer lint:fix  → corrige ce qui peut l'être automatiquement
+	Voir docs/build.md.
+-->
+<ruleset name="Starter">
+	<description>Standards WordPress pour le thème et le mu-plugin starter-core.</description>
+
+	<file>.</file>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/dist/*</exclude-pattern>
+	<exclude-pattern>/blocks-native/build/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg name="parallel" value="8"/>
+	<arg value="sp"/>
+
+	<!-- Version minimale (style.css : Requires PHP / Requires at least). -->
+	<config name="testVersion" value="8.1-"/>
+	<config name="minimum_wp_version" value="6.6"/>
+
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Style + sécurité (échappement, nonces, requêtes) + bonnes pratiques WordPress. -->
+	<rule ref="WordPress">
+		<!-- Noms de fichiers du thème (render.php, page-header.php…) : pas de « class-… ». -->
+		<exclude name="WordPress.Files.FileName"/>
+		<!-- Commentaires : on garde les docblocks utiles, pas une ligne obligatoire par paramètre. -->
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamTag"/>
+		<exclude name="Squiz.Commenting.FileComment.Missing"/>
+		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+		<exclude name="Generic.Commenting.DocComment.MissingShort"/>
+		<!-- Gabarits : `<?php // commentaire ?>` sur une ligne. -->
+		<exclude name="Squiz.PHP.EmbeddedPhp.ContentBeforeOpen"/>
+		<exclude name="Squiz.PHP.EmbeddedPhp.ContentAfterEnd"/>
+		<!-- Syntaxe courte `fn() =>` et `[]` acceptées si besoin. -->
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+		<exclude name="Universal.Operators.DisallowShortTernary"/>
+		<!-- Petits tableaux sur une ligne acceptés : array( 'class' => 'mb-8' ). -->
+		<exclude name="WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound"/>
+		<!-- $default, $class… comme noms de paramètres (gênant seulement pour les arguments nommés). -->
+		<exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames"/>
+	</rule>
+
+	<!-- Préfixes obligatoires pour fonctions, constantes, hooks globaux. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="starter"/>
+			</property>
+		</properties>
+		<!-- Variables locales des gabarits (render.php, template-parts) : inclus dans une fonction par WordPress. -->
+		<exclude-pattern>/blocks/*/render\.php</exclude-pattern>
+		<exclude-pattern>/template-parts/*</exclude-pattern>
+		<exclude-pattern>/blocks-native/src/*</exclude-pattern>
+	</rule>
+
+	<!-- Fonctions du thème qui renvoient du HTML déjà échappé (pas besoin de phpcs:ignore). -->
+	<rule ref="WordPress.Security.EscapeOutput">
+		<properties>
+			<property name="customAutoEscapedFunctions" type="array">
+				<element value="starter_icon"/>
+				<element value="starter_button"/>
+				<element value="starter_format_title"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Gabarits de blocs : inclus DANS une fonction par WordPress, leurs variables ne sont pas globales. -->
+	<rule ref="WordPress.WP.GlobalVariablesOverride">
+		<exclude-pattern>/blocks/*/render\.php</exclude-pattern>
+		<exclude-pattern>/blocks-native/src/*/render\.php</exclude-pattern>
+		<exclude-pattern>/template-parts/*</exclude-pattern>
+	</rule>
+
+	<!-- Scènes des images de démo : même signature pour toutes, certaines n'utilisent pas $seed. -->
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter">
+		<exclude-pattern>/demo/*</exclude-pattern>
+	</rule>
+
+	<!-- Outils de démo (WP-CLI) : docblocks complets non exigés. -->
+	<rule ref="Squiz.Commenting.FunctionComment">
+		<exclude-pattern>/demo/*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="starter"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

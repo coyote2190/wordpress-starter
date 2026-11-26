@@ -45,8 +45,8 @@ function starter_demo_reset( bool $keep_pages = false ): void {
 	$state = get_option( STARTER_DEMO_STATE, array() );
 
 	// Contenus et médias marqués.
-	$types = array_diff( get_post_types(), $keep_pages ? array( 'attachment', 'page' ) : array( 'attachment' ) );
-	$ids   = get_posts(
+	$types       = array_diff( get_post_types(), $keep_pages ? array( 'attachment', 'page' ) : array( 'attachment' ) );
+	$ids         = get_posts(
 		array(
 			'post_type'      => array_values( $types ),
 			'post_status'    => 'any',
@@ -349,7 +349,7 @@ function starter_demo_bento( string $title, string $intro, array $tiles ): strin
 /**
  * Bloc SCF Appel à l'action.
  *
- * @param array<string, mixed>                          $args   title, text, action, button, background, accent.
+ * @param array<string, mixed>                        $args   title, text, action, button, background, accent.
  * @param array<int, array{image: int, name: string}> $people Personnes autour du titre.
  */
 function starter_demo_cta( array $args, array $people = array(), string $align = 'wide' ): string {
@@ -494,7 +494,7 @@ function starter_demo_create(): void {
 		array( 'Bienvenue à Léa, notre nouvelle développeuse', $cat_news, 'Léa rejoint l\'équipe pour renforcer le pôle développement WordPress.' ),
 	);
 	foreach ( $articles as $i => [ $title, $cat, $excerpt ] ) {
-		$content       = starter_demo_p( $excerpt )
+		$content = starter_demo_p( $excerpt )
 			. starter_demo_h( 'Le constat' )
 			. starter_demo_p( 'Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.' )
 			. starter_demo_list( array( 'Un message clair dès le premier écran', 'Un seul appel à l\'action principal', 'Des preuves : avis, chiffres, références' ) )
@@ -518,7 +518,7 @@ function starter_demo_create(): void {
 	// --- Réalisations (CPT du mu-plugin) ---------------------------------
 	if ( post_type_exists( 'reference' ) ) {
 		WP_CLI::log( 'Réalisations…' );
-		$ref_cats = array(
+		$ref_cats   = array(
 			'vitrine' => starter_demo_term( 'Site vitrine', 'reference_category', $state ),
 			'shop'    => starter_demo_term( 'E-commerce', 'reference_category', $state ),
 			'brand'   => starter_demo_term( 'Identité visuelle', 'reference_category', $state ),
@@ -532,8 +532,8 @@ function starter_demo_create(): void {
 			array( 'Atelier Céramique Brun', 'brand', 'Identité visuelle et portfolio des créations.' ),
 		);
 		foreach ( $references as $i => [ $title, $cat, $excerpt ] ) {
-			$scenes        = array( 'vitrine' => 'site', 'shop' => 'shop', 'brand' => 'brand' );
-			$id            = starter_demo_post(
+			$scenes = array( 'vitrine' => 'site', 'shop' => 'shop', 'brand' => 'brand' );
+			$id     = starter_demo_post(
 				array(
 					'post_type'    => 'reference',
 					'post_title'   => $title,
@@ -583,24 +583,24 @@ function starter_demo_create(): void {
 
 	// Appel à l'action réutilisé en bas de l'accueil et de « À propos ».
 	$cta = starter_demo_cta(
-			array(
-				'title'         => 'Lancez votre projet web dès aujourd\'hui',
-				'text'          => 'Laissez-nous votre e-mail : on vous rappelle sous 48 h pour en parler, sans engagement.',
-				'action'        => 'email',
-				'button'        => array( 'title' => 'C\'est parti', 'url' => '/contact/' ),
-				'placeholder'   => 'votre@email.fr',
-				'background'    => 'secondary',
-				'accent'        => 'white',
-				'people_layout' => 'stack',
-			),
-			array(
-				array( 'image' => $img['avatar1'], 'name' => 'Léa' ),
-				array( 'image' => $img['avatar2'], 'name' => 'Hugo' ),
-				array( 'image' => $img['avatar3'], 'name' => 'Inès' ),
-				array( 'image' => $img['avatar4'], 'name' => 'Tom' ),
-			),
-			'full'
-		);
+		array(
+			'title'         => 'Lancez votre projet web dès aujourd\'hui',
+			'text'          => 'Laissez-nous votre e-mail : on vous rappelle sous 48 h pour en parler, sans engagement.',
+			'action'        => 'email',
+			'button'        => array( 'title' => 'C\'est parti', 'url' => '/contact/' ),
+			'placeholder'   => 'votre@email.fr',
+			'background'    => 'secondary',
+			'accent'        => 'white',
+			'people_layout' => 'stack',
+		),
+		array(
+			array( 'image' => $img['avatar1'], 'name' => 'Léa' ),
+			array( 'image' => $img['avatar2'], 'name' => 'Hugo' ),
+			array( 'image' => $img['avatar3'], 'name' => 'Inès' ),
+			array( 'image' => $img['avatar4'], 'name' => 'Tom' ),
+		),
+		'full'
+	);
 
 	$home = $page(
 		'Accueil',

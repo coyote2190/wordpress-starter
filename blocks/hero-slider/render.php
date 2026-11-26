@@ -117,7 +117,7 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'mb-8 mt-6 not-prose'
 							<button
 								class="group h-6 inline-flex items-center justify-center min-w-6"
 								type="button"
-								aria-label="<?php echo esc_attr( sprintf( __( 'Aller à l\'image %d', 'starter' ), $i + 1 ) ); ?>"
+								aria-label="<?php /* translators: %d : numéro de l'image. */ echo esc_attr( sprintf( __( 'Aller à l\'image %d', 'starter' ), $i + 1 ) ); ?>"
 								aria-current="<?php echo 0 === $i ? 'true' : 'false'; ?>"
 								data-slider-dot
 							><span class="bg-dark duration-400 group-aria-[current=true]:opacity-100 group-aria-[current=true]:w-7 h-2 opacity-30 rounded-full transition-all w-2"></span></button>

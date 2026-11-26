@@ -16,14 +16,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$title  = (string) starter_field( 'title' );
-$text   = starter_field( 'text' );
-$action = (string) starter_field( 'action', false, 'button' );
-$button = starter_field( 'button', false, array() );
-$button = is_array( $button ) ? $button : array();
-$hint   = (string) starter_field( 'placeholder', false, __( 'votre@email.fr', 'starter' ) );
+$title         = (string) starter_field( 'title' );
+$text          = starter_field( 'text' );
+$action        = (string) starter_field( 'action', false, 'button' );
+$button        = starter_field( 'button', false, array() );
+$button        = is_array( $button ) ? $button : array();
+$hint          = (string) starter_field( 'placeholder', false, __( 'votre@email.fr', 'starter' ) );
 $people_layout = 'float' === starter_field( 'people_layout', false, 'stack' ) ? 'float' : 'stack';
-$people = array_slice( array_values( array_filter( (array) starter_field( 'people', false, array() ), static fn( $p ) => ! empty( $p['image'] ) ) ), 0, 4 );
+$people        = array_slice( array_values( array_filter( (array) starter_field( 'people', false, array() ), static fn( $p ) => ! empty( $p['image'] ) ) ), 0, 4 );
 
 $palette = starter_palette();
 $bg      = isset( $palette[ (string) starter_field( 'background', false, 'light' ) ] ) ? starter_field( 'background', false, 'light' ) : 'light';
@@ -38,8 +38,8 @@ if ( '' === $title ) {
 	return;
 }
 
-$is_full   = 'full' === ( $block['align'] ?? '' );
-$dark_bg   = ! starter_color_is_light( $bg );
+$is_full    = 'full' === ( $block['align'] ?? '' );
+$dark_bg    = ! starter_color_is_light( $bg );
 $title_html = starter_format_title(
 	$title,
 	// Pastille : texte foncé ou blanc selon la clarté de la couleur d'accent.
@@ -97,7 +97,7 @@ $wrapper = get_block_wrapper_attributes(
 			<?php if ( 'email' === $action ) : ?>
 				<?php
 				// Formulaire POST vers la page cible : l'adresse pré-remplit le formulaire de contact.
-			// POST et non GET : l'e-mail ne doit pas apparaître dans l'URL (logs, statistiques, Referer).
+				// POST et non GET : l'e-mail ne doit pas apparaître dans l'URL (logs, statistiques, Referer).
 				// Dans l'éditeur : aperçu non cliquable.
 				?>
 				<form class="bg-white flex gap-2 items-center max-w-[32.5rem] p-1.5 rounded-full w-full" method="post" action="<?php echo esc_url( $button['url'] ); ?>" <?php echo $is_preview ? 'inert' : ''; ?>>

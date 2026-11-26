@@ -55,12 +55,12 @@ function starter_icon( string $name, string $class = 'size-5', string $label = '
 
 	if ( ! isset( $cache[ $name ] ) ) {
 		$file           = STARTER_DIR . '/assets/icons/' . $name . '.svg';
-		$cache[ $name ] = is_file( $file ) ? trim( (string) file_get_contents( $file ) ) : '';
+		$cache[ $name ] = is_file( $file ) ? trim( (string) file_get_contents( $file ) ) : ''; // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- fichier local du thème.
 	}
 
 	if ( '' === $cache[ $name ] ) {
 		if ( WP_DEBUG ) {
-			trigger_error( esc_html( "Icône « {$name} » introuvable dans assets/icons/." ), E_USER_NOTICE );
+			trigger_error( esc_html( "Icône « {$name} » introuvable dans assets/icons/." ), E_USER_NOTICE ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error -- seulement avec WP_DEBUG.
 		}
 		return '';
 	}

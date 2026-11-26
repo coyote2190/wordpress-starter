@@ -14,6 +14,7 @@ Thème de départ pour les sites clients : PHP classique, Tailwind CSS, Vite, JS
 
 ```bash
 npm install
+composer install     # outils PHP : règles WordPress (PHPCS), autocomplétion
 npm run dev          # pendant le dev, puis ouvrir http://wordpress-starter.local
 npm run blocks:dev   # (2ᵉ terminal) seulement si on modifie un bloc natif React
 npm run build        # avant de commiter / déployer (Vite + blocs natifs)

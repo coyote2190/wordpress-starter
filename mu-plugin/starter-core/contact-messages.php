@@ -182,7 +182,7 @@ function starter_contact_purge(): void {
 		array(
 			'post_type'      => STARTER_CONTACT_POST_TYPE,
 			'post_status'    => 'any',
-			'posts_per_page' => 200,
+			'posts_per_page' => 200, // phpcs:ignore WordPress.WP.PostsPerPage.posts_per_page_posts_per_page -- purge par lots (WP-Cron).
 			'fields'         => 'ids',
 			'date_query'     => array( array( 'before' => "{$days} days ago" ) ),
 		)

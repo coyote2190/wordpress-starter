@@ -1,5 +1,6 @@
 # Dépendances (réinstallées avec npm install)
 node_modules/
+vendor/
 
 # Fichier créé par Vite tant que le serveur de dev tourne
 hot
@@ -8,3 +9,6 @@ hot
 .DS_Store
 *.log
 .idea/
+
+# Dépendances PHP de développement (réinstallées avec composer install)
+vendor/

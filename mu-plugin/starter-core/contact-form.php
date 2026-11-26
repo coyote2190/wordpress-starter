@@ -55,7 +55,7 @@ function starter_contact_handle(): void {
 	$result = starter_contact_process( wp_unslash( $_POST ) ); // phpcs:ignore WordPress.Security.NonceVerification -- vérifié dans starter_contact_process().
 
 	// --- Requête JS : réponse JSON. ---
-	if ( str_contains( (string) ( $_SERVER['HTTP_ACCEPT'] ?? '' ), 'application/json' ) ) {
+	if ( str_contains( sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT'] ?? '' ) ), 'application/json' ) ) {
 		wp_send_json(
 			array(
 				'success' => $result['ok'],
@@ -67,7 +67,7 @@ function starter_contact_handle(): void {
 	}
 
 	// --- Sans JS : retour sur la page du formulaire. ---
-	$back = wp_validate_redirect( (string) wp_unslash( $_POST['_redirect'] ?? '' ), home_url( '/' ) ); // phpcs:ignore WordPress.Security.NonceVerification
+	$back = wp_validate_redirect( sanitize_url( wp_unslash( $_POST['_redirect'] ?? '' ) ), home_url( '/' ) ); // phpcs:ignore WordPress.Security.NonceVerification
 	$back = remove_query_arg( array( 'contact', 'contact_key' ), $back );
 
 	if ( $result['ok'] ) {
@@ -96,7 +96,7 @@ function starter_contact_handle(): void {
  * @return array{ok: bool, message: string, errors: array<string, string>, values: array<string, string>}
  */
 function starter_contact_process( array $data ): array {
-	$fail = static fn( string $message, array $errors = array(), array $values = array() ): array => array(
+	$fail    = static fn( string $message, array $errors = array(), array $values = array() ): array => array(
 		'ok'      => false,
 		'message' => $message,
 		'errors'  => $errors,
@@ -124,7 +124,7 @@ function starter_contact_process( array $data ): array {
 	}
 
 	// 2. Pot de miel : champ invisible pour un humain, rempli par les robots.
-	//    On fait semblant que tout va bien pour ne pas renseigner le robot.
+	// On fait semblant que tout va bien pour ne pas renseigner le robot.
 	if ( ! empty( $data['website'] ) ) {
 		return $success;
 	}
@@ -139,7 +139,7 @@ function starter_contact_process( array $data ): array {
 	}
 
 	// 4. Limite d'envois par IP.
-	$ip_key = 'starter_contact_rl_' . md5( (string) ( $_SERVER['REMOTE_ADDR'] ?? '' ) );
+	$ip_key = 'starter_contact_rl_' . md5( sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) ) );
 	$count  = (int) get_transient( $ip_key );
 	if ( $count >= STARTER_CONTACT_MAX_PER_IP ) {
 		return $fail( __( 'Trop de messages envoyés. Réessayez dans une heure.', 'starter' ), array(), $values );
@@ -173,7 +173,8 @@ function starter_contact_process( array $data ): array {
 	}
 
 	// 6. Envoi.
-	$site    = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
+	$site = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
+	/* translators: %s : nom de l'expéditeur. */
 	$subject = sprintf( '[%s] %s', $site, sprintf( __( 'Nouveau message de %s', 'starter' ), $values['name'] ) );
 	$body    = implode(
 		"\n",
@@ -185,6 +186,7 @@ function starter_contact_process( array $data ): array {
 			$values['message'],
 			'',
 			'—',
+			/* translators: %s : adresse du site. */
 			sprintf( __( 'Envoyé depuis %s', 'starter' ), home_url( '/' ) ),
 		)
 	);

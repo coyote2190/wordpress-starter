@@ -5,6 +5,7 @@
  * Même mise en page que le haut du Hero slider, avec une seule image.
  *
  * Variables fournies par SCF :
+ *
  * @var array  $block      Réglages du bloc (block.json + attributs : align, anchor, className…).
  * @var string $content    Contenu des blocs enfants (inutilisé ici).
  * @var bool   $is_preview true dans l'éditeur.
@@ -19,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 
 $title  = (string) starter_field( 'title' );
 $text   = starter_field( 'text' );
-$button = starter_field( 'button', false, array() ); // Champ Lien : [ 'url', 'title', 'target' ].
+$button = starter_field( 'button', false, array() ); // Champ Lien : url, title, target.
 $image  = (int) starter_field( 'image', false, 0 );  // Champ Image, format de retour : ID.
 
 // Bloc vide dans l'éditeur : on guide le rédacteur au lieu d'afficher un cadre vide.

@@ -3,6 +3,7 @@
  * HTML du bloc « Encadré » sur le site : pilule blanche centrée, étiquette à gauche.
  *
  * Variables fournies par WordPress :
+ *
  * @var array    $attributes Attributs du bloc (type, badge, content).
  * @var string   $content    Contenu des blocs enfants (inutilisé).
  * @var WP_Block $block      Instance du bloc.

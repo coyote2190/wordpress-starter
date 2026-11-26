@@ -10,6 +10,8 @@
 | `npm run blocks:dev` / `blocks:build` | Si on travaille sur un bloc React | Voir `docs/native-blocks.md`                                                                                                    |
 | `npm run format`                      | Quand on veut                     | Formate JS/CSS/JSON/MD avec Prettier **et trie les classes Tailwind de A à Z**, PHP compris (voir ci-dessous)                   |
 | `npm run format:check`                | En CI                             | Même vérification, sans rien modifier (code de sortie 1 si un fichier n'est pas formaté)                                        |
+| `composer install`                    | Une fois après le clone           | Installe PHPCS + règles WordPress et les stubs WordPress / ACF (autocomplétion) dans `vendor/`                                  |
+| `npm run lint:php` / `lint:php:fix`   | Avant un commit                   | Vérifie le PHP avec les règles WordPress / corrige ce qui peut l'être automatiquement (voir ci-dessous)                         |
 
 > On continue d'ouvrir le site sur **http://wordpress-starter.local** (et pas localhost:5173). Vite ne sert que les fichiers CSS/JS.
 
@@ -95,7 +97,7 @@ Outil : `bin/sort-classes.mjs`, lancé :
 
 > VS Code ouvert sur le dossier WordPress (`app/public`) et non sur le thème : copier la config dans `app/public/.vscode/settings.json` avec les chemins depuis la racine (`${workspaceFolder}/wp-content/themes/nom-du-theme/bin/sort-classes.mjs`).
 
-Les autres réglages de `.vscode/settings.json` : Prettier à l'enregistrement pour JS / CSS / JSON / Markdown, **pas** de reformatage automatique du PHP (style WordPress écrit à la main), autocomplétion Tailwind dans le PHP.
+Les autres réglages de `.vscode/settings.json` : Prettier à l'enregistrement pour JS / CSS / JSON / Markdown, PHPCBF à l'enregistrement pour le PHP (voir ci-dessous), autocomplétion Tailwind dans le PHP.
 
 | Fichiers | Ce qui est trié                                                                                                                           |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -107,3 +109,42 @@ Les autres réglages de `.vscode/settings.json` : Prettier à l'enregistrement p
 - **Garde-fou** : une liste n'est modifiée que si chaque mot ressemble à une classe Tailwind. Une concaténation PHP prise par erreur pour une liste (`class="' . esc_attr( $x ) . '"`) n'est jamais touchée.
 
 > Pas de `prettier-plugin-tailwindcss` : il impose l'ordre officiel de Tailwind et défairait le tri alphabétique du JS.
+
+## PHP : règles WordPress (PHPCS)
+
+**PHPCS** vérifie le PHP avec les règles officielles WordPress (`WordPress Coding Standards`), **PHPCBF** corrige automatiquement ce qui peut l'être. Réglages : `phpcs.xml.dist`. Outils installés par `composer install` dans `vendor/` (rien n'est chargé par le site).
+
+Ce qui est vérifié :
+
+- **sécurité** : sortie non échappée (`echo $x` au lieu de `esc_html()`), `$_POST` / `$_SERVER` non nettoyés, nonce manquant, requête SQL non préparée ;
+- **compatibilité** : PHP 8.1+ et WordPress 6.6+ (fonctions obsolètes) ;
+- **style** : espaces, indentation du code PHP, alignement des `=` et `=>`, préfixe `starter_` des fonctions, text domain `starter`, commentaires `translators:`.
+
+Dans VS Code (extension **PHP_CodeSniffer**, `obliviousharmony.vscode-php-codesniffer`) : erreurs soulignées pendant la frappe, PHPCBF à chaque enregistrement.
+
+> **Le HTML des gabarits n'est pas réindenté** : aucun outil ne le fait proprement dans le style WordPress (testé : Intelephense + PHPCBF casse les lignes `<?php echo …; ?>`). Indentation à la main : sélectionner les lignes puis `Tab` / `Shift+Tab`.
+
+Choix du projet (`phpcs.xml.dist`) :
+
+| Règle désactivée / adaptée                                     | Pourquoi                                                                                     |
+| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `starter_icon()`, `starter_button()`, `starter_format_title()` | Renvoient du HTML déjà échappé : pas besoin de `phpcs:ignore` à chaque `echo`                |
+| Variables « globales » dans `render.php` et `template-parts/`  | Ces fichiers sont inclus **dans** une fonction : `$title`, `$link`… ne sont pas des globales |
+| Noms de fichiers `class-…`                                     | Le thème n'a pas de classes                                                                  |
+| Petits tableaux sur une ligne                                  | `array( 'class' => 'mb-8' )` reste lisible                                                   |
+| Docblocks complets dans `demo/`                                | Outils WP-CLI internes                                                                       |
+
+Ignorer une ligne précise (toujours avec la raison) :
+
+```php
+echo $html; // phpcs:ignore WordPress.Security.EscapeOutput -- échappé dans ma_fonction().
+```
+
+## CI : vérification à chaque push
+
+`.github/workflows/ci.yml` lance sur GitHub, à chaque push sur `main` et à chaque pull request :
+
+1. `npm run format:check` (Prettier + tri des classes) puis `npm run build` ;
+2. vérification de la syntaxe PHP (`php -l`) en PHP 8.1, puis `composer lint`.
+
+Une croix rouge sur le commit = quelque chose à corriger. Les mêmes commandes se lancent en local.

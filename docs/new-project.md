@@ -8,6 +8,7 @@ git clone git@github.com:coyote2190/wordpress-starter.git nom-du-client
 cd nom-du-client
 rm -rf .git && git init          # nouvel historique pour le projet client
 npm install
+composer install
 npm run build
 ```
 
