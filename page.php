@@ -17,7 +17,7 @@ while ( have_posts() ) :
 		// Page qui commence par un Hero / Hero slider : le bloc porte le <h1>, pas d'en-tête ici.
 		if ( ! starter_starts_with_hero() ) {
 			// Page de texte : en-tête aligné sur la colonne de lecture.
-			echo '<div class="mx-auto max-w-content">';
+			echo '<div class="max-w-content mx-auto">';
 			get_template_part(
 				'template-parts/page-header',
 				null,
@@ -30,7 +30,7 @@ while ( have_posts() ) :
 		}
 		?>
 
-		<div class="entry-content mx-auto prose prose-lg max-w-content">
+		<div class="entry-content max-w-content mx-auto prose prose-lg">
 			<?php the_content(); ?>
 		</div>
 	</article>

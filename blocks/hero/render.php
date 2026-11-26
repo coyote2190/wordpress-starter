@@ -25,7 +25,7 @@ $image  = (int) starter_field( 'image', false, 0 );  // Champ Image, format de r
 // Bloc vide dans l'éditeur : on guide le rédacteur au lieu d'afficher un cadre vide.
 if ( '' === $title ) {
 	if ( $is_preview ) {
-		echo '<p class="rounded border border-dashed border-gray-300 p-8 text-center text-gray-500">'
+		echo '<p class="border border-dashed border-gray-300 p-8 rounded text-center text-gray-500">'
 			. esc_html__( 'Hero : remplissez le titre dans le panneau de droite.', 'starter' )
 			. '</p>';
 	}
@@ -35,19 +35,19 @@ if ( '' === $title ) {
 // get_block_wrapper_attributes() ajoute les classes et attributs gérés par
 // WordPress : wp-block-starter-hero, alignwide, ancre (id), classes CSS additionnelles.
 // not-prose : le bloc ignore la mise en forme « prose » de page.php.
-$wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose mt-6 mb-16 md:mb-24' ) );
+$wrapper = get_block_wrapper_attributes( array( 'class' => 'mb-16 md:mb-24 mt-6 not-prose' ) );
 ?>
 <section <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput -- échappé par WordPress. ?>>
 <div class="<?php echo esc_attr( starter_block_inner_class( $block['align'] ?? null ) ); ?>">
-	<div class="flex flex-wrap items-end gap-x-16 gap-y-8 <?php echo $image ? 'mb-10' : ''; ?>">
-		<h1 class="flex-[2_1_32rem] text-[clamp(2.75rem,6vw,5.5rem)] leading-[.98] tracking-[-.045em] text-balance">
+	<div class="flex flex-wrap gap-x-16 gap-y-8 items-end <?php echo $image ? 'mb-10' : ''; ?>">
+		<h1 class="flex-[2_1_32rem] leading-[.98] text-[clamp(2.75rem,6vw,5.5rem)] text-balance tracking-[-.045em]">
 			<?php echo starter_format_title( $title, 'title-mark', 'underline decoration-secondary decoration-wavy underline-offset-8' ); // phpcs:ignore WordPress.Security.EscapeOutput -- échappé dans starter_format_title(). ?>
 		</h1>
 
 		<?php if ( $text || ! empty( $button['url'] ) ) : ?>
-			<div class="flex flex-[1_1_18rem] flex-col items-start gap-6" <?php echo $is_preview ? 'inert' : ''; ?>>
+			<div class="flex flex-[1_1_18rem] flex-col gap-6 items-start" <?php echo $is_preview ? 'inert' : ''; ?>>
 				<?php if ( $text ) : ?>
-					<p class="text-[1.1875rem] leading-normal text-muted"><?php echo esc_html( $text ); ?></p>
+					<p class="leading-normal text-[1.1875rem] text-muted"><?php echo esc_html( $text ); ?></p>
 				<?php endif; ?>
 				<?php echo starter_button( is_array( $button ) ? $button : array(), 'icon', 'arrow-right' ); // phpcs:ignore WordPress.Security.EscapeOutput -- échappé dans starter_button(). ?>
 			</div>
@@ -61,7 +61,7 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose mt-6 mb-16
 			'full',
 			false,
 			array(
-				'class'         => 'h-[clamp(16rem,42vw,34rem)] w-full rounded-[2rem] bg-secondary object-cover',
+				'class'         => 'bg-secondary h-[clamp(16rem,42vw,34rem)] object-cover rounded-[2rem] w-full',
 				'sizes'         => '(min-width: 80rem) 80rem, 100vw',
 				'fetchpriority' => 'high', // Image du haut de page : priorité de chargement.
 				'loading'       => 'eager',

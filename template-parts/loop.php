@@ -17,7 +17,7 @@ if ( ! have_posts() ) {
 
 $starter_feature_first = ! is_paged() && ! is_search() && ( is_home() || is_archive() );
 ?>
-<div class="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+<div class="gap-x-6 gap-y-12 grid lg:grid-cols-3 sm:grid-cols-2">
 	<?php
 	while ( have_posts() ) :
 		the_post();
@@ -29,7 +29,7 @@ $starter_feature_first = ! is_paged() && ! is_search() && ( is_home() || is_arch
 <?php
 the_posts_pagination(
 	array(
-		'class'     => 'pagination mt-16',
+		'class'     => 'mt-16 pagination',
 		'prev_text' => __( 'Précédent', 'starter' ),
 		'next_text' => __( 'Suivant', 'starter' ),
 	)

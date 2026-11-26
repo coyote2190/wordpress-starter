@@ -10,11 +10,11 @@ defined( 'ABSPATH' ) || exit;
 ?>
 </main>
 
-<footer class="site-footer bg-dark text-white">
-	<div class="container flex flex-col gap-12 pt-18 pb-8">
-		<div class="flex flex-wrap justify-between gap-8 leading-relaxed">
+<footer class="bg-dark site-footer text-white">
+	<div class="container flex flex-col gap-12 pb-8 pt-18">
+		<div class="flex flex-wrap gap-8 justify-between leading-relaxed">
 			<div class="flex flex-col gap-1 text-[#b5b5b5]">
-				<?php get_template_part( 'template-parts/site-brand', null, array( 'class' => 'mb-3 text-xl text-white' ) ); ?>
+				<?php get_template_part( 'template-parts/site-brand', null, array( 'class' => 'mb-3 text-white text-xl' ) ); ?>
 				<?php get_template_part( 'template-parts/site-contact' ); ?>
 			</div>
 
@@ -34,7 +34,7 @@ defined( 'ABSPATH' ) || exit;
 			<?php endif; ?>
 		</div>
 
-		<div class="flex flex-wrap justify-between gap-4 border-t border-white/15 pt-6 text-sm text-white/55">
+		<div class="border-t border-white/15 flex flex-wrap gap-4 justify-between pt-6 text-sm text-white/55">
 			<p>&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?></p>
 			<?php get_template_part( 'template-parts/site-socials' ); ?>
 		</div>

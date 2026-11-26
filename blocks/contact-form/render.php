@@ -43,25 +43,25 @@ $cards = array_filter(
 	)
 );
 
-$wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose @container my-10' ) );
+$wrapper = get_block_wrapper_attributes( array( 'class' => '@container my-10 not-prose' ) );
 ?>
 <div <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput -- échappé par WordPress. ?>>
 <div class="<?php echo esc_attr( starter_block_inner_class( $block['align'] ?? null ) ); ?>">
-	<div class="grid gap-4 <?php echo $cards ? '@3xl:grid-cols-[minmax(0,1fr)_minmax(0,1.7fr)]' : ''; ?>">
+	<div class="gap-4 grid <?php echo $cards ? '@3xl:grid-cols-[minmax(0,1fr)_minmax(0,1.7fr)]' : ''; ?>">
 		<?php if ( $cards ) : ?>
 			<ul class="flex flex-col gap-4">
 				<?php foreach ( $cards as $card ) : ?>
-					<li class="relative flex items-center gap-4 rounded-3xl border border-light bg-white p-6 transition has-[a:hover]:border-dark">
-						<span class="inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-secondary">
+					<li class="bg-white border border-light flex gap-4 has-[a:hover]:border-dark items-center p-6 relative rounded-3xl transition">
+						<span class="bg-secondary inline-flex items-center justify-center rounded-full shrink-0 size-12">
 							<?php echo starter_icon( $card['icon'], 'size-5' ); ?>
 						</span>
-						<span class="flex min-w-0 flex-col gap-0.5">
-							<span class="text-[13px] font-medium tracking-[.06em] text-soft uppercase"><?php echo esc_html( $card['label'] ); ?></span>
+						<span class="flex flex-col gap-0.5 min-w-0">
+							<span class="font-medium text-[13px] text-soft tracking-[.06em] uppercase"><?php echo esc_html( $card['label'] ); ?></span>
 							<?php if ( $card['url'] ) : ?>
 								<?php // after:absolute after:inset-0 : toute la carte est cliquable. ?>
-								<a class="font-heading text-lg font-medium break-words no-underline after:absolute after:inset-0" href="<?php echo esc_attr( $card['url'] ); ?>"><?php echo esc_html( $card['value'] ); ?></a>
+								<a class="after:absolute after:inset-0 break-words font-heading font-medium no-underline text-lg" href="<?php echo esc_attr( $card['url'] ); ?>"><?php echo esc_html( $card['value'] ); ?></a>
 							<?php else : ?>
-								<span class="font-heading text-lg font-medium"><?php echo esc_html( $card['value'] ); ?></span>
+								<span class="font-heading font-medium text-lg"><?php echo esc_html( $card['value'] ); ?></span>
 							<?php endif; ?>
 						</span>
 					</li>
@@ -70,7 +70,7 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose @container
 			</ul>
 		<?php endif; ?>
 
-		<div class="rounded-[2rem] border border-light bg-white p-6 md:p-10">
+		<div class="bg-white border border-light md:p-10 p-6 rounded-[2rem]">
 			<?php if ( $is_preview ) : ?>
 				<?php // Dans l'éditeur : aperçu non cliquable. ?>
 				<div class="pointer-events-none" inert>

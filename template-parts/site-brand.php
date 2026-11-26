@@ -13,7 +13,7 @@ if ( has_custom_logo() ) {
 	return;
 }
 ?>
-<a class="inline-flex items-center gap-2.5 font-heading text-lg font-medium no-underline <?php echo esc_attr( $args['class'] ?? '' ); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-	<span class="size-6.5 shrink-0 rounded-full bg-secondary" aria-hidden="true"></span>
+<a class="font-heading font-medium gap-2.5 inline-flex items-center no-underline text-lg <?php echo esc_attr( $args['class'] ?? '' ); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+	<span class="bg-secondary rounded-full shrink-0 size-6.5" aria-hidden="true"></span>
 	<?php bloginfo( 'name' ); ?>
 </a>

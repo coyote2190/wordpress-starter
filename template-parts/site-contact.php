@@ -17,14 +17,14 @@ if ( ! $starter_phone && ! $starter_email && ! $starter_address ) {
 }
 ?>
 <?php if ( $starter_phone ) : ?>
-	<a class="w-fit transition hover:text-white" href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', $starter_phone ) ); ?>">
+	<a class="hover:text-white transition w-fit" href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', $starter_phone ) ); ?>">
 		<?php echo esc_html( $starter_phone ); ?>
 	</a>
 <?php endif; ?>
 
 <?php if ( $starter_email ) : ?>
 	<?php // antispambot() encode l'adresse pour gêner les robots collecteurs. ?>
-	<a class="w-fit transition hover:text-white" href="mailto:<?php echo esc_attr( antispambot( $starter_email ) ); ?>">
+	<a class="hover:text-white transition w-fit" href="mailto:<?php echo esc_attr( antispambot( $starter_email ) ); ?>">
 		<?php echo esc_html( antispambot( $starter_email ) ); ?>
 	</a>
 <?php endif; ?>

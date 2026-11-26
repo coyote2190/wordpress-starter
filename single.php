@@ -16,23 +16,23 @@ while ( have_posts() ) :
 	$starter_is_post = 'post' === get_post_type();
 	?>
 	<article <?php post_class( 'container pb-24' ); ?>>
-		<header class="mx-auto flex max-w-4xl flex-col items-center gap-6 pt-10 pb-12 text-center md:pt-16">
+		<header class="flex flex-col gap-6 items-center max-w-4xl md:pt-16 mx-auto pb-12 pt-10 text-center">
 			<?php if ( $starter_list ) : ?>
-				<a class="inline-flex items-center gap-2 text-[15px] font-medium text-muted transition hover:text-dark" href="<?php echo esc_url( $starter_list['url'] ); ?>">
+				<a class="font-medium gap-2 hover:text-dark inline-flex items-center text-[15px] text-muted transition" href="<?php echo esc_url( $starter_list['url'] ); ?>">
 					<?php echo starter_icon( 'arrow-left', 'size-4' ); ?>
 					<?php echo esc_html( $starter_list['label'] ); ?>
 				</a>
 			<?php endif; ?>
 
-			<h1 class="text-[clamp(2.5rem,5.5vw,4.75rem)] leading-[1] tracking-[-.045em] text-balance"><?php the_title(); ?></h1>
+			<h1 class="leading-[1] text-[clamp(2.5rem,5.5vw,4.75rem)] text-balance tracking-[-.045em]"><?php the_title(); ?></h1>
 
 			<?php if ( has_excerpt() ) : ?>
-				<p class="max-w-2xl text-[1.1875rem] leading-normal text-muted"><?php echo esc_html( get_the_excerpt() ); ?></p>
+				<p class="leading-normal max-w-2xl text-[1.1875rem] text-muted"><?php echo esc_html( get_the_excerpt() ); ?></p>
 			<?php endif; ?>
 
-			<div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-muted">
+			<div class="flex flex-wrap gap-x-3 gap-y-2 items-center justify-center text-muted text-sm">
 				<?php if ( $starter_term ) : ?>
-					<a class="rounded-full bg-secondary px-3 py-1 text-[13px] font-semibold text-dark" href="<?php echo esc_url( get_term_link( $starter_term ) ); ?>"><?php echo esc_html( $starter_term->name ); ?></a>
+					<a class="bg-secondary font-semibold px-3 py-1 rounded-full text-[13px] text-dark" href="<?php echo esc_url( get_term_link( $starter_term ) ); ?>"><?php echo esc_html( $starter_term->name ); ?></a>
 				<?php endif; ?>
 				<?php if ( $starter_is_post ) : ?>
 					<time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time>
@@ -45,22 +45,22 @@ while ( have_posts() ) :
 
 		<?php if ( has_post_thumbnail() ) : ?>
 			<figure class="mb-16">
-				<?php the_post_thumbnail( 'full', array( 'class' => 'h-[clamp(16rem,42vw,34rem)] w-full rounded-[2rem] bg-secondary object-cover', 'sizes' => '(min-width: 80rem) 80rem, 100vw' ) ); ?>
+				<?php the_post_thumbnail( 'full', array( 'class' => 'bg-secondary h-[clamp(16rem,42vw,34rem)] object-cover rounded-[2rem] w-full', 'sizes' => '(min-width: 80rem) 80rem, 100vw' ) ); ?>
 			</figure>
 		<?php endif; ?>
 
-		<div class="entry-content mx-auto prose prose-lg max-w-content">
+		<div class="entry-content max-w-content mx-auto prose prose-lg">
 			<?php the_content(); ?>
 		</div>
 
 		<?php // Mise en page sur un conteneur : WordPress n'accepte qu'UNE classe dans 'class' (sanitize_html_class). ?>
-		<div class="mx-auto mt-20 max-w-content">
+		<div class="max-w-content mt-20 mx-auto">
 		<?php
 		the_post_navigation(
 			array(
 				'class'     => 'post-navigation',
-				'prev_text' => '<span class="font-sans text-[13px] font-medium tracking-[.06em] text-soft uppercase">' . esc_html__( 'Précédent', 'starter' ) . '</span>%title',
-				'next_text' => '<span class="font-sans text-[13px] font-medium tracking-[.06em] text-soft uppercase">' . esc_html__( 'Suivant', 'starter' ) . '</span>%title',
+				'prev_text' => '<span class="font-medium font-sans text-[13px] text-soft tracking-[.06em] uppercase">' . esc_html__( 'Précédent', 'starter' ) . '</span>%title',
+				'next_text' => '<span class="font-medium font-sans text-[13px] text-soft tracking-[.06em] uppercase">' . esc_html__( 'Suivant', 'starter' ) . '</span>%title',
 			)
 		);
 		?>
@@ -80,17 +80,17 @@ while ( have_posts() ) :
 	);
 	if ( $starter_related->have_posts() ) :
 		?>
-		<section class="border-t border-line py-24">
+		<section class="border-line border-t py-24">
 			<div class="container">
-				<div class="mb-12 flex flex-wrap items-end justify-between gap-6">
-					<h2 class="text-[clamp(2.25rem,4.4vw,3.75rem)] leading-none tracking-[-.04em]">
+				<div class="flex flex-wrap gap-6 items-end justify-between mb-12">
+					<h2 class="leading-none text-[clamp(2.25rem,4.4vw,3.75rem)] tracking-[-.04em]">
 						<?php echo $starter_is_post ? esc_html__( 'À lire aussi', 'starter' ) : esc_html__( 'Autres projets', 'starter' ); ?>
 					</h2>
 					<?php if ( $starter_list ) : ?>
 						<?php echo starter_button( array( 'url' => $starter_list['url'], 'title' => __( 'Tout voir', 'starter' ) ), 'link' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					<?php endif; ?>
 				</div>
-				<div class="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+				<div class="gap-x-6 gap-y-12 grid lg:grid-cols-3 sm:grid-cols-2">
 					<?php
 					while ( $starter_related->have_posts() ) :
 						$starter_related->the_post();

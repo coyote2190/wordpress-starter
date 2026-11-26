@@ -14,7 +14,7 @@ export const VARIANTS = {
 };
 
 /** Classes communes (pilule blanche centrée), aussi recopiées dans render.php. */
-export const WRAPPER = 'not-prose my-8 flex justify-center';
+export const WRAPPER = 'flex justify-center my-8 not-prose';
 export const INNER =
-  'flex items-center gap-3 rounded-3xl border border-light bg-white py-2 pr-5 pl-2 text-base leading-snug sm:rounded-full';
-export const TAG = 'shrink-0 rounded-full px-3 py-1.5 text-[13px] font-semibold';
+  'bg-white border border-light flex gap-3 items-center leading-snug pl-2 pr-5 py-2 rounded-3xl sm:rounded-full text-base';
+export const TAG = 'font-semibold px-3 py-1.5 rounded-full shrink-0 text-[13px]';

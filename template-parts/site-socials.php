@@ -13,7 +13,7 @@ if ( ! $starter_socials ) {
 	return;
 }
 ?>
-<ul class="flex flex-wrap gap-5 font-medium text-white">
+<ul class="flex flex-wrap font-medium gap-5 text-white">
 	<?php foreach ( $starter_socials as $starter_social ) : ?>
 		<?php
 		$starter_network = $starter_social['network'] ?? array();
@@ -22,7 +22,7 @@ if ( ! $starter_socials ) {
 		}
 		?>
 		<li>
-			<a class="transition hover:opacity-70" href="<?php echo esc_url( $starter_social['url'] ); ?>" target="_blank" rel="noopener">
+			<a class="hover:opacity-70 transition" href="<?php echo esc_url( $starter_social['url'] ); ?>" target="_blank" rel="noopener">
 				<?php echo esc_html( $starter_network['label'] ); ?>
 			</a>
 		</li>

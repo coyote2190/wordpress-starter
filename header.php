@@ -18,12 +18,12 @@ defined( 'ABSPATH' ) || exit;
 <body <?php body_class( 'flex min-h-screen flex-col antialiased' ); ?>>
 <?php wp_body_open(); ?>
 
-<a class="skip-link fixed top-2 left-2 z-50 rounded bg-dark px-4 py-2 text-white" href="#content">
+<a class="bg-dark fixed left-2 px-4 py-2 rounded skip-link text-white top-2 z-50" href="#content">
 	<?php esc_html_e( 'Aller au contenu', 'starter' ); ?>
 </a>
 
-<header class="site-header relative" data-module="nav">
-	<div class="container flex items-center justify-between gap-6 py-6">
+<header class="relative site-header" data-module="nav">
+	<div class="container flex gap-6 items-center justify-between py-6">
 		<div class="site-branding">
 			<?php get_template_part( 'template-parts/site-brand' ); ?>
 		</div>
@@ -43,7 +43,7 @@ defined( 'ABSPATH' ) || exit;
 
 			<nav
 				id="primary-menu"
-				class="site-nav max-md:absolute max-md:inset-x-0 max-md:top-full max-md:z-40 max-md:hidden max-md:border-b max-md:border-line max-md:bg-paper max-md:data-open:block"
+				class="max-md:absolute max-md:bg-paper max-md:border-b max-md:border-line max-md:data-open:block max-md:hidden max-md:inset-x-0 max-md:top-full max-md:z-40 site-nav"
 				aria-label="<?php esc_attr_e( 'Menu principal', 'starter' ); ?>"
 				data-nav-menu
 			>
@@ -62,4 +62,4 @@ defined( 'ABSPATH' ) || exit;
 	</div>
 </header>
 
-<main id="content" class="site-main flex-1">
+<main id="content" class="flex-1 site-main">

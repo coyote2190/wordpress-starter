@@ -8,7 +8,7 @@
 | `npm run dev` | Pendant qu'on code | Lance Vite sur `http://localhost:5173`. Le CSS/JS se met à jour **sans recharger**, la page se recharge quand un `.php` change. |
 | `npm run build` | Avant chaque commit / déploiement | Compile et minifie dans `dist/`, puis compile les blocs natifs (`blocks-native/build/`) |
 | `npm run blocks:dev` / `blocks:build` | Si on travaille sur un bloc React | Voir `docs/native-blocks.md` |
-| `npm run format` | Quand on veut | Formate JS/CSS/JSON/MD avec Prettier **et trie les classes Tailwind**, PHP compris (voir ci-dessous) |
+| `npm run format` | Quand on veut | Formate JS/CSS/JSON/MD avec Prettier **et trie les classes Tailwind de A à Z**, PHP compris (voir ci-dessous) |
 | `npm run format:check` | En CI | Même vérification, sans rien modifier (code de sortie 1 si un fichier n'est pas formaté) |
 
 > On continue d'ouvrir le site sur **http://wordpress-starter.local** (et pas localhost:5173). Vite ne sert que les fichiers CSS/JS.
@@ -84,15 +84,19 @@ Exemple : un JS chargé seulement sur la page contact.
 | En dev, les styles ne changent pas | Vite ne tourne plus mais `hot` est resté (crash) : supprimer le fichier `hot`. |
 | Port 5173 déjà pris | Un autre Vite tourne : l'arrêter (`strictPort` empêche de basculer sur un autre port). |
 
-## Tri des classes Tailwind
+## Tri des classes Tailwind : ordre alphabétique
 
-Ordre officiel de Tailwind (mise en page → espacements → typographie → couleurs → états), le même partout :
+Choix du projet : les classes sont rangées **de A à Z** (`bg-white border flex gap-3 items-center px-4 rounded-full`), plus simple à lire et à retrouver que l'ordre « officiel » de Tailwind. L'ordre des classes ne change **jamais** le rendu : c'est Tailwind qui décide de l'ordre des règles dans le CSS.
 
-| Fichiers | Outil |
+Outil : `bin/sort-classes.mjs`, lancé par `npm run format` (et `npm run format:check` pour vérifier sans modifier).
+
+| Fichiers | Ce qui est trié |
 |---|---|
-| JS, CSS, Markdown | Prettier + `prettier-plugin-tailwindcss` |
-| **PHP** | `bin/sort-classes.mjs`, qui réutilise **le même algorithme** (`prettier-plugin-tailwindcss/sorter`) sans toucher au reste du code PHP |
+| PHP | attributs `class="…"` (les morceaux `<?php … ?>` restent en place), tableaux `'class' => '…'`, 2e argument de `starter_icon()` |
+| JS | `className="…"`, `className: '…'`, parties fixes de ``className={`…`}``, constantes de classes en MAJUSCULES (`export const INNER = '…'`) |
 
-Le script PHP trie les attributs `class="…"` (les morceaux `<?php … ?>` restent en place), les tableaux `'class' => '…'` et le 2e argument de `starter_icon()`. Il ne trie pas les classes construites par concaténation ni celles rangées dans des tableaux PHP : sans conséquence, l'ordre des classes ne change jamais le rendu.
+- Un `-` ou `!` au début est ignoré pour le tri : `-translate-x-1` se range avec `translate-…`.
+- Pas triées : les classes construites par concaténation ou rangées dans des tableaux PHP (`$widths = array( … )`).
+- **Garde-fou** : une liste n'est modifiée que si chaque mot ressemble à une classe Tailwind. Une concaténation PHP prise par erreur pour une liste (`class="' . esc_attr( $x ) . '"`) n'est jamais touchée.
 
-Pourquoi pas Prettier directement sur le PHP : `@prettier/plugin-php` reformaterait **tout** le PHP, à l'opposé du style WordPress du thème.
+> Pas de `prettier-plugin-tailwindcss` : il impose l'ordre officiel de Tailwind et défairait le tri alphabétique du JS.

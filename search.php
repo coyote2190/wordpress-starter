@@ -27,7 +27,7 @@ global $wp_query;
 	);
 	?>
 
-	<div class="mb-12 max-w-xl"><?php get_search_form(); ?></div>
+	<div class="max-w-xl mb-12"><?php get_search_form(); ?></div>
 
 	<?php get_template_part( 'template-parts/loop' ); ?>
 </div>

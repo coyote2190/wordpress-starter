@@ -20,7 +20,7 @@ $items   = starter_field( 'items', false, array() );
 
 if ( ! $items ) {
 	if ( $is_preview ) {
-		echo '<p class="rounded border border-dashed border-gray-300 p-8 text-center text-gray-500">'
+		echo '<p class="border border-dashed border-gray-300 p-8 rounded text-center text-gray-500">'
 			. esc_html__( 'Cartes : ajoutez des cartes dans le panneau de droite.', 'starter' )
 			. '</p>';
 	}
@@ -42,23 +42,23 @@ $card_classes = array(
 
 $palette = starter_palette();
 
-$wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-24 md:my-32' ) );
+$wrapper = get_block_wrapper_attributes( array( 'class' => 'md:my-32 my-24 not-prose' ) );
 ?>
 <section <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput -- échappé par WordPress. ?>>
 <div class="<?php echo esc_attr( starter_block_inner_class( $block['align'] ?? null ) ); ?>">
 	<?php if ( $title || $intro ) : ?>
 		<?php // Titre à gauche, introduction à droite (comme le bloc Bento). ?>
-		<header class="mb-12 flex flex-wrap items-end justify-between gap-x-16 gap-y-6">
+		<header class="flex flex-wrap gap-x-16 gap-y-6 items-end justify-between mb-12">
 			<?php if ( $title ) : ?>
-				<h2 class="text-[clamp(2.25rem,4.4vw,3.75rem)] leading-none tracking-[-.04em]"><?php echo esc_html( $title ); ?></h2>
+				<h2 class="leading-none text-[clamp(2.25rem,4.4vw,3.75rem)] tracking-[-.04em]"><?php echo esc_html( $title ); ?></h2>
 			<?php endif; ?>
 			<?php if ( $intro ) : ?>
-				<p class="max-w-[420px] text-lg leading-normal text-muted"><?php echo esc_html( $intro ); ?></p>
+				<p class="leading-normal max-w-[420px] text-lg text-muted"><?php echo esc_html( $intro ); ?></p>
 			<?php endif; ?>
 		</header>
 	<?php endif; ?>
 
-	<div class="grid gap-4 <?php echo esc_attr( $grid_classes[ $columns ] ?? $grid_classes['3'] ); ?>">
+	<div class="gap-4 grid <?php echo esc_attr( $grid_classes[ $columns ] ?? $grid_classes['3'] ); ?>">
 		<?php foreach ( $items as $item ) : ?>
 			<?php
 			$link  = is_array( $item['link'] ?? null ) ? $item['link'] : array();
@@ -68,30 +68,30 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'not-prose my-24 md:m
 			$color_var = sprintf( '--card-color: var(--wp--preset--color--%s);', $color );
 			?>
 			<article
-				class="group relative flex flex-col rounded-3xl p-7 transition <?php echo esc_attr( $card_classes[ $style ] ?? $card_classes['border'] ); ?> <?php echo ! empty( $link['url'] ) ? 'hover:-translate-y-1 hover:border-dark' : ''; ?>"
+				class="flex flex-col group p-7 relative rounded-3xl transition <?php echo esc_attr( $card_classes[ $style ] ?? $card_classes['border'] ); ?> <?php echo ! empty( $link['url'] ) ? 'hover:-translate-y-1 hover:border-dark' : ''; ?>"
 				style="<?php echo esc_attr( $color_var ); ?>"
 			>
 				<?php if ( ! empty( $item['icon'] ) && starter_icon_exists( $item['icon'] ) ) : ?>
-					<span class="inline-flex size-12 items-center justify-center rounded-full bg-(--card-color)/45 text-dark" style="--icon-accent: var(--card-color);">
-						<?php echo starter_icon( $item['icon'], 'size-6 [stroke-width:1.5]' ); ?>
+					<span class="bg-(--card-color)/45 inline-flex items-center justify-center rounded-full size-12 text-dark" style="--icon-accent: var(--card-color);">
+						<?php echo starter_icon( $item['icon'], '[stroke-width:1.5] size-6' ); ?>
 					</span>
 				<?php endif; ?>
 
-				<h3 class="mt-8 text-[1.625rem] leading-tight tracking-[-.02em]"><?php echo esc_html( $item['title'] ?? '' ); ?></h3>
+				<h3 class="leading-tight mt-8 text-[1.625rem] tracking-[-.02em]"><?php echo esc_html( $item['title'] ?? '' ); ?></h3>
 
 				<?php if ( ! empty( $item['text'] ) ) : ?>
-					<p class="mt-2 flex-1 leading-normal text-muted"><?php echo esc_html( $item['text'] ); ?></p>
+					<p class="flex-1 leading-normal mt-2 text-muted"><?php echo esc_html( $item['text'] ); ?></p>
 				<?php endif; ?>
 
 				<?php if ( ! empty( $link['url'] ) ) : ?>
 					<?php // after:absolute after:inset-0 : toute la carte est cliquable. ?>
 					<a
-						class="mt-6 inline-flex items-center gap-1.5 font-medium text-dark underline underline-offset-4 after:absolute after:inset-0"
+						class="after:absolute after:inset-0 font-medium gap-1.5 inline-flex items-center mt-6 text-dark underline underline-offset-4"
 						href="<?php echo esc_url( $link['url'] ); ?>"
 						<?php echo '_blank' === ( $link['target'] ?? '' ) ? 'target="_blank" rel="noopener"' : ''; ?>
 					>
 						<?php echo esc_html( ( $link['title'] ?? '' ) ?: __( 'En savoir plus', 'starter' ) ); ?>
-						<?php echo starter_icon( 'arrow-right', 'size-4 transition group-hover:translate-x-1' ); ?>
+						<?php echo starter_icon( 'arrow-right', 'group-hover:translate-x-1 size-4 transition' ); ?>
 					</a>
 				<?php endif; ?>
 			</article>

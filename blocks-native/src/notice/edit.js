@@ -35,7 +35,10 @@ export default function Edit({ attributes, setAttributes }) {
           />
           <TextControl
             label={__('Étiquette', 'starter')}
-            help={__('Un ou deux mots (ex. « 30 min », « Nouveau »). Vide = icône du type.', 'starter')}
+            help={__(
+              'Un ou deux mots (ex. « 30 min », « Nouveau »). Vide = icône du type.',
+              'starter',
+            )}
             value={badge}
             onChange={(value) => setAttributes({ badge: value })}
             __next40pxDefaultSize
@@ -48,7 +51,10 @@ export default function Edit({ attributes, setAttributes }) {
       <div {...blockProps}>
         <div className={`flex justify-center ${isFull ? 'container' : ''}`}>
           <div className={INNER}>
-            <span className={`${TAG} ${variant.className}`} aria-hidden={badge ? undefined : 'true'}>
+            <span
+              className={`${TAG} ${variant.className}`}
+              aria-hidden={badge ? undefined : 'true'}
+            >
               {badge || variant.icon}
             </span>
             <RichText

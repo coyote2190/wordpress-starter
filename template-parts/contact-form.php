@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'starter_contact_token' ) ) {
 	if ( current_user_can( 'manage_options' ) ) {
-		echo '<p class="rounded bg-red-50 p-4 text-red-700">' . esc_html__( 'Formulaire indisponible : le mu-plugin « Starter Core » n\'est pas installé.', 'starter' ) . '</p>';
+		echo '<p class="bg-red-50 p-4 rounded text-red-700">' . esc_html__( 'Formulaire indisponible : le mu-plugin « Starter Core » n\'est pas installé.', 'starter' ) . '</p>';
 	}
 	return;
 }
@@ -65,7 +65,7 @@ $starter_redirect = remove_query_arg( array( 'contact', 'contact_key' ) );
 ?>
 <form
 	id="contact-form"
-	class="contact-form grid gap-5 sm:grid-cols-2"
+	class="contact-form gap-5 grid sm:grid-cols-2"
 	method="post"
 	action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>"
 	data-module="contact-form"
@@ -83,7 +83,7 @@ $starter_redirect = remove_query_arg( array( 'contact', 'contact_key' ) );
 
 	<?php // Message global (succès / erreur). role="status" : annoncé par les lecteurs d'écran. ?>
 	<div
-		class="rounded-2xl p-4 empty:hidden sm:col-span-2 <?php echo 'sent' === $starter_status ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-700'; ?>"
+		class="empty:hidden p-4 rounded-2xl sm:col-span-2 <?php echo 'sent' === $starter_status ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-700'; ?>"
 		role="status"
 		data-contact-status
 	><?php echo esc_html( $starter_state['message'] ); ?></div>
@@ -113,8 +113,8 @@ $starter_redirect = remove_query_arg( array( 'contact', 'contact_key' ) );
 	</div>
 
 	<div class="sm:col-span-2">
-		<label class="flex items-start gap-3 text-sm text-muted" for="contact-consent">
-			<input class="mt-0.5 size-4.5 shrink-0 accent-dark" <?php echo $starter_field_attrs( 'consent' ); // phpcs:ignore ?> type="checkbox" value="1" required <?php checked( $starter_value( 'consent' ), '1' ); ?>>
+		<label class="flex gap-3 items-start text-muted text-sm" for="contact-consent">
+			<input class="accent-dark mt-0.5 shrink-0 size-4.5" <?php echo $starter_field_attrs( 'consent' ); // phpcs:ignore ?> type="checkbox" value="1" required <?php checked( $starter_value( 'consent' ), '1' ); ?>>
 			<span>
 				<?php esc_html_e( 'J\'accepte que mes données soient utilisées pour me recontacter.', 'starter' ); ?>
 				<?php if ( get_privacy_policy_url() ) : ?>
@@ -127,11 +127,11 @@ $starter_redirect = remove_query_arg( array( 'contact', 'contact_key' ) );
 
 	<div class="sm:col-span-2">
 		<button
-			class="inline-flex items-center gap-2.5 rounded-full bg-dark py-2 pr-5.5 pl-2 font-medium text-white transition hover:bg-primary disabled:opacity-60"
+			class="bg-dark disabled:opacity-60 font-medium gap-2.5 hover:bg-primary inline-flex items-center pl-2 pr-5.5 py-2 rounded-full text-white transition"
 			type="submit"
 			data-contact-submit
 		>
-			<span class="inline-flex size-9 items-center justify-center rounded-full border-[1.5px] border-white/50"><?php echo starter_icon( 'arrow-right', 'size-4' ); ?></span>
+			<span class="border-[1.5px] border-white/50 inline-flex items-center justify-center rounded-full size-9"><?php echo starter_icon( 'arrow-right', 'size-4' ); ?></span>
 			<?php esc_html_e( 'Envoyer le message', 'starter' ); ?>
 		</button>
 	</div>

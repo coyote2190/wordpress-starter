@@ -7,8 +7,8 @@
 
 defined( 'ABSPATH' ) || exit;
 ?>
-<div class="flex flex-col items-center gap-4 rounded-[2rem] border border-light bg-white px-6 py-16 text-center">
-	<span class="inline-flex size-14 items-center justify-center rounded-full bg-secondary">
+<div class="bg-white border border-light flex flex-col gap-4 items-center px-6 py-16 rounded-[2rem] text-center">
+	<span class="bg-secondary inline-flex items-center justify-center rounded-full size-14">
 		<?php echo starter_icon( is_search() ? 'search' : 'lightbulb', 'size-6' ); ?>
 	</span>
 	<p class="max-w-md text-lg text-muted">

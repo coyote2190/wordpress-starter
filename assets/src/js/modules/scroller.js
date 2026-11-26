@@ -35,7 +35,9 @@ export default function scroller(root) {
   };
 
   // Défilement animé, sauf si le visiteur a demandé à réduire les animations.
-  const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ? 'auto'
+    : 'smooth';
 
   prev?.addEventListener('click', () => track.scrollBy({ left: -step(), behavior }));
   next?.addEventListener('click', () => track.scrollBy({ left: step(), behavior }));

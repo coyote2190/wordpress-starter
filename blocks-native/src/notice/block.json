@@ -6,20 +6,12 @@
   "description": "Message court mis en avant, dans une pilule centrée avec une étiquette : information, succès ou attention.",
   "category": "starter",
   "icon": "info",
-  "keywords": [
-    "alerte",
-    "info",
-    "message"
-  ],
+  "keywords": ["alerte", "info", "message"],
   "textdomain": "starter",
   "attributes": {
     "type": {
       "type": "string",
-      "enum": [
-        "info",
-        "success",
-        "warning"
-      ],
+      "enum": ["info", "success", "warning"],
       "default": "info"
     },
     "badge": {
@@ -34,10 +26,7 @@
   "supports": {
     "anchor": true,
     "html": false,
-    "align": [
-      "wide",
-      "full"
-    ]
+    "align": ["wide", "full"]
   },
   "example": {
     "attributes": {

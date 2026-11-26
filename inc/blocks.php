@@ -127,7 +127,7 @@ function starter_button( array $link, string $variant = 'icon', string $icon = '
 
 	$inner = esc_html( $label );
 	if ( 'icon' === $variant ) {
-		$inner = '<span class="inline-flex size-9 items-center justify-center rounded-full border-[1.5px] border-white/50">' . starter_icon( $icon, 'size-4' ) . '</span>' . $inner;
+		$inner = '<span class="border-[1.5px] border-white/50 inline-flex items-center justify-center rounded-full size-9">' . starter_icon( $icon, 'size-4' ) . '</span>' . $inner;
 	} elseif ( 'simple' === $variant ) {
 		$inner .= starter_icon( $icon, 'size-4' );
 	}

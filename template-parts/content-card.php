@@ -27,27 +27,27 @@ if ( $starter_featured ) {
 } elseif ( ! $starter_has_img ) {
 	$starter_classes .= ' self-start rounded-3xl border border-light bg-white p-6 transition hover:border-dark';
 }
-$starter_arrow = '<span class="absolute top-4 right-4 inline-flex size-10 items-center justify-center rounded-full bg-white transition group-hover:rotate-45" aria-hidden="true">' . starter_icon( 'arrow-up-right', 'size-4' ) . '</span>';
+$starter_arrow = '<span class="absolute bg-white group-hover:rotate-45 inline-flex items-center justify-center right-4 rounded-full size-10 top-4 transition" aria-hidden="true">' . starter_icon( 'arrow-up-right', 'size-4' ) . '</span>';
 ?>
 <article <?php post_class( $starter_classes ); ?>>
 	<?php if ( $starter_has_img ) : ?>
-		<div class="relative overflow-hidden rounded-3xl bg-secondary <?php echo $starter_featured ? 'aspect-[4/3] lg:aspect-[16/10]' : 'aspect-[4/3]'; ?>">
-			<?php the_post_thumbnail( $starter_featured ? 'large' : 'medium_large', array( 'class' => 'size-full object-cover transition duration-500 group-hover:scale-105' ) ); ?>
+		<div class="bg-secondary overflow-hidden relative rounded-3xl <?php echo $starter_featured ? 'aspect-[4/3] lg:aspect-[16/10]' : 'aspect-[4/3]'; ?>">
+			<?php the_post_thumbnail( $starter_featured ? 'large' : 'medium_large', array( 'class' => 'duration-500 group-hover:scale-105 object-cover size-full transition' ) ); ?>
 			<?php echo $starter_arrow; // phpcs:ignore WordPress.Security.EscapeOutput -- HTML fixe + SVG. ?>
 		</div>
 	<?php else : ?>
 		<?php echo str_replace( 'bg-white', 'bg-secondary', $starter_arrow ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 	<?php endif; ?>
 
-	<div class="flex flex-col items-start gap-3">
-		<div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted">
+	<div class="flex flex-col gap-3 items-start">
+		<div class="flex flex-wrap gap-x-3 gap-y-2 items-center text-muted text-sm">
 			<?php if ( ! $starter_term && is_search() ) : ?>
 				<?php // Recherche : type de contenu (Page, Réalisation…) quand il n'y a pas de catégorie. ?>
-				<span class="rounded-full bg-light px-3 py-1 text-[13px] font-medium text-dark"><?php echo esc_html( get_post_type_object( (string) get_post_type() )->labels->singular_name ); ?></span>
+				<span class="bg-light font-medium px-3 py-1 rounded-full text-[13px] text-dark"><?php echo esc_html( get_post_type_object( (string) get_post_type() )->labels->singular_name ); ?></span>
 			<?php endif; ?>
 			<?php if ( $starter_term ) : ?>
 				<?php // Pastille relative (z-10) : cliquable par-dessus le lien qui couvre la carte. ?>
-				<a class="relative z-10 rounded-full border border-light bg-white px-3 py-1 text-[13px] font-medium text-dark transition hover:border-dark" href="<?php echo esc_url( get_term_link( $starter_term ) ); ?>"><?php echo esc_html( $starter_term->name ); ?></a>
+				<a class="bg-white border border-light font-medium hover:border-dark px-3 py-1 relative rounded-full text-[13px] text-dark transition z-10" href="<?php echo esc_url( get_term_link( $starter_term ) ); ?>"><?php echo esc_html( $starter_term->name ); ?></a>
 			<?php endif; ?>
 			<?php if ( $starter_is_post ) : ?>
 				<time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time>

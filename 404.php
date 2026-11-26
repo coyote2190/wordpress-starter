@@ -24,7 +24,7 @@ get_header();
 	);
 	?>
 
-	<div class="mx-auto flex max-w-xl flex-col items-center gap-6">
+	<div class="flex flex-col gap-6 items-center max-w-xl mx-auto">
 		<div class="w-full"><?php get_search_form(); ?></div>
 		<?php
 		echo starter_button( // phpcs:ignore WordPress.Security.EscapeOutput -- échappé dans starter_button().
