@@ -25,6 +25,7 @@ mu-plugin/
     ├── comments.php            Désactive les commentaires partout (front + admin)
     ├── contact-form.php        Traitement du formulaire de contact (docs/contact-form.md)
     ├── contact-messages.php    Messages enregistrés dans l'admin, purge et RGPD (docs/contact-form.md)
+    ├── seo/                    Réglages > SEO, encadré SEO, <head>, sitemap, robots.txt, llms.txt (docs/seo.md)
     └── security.php            XML-RPC, en-têtes HTTP, énumération des utilisateurs (docs/security.md)
 ```
 

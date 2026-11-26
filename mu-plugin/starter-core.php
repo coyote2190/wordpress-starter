@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Starter Core
- * Description: Fonctionnalités du site indépendantes du thème : types de contenu, taxonomies, formulaire de contact (et messages enregistrés), désactivation des commentaires.
+ * Description: Fonctionnalités du site indépendantes du thème : types de contenu, taxonomies, formulaire de contact (et messages enregistrés), SEO (titres, descriptions, sitemap, robots.txt, llms.txt), désactivation des commentaires.
  * Version:     0.1.0
  * Text Domain: starter
  *
@@ -21,6 +21,10 @@ $starter_core_files = array(
 	'comments',     // Désactive complètement les commentaires.
 	'contact-form', // Traitement du formulaire de contact.
 	'contact-messages', // Messages enregistrés dans l'admin, purge RGPD.
+	'seo/settings', // SEO : Réglages > SEO.
+	'seo/fields',   // SEO : encadré « SEO » des contenus (titre, description, image, noindex).
+	'seo/head',     // SEO : <title>, meta, Open Graph, JSON-LD.
+	'seo/crawlers', // SEO : sitemap, robots.txt, llms.txt.
 	'security',     // XML-RPC, en-têtes HTTP, énumération des utilisateurs.
 );
 

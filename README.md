@@ -50,7 +50,6 @@ wordpress-starter/
 │   ├── scf.php        SCF : JSON, page « Infos du site », starter_field() / starter_option().
 │   ├── blocks.php     Enregistre les blocs (SCF + natifs), catégorie « Starter », CSS de l'éditeur, boutons.
 │   ├── template-tags.php  Petites fonctions des gabarits (catégorie, liste parente, temps de lecture).
-│   ├── seo.php        Meta description, Open Graph, JSON-LD LocalBusiness (sauf extension SEO active).
 │   └── performance.php  Préchargement de la police des titres, images en WebP.
 ├── blocks/            Blocs Gutenberg SCF (un dossier par bloc : block.json + render.php).
 │   ├── hero/          En-tête de page : grand titre + image arrondie.
@@ -65,7 +64,7 @@ wordpress-starter/
 │   └── build/         Compilé par `npm run blocks:build` (commité, ne pas éditer).
 ├── mu-plugin/         MU-plugin « Starter Core » (données indépendantes du thème) → à copier dans wp-content/mu-plugins/.
 │   ├── starter-core.php     Chargeur.
-│   └── starter-core/        CPT et taxonomies, commentaires désactivés, formulaire, sécurité.
+│   └── starter-core/        CPT et taxonomies, commentaires désactivés, formulaire + messages, SEO, sécurité.
 ├── scf-json/          Groupes de champs SCF en JSON (écrits par SCF, versionnés).
 ├── assets/icons/      Icônes SVG (un fichier par icône).
 ├── assets/src/        Sources front (éditées à la main).
@@ -106,6 +105,6 @@ wordpress-starter/
 | MU-plugin (CPT, commentaires) | [docs/mu-plugin.md](docs/mu-plugin.md) |
 | Formulaire de contact + FluentSMTP | [docs/contact-form.md](docs/contact-form.md) |
 | Sécurité (+ wp-config, .htaccess) | [docs/security.md](docs/security.md) |
-| SEO, performance, Lighthouse | [docs/seo.md](docs/seo.md) |
+| SEO (titres, descriptions, sitemap, robots.txt, llms.txt), performance, Lighthouse | [docs/seo.md](docs/seo.md) |
 | Contenu de démo | [docs/demo.md](docs/demo.md) |
 | **Nouveau projet client + déploiement** | [docs/new-project.md](docs/new-project.md) |

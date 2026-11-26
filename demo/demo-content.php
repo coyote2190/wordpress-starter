@@ -442,7 +442,7 @@ function starter_demo_create(): void {
 		// Réglages modifiés par la démo : valeur d'origine, restaurée par « reset ».
 		'options' => array(),
 	);
-	foreach ( array( 'show_on_front', 'page_on_front', 'page_for_posts', 'blogdescription', 'wp_page_for_privacy_policy', 'posts_per_page' ) as $option ) {
+	foreach ( array( 'show_on_front', 'page_on_front', 'page_for_posts', 'blogdescription', 'wp_page_for_privacy_policy', 'posts_per_page', 'starter_seo' ) as $option ) {
 		$state['options'][ $option ] = get_option( $option );
 	}
 	$state['menu_locations'] = get_theme_mod( 'nav_menu_locations', array() );
@@ -689,6 +689,20 @@ function starter_demo_create(): void {
 		. starter_demo_h( 'Vos droits' )
 		. starter_demo_p( 'Vous pouvez demander l\'accès, la rectification ou la suppression de vos données en nous écrivant.' ),
 		'politique-de-confidentialite'
+	);
+
+	// --- SEO (module du mu-plugin, voir docs/seo.md) --------------------------
+	// Exemple de titre et description personnalisés : page Contact.
+	update_post_meta( $contact, '_starter_seo_title', 'Contact – Studio web à Lille | Studio Horizon' );
+	update_post_meta( $contact, '_starter_seo_description', 'Un projet de site ? Écrivez-nous ou appelez-nous : réponse sous 48 h ouvrées. Studio web quai des Chevillards, à Lille.' );
+	update_option(
+		'starter_seo',
+		array(
+			'default_image'     => $img['slide1'],
+			'llms_intro'        => 'Studio Horizon est un studio web lillois : sites vitrines, boutiques en ligne et identités visuelles pour les entreprises de la région. Un seul interlocuteur, du devis au suivi.',
+			'robots_extra'      => '',
+			'block_ai_training' => 0,
+		)
 	);
 
 	// --- Réglages de lecture ---------------------------------------------

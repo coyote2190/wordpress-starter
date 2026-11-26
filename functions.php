@@ -25,7 +25,6 @@ $starter_includes = array(
 	'scf',     // Secure Custom Fields : JSON, page d'options, helpers.
 	'blocks',  // Blocs Gutenberg : enregistrement, catégorie, styles éditeur.
 	'template-tags', // Petites fonctions des gabarits (catégorie, temps de lecture…).
-	'seo',     // Meta description, Open Graph, données structurées (sauf si une extension SEO est active).
 	'performance', // Préchargement de la police des titres, images WebP.
 );
 

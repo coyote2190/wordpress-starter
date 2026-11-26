@@ -49,7 +49,8 @@ ln -s ../themes/nom-du-client/mu-plugin/starter-core starter-core
 - [ ] Apparence > Menus : menu **principal** et **pied de page**
 - [ ] Apparence > Personnaliser > Identité : **logo** et **icône du site** (favicon)
 - [ ] Page Contact avec le bloc **Formulaire de contact**
-- [ ] **Extrait** de chaque page importante (= meta description et aperçu de partage, voir `docs/seo.md`)
+- [ ] Encadré **SEO** des pages importantes : titre et description dans Google (voir `docs/seo.md`)
+- [ ] **Réglages > SEO** : image de partage par défaut, présentation pour les IA (llms.txt)
 - [ ] Réglages > Général : **slogan** (description par défaut)
 
 ## 6. Avant la mise en ligne
@@ -60,6 +61,8 @@ ln -s ../themes/nom-du-client/mu-plugin/starter-core starter-core
 - [ ] `.htaccess` : règles de `docs/security.md`
 - [ ] HTTPS actif, redirection http → https
 - [ ] Réglages > Lecture : **décocher** « ne pas indexer »
+- [ ] Préprod : `WP_ENVIRONMENT_TYPE = 'staging'` (fermée aux moteurs automatiquement)
+- [ ] Production : vérifier `/robots.txt`, `/wp-sitemap.xml`, `/llms.txt` ; déclarer le sitemap dans la Search Console
 - [ ] Page contact **exclue du cache** s'il y a une extension de cache
 - [ ] Compte du client en rôle **Éditeur**
 - [ ] Lighthouse sur l'accueil, une page, un article et la page contact (voir `docs/seo.md`)
